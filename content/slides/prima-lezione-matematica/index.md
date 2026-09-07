@@ -182,7 +182,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti</dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
@@ -352,7 +352,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti</dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
@@ -519,7 +519,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti</dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
@@ -677,7 +677,42 @@ slides:
   <p class="mot-joke fragment">le domande stupide non esistono. Le risposte, qualche volta.</p>
 </section>
 
+---
 
+<section id="classroom-codes">
+  <p class="mot-kicker">accesso rapido</p>
+  <h2>Codice <em>Classroom</em></h2>
+  <p class="mot-joke">scegli la tua classe — comparirà solo il codice giusto</p>
+  <div class="mot-classroom-grid" id="classroom-grid">
+    <button type="button" class="mot-classroom-card" data-class="3&ordf;QA" data-code="drohekpg">3&ordf;QA</button>
+    <button type="button" class="mot-classroom-card" data-class="3&ordf;QES" data-code="odjovnsp">3&ordf;QES</button>
+    <button type="button" class="mot-classroom-card" data-class="4&ordf;QA" data-code="f5bjswtk">4&ordf;QA</button>
+    <button type="button" class="mot-classroom-card" data-class="4&ordf;QES" data-code="me3tl7di">4&ordf;QES</button>
+    <button type="button" class="mot-classroom-card" data-class="5&ordf;QA" data-code="lremru63">5&ordf;QA</button>
+    <button type="button" class="mot-classroom-card" data-class="5&ordf;QES" data-code="ba3jow7w">5&ordf;QES</button>
+  </div>
+  <div class="mot-classroom-result" id="classroom-result">
+    <p class="mot-classroom-result-code" id="classroom-result-code"></p>
+  </div>
+  <script>
+    (function () {
+      var grid = document.getElementById('classroom-grid');
+      var result = document.getElementById('classroom-result');
+      var code = document.getElementById('classroom-result-code');
+      if (!grid) return;
+      Array.prototype.forEach.call(grid.querySelectorAll('.mot-classroom-card'), function (btn) {
+        btn.addEventListener('click', function () {
+          Array.prototype.forEach.call(grid.querySelectorAll('.mot-classroom-card'), function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+          code.textContent = btn.getAttribute('data-code');
+          result.classList.add('visible');
+        });
+      });
+    })();
+  </script>
+</section>
 
 ---
 
@@ -816,5 +851,61 @@ body.slides-mot .reveal dl.mot-rows.mot-rows-center {
 .mot-statement em {
   font-style: italic;
   color: var(--mot-primary);
+}
+
+.mot-classroom-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0.5em;
+  margin-top: 2rem;
+}
+
+.mot-classroom-card {
+  font-family: var(--r-heading-font, Georgia, serif);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.55em;
+  font-weight: 700;
+  padding: 0.5em 0.7em;
+  border: 2px solid var(--mot-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mot-text);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.mot-classroom-card:hover {
+  border-color: var(--mot-primary);
+  transform: translateY(-2px);
+}
+
+.mot-classroom-card.active {
+  border-color: var(--mot-primary);
+  background: rgba(237, 111, 92, 0.1);
+  color: var(--mot-primary);
+}
+
+.mot-classroom-result {
+  margin-top: 2.5rem;
+  min-height: 4em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mot-classroom-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mot-classroom-result-code {
+  font-family: var(--mot-mono);
+  font-size: 3em;
+  font-weight: 700;
+  color: var(--mot-primary);
+  letter-spacing: 0.05em;
+  margin: 0;
 }
 </style>
