@@ -36,6 +36,14 @@ Il termine indica un ecosistema, non un singolo movimento organizzato: raccoglie
 
 Il tratto più riconoscibile è il richiamo a un virilismo "vecchio stile": l'uomo "vincente" misurato in base a successo economico, dominanza sociale e conquiste sessuali, esibiti costantemente sui social. Un'estetica che l'immagine di apertura — l'uomo in giacca, braccia alzate verso i grattacieli — riassume bene: è esattamente il tipo di immaginario patinato che i "coach di mascolinità" costruiscono e vendono.
 
+## In televisione: il documentario che ha reso il fenomeno mainstream
+
+Nel marzo 2026 la manosfera è arrivata anche su Netflix, con *Louis Theroux: dentro la manosfera* (uscita l'11 marzo 2026): il giornalista britannico, noto per i suoi documentari a immersione totale, ottiene un accesso diretto a una rete di content creator della "maschiosfera" — tra cui Myron Gaines, Sneako e Harrison Sullivan — incontrati tra Miami, New York e Marbella.
+
+![Louis Theroux: Inside the Manosphere, il documentario Netflix del 2026](netflix-manosfera.webp "Un documentario che mette in immagini quello che, fino a ieri, restava confinato ai forum")
+
+Il documentario funziona quasi come un caso di studio illustrato di quanto descritto sopra: mette in immagini l'estetica del successo maschile costruita e venduta da questi creator, e il meccanismo con cui gli spettatori più giovani vi entrano in contatto. Non è un caso isolato nel palinsesto: è il segno che il fenomeno è ormai troppo grande, e troppo redditizio, per restare una sottocultura di nicchia.
+
 ## La psicologia: perché funziona, e su chi funziona
 
 La domanda più importante, per chi lavora con adolescenti, non è "cosa dice la manosfera" ma **perché attecchisce**. La letteratura psicologica e sociologica converge su alcuni meccanismi ricorrenti:
@@ -83,6 +91,16 @@ Qui viene la parte più interessante dal punto di vista statistico — e la più
 
 Quello che invece l'Italia misura con precisione — perché lo fa da anni, con metodo consolidato — è **l'esito estremo** della stessa cultura: femminicidi, violenza domestica e sessuale. I dati Istat sono chiari (6,8 milioni di donne, il 31,5% tra 16 e 70 anni, ha subito violenza fisica o sessuale almeno una volta nella vita) e verranno ripresi in dettaglio nella presentazione collegata. Quello che manca è l'anello intermedio: **quanto le idee della manosfera circolino tra i ragazzi italiani prima che si traducano in comportamento**. È esattamente il tipo di "buco nei dati" che, da insegnante, trovo più preoccupante di un numero alto: non sapere dove si è, in una fase in cui si potrebbe ancora intervenire per tempo.
 
+### Un caso di cronaca: San Siro, settembre 2026
+
+Il 6 settembre 2026, durante Inter-Napoli a San Siro, il trapper Sfera Ebbasta si è presentato in un box a bordocampo con dieci giovani donne, tutte vestite di nero: un'operazione di marketing legata al lancio del suo nuovo disco, con un'agenzia che avrebbe indicato alle ragazze cosa indossare, cosa pubblicare sui social e persino fatto firmare un patto di riservatezza sull'operazione.
+
+![Il box a bordocampo di San Siro durante Inter-Napoli, settembre 2026](sfera-ebbasta-sansiro.jpg "Lui al centro, seduto; loro intorno, in posa: l'immaginario si commenta da solo")
+
+Lo psicoterapeuta Alberto Pellai, intervistato da *Il Fatto Quotidiano*, ha definito la scena "un concentrato di stereotipi di genere che dovrebbe far riflettere" — l'uomo al centro dell'inquadratura, le donne disposte intorno come corredo visivo: esattamente l'immaginario descritto nel capitolo precedente.
+
+È un singolo episodio, non un dato statistico, e va trattato come tale. Ma è utile proprio per quello che manca, come detto sopra, nei dati italiani: in assenza di sondaggi dedicati, un episodio così diffuso e commentato è uno dei pochi segnali disponibili di quanto quell'immaginario sia ormai mainstream — e non confinato a forum di nicchia.
+
 ## Il legame con l'estrema destra
 
 Non è un collegamento casuale, ma una traiettoria documentata:
@@ -109,3 +127,6 @@ Curiosamente, l'espressione "mascolinità tossica" non nasce in ambito femminist
 - The Conversation, ["How boys get sucked into the manosphere"](https://stories.theconversation.com/how-boys-get-sucked-into-the-manosphere/)
 - Il Post, ["La 'manosfera' è sempre più visibile"](https://www.ilpost.it/2025/03/27/definizione-fenomeno-manosfera/)
 - Congresso USA, [audizione sulla manosfera oltre Andrew Tate](https://www.congress.gov/118/meeting/house/115561/documents/HHRG-118-IF16-20230328-SD033.pdf)
+- Wikipedia, ["Louis Theroux: Inside the Manosphere"](https://en.wikipedia.org/wiki/Louis_Theroux:_Inside_the_Manosphere)
+- Il Post, ["Perché gli influencer della 'maschiosfera' fanno quello che fanno"](https://www.ilpost.it/2026/03/20/influencer-manosfera-louis-theroux/)
+- Il Fatto Quotidiano, ["'Un concentrato di stereotipi di genere che dovrebbe far riflettere': il parere dello psicoterapeuta Pellai sull'ingresso a San Siro di Sfera Ebbasta insieme a 10 ragazze"](https://www.ilfattoquotidiano.it/2026/09/06/sfera-ebbasta-san-siro-stereotipi-genere-notizie/8498460/)
