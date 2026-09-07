@@ -284,6 +284,24 @@ slides:
 ---
 
 <section class="mot-divider" data-transition="zoom">
+  <h1 class="r-fit-text">CREDITI</h1>
+  <p class="mot-joke fragment">richiesta di esonero dalle mie meravigliose lezioni</p>
+  <img src="sad-cutout.png" alt="" class="fragment mot-esonero-img" style="width:240px;">
+</section>
+
+<section>
+  <p class="mot-kicker">due percorsi possibili</p>
+  <h2>Tipologie di <em>crediti</em></h2>
+  <dl class="mot-rows fragment">
+    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
+    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+  </dl>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
+</section>
+
+---
+
+<section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">LEZIONI PRIVATE</h1>
 </section>
 
@@ -451,6 +469,24 @@ slides:
 ---
 
 <section class="mot-divider" data-transition="zoom">
+  <h1 class="r-fit-text">CREDITI</h1>
+  <p class="mot-joke fragment">richiesta di esonero dalle mie meravigliose lezioni</p>
+  <img src="sad-cutout.png" alt="" class="fragment mot-esonero-img" style="width:240px;">
+</section>
+
+<section>
+  <p class="mot-kicker">due percorsi possibili</p>
+  <h2>Tipologie di <em>crediti</em></h2>
+  <dl class="mot-rows fragment">
+    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
+    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+  </dl>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
+</section>
+
+---
+
+<section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">LEZIONI PRIVATE</h1>
 </section>
 
@@ -613,6 +649,24 @@ slides:
     <dt class="fragment">prove pratiche</dt><dd class="fragment">Flipped-Classroom o altre attività in coppie/piccoli gruppi, solo a determinate condizioni</dd>
     <dt class="fragment">lavoro in autonomia</dt><dd class="fragment">non potendo assegnare compiti per casa, proporrò delle esercitazioni che, chi vorrà, potrà consegnarmi su Classroom in formato PDF — ne terrò conto per correggere le medie in fase di scrutinio di fine periodo</dd>
   </dl>
+</section>
+
+---
+
+<section class="mot-divider" data-transition="zoom">
+  <h1 class="r-fit-text">CREDITI</h1>
+  <p class="mot-joke fragment">richiesta di esonero dalle mie meravigliose lezioni</p>
+  <img src="sad-cutout.png" alt="" class="fragment mot-esonero-img" style="width:240px;">
+</section>
+
+<section>
+  <p class="mot-kicker">due percorsi possibili</p>
+  <h2>Tipologie di <em>crediti</em></h2>
+  <dl class="mot-rows fragment">
+    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
+    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+  </dl>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
 </section>
 
 ---
@@ -907,5 +961,13 @@ body.slides-mot .reveal dl.mot-rows.mot-rows-center {
   color: var(--mot-primary);
   letter-spacing: 0.05em;
   margin: 0;
+}
+
+body.slides-mot .reveal section img.mot-esonero-img {
+  display: block;
+  margin: 1.2rem auto 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 </style>
