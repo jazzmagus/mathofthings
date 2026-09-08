@@ -11,6 +11,8 @@ slides:
   theme: mathofthings
   transition: convex
   particles: true
+  particlesColorLight: "#45a3d1"
+  particlesColorDark: "#7ecbef"
 ---
 
 <section class="mot-hero" data-transition="zoom">
@@ -318,9 +320,9 @@ slides:
   <p class="mot-def fragment">Non farò ripetizioni, ma potrò dare supporto di diverso tipo: spiegare un passaggio che non si è compreso, ascoltare se avete problemi di qualsiasi tipo (principalmente, ma non solo, di matematica), o aiutarvi a organizzare il metodo di studio — non sarà un falò di Temptation Island.</p>
 </section>
 
-<section class="mot-divider" data-transition="zoom" data-background-image="panic.jpg" data-background-opacity="0.2">
+<section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">DOMANDE?</h1>
-  <p class="mot-joke fragment">le domande stupide non esistono. Le risposte, qualche volta.</p>
+  <img src="quest-cutout.png" alt="" class="mot-quest-img">
 </section>
 
 
@@ -342,6 +344,22 @@ slides:
 
 <section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">COMUNICAZIONI</h1>
+</section>
+
+<section>
+  <p class="mot-kicker">comunicazioni ufficiali</p>
+  <h2>Le conferenze del <em>serale</em></h2>
+  <p class="fragment">Quest'anno il ciclo di conferenze che si teneva al serale non è stato formalizzato in un progetto: di conseguenza, non è stato deliberato né accettato dal collegio docenti.</p>
+  <p class="mot-def fragment">Il risultato pratico: niente conferenze, salvo che qualche docente del serale non organizzi, di sua spontanea volontà, una mini conferenza — non aperta all'esterno.</p>
+  <p class="mot-joke fragment">io mi sono già attivato, e ne ho una pronta per alleggerirvi un paio d'ore — sono certo che ce ne sia almeno un'altra in arrivo, probabilmente due</p>
+</section>
+
+<section>
+  <p class="mot-kicker">comunicazioni ufficiali</p>
+  <h2><em>Super Power</em> dei docenti del <em>serale</em></h2>
+  <p class="fragment">Rispetto al diurno, i docenti del serale hanno un vantaggio in più: gli studenti sono maggiorenni.</p>
+  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, per motivi disciplinari o per altri motivi.</p>
+  <p class="fragment">Oltre alle linee guida della scuola, il dipartimento di indirizzo ha deciso di adottarlo, per garantire lezioni più serene — e quindi più efficaci.</p>
 </section>
 
 <!--
@@ -503,9 +521,9 @@ slides:
   <p class="mot-def fragment">Non farò ripetizioni, ma potrò dare supporto di diverso tipo: spiegare un passaggio che non si è compreso, ascoltare se avete problemi di qualsiasi tipo (principalmente, ma non solo, di matematica), o aiutarvi a organizzare il metodo di studio — non sarà un falò di Temptation Island.</p>
 </section>
 
-<section class="mot-divider" data-transition="zoom" data-background-image="panic.jpg" data-background-opacity="0.2">
+<section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">DOMANDE?</h1>
-  <p class="mot-joke fragment">le domande stupide non esistono. Le risposte, qualche volta.</p>
+  <img src="quest-cutout.png" alt="" class="mot-quest-img">
 </section>
 
 
@@ -527,6 +545,22 @@ slides:
 
 <section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">COMUNICAZIONI</h1>
+</section>
+
+<section>
+  <p class="mot-kicker">comunicazioni ufficiali</p>
+  <h2>Le conferenze del <em>serale</em></h2>
+  <p class="fragment">Quest'anno il ciclo di conferenze che si teneva al serale non è stato formalizzato in un progetto: di conseguenza, non è stato deliberato né accettato dal collegio docenti.</p>
+  <p class="mot-def fragment">Il risultato pratico: niente conferenze, salvo che qualche docente del serale non organizzi, di sua spontanea volontà, una mini conferenza — non aperta all'esterno.</p>
+  <p class="mot-joke fragment">io mi sono già attivato, e ne ho una pronta per alleggerirvi un paio d'ore — sono certo che ce ne sia almeno un'altra in arrivo, probabilmente due</p>
+</section>
+
+<section>
+  <p class="mot-kicker">comunicazioni ufficiali</p>
+  <h2><em>Super Power</em> dei docenti del <em>serale</em></h2>
+  <p class="fragment">Rispetto al diurno, i docenti del serale hanno un vantaggio in più: gli studenti sono maggiorenni.</p>
+  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, per motivi disciplinari o per altri motivi.</p>
+  <p class="fragment">Oltre alle linee guida della scuola, il dipartimento di indirizzo ha deciso di adottarlo, per garantire lezioni più serene — e quindi più efficaci.</p>
 </section>
 
 <!--
@@ -726,9 +760,9 @@ slides:
   <p class="mot-def fragment">Non farò ripetizioni, ma potrò dare supporto di diverso tipo: spiegare un passaggio che non si è compreso, ascoltare se avete problemi di qualsiasi tipo (principalmente, ma non solo, di matematica), o aiutarvi a organizzare il metodo di studio — non sarà un falò di Temptation Island.</p>
 </section>
 
-<section class="mot-divider" data-transition="zoom" data-background-image="panic.jpg" data-background-opacity="0.2">
+<section class="mot-divider" data-transition="zoom">
   <h1 class="r-fit-text">DOMANDE?</h1>
-  <p class="mot-joke fragment">le domande stupide non esistono. Le risposte, qualche volta.</p>
+  <img src="quest-cutout.png" alt="" class="mot-quest-img">
 </section>
 
 ---
@@ -777,6 +811,28 @@ slides:
 </section>
 
 <style>
+body.slides-mot {
+  --mot-primary: #45a3d1;
+  --r-link-color: #45a3d1;
+  --r-link-color-hover: #6cb8dd;
+  --r-selection-background-color: rgba(69, 163, 209, 0.35);
+}
+
+body.slides-mot.dark {
+  --mot-primary: #7ecbef;
+  --r-link-color: #7ecbef;
+  --r-link-color-hover: #9ed8f2;
+}
+
+.mot-theme-toggle {
+  border: none;
+  background: none;
+}
+
+.mot-theme-toggle:hover {
+  border: none;
+}
+
 body.slides-mot .reveal dl.mot-rows.mot-rows-center {
   grid-template-columns: auto auto;
   justify-content: center;
@@ -970,4 +1026,41 @@ body.slides-mot .reveal section img.mot-esonero-img {
   border: none;
   box-shadow: none;
 }
+
+body.slides-mot .reveal section img.mot-quest-img {
+  position: fixed;
+  bottom: 0;
+  right: 2%;
+  width: 300px;
+  max-width: 28%;
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
 </style>
+
+<script>
+  (function () {
+    function swapBulbIcons() {
+      var toggle = document.querySelector('.mot-theme-toggle');
+      if (!toggle) return;
+      var sun = toggle.querySelector('.icon-sun');
+      var moon = toggle.querySelector('.icon-moon');
+      if (!sun || !moon) return;
+      sun.innerHTML =
+        '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>' +
+        '<path d="M9 18h6"/><path d="M10 22h4"/>' +
+        '<path d="M12 1v1.5"/><path d="M4.5 4.5l1 1"/><path d="M19.5 4.5l-1 1"/>';
+      moon.innerHTML =
+        '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>' +
+        '<path d="M9 18h6"/><path d="M10 22h4"/>';
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', swapBulbIcons);
+    } else {
+      swapBulbIcons();
+    }
+  })();
+</script>
