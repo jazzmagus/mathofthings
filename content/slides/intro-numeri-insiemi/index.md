@@ -99,6 +99,16 @@ slides:
   <p class="mot-joke fragment">ci sono voluti secoli per capire che "niente" meritasse un simbolo tutto suo</p>
 </section>
 
+<section>
+  <p class="mot-kicker">perché ci serviva davvero</p>
+  <h2>A cosa serve <em>lo zero</em></h2>
+  <h3 class="fragment" style="font-size:0.65em; text-align:left;">Come <em>segnaposto</em></h3>
+  <p class="fragment" style="text-align:left;">Distingue 1, 10 e 100: senza una cifra per lo zero, la posizione delle altre cifre diventa ambigua.</p>
+  <h3 class="fragment" style="font-size:0.65em; text-align:left;">Come <em>numero</em></h3>
+  <p class="fragment" style="text-align:left;">È l'elemento neutro dell'addizione (n + 0 = n): permette di fare calcoli, risolvere equazioni, definire i numeri negativi.</p>
+  <p class="mot-joke fragment">non è solo "l'assenza di qualcosa" — è un numero che si comporta, a tutti gli effetti, come gli altri</p>
+</section>
+
 ---
 
 <section class="mot-divider" data-transition="zoom">
@@ -135,7 +145,7 @@ slides:
 <section>
   <p class="mot-kicker">un mercante in viaggio</p>
   <h2>Leonardo da Pisa, detto <em>Fibonacci</em></h2>
-  <ul>
+  <ul style="font-size:0.8em;">
     <li class="fragment" style="margin-bottom:0.5em;">Nel 1202 pubblica il <i>Liber Abaci</i>, dove convince l'Europa mercantile ad abbandonare i numeri romani per le cifre indo-arabiche — quelle che usiamo tuttora, 0-9</li>
     <li class="fragment" style="margin-bottom:0;">Come esempio "di scuola" nel suo libro compare anche il problema dei conigli che si riproducono: nasce così, quasi per caso, la sequenza che porta il suo nome</li>
   </ul>
@@ -162,10 +172,10 @@ slides:
   <p class="mot-kicker">un trucchetto da raccontare</p>
   <h2>Pensa un <em>numero</em></h2>
   <ul>
-    <li class="fragment" style="margin-bottom:0.5em;">Pensa un numero</li>
-    <li class="fragment" style="margin-bottom:0.5em;">Raddoppialo</li>
-    <li class="fragment" style="margin-bottom:0.5em;">Aggiungi 10</li>
-    <li class="fragment" style="margin-bottom:0.5em;">Dividi per 2</li>
+    <li class="fragment" style="margin-bottom:0.15em;">Pensa un numero</li>
+    <li class="fragment" style="margin-bottom:0.15em;">Raddoppialo</li>
+    <li class="fragment" style="margin-bottom:0.15em;">Aggiungi 10</li>
+    <li class="fragment" style="margin-bottom:0.15em;">Dividi per 2</li>
     <li class="fragment" style="margin-bottom:0;">Sottrai il numero di partenza</li>
   </ul>
   <p class="mot-def fragment fragment">Il risultato è sempre 5, qualunque numero tu abbia scelto — ed è un'algebra travestita da magia: chiamando $x$ il numero, l'espressione è $\dfrac{2x+10}{2} - x = 5$.</p>
