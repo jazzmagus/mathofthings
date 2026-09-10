@@ -243,8 +243,19 @@ slides:
   <h2>La verifica <em>scritta</em></h2>
   <ul class="fragment">
     <li class="fragment">una verifica per ogni modulo/argomento</li>
+    <li class="fragment">sosterrete delle verifiche scritte e orali durante l'anno</li>
+    <li class="fragment">3 valutazioni nel primo periodo, 4 nel secondo</li>
     <li class="fragment"><a href="/uploads/verifiche/LB01-insiemi.pdf" target="_blank" class="mono">esempio di verifica</a></li>
   </ul>
+  <dl class="mot-rows fragment">
+    <dt>primo periodo</dt><dd>2 verifiche scritte + 1 orale (test)</dd>
+    <dt>secondo periodo</dt><dd>3 verifiche scritte + 1 orale (eventualmente test)</dd>
+  </dl>
+</section>
+
+<section>
+  <p class="mot-kicker">valutazione — 2</p>
+  <h2>Come nasce <em>un voto</em></h2>
   <p class="mot-def fragment"><b>D:</b> come viene calcolato il punteggio e come si trasforma nel voto finale?</p>
   <p class="mot-def fragment"><b>R:</b> è un algoritmo che tiene conto di diverse variabili.</p>
   <dl class="mot-rows fragment">
@@ -254,10 +265,11 @@ slides:
     <dt>4</dt><dd>ordine</dd>
     <dt>5</dt><dd>etc.</dd>
   </dl>
+  <p class="fragment" style="font-family:var(--mot-mono);font-style:italic;font-size:0.62em;color:var(--mot-primary);margin-top:1.2rem;">// non è tanto importante come nasce un voto — quello è il mio lavoro. Voi preoccupatevi di farlo crescere: io sono solo l'ostetrica.</p>
 </section>
 
 <section>
-  <p class="mot-kicker">valutazione — 2</p>
+  <p class="mot-kicker">valutazione — 3</p>
   <h2>La verifica <em>orale</em></h2>
   <p class="fragment">Potrà avvenire con modalità diverse, a seconda dei livelli e dei ritmi espressi dalla classe.</p>
   <ul class="fragment" style="font-size:0.92em;">
@@ -274,7 +286,7 @@ slides:
 </section>
 
 <section>
-  <p class="mot-kicker">valutazione — 3</p>
+  <p class="mot-kicker">valutazione — 4</p>
   <h2>Quaderni e prove <em>pratiche</em></h2>
   <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli</dd>
