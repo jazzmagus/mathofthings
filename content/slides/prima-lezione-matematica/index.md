@@ -289,7 +289,7 @@ slides:
   <p class="mot-kicker">valutazione — 4</p>
   <h2>Quaderni e prove <em>pratiche</em></h2>
   <dl class="mot-rows mot-rows-compact">
-    <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli</dd>
+    <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli, però...</dd>
     <dt class="fragment">prove pratiche</dt><dd class="fragment">Flipped-Classroom o altre attività in coppie/piccoli gruppi, solo a determinate condizioni</dd>
     <dt class="fragment">lavoro in autonomia</dt><dd class="fragment">non potendo assegnare compiti per casa, proporrò delle esercitazioni che, chi vorrà, potrà consegnarmi su Classroom in formato PDF — ne terrò conto per correggere le medie in fase di scrutinio di fine periodo</dd>
   </dl>
