@@ -229,6 +229,11 @@ body.slides-mot .reveal dl.mot-rows dt {
 
 body.slides-mot .reveal dl.mot-rows dd { margin: 0; }
 
+body.slides-mot .reveal dl.mot-rows.mot-rows-compact dd {
+  font-size: 0.82em;
+  line-height: 1.25;
+}
+
 /* 5. Definizione: solo border-left, nessuno sfondo */
 body.slides-mot .reveal .mot-def {
   border-left: 3px solid var(--mot-primary);

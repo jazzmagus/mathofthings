@@ -182,7 +182,7 @@ slides:
 <section>
   <p class="mot-kicker">strumenti didattici</p>
   <h2>Dove trovare <em>tutto</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
     <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
@@ -260,9 +260,9 @@ slides:
   <p class="mot-kicker">valutazione — 2</p>
   <h2>La verifica <em>orale</em></h2>
   <p class="fragment">Potrà avvenire con modalità diverse, a seconda dei livelli e dei ritmi espressi dalla classe.</p>
-  <ul class="fragment">
+  <ul class="fragment" style="font-size:0.92em;">
     <li class="fragment">interrogazione classica: volontaria e concordata
-      <ul style="font-size:0.7em; margin-top:0.3em;">
+      <ul style="font-size:0.76em; margin-top:0.3em;">
         <li class="fragment">per migliorare la media</li>
         <li class="fragment">per recuperare, eccezionalmente</li>
       </ul>
@@ -276,7 +276,7 @@ slides:
 <section>
   <p class="mot-kicker">valutazione — 3</p>
   <h2>Quaderni e prove <em>pratiche</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli</dd>
     <dt class="fragment">prove pratiche</dt><dd class="fragment">Flipped-Classroom o altre attività in coppie/piccoli gruppi, solo a determinate condizioni</dd>
     <dt class="fragment">lavoro in autonomia</dt><dd class="fragment">non potendo assegnare compiti per casa, proporrò delle esercitazioni che, chi vorrà, potrà consegnarmi su Classroom in formato PDF — ne terrò conto per correggere le medie in fase di scrutinio di fine periodo</dd>
@@ -386,7 +386,7 @@ slides:
 <section>
   <p class="mot-kicker">strumenti didattici</p>
   <h2>Dove trovare <em>tutto</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
     <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
@@ -461,9 +461,9 @@ slides:
   <p class="mot-kicker">valutazione — 2</p>
   <h2>La verifica <em>orale</em></h2>
   <p class="fragment">Potrà avvenire con modalità diverse, a seconda dei livelli e dei ritmi espressi dalla classe.</p>
-  <ul class="fragment">
+  <ul class="fragment" style="font-size:0.92em;">
     <li class="fragment">interrogazione classica: volontaria e concordata
-      <ul style="font-size:0.7em; margin-top:0.3em;">
+      <ul style="font-size:0.76em; margin-top:0.3em;">
         <li class="fragment">per migliorare la media</li>
         <li class="fragment">per recuperare, eccezionalmente</li>
       </ul>
@@ -477,7 +477,7 @@ slides:
 <section>
   <p class="mot-kicker">valutazione — 3</p>
   <h2>Quaderni e prove <em>pratiche</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli</dd>
     <dt class="fragment">prove pratiche</dt><dd class="fragment">Flipped-Classroom o altre attività in coppie/piccoli gruppi, solo a determinate condizioni</dd>
     <dt class="fragment">lavoro in autonomia</dt><dd class="fragment">non potendo assegnare compiti per casa, proporrò delle esercitazioni che, chi vorrà, potrà consegnarmi su Classroom in formato PDF — ne terrò conto per correggere le medie in fase di scrutinio di fine periodo</dd>
@@ -587,7 +587,7 @@ slides:
 <section>
   <p class="mot-kicker">strumenti didattici</p>
   <h2>Dove trovare <em>tutto</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
     <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
@@ -662,9 +662,9 @@ slides:
   <p class="mot-kicker">valutazione — 2</p>
   <h2>La verifica <em>orale</em></h2>
   <p class="fragment">Potrà avvenire con modalità diverse, a seconda dei livelli e dei ritmi espressi dalla classe.</p>
-  <ul class="fragment">
+  <ul class="fragment" style="font-size:0.92em;">
     <li class="fragment">interrogazione classica: volontaria e concordata
-      <ul style="font-size:0.7em; margin-top:0.3em;">
+      <ul style="font-size:0.76em; margin-top:0.3em;">
         <li class="fragment">per migliorare la media</li>
         <li class="fragment">per recuperare, eccezionalmente</li>
       </ul>
@@ -678,7 +678,7 @@ slides:
 <section>
   <p class="mot-kicker">valutazione — 3</p>
   <h2>Quaderni e prove <em>pratiche</em></h2>
-  <dl class="mot-rows">
+  <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">quaderni</dt><dd class="fragment">non effettuerò alcun controllo: il lavoro va svolto in autonomia, e dato che non posso assegnare compiti per casa, non ha senso correggerli, richiederli o controllarli</dd>
     <dt class="fragment">prove pratiche</dt><dd class="fragment">Flipped-Classroom o altre attività in coppie/piccoli gruppi, solo a determinate condizioni</dd>
     <dt class="fragment">lavoro in autonomia</dt><dd class="fragment">non potendo assegnare compiti per casa, proporrò delle esercitazioni che, chi vorrà, potrà consegnarmi su Classroom in formato PDF — ne terrò conto per correggere le medie in fase di scrutinio di fine periodo</dd>
@@ -1040,27 +1040,3 @@ body.slides-mot .reveal section img.mot-quest-img {
   pointer-events: none;
 }
 </style>
-
-<script>
-  (function () {
-    function swapBulbIcons() {
-      var toggle = document.querySelector('.mot-theme-toggle');
-      if (!toggle) return;
-      var sun = toggle.querySelector('.icon-sun');
-      var moon = toggle.querySelector('.icon-moon');
-      if (!sun || !moon) return;
-      sun.innerHTML =
-        '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>' +
-        '<path d="M9 18h6"/><path d="M10 22h4"/>' +
-        '<path d="M12 1v1.5"/><path d="M4.5 4.5l1 1"/><path d="M19.5 4.5l-1 1"/>';
-      moon.innerHTML =
-        '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>' +
-        '<path d="M9 18h6"/><path d="M10 22h4"/>';
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', swapBulbIcons);
-    } else {
-      swapBulbIcons();
-    }
-  })();
-</script>

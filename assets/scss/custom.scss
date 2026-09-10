@@ -2077,3 +2077,31 @@ body {
     color: $primary;
   }
 }
+
+// --- Toggle tema: lampadina al posto di sole/luna ----------------------
+
+.nav-link.mot-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+  }
+
+  .icon-bulb-off {
+    display: none;
+  }
+
+  .dark & {
+    .icon-bulb-on {
+      display: none;
+    }
+
+    .icon-bulb-off {
+      display: block;
+    }
+  }
+}

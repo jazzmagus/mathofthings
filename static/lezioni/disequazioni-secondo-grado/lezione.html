@@ -102,10 +102,6 @@ mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
 /* SVG / GRAPH */
 .graph-box{background:none;border:1px solid var(--border-light);border-radius:0;padding:20px;margin:18px 0;overflow-x:auto;text-align:center}
 
-/* SEGNO STRIP */
-.segno-strip{font-family:'JetBrains Mono',monospace;font-size:.9rem;background:rgba(0,0,0,.025);padding:14px 16px;margin:10px 0;overflow-x:auto;border-radius:2px;line-height:2}
-.segno-strip .pos{color:var(--green);font-weight:700}
-.segno-strip .neg{color:var(--danger);font-weight:700}
 
 /* BOTTOM NAV */
 .bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:20px;border-top:1px solid var(--border-light)}
@@ -224,6 +220,56 @@ function svgParabolaSegno(caso) {
   </svg></div>`;
 }
 
+/* Grafico a righe per i sistemi di disequazioni: una retta numerica per ogni
+   condizione, più una riga finale (in corallo) per l'intersezione. */
+function sysChart(rows, points, xMin, xMax) {
+  const w = 560, leftPad = 84, rightPad = 22, rowH = 34;
+  const x0 = leftPad, x1 = w - rightPad;
+  const topPad = 16;
+  const axisY = topPad + rows.length * rowH + 14;
+  const h = axisY + 30;
+  const sx = x => x0 + (x - xMin) / (xMax - xMin) * (x1 - x0);
+
+  const bandTop = topPad - 8, bandBottom = axisY + 2;
+  const highlight = rows.filter(r => r.system).flatMap(r => r.trueIntervals).map(seg => {
+    const xa = seg.toInfinityLeft ? x0 - 14 : sx(seg.from);
+    const xb = seg.toInfinityRight ? x1 + 14 : sx(seg.to);
+    return `<rect x="${xa}" y="${bandTop}" width="${xb-xa}" height="${bandBottom-bandTop}" fill="var(--accent)" opacity=".07"/>`;
+  }).join('');
+
+  const rowsSvg = rows.map((row, i) => {
+    const y = topPad + i * rowH + rowH / 2;
+    const color = row.system ? 'var(--accent)' : 'var(--green)';
+    const base = `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--border)" stroke-width="2" stroke-dasharray="1,4" stroke-linecap="round"/>`;
+    const segs = row.trueIntervals.map(seg => {
+      const xa = seg.toInfinityLeft ? x0 - 10 : sx(seg.from);
+      const xb = seg.toInfinityRight ? x1 + 10 : sx(seg.to);
+      let extra = '';
+      if (seg.toInfinityLeft) {
+        extra += `<path d="M${x0-4},${y-4} L${x0-10},${y} L${x0-4},${y+4}" fill="${color}"/>`;
+      } else {
+        extra += `<circle cx="${sx(seg.from)}" cy="${y}" r="4.5" fill="${seg.openFrom ? '#fff' : color}" stroke="${color}" stroke-width="1.6"/>`;
+      }
+      if (seg.toInfinityRight) {
+        extra += `<path d="M${x1+4},${y-4} L${x1+10},${y} L${x1+4},${y+4}" fill="${color}"/>`;
+      } else {
+        extra += `<circle cx="${sx(seg.to)}" cy="${y}" r="4.5" fill="${seg.openTo ? '#fff' : color}" stroke="${color}" stroke-width="1.6"/>`;
+      }
+      return `<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="${color}" stroke-width="4.5" stroke-linecap="round"/>${extra}`;
+    }).join('');
+    const label = `<text x="6" y="${y+4}" font-size="11.5" font-family="'JetBrains Mono',monospace" fill="${row.system?'var(--accent)':'var(--text-mid)'}" font-weight="${row.system?700:400}">${row.name}</text>`;
+    return `${label}${base}${segs}`;
+  }).join('');
+
+  const axis = `<line x1="${x0-14}" y1="${axisY}" x2="${x1+14}" y2="${axisY}" stroke="var(--text-dim)" stroke-width="1.3"/>
+    <path d="M${x1+8},${axisY-4} L${x1+14},${axisY} L${x1+8},${axisY+4}" fill="none" stroke="var(--text-dim)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const ticks = points.map(p => `
+    <line x1="${sx(p.x)}" y1="${axisY-4}" x2="${sx(p.x)}" y2="${axisY+4}" stroke="var(--text-dim)" stroke-width="1.3"/>
+    <text x="${sx(p.x)}" y="${axisY+19}" font-size="12" font-family="'JetBrains Mono',monospace" fill="var(--text)" text-anchor="middle">${p.label}</text>`).join('');
+
+  return `<div class="graph-box" style="text-align:left"><svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">${highlight}${rowsSvg}${axis}${ticks}</svg></div>`;
+}
+
 /* ═══════════════ SCHERMATE ═══════════════ */
 const S = [
 
@@ -251,13 +297,9 @@ const S = [
         <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">3</td><td>Casi particolari: pure, spurie, \\(\\Delta=0\\), \\(\\Delta<0\\)</td></tr>
         <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">4</td><td>Studio del segno di prodotti e quozienti</td></tr>
         <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">5</td><td>Applicazioni pratiche</td></tr>
-        <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">6</td><td>Sintesi e ricapitolazione</td></tr>
+        <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">6</td><td>Sistemi di disequazioni di 2° grado</td></tr>
+        <tr><td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">7</td><td>Sintesi e ricapitolazione</td></tr>
       </table>
-    </div>
-
-    <div class="cb warn">
-      <div class="cb-label">Nota per il corso serale</div>
-      <p>In questa lezione non affrontiamo i <strong>sistemi</strong> di disequazioni di secondo grado. Ci concentriamo sulla singola disequazione e, nell'ultima parte, sullo studio del segno di prodotti e quozienti di fattori di 2° grado — la base per le disequazioni fratte che vedrai in seguito.</p>
     </div>
   `
 },
@@ -452,44 +494,41 @@ const S = [
             <div class="math-block">\\[x^2 = 4 \\;\\Rightarrow\\; x = \\pm 2\\]\\[a>0 \\;\\Rightarrow\\; x < -2 \\ \\text{oppure} \\ x > 2\\]</div>
             <p><strong>Fattore 2:</strong> \\(x^2 - x - 2 > 0\\)</p>
             <div class="math-block">\\[\\Delta = 1+8=9 \\;\\Rightarrow\\; x_{1,2}=\\frac{1\\pm3}{2} \\;\\Rightarrow\\; x_1=-1,\\ x_2=2\\]\\[a>0 \\;\\Rightarrow\\; x < -1 \\ \\text{oppure} \\ x > 2\\]</div>
-            <div class="segno-strip">
-              zone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&lt;-2&nbsp;&nbsp;|&nbsp;&nbsp;-2&lt;x&lt;-1&nbsp;&nbsp;|&nbsp;&nbsp;-1&lt;x&lt;2&nbsp;&nbsp;|&nbsp;&nbsp;x&gt;2<br>
-              fatt.1:&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span><br>
-              fatt.2:&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span><br>
-              prod.:&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>
-            </div>
+            ${sysChart([
+              { name:'fatt.1', trueIntervals:[{toInfinityLeft:true,to:-2,openTo:true},{from:2,toInfinityRight:true,openFrom:true}] },
+              { name:'fatt.2', trueIntervals:[{toInfinityLeft:true,to:-1,openTo:true},{from:2,toInfinityRight:true,openFrom:true}] },
+              { name:'prod.', system:true, trueIntervals:[{toInfinityLeft:true,to:-2,openTo:true},{from:-1,toInfinityRight:true,openFrom:true}] }
+            ], [{x:-2,label:'-2'},{x:-1,label:'-1'},{x:2,label:'2'}], -3.2, 3.2)}
             <p><strong>Segno richiesto \\(>0\\):</strong> dove il prodotto è positivo.</p>
             <div class="math-block result">\\[x < -2 \\quad \\text{oppure} \\quad x > -1\\]</div>
-            <p class="dim">Nota: nell'ultima zona \\((-1,2)\\) e \\((2,+\\infty)\\) il prodotto resta positivo, quindi si uniscono in \\(x>-1\\) escludendo solo \\((-2,-1)\\).</p>`
+            <p class="dim">Nota: nel punto \\(x=2\\) entrambi i fattori si annullano, quindi il prodotto vale \\(0\\) e va escluso (disuguaglianza stretta); trattandosi di un punto isolato in una zona altrimenti positiva, l'intervallo si scrive comunque \\(x>-1\\) con \\(x \\neq 2\\) sottinteso.</p>`
       },
       {
         t: `Es. 2: \\(\\dfrac{x^2-1}{x^2-9} \\geq 0\\) — quoziente di due fattori`,
         h: `<p><strong>Numeratore:</strong> \\(x^2-1 \\geq 0 \\;\\Rightarrow\\; x \\leq -1 \\ \\text{oppure} \\ x \\geq 1\\) (radici \\(\\pm1\\), incluse)</p>
             <p><strong>Denominatore:</strong> \\(x^2-9 > 0 \\;\\Rightarrow\\; x < -3 \\ \\text{oppure} \\ x > 3\\) (radici \\(\\pm3\\), <strong>sempre escluse</strong> perché al denominatore)</p>
-            <div class="segno-strip">
-              zone:&nbsp;&nbsp;x&lt;-3&nbsp;|&nbsp;-3&lt;x≤-1&nbsp;|&nbsp;-1≤x&lt;1&nbsp;|&nbsp;1≤x&lt;3&nbsp;|&nbsp;x&gt;3<br>
-              num.:&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span><br>
-              den.:&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span><br>
-              quoz.:&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>
-            </div>
+            ${sysChart([
+              { name:'num.', trueIntervals:[{toInfinityLeft:true,to:-1,openTo:false},{from:1,toInfinityRight:true,openFrom:false}] },
+              { name:'den.', trueIntervals:[{toInfinityLeft:true,to:-3,openTo:true},{from:3,toInfinityRight:true,openFrom:true}] },
+              { name:'quoz.', system:true, trueIntervals:[{toInfinityLeft:true,to:-3,openTo:true},{from:-1,to:1,openFrom:false,openTo:false},{from:3,toInfinityRight:true,openFrom:true}] }
+            ], [{x:-3,label:'-3'},{x:-1,label:'-1'},{x:1,label:'1'},{x:3,label:'3'}], -4.3, 4.3)}
             <p><strong>Segno richiesto \\(\\geq0\\):</strong> quoziente positivo o nullo (numeratore nullo ammesso, denominatore nullo <strong>mai</strong>).</p>
             <div class="math-block result">\\[x < -3 \\quad \\text{oppure} \\quad -1 \\leq x \\leq 1 \\quad \\text{oppure} \\quad x > 3\\]</div>`
       },
       {
-        t: `Es. 3: \\((x^2-2x)(4-x^2) \\leq 0\\) — attenzione al segno "nascosto"`,
+        t: `Es. 3: \\((x^2-2x)(4-x^2) \\leq 0\\) — attenzione alla radice doppia`,
         h: `<p><strong>Fattore 1:</strong> \\(x^2-2x \\leq 0 \\;\\Rightarrow\\; x(x-2)\\leq0 \\;\\Rightarrow\\; 0 \\leq x \\leq 2\\)</p>
             <p><strong>Fattore 2:</strong> riscriviamolo come \\(-(x^2-4)\\), quindi il segno di \\(4-x^2\\) è <strong>opposto</strong> a quello di \\(x^2-4\\): \\(4-x^2 > 0 \\Leftrightarrow -2 \\lt x \\lt 2\\).</p>
-            <div class="segno-strip">
-              zone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&lt;-2&nbsp;&nbsp;|&nbsp;&nbsp;-2&lt;x&lt;0&nbsp;&nbsp;|&nbsp;&nbsp;0&lt;x&lt;2&nbsp;&nbsp;|&nbsp;&nbsp;x&gt;2<br>
-              fatt.1:&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span><br>
-              fatt.2:&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span><br>
-              prod.:&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pos">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="neg">−</span>
-            </div>
-            <p><strong>Segno richiesto \\(\\leq0\\):</strong> prodotto negativo o nullo. Radici incluse: \\(x=-2\\) (fatt.2), \\(x=0\\) e \\(x=2\\) (fatt.1).</p>
-            <div class="math-block result">\\[x \\leq -2 \\quad \\text{oppure} \\quad 0 \\leq x \\leq 2\\]</div>
+            ${sysChart([
+              { name:'fatt.1', trueIntervals:[{from:0,to:2,openFrom:false,openTo:false}] },
+              { name:'fatt.2', trueIntervals:[{from:-2,to:2,openFrom:true,openTo:true}] },
+              { name:'prod.', system:true, trueIntervals:[{toInfinityLeft:true,to:-2,openTo:false},{from:0,toInfinityRight:true,openFrom:false}] }
+            ], [{x:-2,label:'-2'},{x:0,label:'0'},{x:2,label:'2'}], -3.2, 3.2)}
+            <p><strong>Segno richiesto \\(\\leq0\\):</strong> prodotto negativo o nullo.</p>
+            <div class="math-block result">\\[x \\leq -2 \\quad \\text{oppure} \\quad x \\geq 0\\]</div>
             <div class="cb warn" style="margin-top:10px">
-              <div class="cb-label">Occhio al segno nascosto</div>
-              <p>Quando un fattore è scritto come \\(k - x^2\\) invece di \\(x^2 - k\\), il suo segno è <strong>invertito</strong> rispetto alla forma standard. Riscriverlo esplicitamente evita errori.</p>
+              <div class="cb-label">Attenzione alla radice doppia</div>
+              <p>\\(x=2\\) è radice sia di \\(x^2-2x\\) sia di \\(4-x^2\\): il prodotto la "vede" come radice <strong>doppia</strong> e lì il segno <em>non cambia</em>. Per questo la zona negativa che inizia in \\(x=0\\) prosegue oltre \\(x=2\\) senza fermarsi: la soluzione non è \\(0 \\leq x \\leq 2\\) ma \\(x \\geq 0\\) — l'errore più comune in questo esercizio.</p>
             </div>`
       }
     ])}
@@ -548,7 +587,58 @@ const S = [
   `
 },
 
-/* ──── 6 · SINTESI ──── */
+/* ──── 6 · SISTEMI ──── */
+{
+  tag: `SISTEMI`,
+  title: `<em>Sistemi</em> di disequazioni di 2° grado`,
+  nav: `Sistemi`,
+  sub: `Stesso principio dei sistemi di 1° grado: risolvi ogni disequazione separatamente, poi intersecane le soluzioni.`,
+  body: `
+    <div class="cb tip">
+      <div class="cb-label">Nessuna tecnica nuova</div>
+      <p>Un <strong>sistema di disequazioni</strong> chiede i valori di \\(x\\) che soddisfano <strong>contemporaneamente</strong> tutte le disequazioni date. Che i singoli termini siano di 1° o 2° grado non cambia il procedimento:</p>
+      <ol>
+        <li>Risolvi <strong>ciascuna disequazione separatamente</strong> con il metodo grafico visto in questa lezione</li>
+        <li>Rappresenta le soluzioni sulla <strong>stessa retta numerica</strong>, una riga per disequazione</li>
+        <li>La soluzione del sistema è l'<strong>intersezione</strong> (la zona coperta da ogni riga)</li>
+      </ol>
+    </div>
+
+    ${acc([
+      {
+        t: `Es. 1: \\(\\begin{cases} x^2 - 4 \\leq 0 \\\\ x^2 - x - 2 > 0 \\end{cases}\\)`,
+        h: `<p><strong>Prima disequazione:</strong> \\(x^2-4\\leq0 \\;\\Rightarrow\\; -2 \\leq x \\leq 2\\)</p>
+            <p><strong>Seconda disequazione:</strong> \\(\\Delta=1+8=9\\), \\(x_{1,2}=\\dfrac{1\\pm3}{2}\\;\\Rightarrow\\;x_1=-1,\\ x_2=2\\); con \\(a>0\\), \\(>0\\) è l'esterno: \\(x<-1\\) oppure \\(x>2\\)</p>
+            ${sysChart([
+              { name:'1ª', trueIntervals:[{from:-2,to:2,openFrom:false,openTo:false}] },
+              { name:'2ª', trueIntervals:[{toInfinityLeft:true,to:-1,openTo:true},{from:2,toInfinityRight:true,openFrom:true}] },
+              { name:'sistema', system:true, trueIntervals:[{from:-2,to:-1,openFrom:false,openTo:true}] }
+            ], [{x:-2,label:'-2'},{x:-1,label:'-1'},{x:2,label:'2'}], -3.2, 3.2)}
+            <p><strong>Intersezione:</strong> l'unica zona in cui <em>entrambe</em> le righe sono piene è quella tra \\(-2\\) (incluso) e \\(-1\\) (escluso).</p>
+            <div class="math-block result">\\[-2 \\leq x < -1\\]</div>`
+      },
+      {
+        t: `Es. 2: \\(\\begin{cases} x^2 - 5x + 6 < 0 \\\\ 2x - 1 > 0 \\end{cases}\\) — un fattore di 1° e uno di 2° grado`,
+        h: `<p><strong>Prima disequazione:</strong> \\(\\Delta=25-24=1\\), \\(x_{1,2}=\\dfrac{5\\pm1}{2}\\;\\Rightarrow\\;x_1=2,\\ x_2=3\\); con \\(a>0\\), è l'interno: \\(2 < x < 3\\)</p>
+            <p><strong>Seconda disequazione (1° grado):</strong> \\(2x-1>0 \\;\\Rightarrow\\; x>\\dfrac12\\)</p>
+            ${sysChart([
+              { name:'1ª', trueIntervals:[{from:2,to:3,openFrom:true,openTo:true}] },
+              { name:'2ª', trueIntervals:[{from:0.5,toInfinityRight:true,openFrom:true}] },
+              { name:'sistema', system:true, trueIntervals:[{from:2,to:3,openFrom:true,openTo:true}] }
+            ], [{x:0.5,label:'½'},{x:2,label:'2'},{x:3,label:'3'}], -0.4, 3.8)}
+            <p><strong>Intersezione:</strong> l'intervallo \\((2,3)\\) è già tutto contenuto nella soluzione della seconda disequazione, quindi resta invariato.</p>
+            <div class="math-block result">\\[2 < x < 3\\]</div>`
+      }
+    ])}
+
+    <div class="cb warn">
+      <div class="cb-label">L'errore più comune</div>
+      <p>Non confondere l'intersezione con l'unione: nel sistema serve che <strong>tutte</strong> le condizioni siano vere nello stesso punto. Se anche una sola disequazione è falsa in una zona, quella zona <strong>non fa parte</strong> della soluzione del sistema — anche se le altre erano soddisfatte.</p>
+    </div>
+  `
+},
+
+/* ──── 7 · SINTESI ──── */
 {
   tag: `SINTESI`,
   title: `Dal <em>grafico</em> al segno: ricapitoliamo`,
@@ -564,6 +654,7 @@ const S = [
         <li>Con \\(\\Delta<0\\): la parabola non tocca mai l'asse — soluzione sempre vera o sempre impossibile, a seconda del segno di \\(a\\).</li>
         <li>Disequazioni pure e spurie si risolvono più rapidamente, senza passare dalla formula generale.</li>
         <li>Con <strong>prodotti e quozienti</strong> di più fattori: studia il segno di ciascuno, poi combina con lo <strong>schema dei segni</strong>. Nei quozienti, gli zeri del denominatore sono sempre esclusi.</li>
+        <li>Nei <strong>sistemi</strong> di disequazioni: risolvi ogni disequazione separatamente e prendi l'<strong>intersezione</strong> delle soluzioni, non l'unione.</li>
       </ul>
     </div>
 

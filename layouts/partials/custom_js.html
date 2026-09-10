@@ -23,18 +23,6 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const themeLink = document.querySelector('.theme-dropdown .nav-link');
-    const themeIcon = document.querySelector('.theme-dropdown i');
-
-    function updateIcon() {
-      if (!themeIcon) return;
-      // Check which menu item is active
-      const activeItem = document.querySelector('.theme-dropdown .dropdown-item-active');
-      if (activeItem && activeItem.classList.contains('js-set-theme-light')) {
-        themeIcon.className = 'fas fa-moon';
-      } else if (activeItem && activeItem.classList.contains('js-set-theme-dark')) {
-        themeIcon.className = 'fas fa-sun';
-      }
-    }
 
     function getCurrentTheme() {
       // Check which menu item is active
@@ -63,14 +51,8 @@
 
         if (menuItem) {
           menuItem.click();
-
-          // Update icon after a short delay to ensure theme has changed
-          setTimeout(updateIcon, 100);
         }
       });
-
-      // Set initial icon
-      updateIcon();
     }
   });
 </script>
