@@ -158,6 +158,14 @@ slides:
   <p class="mot-joke fragment">niente calcolatrice — per il semplice motivo che non vi serve, e non vi servirà per tutto l'anno</p>
 </section>
 
+<section>
+  <p class="mot-kicker">comunicazioni ufficiali</p>
+  <h2><em>Super Power</em> dei docenti del <em>serale</em></h2>
+  <p class="fragment">Rispetto al diurno, i docenti del serale hanno un vantaggio in più: gli studenti sono maggiorenni.</p>
+  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, invitandolo cortesemente a lasciare l'aula.</p>
+  <p class="fragment">Oltre alle linee guida della scuola, il dipartimento di indirizzo ha deciso di adottarlo, per garantire lezioni più serene — e quindi più efficaci.</p>
+</section>
+
 <!--
 <section>
   <p class="mot-kicker">supporto</p>
@@ -370,7 +378,7 @@ slides:
   <p class="mot-kicker">comunicazioni ufficiali</p>
   <h2><em>Super Power</em> dei docenti del <em>serale</em></h2>
   <p class="fragment">Rispetto al diurno, i docenti del serale hanno un vantaggio in più: gli studenti sono maggiorenni.</p>
-  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, per motivi disciplinari o per altri motivi.</p>
+  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, invitandolo cortesemente a lasciare l'aula.</p>
   <p class="fragment">Oltre alle linee guida della scuola, il dipartimento di indirizzo ha deciso di adottarlo, per garantire lezioni più serene — e quindi più efficaci.</p>
 </section>
 
@@ -571,7 +579,7 @@ slides:
   <p class="mot-kicker">comunicazioni ufficiali</p>
   <h2><em>Super Power</em> dei docenti del <em>serale</em></h2>
   <p class="fragment">Rispetto al diurno, i docenti del serale hanno un vantaggio in più: gli studenti sono maggiorenni.</p>
-  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, per motivi disciplinari o per altri motivi.</p>
+  <p class="mot-def fragment">Il "superpotere" consiste nella possibilità di allontanare dalla classe uno studente, invitandolo cortesemente a lasciare l'aula.</p>
   <p class="fragment">Oltre alle linee guida della scuola, il dipartimento di indirizzo ha deciso di adottarlo, per garantire lezioni più serene — e quindi più efficaci.</p>
 </section>
 
