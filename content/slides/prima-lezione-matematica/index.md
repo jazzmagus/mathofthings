@@ -184,7 +184,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a><br><span style="font-family:var(--mot-mono);font-style:italic;font-size:0.62em;color:var(--mot-primary);">// Non ho ricevuto la notifica da Classroom, non costituisce una giustificazione.</span></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
@@ -388,7 +388,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a><br><span style="font-family:var(--mot-mono);font-style:italic;font-size:0.62em;color:var(--mot-primary);">// Non ho ricevuto la notifica da Classroom, non costituisce una giustificazione.</span></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
@@ -589,7 +589,7 @@ slides:
   <h2>Dove trovare <em>tutto</em></h2>
   <dl class="mot-rows mot-rows-compact">
     <dt class="fragment">The Math of Things</dt><dd class="fragment"><a href="https://mathofthings.netlify.app/" target="_blank" class="mono">mathofthings.netlify.app</a> — il mio sito web, con lezioni, dispense e materiali di approfondimento sempre disponibili</dd>
-    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a></dd>
+    <dt class="fragment">Google Classroom</dt><dd class="fragment">comunicazioni, compiti, materiale didattico (dispense, video, esercizi), post e suggerimenti — <a href="#/classroom-codes" class="mono">codice della classe</a><br><span style="font-family:var(--mot-mono);font-style:italic;font-size:0.62em;color:var(--mot-primary);">// Non ho ricevuto la notifica da Classroom, non costituisce una giustificazione.</span></dd>
     <dt class="fragment">Registro elettronico</dt><dd class="fragment">Classeviva Spaggiari — comunicazioni ufficiali, verifiche, interrogazioni, note, voti</dd>
     <dt class="fragment">Libro di testo</dt><dd class="fragment">non strettamente indispensabile in classe; valutiamo insieme una versione digitale</dd>
     <dt class="fragment">Appunti</dt><dd class="fragment">in caso di necessità condividerò direttamente i miei appunti: non c'è bisogno di fare esercizio di pura copiatura</dd>
