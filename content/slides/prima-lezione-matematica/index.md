@@ -82,8 +82,8 @@ slides:
 
 ---
 
-<section id="terze" class="mot-divider" data-transition="zoom">
-  <h1 class="r-fit-text">BENVENUTI</h1>
+<section id="terze" class="mot-divider" data-transition="zoom" data-background-image="benvenuti.jpg" data-background-size="cover" data-background-opacity="0.65">
+  <h1 class="r-fit-text" style="color:#fff; opacity:1; text-shadow:0 2px 12px rgba(0,0,0,.5);">BENVENUTI</h1>
   <p class="mot-joke fragment">saluti, presentazioni, e qualche regola del gioco</p>
 </section>
 
@@ -341,9 +341,9 @@ slides:
 
 ---
 
-<section id="quarte" class="mot-divider" data-transition="zoom" data-background-image="bentornati.jpg" data-background-opacity="0.65">
-  <h1 class="r-fit-text">BENTORNATI</h1>
-  <p class="mot-joke fragment">saluti, presentazioni, e qualche regola del gioco</p>
+<section id="quarte" class="mot-divider" data-transition="zoom" data-background-image="bentornati.jpg" data-background-size="cover" data-background-opacity="0.65">
+  <h1 class="r-fit-text" style="color:#fff; opacity:1; text-shadow:0 2px 12px rgba(0,0,0,.5);">BENTORNATI</h1>
+  <p class="mot-joke fragment" style="font-size:0.65em;">ci conosciamo già: zero presentazioni, si brinda (idealmente) e si riparte da dove eravamo rimasti</p>
 </section>
 
 <section>
@@ -542,9 +542,9 @@ slides:
 
 ---
 
-<section id="quinte" class="mot-divider" data-transition="zoom" data-background-image="bentornati.jpg" data-background-opacity="0.65">
-  <h1 class="r-fit-text">BENTORNATI</h1>
-  <p class="mot-joke fragment">saluti, presentazioni, e qualche regola del gioco</p>
+<section id="quinte" class="mot-divider" data-transition="zoom" data-background-image="bentornati.jpg" data-background-size="cover" data-background-opacity="0.65">
+  <h1 class="r-fit-text" style="color:#fff; opacity:1; text-shadow:0 2px 12px rgba(0,0,0,.5);">BENTORNATI</h1>
+  <p class="mot-joke fragment" style="font-size:0.65em;">ci conosciamo già: zero presentazioni, si brinda (idealmente) e si riparte da dove eravamo rimasti</p>
 </section>
 
 <section>
