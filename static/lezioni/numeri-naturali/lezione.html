@@ -88,6 +88,7 @@ mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
 .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .acc-item.open .acc-body{max-height:9000px}
 .acc-inner{padding:8px 0 18px 36px}
+.risultato{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent)}
 
 /* TABLE */
 .ct{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
@@ -366,6 +367,10 @@ const S = [
       <tr>
         <td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">6</td>
         <td>Sintesi e ponte verso \\(\\mathbb{Z}\\)</td>
+      </tr>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">7</td>
+        <td>Esercizi: espressioni in \\(\\mathbb{N}\\)</td>
       </tr>
     </table>
   `
@@ -832,6 +837,63 @@ const S = [
       <div class="cb-label">Prossima lezione</div>
       <p>Costruiremo \\(\\mathbb{Z}\\): come si definiscono i numeri negativi, come si opera con il segno e quali nuove proprietà emergono rispetto a \\(\\mathbb{N}\\).</p>
     </div>
+  `
+},
+
+/* ──── 6 · ESERCIZI: ESPRESSIONI IN ℕ ──── */
+{
+  tag: `ESERCIZI`,
+  title: `Espressioni in \\(\\mathbb{N}\\)`,
+  nav: `Espressioni`,
+  sub: `Dieci espressioni numeriche di difficoltà crescente, per allenare le quattro operazioni, le potenze e le parentesi. Prova a calcolare da solo prima di aprire la soluzione.`,
+  body: `
+    <div class="cb">
+      <div class="cb-label">Come usare questa sezione</div>
+      <p>Svolgi ogni espressione sul quaderno, rispettando l'ordine delle operazioni e le parentesi. Poi clicca sulla riga per controllare solo il <strong>risultato numerico</strong> — qui non trovi lo svolgimento passo passo: quello lo trovi negli <em>Esercizi guidati</em> più sopra.</p>
+    </div>
+
+    ${acc([
+      {
+        t: `1. \\(\\{50 - 4 \\cdot [54 : 9 - (18 - 15) \\cdot 2 + 6]\\} : 13\\)`,
+        h: `<p class="risultato">Risultato: \\( = 2 \\)</p>`
+      },
+      {
+        t: `2. \\([(65 + 12 \\cdot 4 - 25 : 5) : 4 + 6] \\cdot 2 - 24 : 3\\)`,
+        h: `<p class="risultato">Risultato: \\( = 58 \\)</p>`
+      },
+      {
+        t: `3. \\([60 \\cdot 2 - (10 + 1) \\cdot 2] : [21 - (16 - 9) \\cdot 2]\\)`,
+        h: `<p class="risultato">Risultato: \\( = 14 \\)</p>`
+      },
+      {
+        t: `4. \\(\\{[(12 - 4) : 2 + 3]^2 - 2^3 \\cdot 3\\} : 5 + 5^2\\)`,
+        h: `<p class="risultato">Risultato: \\( = 30 \\)</p>`
+      },
+      {
+        t: `5. \\(\\{[(100 - 4^3) : 6 + 2^5] \\cdot 3 - 3^3\\} : 3\\)`,
+        h: `<p class="risultato">Risultato: \\( = 29 \\)</p>`
+      },
+      {
+        t: `6. \\([(2^4 + 3^3) \\cdot 2 - (18 : 3 + 4^2)] : (3^2 - 1)\\)`,
+        h: `<p class="risultato">Risultato: \\( = 8 \\)</p>`
+      },
+      {
+        t: `7. \\(\\{40 : [(6 + 2)^2 : 8 - 3] + 5^3\\} - 2^4 \\cdot 3\\)`,
+        h: `<p class="risultato">Risultato: \\( = 85 \\)</p>`
+      },
+      {
+        t: `8. \\(\\{[(10^2 - 4^3) : 6 + 3^3] : 11\\}^2 + 2^4\\)`,
+        h: `<p class="risultato">Risultato: \\( = 25 \\)</p>`
+      },
+      {
+        t: `9. \\((15^2 - 9^3 : 3^4) \\cdot [(42 : 6 + 3) : 5 - 1]\\)`,
+        h: `<p class="risultato">Risultato: \\( = 216 \\)</p>`
+      },
+      {
+        t: `10. \\(\\{[(6^3 - 4^3) : 8 + 5^2] \\cdot 2 - 3^4\\} : 7 + (2^5 - 30)\\)`,
+        h: `<p class="risultato">Risultato: \\( = 3 \\)</p>`
+      }
+    ])}
   `
 }
 
