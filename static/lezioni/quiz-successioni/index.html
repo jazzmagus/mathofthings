@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz — Successioni e progressioni</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
 MathJax = {
   tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
@@ -30,7 +30,7 @@ MathJax = {
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Source Sans 3','Georgia',serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px;opacity:0;transition:opacity .3s}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px;opacity:0;transition:opacity .3s}
 
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-light);height:52px;display:flex;align-items:center;padding:0 clamp(16px,4vw,40px);gap:16px}
 .topbar-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);white-space:nowrap}
@@ -49,7 +49,7 @@ body{font-family:'Source Sans 3','Georgia',serif;background:var(--bg);color:var(
 .level-legend{display:flex;gap:18px;flex-wrap:wrap;margin:20px 0 4px}
 .level-key{display:flex;align-items:center;gap:8px;font-family:'Fira Code',monospace;font-size:.72rem;color:var(--text-mid)}
 .level-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
-.btn-start{margin-top:16px;font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:700;padding:14px 36px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
+.btn-start{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;padding:14px 36px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
 .btn-start:hover{filter:brightness(.92)}
 
 .progress-wrap{margin-bottom:24px}
@@ -84,7 +84,7 @@ body{font-family:'Source Sans 3','Georgia',serif;background:var(--bg);color:var(
 .feedback.fb-err .fb-label{color:var(--danger)}
 
 .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
-.btn-next{font-family:'Source Sans 3',sans-serif;font-size:.92rem;font-weight:700;padding:11px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s;display:none}
+.btn-next{font-family:'JetBrains Mono',monospace;font-size:.92rem;font-weight:700;padding:11px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s;display:none}
 .btn-next.show{display:inline-block}
 .btn-next:hover{filter:brightness(.92)}
 .score-live{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--text-dim)}
@@ -109,9 +109,9 @@ body{font-family:'Source Sans 3','Georgia',serif;background:var(--bg);color:var(
 .rev-cell.err{background:var(--danger-light);color:var(--danger);border:1px solid var(--danger)}
 
 .results-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-.btn-retry{font-family:'Source Sans 3',sans-serif;font-size:.92rem;font-weight:700;padding:12px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
+.btn-retry{font-family:'JetBrains Mono',monospace;font-size:.92rem;font-weight:700;padding:12px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
 .btn-retry:hover{filter:brightness(.92)}
-.btn-lesson{font-family:'Source Sans 3',sans-serif;font-size:.92rem;padding:12px 24px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s}
+.btn-lesson{font-family:'JetBrains Mono',monospace;font-size:.92rem;padding:12px 24px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s}
 .btn-lesson:hover{border-color:var(--accent);color:var(--accent)}
 
 @media(max-width:600px){
