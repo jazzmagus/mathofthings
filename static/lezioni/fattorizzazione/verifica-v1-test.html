@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test — Verifica Fattorizzazione Polinomiale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global', scale: 1.05 },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => { document.body.style.opacity = '1'; });
+    }
+  }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<style>
+:root {
+  --bg:#faf7f2; --surface:#fff; --surface-alt:#f5f0e8;
+  --border:#e4ddd4; --border-light:#ece7de;
+  --text:#2c2520; --text-mid:#5a524a; --text-dim:#6e6760;
+  --accent:#c2185b; --accent-light:#fce4ec;
+  --green:#4a7c59; --green-light:#eaf5ed;
+  --danger:#b33a3a; --danger-light:#fdf0f0;
+  --radius:8px; --shadow:0 1px 3px rgba(44,37,32,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16.5px;opacity:0;transition:opacity .3s}
+
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-light);height:52px;display:flex;align-items:center;padding:0 clamp(16px,4vw,40px);gap:16px}
+.topbar-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);white-space:nowrap}
+.topbar-tag{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--text-dim);letter-spacing:1px;flex:1}
+.topbar-home{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text-dim);text-decoration:none;cursor:pointer;white-space:nowrap}
+.topbar-home:hover{color:var(--accent)}
+
+.container{max-width:1080px;margin:0 auto;padding:84px clamp(20px,5vw,40px) 120px}
+
+.hero{margin-bottom:32px;padding-bottom:26px;border-bottom:1px solid var(--border-light)}
+.hero-tag{font-family:'Fira Code',monospace;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4.5vw,2.3rem);font-weight:800;line-height:1.2;margin-bottom:10px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:.97rem;color:var(--text-mid);line-height:1.65;max-width:640px}
+.hero-source{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--text-dim);margin-top:10px;font-style:italic}
+
+.cols{column-count:2;column-gap:28px}
+@media (max-width:760px){.cols{column-count:1}}
+
+.item{break-inside:avoid;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);margin-bottom:20px}
+.item-badge{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;display:block}
+.item-text{font-size:.98rem;line-height:1.55;margin-bottom:16px}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border:1.5px solid var(--border);border-radius:7px;cursor:pointer;background:var(--surface);transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent);background:var(--accent-light)}
+.opt-letter{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:var(--text-dim);min-width:16px;padding-top:1px;flex-shrink:0}
+.opt-text{font-size:.92rem;line-height:1.5}
+.opt.selected{border-color:var(--accent);background:var(--accent-light)}
+.opt.selected .opt-letter{color:var(--accent)}
+.opt.correct{border-color:var(--green);background:var(--green-light)}
+.opt.correct .opt-letter{color:var(--green)}
+.opt.wrong{border-color:var(--danger);background:var(--danger-light)}
+.opt.wrong .opt-letter{color:var(--danger)}
+.item.locked .opt{cursor:default;pointer-events:none}
+
+.results-panel{display:none;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:32px clamp(20px,5vw,40px);margin-bottom:36px;text-align:center}
+.results-panel.show{display:block}
+.results-tag{font-family:'Fira Code',monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.results-num{font-family:'Playfair Display',serif;font-size:4.2rem;font-weight:800;line-height:1;color:var(--accent)}
+.results-den{font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--text-dim);margin-top:2px}
+.results-pct{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text-mid);margin-top:6px}
+.results-msg{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--text-mid);margin:18px auto 6px;max-width:520px;line-height:1.55}
+.results-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;max-width:420px;margin:22px auto 4px}
+@media (max-width:600px){.results-grid{grid-template-columns:repeat(5,1fr)}}
+.rev-cell{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;cursor:pointer;text-decoration:none}
+.rev-cell.ok{background:var(--green-light);color:var(--green);border:1px solid var(--green)}
+.rev-cell.err{background:var(--danger-light);color:var(--danger);border:1px solid var(--danger)}
+.btn-retry{margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:700;padding:11px 26px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
+.btn-retry:hover{filter:brightness(.92)}
+
+.submit-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(250,247,242,.97);backdrop-filter:blur(8px);border-top:1px solid var(--border-light);padding:14px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.submit-count{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--text-dim)}
+.submit-count b{color:var(--accent)}
+.btn-submit{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:700;padding:12px 30px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s}
+.btn-submit:hover{filter:brightness(.92)}
+.btn-submit:disabled{opacity:.45;cursor:default}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">Test — Fattorizzazione</div>
+  <div class="topbar-tag">Verifica v1 · versione interattiva</div>
+  <a href="/lezioni/fattorizzazione/lezione.html" class="topbar-home">← lezione</a>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-tag">Test — 10 domande</div>
+    <h1>Fattorizzazione <em>Polinomiale</em></h1>
+    <p class="hero-sub">La parte a risposta multipla della verifica di Modulo 3. Gli esercizi a risposta aperta della verifica completa restano nel PDF, con le soluzioni.</p>
+    <p class="hero-source">Verifica di Matematica · Modulo 3 — Calcolo letterale: fattorizzazione polinomiale</p>
+  </div>
+
+  <div class="results-panel" id="results-panel">
+    <div class="results-tag">Risultato</div>
+    <div class="results-num" id="res-score">--</div>
+    <div class="results-den" id="res-den">su 10 domande</div>
+    <div class="results-pct" id="res-pct"></div>
+    <p class="results-msg" id="res-msg"></p>
+    <div class="results-grid" id="res-grid"></div>
+    <button class="btn-retry" id="retry-btn">Rifai il test</button>
+  </div>
+
+  <div class="cols">
+
+    <div class="item" data-correct="B" id="q-1">
+      <span class="item-badge">Domanda 1</span>
+      <div class="item-text">Che cosa significa fattorizzare un polinomio?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">Calcolarne il valore numerico per \(x=0\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">Trasformarlo in un prodotto di polinomi irriducibili di grado inferiore</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">Sommare algebricamente tutti i suoi termini simili</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">Determinarne il grado massimo e il coefficiente direttivo</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-2">
+      <span class="item-badge">Domanda 2</span>
+      <div class="item-text">Quale dei seguenti polinomi possiede un fattore comune a tutti i suoi termini?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(3x^2 - 2y + 5\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(6x^3 - 9x^2 + 3x\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(x^2 + x + 1\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(4a^2 - 3b + 7ab\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-3">
+      <span class="item-badge">Domanda 3</span>
+      <div class="item-text">Qual è la fattorizzazione completa di \(4x^3 - 8x^2 + 12x\)?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(4(x^3 - 2x^2 + 3x)\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(4x(x^2 - 2x + 3)\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(4x^2(x-2) + 12x\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(2x(2x^2 - 4x + 6)\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-4">
+      <span class="item-badge">Domanda 4</span>
+      <div class="item-text">Quale delle seguenti espressioni è una differenza di quadrati?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(x^2 + 9\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(x^2 - 9\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(x^2 - 3x + 9\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\((x+3)^2\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-5">
+      <span class="item-badge">Domanda 5</span>
+      <div class="item-text">Qual è la fattorizzazione corretta di \(x^2 - 16\)?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\((x-4)^2\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\((x-4)(x+4)\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\((x-8)(x+2)\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(x(x-16)\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="C" id="q-6">
+      <span class="item-badge">Domanda 6</span>
+      <div class="item-text">Qual è la fattorizzazione corretta di \(x^2 + 6x + 9\)?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\((x+3)(x-3)\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\((x+9)(x+1)\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\((x+3)^2\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\((x+6)(x+1)+3\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-7">
+      <span class="item-badge">Domanda 7</span>
+      <div class="item-text">Per fattorizzare \(x^2 - 5x + 6\), si cercano due numeri \(a\) e \(b\) tali che \(a+b=-5\) e \(a\cdot b=6\). Quali sono?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(a=2,\ b=3\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(a=-2,\ b=-3\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(a=-1,\ b=-6\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(a=1,\ b=-6\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-8">
+      <span class="item-badge">Domanda 8</span>
+      <div class="item-text">Quale dei seguenti polinomi è irriducibile su \(\mathbb{Z}\) (non si fattorizza con coefficienti interi)?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(x^2 - 4\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(x^2 + 4\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(x^2 - 5x + 6\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(4x^2 - 9\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-9">
+      <span class="item-badge">Domanda 9</span>
+      <div class="item-text">Qual è la fattorizzazione completa di \(6x^2 + 3x\)?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(3(2x^2+x)\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(3x(2x+1)\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(x(6x+3)\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(6x\left(x+\dfrac{1}{2}\right)\)</span></div>
+      </div>
+    </div>
+
+    <div class="item" data-correct="B" id="q-10">
+      <span class="item-badge">Domanda 10</span>
+      <div class="item-text">Uno studente afferma che \(x^2+6x+9=(x+9)(x+1)\). Cosa ha sbagliato?</div>
+      <div class="opts">
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">Ha confuso la fattorizzazione con la differenza di quadrati</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">Ha trovato due numeri con prodotto 9 ma somma sbagliata: \(9+1=10\neq 6\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">Ha dimenticato di estrarre il fattore comune prima di fattorizzare</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">Niente, la fattorizzazione è corretta</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="submit-bar">
+  <span class="submit-count">Risposto: <b id="answered-count">0</b>/10</span>
+  <button class="btn-submit" id="submit-btn">Invia risposte</button>
+</div>
+
+<script>
+const items = Array.from(document.querySelectorAll('.item'));
+let submitted = false;
+
+function selection(item) {
+  const sel = item.querySelector('.opt.selected');
+  return sel ? sel.dataset.letter : null;
+}
+
+function updateCount() {
+  const answered = items.filter(it => selection(it) !== null).length;
+  document.getElementById('answered-count').textContent = answered;
+}
+
+items.forEach(item => {
+  const group = item.querySelectorAll('.opt');
+  group.forEach(el => {
+    el.addEventListener('click', () => {
+      if (submitted) return;
+      group.forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      updateCount();
+    });
+  });
+});
+
+function submitTest() {
+  if (submitted) return;
+  submitted = true;
+
+  let score = 0;
+  const results = [];
+
+  items.forEach(item => {
+    item.classList.add('locked');
+    const correct = item.dataset.correct;
+    const chosen = selection(item);
+    const ok = chosen === correct;
+    if (ok) score++;
+    results.push(ok);
+
+    item.querySelectorAll('.opt').forEach(opt => {
+      if (opt.dataset.letter === correct) opt.classList.add('correct');
+      else if (opt.dataset.letter === chosen) opt.classList.add('wrong');
+    });
+  });
+
+  const total = items.length;
+  const pct = Math.round(score / total * 100);
+
+  document.getElementById('res-score').textContent = score;
+  document.getElementById('res-den').textContent = 'su ' + total + ' domande';
+  document.getElementById('res-pct').textContent = pct + '%';
+
+  const msgs = [
+    [9, 'Ottimo: la parte teorica del modulo è solida. Ora ripassa gli esercizi aperti della verifica.'],
+    [7, 'Molto bene: qualche imprecisione da rivedere prima della verifica.'],
+    [5, 'Sufficiente, ma conviene ripassare i punti sbagliati prima di affrontare gli esercizi aperti.'],
+    [0,  'Serve un ripasso più approfondito: rivedi la lezione e riprova.']
+  ];
+  document.getElementById('res-msg').textContent = (msgs.find(m => score >= m[0]) || msgs[3])[1];
+
+  document.getElementById('res-grid').innerHTML = results.map((ok, i) =>
+    `<a href="#q-${i+1}" class="rev-cell ${ok ? 'ok' : 'err'}" title="Domanda ${i+1}: ${ok ? 'corretta' : 'sbagliata'}">${i+1}</a>`
+  ).join('');
+
+  document.getElementById('submit-btn').disabled = true;
+  document.getElementById('results-panel').classList.add('show');
+  document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+
+  if (typeof MathJax !== 'undefined') MathJax.typesetPromise();
+}
+
+function retryTest() {
+  submitted = false;
+  items.forEach(item => {
+    item.classList.remove('locked');
+    item.querySelectorAll('.opt').forEach(el => {
+      el.classList.remove('selected', 'correct', 'wrong');
+    });
+  });
+  document.getElementById('results-panel').classList.remove('show');
+  document.getElementById('submit-btn').disabled = false;
+  updateCount();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('submit-btn').addEventListener('click', submitTest);
+document.getElementById('retry-btn').addEventListener('click', retryTest);
+
+if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.promise) {
+  MathJax.startup.promise.then(() => { document.body.style.opacity = '1'; });
+} else {
+  document.body.style.opacity = '1';
+}
+</script>
+</body>
+</html>

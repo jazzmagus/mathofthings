@@ -124,11 +124,41 @@ La sensibilità dei ragazzi è cambiata molto negli ultimi anni, e continuerà a
 
 E la scuola, forte di un'autonomia che le concede ampi margini, potrebbe osare di più nel discostarsi dai parametri standard. Perché prendersi davvero a cuore il percorso di uno studente, con attenzione agli ostacoli che incontra, raramente porta a risultati deludenti.
 
+## Per approfondire
+
+Se il tema dell'ansia legata alla crescita in un mondo sempre più mediato da smartphone e social vi interessa, consiglio la lettura di un saggio diventato un caso editoriale internazionale:
+
+<div class="mm-book">
+  <img src="haidt-generazione-ansiosa.jpg" alt="Copertina del libro La generazione ansiosa di Jonathan Haidt" class="mm-book-cover">
+  <div class="mm-book-info">
+    <p class="mm-book-title">La generazione ansiosa</p>
+    <p class="mm-book-subtitle">Come i social hanno rovinato i nostri figli</p>
+    <p class="mm-book-author">Jonathan Haidt — Rizzoli</p>
+    <p class="mm-book-desc">Lo psicologo sociale della New York University ricostruisce, dati alla mano, come il passaggio da un'infanzia fatta di gioco libero a una mediata dallo smartphone abbia coinciso con l'impennata di ansia, depressione e disturbi del sonno tra i più giovani. Un saggio diventato un caso editoriale internazionale, utile a chiunque lavori con adolescenti a comprendere lo sfondo su cui si muovono strategie come quella descritta in questo articolo.</p>
+  </div>
+</div>
+
+## La felicità nel mondo, tra social e nuove generazioni
+
+Il tema dell'ansia giovanile e del ruolo dei social non riguarda solo la scuola italiana: è al centro anche del **World Happiness Report 2026**, il rapporto annuale sulla felicità nel mondo pubblicato a marzo 2026, che quest'anno ha dedicato un intero blocco di capitoli proprio al rapporto tra social media e benessere delle nuove generazioni.
+
+Nella classifica generale, basata su come le persone valutano la propria vita su una scala da 0 a 10 (la scala di Cantril), l'Italia si colloca al **38° posto** su 147 paesi, con un punteggio di 6,57 — in miglioramento di due posizioni rispetto al 40° posto del 2025, ma ancora lontana dai paesi nordici che occupano stabilmente le prime posizioni.
+
+<div class="mm-chart">
+  <h3 class="mm-chart-title">Punteggio di felicità (scala di Cantril): i primi 10 paesi e l'Italia</h3>
+  <div class="mm-chart-canvas"><canvas id="mmChart4"></canvas></div>
+  <p class="mm-chart-desc">Media 2023-2025. L'Italia (38ª su 147 paesi) è mostrata per confronto con i dieci paesi in vetta alla classifica. Fonte: <a href="https://www.worldhappiness.report/" target="_blank" rel="noopener">World Happiness Report 2026</a>.</p>
+</div>
+
+Un promemoria utile: la felicità non è solo una questione di reddito o di condizioni materiali. È anche — sempre di più — una questione di come cresciamo, di quanto tempo passiamo online invece che a scuola, in cortile, con gli amici. Un motivo in più per continuare a cercare, come insegnanti, strategie che aiutino i ragazzi a stare meglio anche dentro un'aula di matematica.
+
 ## Fonti dei dati
 
 - Racine, N., McArthur, B. A., Cooke, J. E., Eirich, R., Zhu, J., & Madigan, S. (2021). *Global Prevalence of Depressive and Anxiety Symptoms in Children and Adolescents During COVID-19: A Meta-analysis*. JAMA Pediatrics, 175(11), 1142-1150.
 - de Witte, M., Spruit, A., van Hooren, S., Moonen, X., & Stams, G. J. (2020). *Effects of music interventions on stress-related outcomes: a systematic review and two meta-analyses*. Health Psychology Review, 14(2) / 16(1).
 - MIUR – Ufficio Statistica e Studi, *Rilevazioni sugli alunni con Disturbi Specifici dell'Apprendimento (DSA)*, anni scolastici 2010/11 – 2019/20.
+- Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B., & Wang, S. (a cura di). *World Happiness Report 2026*. Wellbeing Research Centre, University of Oxford.
+- Haidt, J. (2024). *La generazione ansiosa. Come i social hanno rovinato i nostri figli*. Rizzoli.
 
 ## Bibliografia
 
@@ -179,6 +209,62 @@ E la scuola, forte di un'autonomia che le concede ampi margini, potrebbe osare d
 .dark .mm-chart-desc { color: #a8a29a; }
 @media (max-width: 768px) {
   .mm-chart-canvas { height: 260px; }
+}
+.mm-book {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: #fbf6ec;
+  border: 1px solid rgba(21,20,15,0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  box-shadow: 0 4px 20px rgba(21,20,15,0.06);
+}
+.dark .mm-book {
+  background: #242424;
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.mm-book-cover {
+  width: 110px;
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(21,20,15,0.15);
+}
+.mm-book-info { flex: 1; min-width: 0; }
+.mm-book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.2rem 0;
+}
+.dark .mm-book-title { color: #d0d0d0; }
+.mm-book-subtitle {
+  font-size: 0.92rem;
+  font-style: italic;
+  color: #6b6459;
+  margin: 0 0 0.4rem 0;
+}
+.dark .mm-book-subtitle { color: #a8a29a; }
+.mm-book-author {
+  font-size: 0.82rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ed6f5c;
+  margin: 0 0 0.75rem 0;
+}
+.dark .mm-book-author { color: #f08e7c; }
+.mm-book-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4a453e;
+  margin: 0;
+}
+.dark .mm-book-desc { color: #c4beb4; }
+@media (max-width: 600px) {
+  .mm-book { flex-direction: column; align-items: center; text-align: center; }
+  .mm-book-cover { width: 140px; }
 }
 </style>
 
@@ -279,6 +365,30 @@ E la scuola, forte di un'autonomia che le concede ampi margini, potrebbe osare d
             ticks: { color: t.text, callback: function (v) { return v + '%'; } }
           }),
           x: { ticks: { color: t.text }, grid: { display: false } }
+        }
+      })
+    }));
+
+    // 4 — World Happiness Report 2026: top 10 + Italia
+    instances.push(new Chart(document.getElementById('mmChart4'), {
+      type: 'bar',
+      data: {
+        labels: ['Finlandia', 'Islanda', 'Danimarca', 'Costa Rica', 'Svezia', 'Norvegia', 'Paesi Bassi', 'Israele', 'Lussemburgo', 'Svizzera', '… Italia (38ª)'],
+        datasets: [{
+          data: [7.76, 7.51, 7.49, 7.43, 7.26, 7.24, 7.23, 7.19, 7.05, 7.02, 6.57],
+          backgroundColor: function (ctx) {
+            return ctx.index === 10 ? t.coral : t.slate;
+          },
+          borderRadius: 6
+        }]
+      },
+      options: Object.assign({}, baseOpts, {
+        indexAxis: 'y',
+        scales: {
+          x: Object.assign(scale({ beginAtZero: true, max: 8 }), {
+            title: { display: true, text: 'Punteggio (scala di Cantril, 0-10)', color: t.text }
+          }),
+          y: { ticks: { color: t.text }, grid: { display: false } }
         }
       })
     }));
