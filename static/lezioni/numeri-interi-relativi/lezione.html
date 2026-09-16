@@ -89,6 +89,8 @@ mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
 .acc-item.open .acc-body{max-height:9000px}
 .acc-inner{padding:8px 0 18px 36px}
 .risultato{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent)}
+.btn-test-link{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;color:var(--accent);border:1px solid rgba(194,24,91,0.3);background:rgba(194,24,91,0.06);padding:9px 18px;border-radius:6px;text-decoration:none;transition:border-color .2s,transform .2s}
+.btn-test-link:hover{border-color:rgba(194,24,91,0.5);transform:translateY(-1px)}
 
 /* TABLE */
 .ct{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
@@ -744,6 +746,12 @@ const S = [
         h: `<p class="risultato">Risultato: \\( = 11 \\)</p>`
       }
     ])}
+
+    <div class="cb tip">
+      <div class="cb-label">Mettiti alla prova</div>
+      <p>Sei pronto per una verifica di livello avanzato su potenze, insiemi numerici e MCD/mcm? Il test "Verso le competenze" ha 22 domande — vero/falso e scelta multipla — con punteggio finale e commento.</p>
+      <a href="/lezioni/verso-competenze-numeri/" class="btn-test-link">Vai al test →</a>
+    </div>
   `
 }
 
