@@ -146,10 +146,10 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
     <div class="hero">
       <div class="hero-tag">Quiz adattivo · 3 livelli</div>
       <h1>Piano Cartesiano e <em>Retta</em></h1>
-      <p class="hero-sub">30 domande suddivise in tre livelli di difficoltà. Parti dalle fondamenta (coordinate, distanza, retta) e progredisci verso problemi che richiedono visione grafica e ragionamento critico. Alcuni esercizi includono grafici interattivi.</p>
+      <p class="hero-sub">28 domande suddivise in tre livelli di difficoltà. Parti dalle fondamenta (coordinate, distanza, retta) e progredisci verso problemi che richiedono visione grafica e ragionamento critico. Alcuni esercizi includono grafici interattivi.</p>
     </div>
     <div class="intro-meta">
-      <div class="meta-item"><span class="meta-label">Domande</span><span class="meta-value">30</span></div>
+      <div class="meta-item"><span class="meta-label">Domande</span><span class="meta-value">28</span></div>
       <div class="meta-item"><span class="meta-label">Livelli</span><span class="meta-value">Base · Avanzato · Pro</span></div>
       <div class="meta-item"><span class="meta-label">Con grafici</span><span class="meta-value">4 domande</span></div>
     </div>
@@ -160,7 +160,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
     <div class="progress-wrap">
       <div class="progress-info">
         <span class="progress-label">Progresso</span>
-        <span class="progress-frac" id="prog-frac">1 / 30</span>
+        <span class="progress-frac" id="prog-frac">1 / 28</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
@@ -187,7 +187,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
     <div class="results-hero">
       <div class="hero-tag">IIS G.A. Remondini · Risultato</div>
       <div class="results-num" id="res-score">--</div>
-      <div class="results-den">su 30 domande</div>
+      <div class="results-den">su 28 domande</div>
       <div class="results-pct" id="res-pct"></div>
       <div class="results-bar-wrap"><div class="results-bar-fill" id="res-bar" style="width:0%"></div></div>
       <p class="results-msg" id="res-msg"></p>
@@ -348,10 +348,10 @@ const Q = [
       "\\(3\\)",
       "\\(5\\)",
       "\\(\\sqrt{17}\\)",
-      "\\(\\sqrt{25}\\)"
+      "\\(7\\)"
     ],
-    ans: 2,
-    exp: "\\(d = \\sqrt{(2-(-1))^2 + (-1-3)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\). Attendere: \\((2+1)^2 = 9\\) e \\((-1-3)^2 = (-4)^2 = 16\\), quindi \\(\\sqrt{9+16} = 5\\), non \\(\\sqrt{17}\\). Ricalcolando: è corretto il risultato 5."
+    ans: 1,
+    exp: "\\(d = \\sqrt{(2-(-1))^2 + (-1-3)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\)."
   },
   {
     level: 'avanzato',
@@ -371,7 +371,7 @@ const Q = [
     badge: "Forma esplicita",
     q: "La retta per \\(A(1, 2)\\) con \\(m = 2\\) ha equazione:",
     opts: [
-      "\\(y = 2x\\)",
+      "\\(y = 2x + 2\\)",
       "\\(y = 2x + 1\\)",
       "\\(y = 2x\\)",
       "\\(y = 2x - 1\\)"
@@ -473,8 +473,8 @@ const Q = [
       "\\(\\frac{1}{5}\\)",
       "\\(2\\)"
     ],
-    ans: 1,
-    exp: "Formula: \\(d = \\frac{|3(0) - 4(1) + 2|}{\\sqrt{9+16}} = \\frac{|-4+2|}{5} = \\frac{2}{5}\\). Attendere: \\(|0-4+2| = |-2| = 2\\), quindi \\(\\frac{2}{5}\\). Ricalcolando con la formula esatta da verificare."
+    ans: 0,
+    exp: "Formula: \\(d = \\frac{|3(0) - 4(1) + 2|}{\\sqrt{9+16}} = \\frac{|0-4+2|}{5} = \\frac{2}{5}\\)."
   },
   {
     level: 'pro',
@@ -855,9 +855,9 @@ function showQ() {
   document.getElementById('btn-next').style.display = '';
 
   // Progresso
-  document.getElementById('prog-frac').textContent = (currentQ + 1) + ' / 30';
+  document.getElementById('prog-frac').textContent = (currentQ + 1) + ' / 28';
   document.getElementById('prog-frac').className = 'progress-frac ' + (level === 2 ? 'pro' : '');
-  document.getElementById('prog-fill').style.width = ((currentQ + 1) / 30 * 100) + '%';
+  document.getElementById('prog-fill').style.width = ((currentQ + 1) / 28 * 100) + '%';
   document.getElementById('prog-fill').className = 'progress-fill ' + (level === 2 ? 'pro' : '');
 
   // Transizione Pro
@@ -909,7 +909,7 @@ function showResults() {
   document.getElementById('screen-results').style.display = 'block';
 
   const totalScore = score[0] + score[1] + score[2];
-  const pct = Math.round(totalScore / 30 * 100);
+  const pct = Math.round(totalScore / 28 * 100);
 
   document.getElementById('res-score').textContent = totalScore;
   document.getElementById('res-pct').textContent = `${pct}%`;

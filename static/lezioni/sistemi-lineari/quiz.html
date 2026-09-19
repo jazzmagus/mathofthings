@@ -145,10 +145,10 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
     <div class="hero">
       <div class="hero-tag">Quiz adattivo · 3 livelli</div>
       <h1>Sistemi di Equazioni <em>Lineari</em></h1>
-      <p class="hero-sub">30 domande a tre livelli di difficoltà: 10 base, 10 avanzate e 10 pro. Inizia dalle fondamenta (definizioni, metodi risolutivi) e progredisci verso problemi più complessi e interpretazioni geometriche. Riceverai un feedback immediato su ogni risposta.</p>
+      <p class="hero-sub">28 domande a tre livelli di difficoltà: 10 base, 9 avanzate e 9 pro. Inizia dalle fondamenta (definizioni, metodi risolutivi) e progredisci verso problemi più complessi e interpretazioni geometriche. Riceverai un feedback immediato su ogni risposta.</p>
     </div>
     <div class="intro-meta">
-      <div class="meta-item"><span class="meta-label">Domande</span><span class="meta-value">30</span></div>
+      <div class="meta-item"><span class="meta-label">Domande</span><span class="meta-value">28</span></div>
       <div class="meta-item"><span class="meta-label">Livelli</span><span class="meta-value">Base · Avanzato · Pro</span></div>
       <div class="meta-item"><span class="meta-label">Feedback</span><span class="meta-value">Immediato</span></div>
     </div>
@@ -187,7 +187,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
     <div class="results-hero">
       <div class="hero-tag">IIS G.A. Remondini · Risultato</div>
       <div class="results-num" id="res-score">--</div>
-      <div class="results-den">su 30 domande</div>
+      <div class="results-den">su 28 domande</div>
       <div class="results-pct" id="res-pct"></div>
       <div class="results-bar-wrap"><div class="results-bar-fill" id="res-bar" style="width:0%"></div></div>
       <p class="results-msg" id="res-msg"></p>
@@ -345,13 +345,13 @@ const Q = [
     badge: "Esercizio con frazioni",
     q: "Qual è la soluzione di \\(\\begin{cases} \\dfrac{x+1}{2} + y = 3 \\\\ x - y = 1 \\end{cases}\\)?",
     opts: [
-      "\\((x, y) = (2, 1)\\)",
+      "\\((x, y) = (\\dfrac{7}{3}, \\dfrac{4}{3})\\)",
       "\\((x, y) = (3, 2)\\)",
       "\\((x, y) = (1, 0)\\)",
       "\\((x, y) = (\\dfrac{5}{3}, \\dfrac{2}{3})\\)"
     ],
     ans: 0,
-    exp: "Dalla seconda: \\(x = y + 1\\). Sostituendo nella prima: \\(\\dfrac{y+2}{2} + y = 3 \\Rightarrow y+2+2y=6 \\Rightarrow y=\\dfrac{4}{3}\\)... Ricalcolando: \\(x = 2, y = 1\\)."
+    exp: "Dalla seconda: \\(x = y + 1\\). Sostituendo nella prima: \\(\\dfrac{y+2}{2} + y = 3 \\Rightarrow y+2+2y=6 \\Rightarrow y=\\dfrac{4}{3}\\), quindi \\(x = \\dfrac{7}{3}\\)."
   },
   {
     level: 'avanzato',
@@ -363,8 +363,8 @@ const Q = [
       "\\(-2\\)",
       "\\(1\\)"
     ],
-    ans: 1,
-    exp: "Il determinante è \\(D = 2 \\cdot (-1) - 3 \\cdot 1 = -2 - 3 = -5\\). Attendere: in realtà è \\(D = 2(-1) - 3(1) = -2-3 = -5\\). Ricontrollando: \\(2 \\cdot (-1) - 3 \\cdot 1 = -5\\). Errore: il valore è 5 se consideriamo \\(|D|\\) oppure il segno opposto."
+    ans: 0,
+    exp: "Il determinante è \\(D = 2 \\cdot (-1) - 3 \\cdot 1 = -2 - 3 = -5\\)."
   },
   {
     level: 'avanzato',
@@ -384,13 +384,13 @@ const Q = [
     badge: "Esercizio misto",
     q: "Risolvendo \\(\\begin{cases} 3x + 2y = 11 \\\\ 2x - y = 3 \\end{cases}\\) quale coppia è soluzione?",
     opts: [
-      "\\((x, y) = (\\dfrac{17}{7}, \\dfrac{31}{7})\\)",
+      "\\((x, y) = (\\dfrac{17}{7}, \\dfrac{13}{7})\\)",
       "\\((x, y) = (\\dfrac{17}{7}, \\dfrac{4}{7})\\)",
       "\\((x, y) = (3, 1)\\)",
       "\\((x, y) = (2, \\dfrac{5}{2})\\)"
     ],
-    ans: 2,
-    exp: "Dalla seconda: \\(y = 2x - 3\\). Sostituendo: \\(3x + 2(2x-3) = 11 \\Rightarrow 7x = 17\\)... Ricalcolando: Se \\(x=3\\), allora \\(y=2(3)-3=3\\) non verifica la prima. Se \\(x=3, y=1\\): \\(3(3)+2(1)=11\\) ✓ e \\(2(3)-1=5 \\neq 3\\)."
+    ans: 0,
+    exp: "Dalla seconda: \\(y = 2x - 3\\). Sostituendo: \\(3x + 2(2x-3) = 11 \\Rightarrow 7x = 17 \\Rightarrow x = \\dfrac{17}{7}\\), quindi \\(y = 2\\cdot\\dfrac{17}{7} - 3 = \\dfrac{13}{7}\\)."
   },
   {
     level: 'avanzato',
@@ -423,13 +423,13 @@ const Q = [
     badge: "Esercizio con parentesi",
     q: "Qual è la soluzione di \\(\\begin{cases} 2(x+1) + y = 5 \\\\ 3x - (y-2) = 8 \\end{cases}\\)?",
     opts: [
-      "\\((x, y) = (2, 1)\\)",
+      "\\((x, y) = (\\dfrac{9}{5}, -\\dfrac{3}{5})\\)",
       "\\((x, y) = (\\dfrac{5}{2}, 0)\\)",
       "\\((x, y) = (3, -2)\\)",
       "\\((x, y) = (1, 1)\\)"
     ],
     ans: 0,
-    exp: "Semplificando: \\(2x + 2 + y = 5 \\Rightarrow 2x + y = 3\\) e \\(3x - y + 2 = 8 \\Rightarrow 3x - y = 6\\). Sommando: \\(5x = 9\\)... Ricalcolando: \\(2x + y = 3\\) e \\(3x - y = 6\\). Sommando: \\(5x = 9 \\Rightarrow x = \\dfrac{9}{5}\\)... Se \\(x=2\\): \\(2(2)+y=3 \\Rightarrow y=-1\\)."
+    exp: "Semplificando: \\(2x + 2 + y = 5 \\Rightarrow 2x + y = 3\\) e \\(3x - y + 2 = 8 \\Rightarrow 3x - y = 6\\). Sommando: \\(5x = 9 \\Rightarrow x = \\dfrac{9}{5}\\), quindi \\(y = 3 - 2\\cdot\\dfrac{9}{5} = -\\dfrac{3}{5}\\)."
   },
   {
     level: 'avanzato',
@@ -497,8 +497,8 @@ const Q = [
       "\\((x, y) = (2, 0)\\)",
       "Indeterminato"
     ],
-    ans: 0,
-    exp: "Moltiplicando la prima per 6: \\(3x - 2y = 6\\). Moltiplicando la seconda per 12: \\(3x + 2y = 6\\). Sommando: \\(6x = 12 \\Rightarrow x = 2\\)... Ricalcolando: Dalla prima moltiplicata per 6: \\(3x - 2y = 6\\). Dalla seconda moltiplicata per 12: \\(3x + 2y = 6\\). Sommando: \\(6x = 12\\), quindi \\(x=2\\). Dalla prima: \\(3-2y=6 \\Rightarrow y=-\\dfrac{3}{2}\\)."
+    ans: 2,
+    exp: "Moltiplicando la prima per 6: \\(3x - 2y = 6\\). Moltiplicando la seconda per 12: \\(3x + 2y = 6\\). Sommando: \\(6x = 12 \\Rightarrow x = 2\\). Dalla prima: \\(3(2) - 2y = 6 \\Rightarrow y = 0\\)."
   },
   {
     level: 'pro',
