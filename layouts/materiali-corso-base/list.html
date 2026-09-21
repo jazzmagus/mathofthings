@@ -61,12 +61,33 @@
               <a href="https://youtu.be/rQHVq3rY8hg" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/></svg>La vera storia di Fibonacci →</a>
             </li>
           </ul>
-          <!-- WELCOME-TEST:START
-          <div class="verification-buttons" style="margin-top: 0.75rem;">
-            <a href="/uploads/lb00/welcome-test.pdf" class="btn-verification btn-simulation" target="_blank">Test di Benvenuto</a>
-            <a href="/uploads/lb00/welcome-test-correttore.pdf" class="btn-verification btn-solutions" target="_blank">Correttore</a>
+          <div class="verification-buttons" id="wtest-lock" style="margin-top: 0.75rem;">
+            <button type="button" class="btn-verification btn-simulation" style="cursor:pointer;border:none;font:inherit;" onclick="wtestUnlock()">🔒 Materiali riservati (Welcome Test)</button>
           </div>
-          WELCOME-TEST:END -->
+          <div class="verification-buttons" id="wtest-links" style="margin-top: 0.75rem; display: none;">
+            <a href="#" id="wtest-a1" class="btn-verification btn-simulation" target="_blank">Test di Benvenuto</a>
+            <a href="#" id="wtest-a2" class="btn-verification btn-solutions" target="_blank">Correttore</a>
+          </div>
+          <script>
+          async function wtestUnlock() {
+            var pwd = window.prompt("Password per i materiali riservati:");
+            if (pwd === null) return;
+            var enc = new TextEncoder().encode(pwd);
+            var buf = await crypto.subtle.digest("SHA-256", enc);
+            var hex = Array.from(new Uint8Array(buf)).map(function (b) {
+              return b.toString(16).padStart(2, "0");
+            }).join("");
+            if (hex === "683d35fa75c25c1db40f0c0f5513408772da3db32c09ec0f725cb8d887879675") {
+              var base = "/uploads/lb00/";
+              document.getElementById("wtest-a1").href = base + "welcome-test.pdf";
+              document.getElementById("wtest-a2").href = base + "welcome-test-correttore.pdf";
+              document.getElementById("wtest-lock").style.display = "none";
+              document.getElementById("wtest-links").style.display = "flex";
+            } else {
+              window.alert("Password errata.");
+            }
+          }
+          </script>
         </div>
       </div>
 
