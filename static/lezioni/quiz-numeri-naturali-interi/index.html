@@ -83,6 +83,16 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 .feedback.fb-ok .fb-label{color:var(--green)}
 .feedback.fb-err .fb-label{color:var(--danger)}
 
+.pit-wrap{margin-top:16px}
+.pit-title{font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.pit-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:460px;margin:0 auto}
+.pit-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:clamp(.68rem,2.4vw,.92rem);font-weight:600;background:var(--surface-alt);color:var(--text-mid);border:1px solid var(--border-light)}
+.pit-head{background:transparent;border:none;color:var(--text-dim);font-weight:700}
+.pit-head.pit-corner{color:var(--accent)}
+.pit-head.pit-hl-row,.pit-head.pit-hl-col{color:var(--accent)}
+.pit-hl{background:var(--accent-light);color:var(--text)}
+.pit-target{background:var(--accent);color:#fff;font-size:clamp(.78rem,2.8vw,1.05rem);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+
 .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
 .btn-next{font-family:'JetBrains Mono',monospace;font-size:.92rem;font-weight:700;padding:11px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:filter .2s;display:none}
 .btn-next.show{display:inline-block}
@@ -166,6 +176,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
       <div class="feedback" id="q-feedback">
         <div class="fb-label" id="fb-label"></div>
         <div id="fb-text"></div>
+        <div id="fb-extra"></div>
       </div>
       <div class="q-nav">
         <span class="score-live" id="score-live"></span>
@@ -217,7 +228,8 @@ const Q = [
     q: "Quanto vale \\(7 \\times 8\\)?",
     opts: [ "54", "56", "58", "48" ],
     ans: 1,
-    exp: "\\(7 \\times 8 = 56\\)."
+    exp: "\\(7 \\times 8 = 56\\).",
+    table: [7, 8]
   },
   {
     badge: "Divisori",
@@ -504,9 +516,26 @@ function showQ(idx) {
   const fb = document.getElementById('q-feedback');
   fb.className = 'feedback';
   document.getElementById('fb-text').innerHTML = '';
+  document.getElementById('fb-extra').innerHTML = '';
   document.getElementById('btn-next').className = 'btn-next';
 
   MathJax.typesetPromise([document.getElementById('q-card')]);
+}
+
+function pitagoricaHTML(r, c) {
+  let cells = '<div class="pit-cell pit-head pit-corner">×</div>';
+  for (let j = 1; j <= 10; j++) {
+    cells += '<div class="pit-cell pit-head' + (j === c ? ' pit-hl-col' : '') + '">' + j + '</div>';
+  }
+  for (let i = 1; i <= 10; i++) {
+    cells += '<div class="pit-cell pit-head' + (i === r ? ' pit-hl-row' : '') + '">' + i + '</div>';
+    for (let j = 1; j <= 10; j++) {
+      const isTarget = i === r && j === c;
+      const inLine = i === r || j === c;
+      cells += '<div class="pit-cell' + (isTarget ? ' pit-target' : (inLine ? ' pit-hl' : '')) + '">' + (i * j) + '</div>';
+    }
+  }
+  return '<div class="pit-wrap"><div class="pit-title">Tavola pitagorica</div><div class="pit-grid">' + cells + '</div></div>';
 }
 
 function pick(i) {
@@ -525,6 +554,7 @@ function pick(i) {
   fb.className = 'feedback show ' + (isOk ? 'fb-ok' : 'fb-err');
   document.getElementById('fb-label').textContent = isOk ? 'Corretto' : 'Non corretto';
   document.getElementById('fb-text').innerHTML = q.exp;
+  document.getElementById('fb-extra').innerHTML = q.table ? pitagoricaHTML(q.table[0], q.table[1]) : '';
   document.getElementById('score-live').textContent = 'Punti: ' + score + '/' + (cur+1);
 
   const btn = document.getElementById('btn-next');
