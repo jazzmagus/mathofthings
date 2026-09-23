@@ -365,17 +365,17 @@ const S = [
   </div>
 
   ${acc([
-    { t:"Es. 1 — \\(kx = 2\\)", h:`
+    { t:"Es. 1 \\(kx = 2\\)", h:`
       <p>Qui \\(A(k)=k\\), che si annulla per \\(k=0\\).</p>
       <div class="step-math"><div class="label">caso \\(k\\neq 0\\)</div>\\(x=\\dfrac{2}{k}\\). Determinata.</div>
       <div class="step-math"><div class="label green">caso \\(k=0\\)</div>diventa \\(0=2\\): impossibile, \\(S=\\varnothing\\).</div>` },
 
-    { t:"Es. 2 — \\(mx - 1 = 2x + m\\)", h:`
+    { t:"Es. 2 \\(mx - 1 = 2x + m\\)", h:`
       <p>Porto le \\(x\\) a sinistra e i numeri a destra: \\((m-2)x = m+1\\).</p>
       <div class="step-math"><div class="label">caso \\(m\\neq 2\\)</div>\\(x=\\dfrac{m+1}{m-2}\\). Determinata.</div>
       <div class="step-math"><div class="label green">caso \\(m=2\\)</div>diventa \\(0=3\\): impossibile, \\(S=\\varnothing\\).</div>` },
 
-    { t:"Es. 3 — \\((m+2)x = m^2-4\\)", h:`
+    { t:"Es. 3 \\((m+2)x = m^2-4\\)", h:`
       <p>\\(A(m)=m+2\\) si annulla per \\(m=-2\\).</p>
       <div class="step-math"><div class="label">caso \\(m\\neq -2\\)</div>\\(x=\\dfrac{m^2-4}{m+2}=\\dfrac{(m-2)(m+2)}{m+2}=m-2\\). Determinata.</div>
       <div class="step-math"><div class="label green">caso \\(m=-2\\)</div>diventa \\(0\\cdot x = 0\\): identità, \\(S=\\mathbb{R}\\).</div>` }
@@ -421,13 +421,13 @@ const S = [
   </div>
 
   ${acc([
-    { t:"Es. 1 — \\(\\dfrac{3}{x+1} = \\dfrac{2}{x-1}\\)", h:`
+    { t:"Es. 1 \\(\\dfrac{3}{x+1} = \\dfrac{2}{x-1}\\)", h:`
       <p>C.E.: \\(x\\neq -1\\) e \\(x\\neq 1\\).</p>
       <p>Prodotto in croce: \\(3(x-1) = 2(x+1)\\Rightarrow 3x-3 = 2x+2 \\Rightarrow x = 5\\).</p>
       <p>\\(x=5\\) rispetta le C.E.: accettabile.</p>
       <div class="math-block result">\\[ S=\\{5\\} \\]</div>` },
 
-    { t:"Es. 2 — \\(\\dfrac{x^2}{x-2} = \\dfrac{4}{x-2}\\)", h:`
+    { t:"Es. 2 \\(\\dfrac{x^2}{x-2} = \\dfrac{4}{x-2}\\)", h:`
       <p>C.E.: \\(x\\neq 2\\).</p>
       <p>Uguagliando i numeratori: \\(x^2 = 4 \\Rightarrow x = \\pm 2\\).</p>
       <p>La soluzione \\(x=2\\) è esclusa dalle C.E.; resta solo \\(x=-2\\).</p>
@@ -445,7 +445,7 @@ const S = [
   <p>Ricordiamo la definizione: \\(|A|\\) è la <strong>distanza</strong> di \\(A\\) dallo zero, quindi</p>
   <div class="math-block hero-formula">\\[ |A| = \\begin{cases} A & \\text{se } A\\geq 0 \\\\ -A & \\text{se } A<0 \\end{cases} \\]</div>
 
-  <h3>Tipo 1 — \\(|A(x)| = k\\)</h3>
+  <h3>Tipo 1 \\(|A(x)| = k\\)</h3>
   <table class="cases">
     <tr><td>\\(k<0\\)</td><td>impossibile: un valore assoluto non è mai negativo, \\(S=\\varnothing\\)</td></tr>
     <tr><td>\\(k=0\\)</td><td>equivale a \\(A(x)=0\\)</td></tr>
@@ -455,7 +455,7 @@ const S = [
   <div class="math-block">\\[ 2x-1=5 \\Rightarrow x=3 \\qquad\\text{oppure}\\qquad 2x-1=-5 \\Rightarrow x=-2 \\]</div>
   <div class="math-block result">\\[ S=\\{-2,\\,3\\} \\]</div>
 
-  <h3>Tipo 2 — \\(|A(x)| = |B(x)|\\)</h3>
+  <h3>Tipo 2 \\(|A(x)| = |B(x)|\\)</h3>
   <p>Due numeri hanno lo stesso valore assoluto se sono uguali oppure opposti:</p>
   <div class="math-block">\\[ |A|=|B| \\iff A=B \\ \\ \\text{oppure}\\ \\ A=-B \\]</div>
   <p><strong>Esempio.</strong> \\(|x-1| = |2x+3|\\):</p>
@@ -463,7 +463,7 @@ const S = [
   <div class="step-math"><div class="label">caso 2</div>\\(x-1 = -(2x+3) \\Rightarrow x-1=-2x-3 \\Rightarrow 3x=-2 \\Rightarrow x=-\\tfrac{2}{3}\\).</div>
   <div class="math-block result">\\[ S=\\left\\{-4,\\,-\\tfrac{2}{3}\\right\\} \\]</div>
 
-  <h3>Tipo 3 — \\(|A(x)| = B(x)\\)</h3>
+  <h3>Tipo 3 \\(|A(x)| = B(x)\\)</h3>
   <p>Qui il secondo membro può essere negativo, e allora l'equazione è impossibile. Si impone la condizione \\(B(x)\\geq 0\\) e si accettano solo le soluzioni che la rispettano.</p>
   <p><strong>Esempio.</strong> \\(|x-2| = x\\), con condizione \\(x\\geq 0\\):</p>
   <div class="step-math"><div class="label">caso 1</div>\\(x-2=x \\Rightarrow -2=0\\): nessuna soluzione.</div>
