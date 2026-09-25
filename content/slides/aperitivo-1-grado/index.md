@@ -11,26 +11,29 @@ slides:
   theme: mathofthings
   transition: convex
   particles: true
+  reveal_options:
+    center: false
 ---
 
 <style>
 .sol-toggle{
-  margin-top: 28px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  margin-top: 14px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #ed6f5c;
   background: rgba(237,111,92,0.08);
   border: 1px solid rgba(237,111,92,0.35);
-  border-radius: 8px;
-  padding: 10px 22px;
+  border-radius: 50%;
+  padding: 0;
   cursor: pointer;
   transition: all .2s ease;
 }
 .sol-toggle:hover{ background: rgba(237,111,92,0.16); border-color: rgba(237,111,92,0.6); }
-.sol-toggle .arrow{ display:inline-block; transition: transform .25s ease; margin-left: 6px; }
-.sol-toggle.open .arrow{ transform: rotate(180deg); }
+.sol-toggle svg{ width: 18px; height: 18px; transition: transform .25s ease; }
+.sol-toggle.open svg{ transform: rotate(180deg); }
 .sol-body{
   max-height: 0;
   overflow: hidden;
@@ -62,6 +65,7 @@ slides:
   line-height: 1.35;
 }
 .mot-quiz-expr.big{ font-size: 1.5em; margin-top: 18px; }
+.reveal .slides section.mot-hero{ display: flex !important; flex-direction: column; justify-content: center; min-height: 100%; }
 </style>
 
 <section class="mot-hero" data-transition="zoom">
@@ -115,7 +119,7 @@ slides:
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)(x-2) = (x+3)(x-5) + 17$$</p>
 
-  <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
+  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x+2)(x-2) = x^2 - 4$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (diff. di quadrati)</div></div>
@@ -135,7 +139,7 @@ slides:
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x-4)^2 = (x+2)(x-6) + 8$$</p>
 
-  <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
+  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x-4)^2 = x^2 - 8x + 16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
@@ -155,7 +159,7 @@ slides:
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)^3 = (x+1)(x+2)(x+3) + 9$$</p>
 
-  <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
+  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (cubo di binomio)</div></div>
@@ -174,9 +178,9 @@ function motSolToggle(btn) {
   var opening = !body.classList.contains('open');
   body.classList.toggle('open');
   btn.classList.toggle('open');
-  btn.innerHTML = opening
-    ? 'Nascondi soluzione <span class="arrow">&#9660;</span>'
-    : 'Mostra soluzione <span class="arrow">&#9660;</span>';
+  var label = opening ? 'Nascondi soluzione' : 'Mostra soluzione';
+  btn.setAttribute('aria-label', label);
+  btn.setAttribute('title', label);
   if (opening && window.MathJax && MathJax.typesetPromise) {
     MathJax.typesetPromise([body]);
   }
