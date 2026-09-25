@@ -178,18 +178,18 @@ slides:
 <section>
   <p class="mot-kicker">esercizio 5 di 5 &mdash; il digestivo (con i denominatori)</p>
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
-  <p class="mot-quiz-expr big">$$\dfrac{(x+4)^2}{4} = \dfrac{(x+2)(x+3)}{4} + 1$$</p>
+  <p class="mot-quiz-expr big">$$\dfrac{2(x+1)^2}{4} = \dfrac{3(x-3)(x+2)}{6} + \dfrac{1}{2}$$</p>
 </section>
 
 <section>
   <p class="mot-kicker">esercizio 5 &mdash; soluzione</p>
   <div class="sol-inner">
-    <div class="sol-step"><div class="sol-math">$$\text{MCM}(4,4) = 4 \;\Rightarrow\; \times 4$$</div><div class="sol-label">moltiplico entrambi i membri per il MCM dei denominatori</div></div>
-    <div class="sol-step"><div class="sol-math">$$(x+4)^2 = x^2+8x+16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
-    <div class="sol-step"><div class="sol-math">$$(x+2)(x+3) + 4 = x^2+5x+10$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi $+1\times4$</div></div>
-    <div class="sol-step"><div class="sol-math">$$x^2+8x+16 = x^2+5x+10$$</div><div class="sol-label">equazione ottenuta</div></div>
-    <div class="sol-step"><div class="sol-math">$$8x+16 = 5x+10 \;\Rightarrow\; 3x = -6$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+    <div class="sol-step"><div class="sol-math">$$\text{MCM}(4,6,2) = 12 \;\Rightarrow\; \times 12$$</div><div class="sol-label">moltiplico entrambi i membri per il MCM dei tre denominatori</div></div>
+    <div class="sol-step"><div class="sol-math">$$6(x+1)^2 = 6x^2+12x+6$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio), con coefficiente</div></div>
+    <div class="sol-step"><div class="sol-math">$$6(x-3)(x+2) + 6 = 6x^2-6x-30$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, con coefficiente</div></div>
+    <div class="sol-step"><div class="sol-math">$$6x^2+12x+6 = 6x^2-6x-30$$</div><div class="sol-label">equazione ottenuta</div></div>
+    <div class="sol-step"><div class="sol-math">$$12x+6 = -6x-30 \;\Rightarrow\; 18x = -36$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
     <div class="sol-step"><div class="sol-math">$$x = -2$$</div><div class="sol-label">soluzione</div></div>
-    <div class="sol-step"><div class="sol-math">$$1 = 1 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=-2$ in entrambi i membri</div></div>
+    <div class="sol-step"><div class="sol-math">$$\dfrac{1}{2} = \dfrac{1}{2} \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=-2$ in entrambi i membri</div></div>
   </div>
 </section>
