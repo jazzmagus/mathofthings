@@ -185,16 +185,9 @@ slides:
   </div>
 </section>
 
----
-
-<section class="mot-divider" data-transition="zoom">
-  <h1 class="r-fit-text" style="opacity:0.75">SALUTE</h1>
-  <p class="mot-joke fragment">tre portate ridotte al primo grado, zero indigestioni</p>
-</section>
-
 <script>
 function motSolToggle(btn) {
-  var body = btn.nextElementSibling;
+  var body = btn.closest('p').nextElementSibling;
   var opening = !body.classList.contains('open');
   body.classList.toggle('open');
   btn.classList.toggle('open');
