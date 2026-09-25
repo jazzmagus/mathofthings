@@ -16,34 +16,7 @@ slides:
 ---
 
 <style>
-.sol-toggle{
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #ed6f5c;
-  background: rgba(237,111,92,0.08);
-  border: 1px solid rgba(237,111,92,0.35);
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  transition: all .2s ease;
-}
-.sol-toggle:hover{ background: rgba(237,111,92,0.16); border-color: rgba(237,111,92,0.6); }
-.sol-toggle svg{ width: 18px; height: 18px; transition: transform .25s ease; }
-.sol-toggle.open svg{ transform: rotate(180deg); }
-.sol-body{
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease;
-  text-align: left;
-  margin: 0 auto;
-  max-width: 720px;
-}
-.sol-body.open{ max-height: 1400px; }
-.sol-inner{ padding-top: 14px; font-size: 0.56em; line-height: 1.5; max-width: 900px; }
+.sol-inner{ padding-top: 10px; font-size: 0.62em; line-height: 1.5; max-width: 900px; margin: 0 auto; }
 .sol-step{
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -64,7 +37,7 @@ slides:
   text-align: left;
   line-height: 1.35;
 }
-.mot-quiz-expr.big{ font-size: 1.5em; margin-top: 18px; }
+.mot-quiz-expr.big{ font-size: 1.6em; margin-top: 24px; }
 .reveal .slides section.mot-hero{ display: flex !important; flex-direction: column; justify-content: center; min-height: 100%; }
 .reveal .slides section:not(.mot-hero){
   display: flex !important;
@@ -73,7 +46,6 @@ slides:
   align-items: center;
   padding-top: 4vh;
 }
-.mot-title-row{ display: flex; align-items: center; justify-content: center; gap: 12px; }
 </style>
 
 <section class="mot-hero" data-transition="zoom">
@@ -116,75 +88,87 @@ slides:
   </script>
   <p class="mot-kicker">quarta — aperitivo matematico</p>
   <h1>Equazioni di <span class="math-word">Primo Grado</span></h1>
-  <p class="mot-tagline">Tre portate &laquo;di grado superiore&raquo;: prima di servirle, si riducono tutte al primo (piatto)</p>
+  <p class="mot-tagline">Quattro portate &laquo;di grado superiore&raquo;: prima di servirle, si riducono tutte al primo (piatto)</p>
   <p class="mot-meta">prof. Diego Fantinelli &mdash; <a href="https://mathofthings.netlify.app/" target="_blank" class="mono">The Math of Things</a></p>
 </section>
 
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 1 di 3 &mdash; l'aperitivo leggero</p>
-  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
+  <p class="mot-kicker">esercizio 1 di 4 &mdash; l'aperitivo leggero</p>
+  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)(x-2) = (x+3)(x-5) + 17$$</p>
-  <div class="sol-body">
-    <div class="sol-inner">
-      <div class="sol-step"><div class="sol-math">$$(x+2)(x-2) = x^2 - 4$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (diff. di quadrati)</div></div>
-      <div class="sol-step"><div class="sol-math">$$(x+3)(x-5) + 17 = x^2 - 2x + 2$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +17</div></div>
-      <div class="sol-step"><div class="sol-math">$$x^2 - 4 = x^2 - 2x + 2$$</div><div class="sol-label">equazione ottenuta</div></div>
-      <div class="sol-step"><div class="sol-math">$$-4 = -2x + 2 \;\Rightarrow\; -2x = -6$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
-      <div class="sol-step"><div class="sol-math">$$x = 3$$</div><div class="sol-label">soluzione</div></div>
-      <div class="sol-step"><div class="sol-math">$$5 = 5 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=3$ in entrambi i membri</div></div>
-    </div>
+</section>
+
+<section>
+  <p class="mot-kicker">esercizio 1 &mdash; soluzione</p>
+  <div class="sol-inner">
+    <div class="sol-step"><div class="sol-math">$$(x+2)(x-2) = x^2 - 4$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (diff. di quadrati)</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x+3)(x-5) + 17 = x^2 - 2x + 2$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +17</div></div>
+    <div class="sol-step"><div class="sol-math">$$x^2 - 4 = x^2 - 2x + 2$$</div><div class="sol-label">equazione ottenuta</div></div>
+    <div class="sol-step"><div class="sol-math">$$-4 = -2x + 2 \;\Rightarrow\; -2x = -6$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+    <div class="sol-step"><div class="sol-math">$$x = 3$$</div><div class="sol-label">soluzione</div></div>
+    <div class="sol-step"><div class="sol-math">$$5 = 5 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=3$ in entrambi i membri</div></div>
   </div>
 </section>
 
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 2 di 3 &mdash; il piatto medio</p>
-  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
+  <p class="mot-kicker">esercizio 2 di 4 &mdash; il piatto medio</p>
+  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x-4)^2 = (x+2)(x-6) + 8$$</p>
-  <div class="sol-body">
-    <div class="sol-inner">
-      <div class="sol-step"><div class="sol-math">$$(x-4)^2 = x^2 - 8x + 16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
-      <div class="sol-step"><div class="sol-math">$$(x+2)(x-6) + 8 = x^2 - 4x - 4$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +8</div></div>
-      <div class="sol-step"><div class="sol-math">$$x^2 - 8x + 16 = x^2 - 4x - 4$$</div><div class="sol-label">equazione ottenuta</div></div>
-      <div class="sol-step"><div class="sol-math">$$-8x + 16 = -4x - 4 \;\Rightarrow\; -4x = -20$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
-      <div class="sol-step"><div class="sol-math">$$x = 5$$</div><div class="sol-label">soluzione</div></div>
-      <div class="sol-step"><div class="sol-math">$$1 = 1 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=5$ in entrambi i membri</div></div>
-    </div>
+</section>
+
+<section>
+  <p class="mot-kicker">esercizio 2 &mdash; soluzione</p>
+  <div class="sol-inner">
+    <div class="sol-step"><div class="sol-math">$$(x-4)^2 = x^2 - 8x + 16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x+2)(x-6) + 8 = x^2 - 4x - 4$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +8</div></div>
+    <div class="sol-step"><div class="sol-math">$$x^2 - 8x + 16 = x^2 - 4x - 4$$</div><div class="sol-label">equazione ottenuta</div></div>
+    <div class="sol-step"><div class="sol-math">$$-8x + 16 = -4x - 4 \;\Rightarrow\; -4x = -20$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+    <div class="sol-step"><div class="sol-math">$$x = 5$$</div><div class="sol-label">soluzione</div></div>
+    <div class="sol-step"><div class="sol-math">$$1 = 1 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=5$ in entrambi i membri</div></div>
   </div>
 </section>
 
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 3 di 3 &mdash; il piatto forte</p>
-  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
+  <p class="mot-kicker">esercizio 3 di 4 &mdash; il piatto forte</p>
+  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)^3 = (x+1)(x+2)(x+3) + 9$$</p>
-  <div class="sol-body">
-    <div class="sol-inner">
-      <div class="sol-step"><div class="sol-math">$$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (cubo di binomio)</div></div>
-      <div class="sol-step"><div class="sol-math">$$(x+1)(x+2) = x^2+3x+2$$</div><div class="sol-label">secondo membro &mdash; primi due fattori (NON notevole)</div></div>
-      <div class="sol-step"><div class="sol-math">$$(x^2+3x+2)(x+3) = x^3+6x^2+11x+6$$</div><div class="sol-label">per il terzo fattore, poi +9</div></div>
-      <div class="sol-step"><div class="sol-math">$$x^3+6x^2+12x+8 = x^3+6x^2+11x+15$$</div><div class="sol-label">equazione ottenuta</div></div>
-      <div class="sol-step"><div class="sol-math">$$12x + 8 = 11x + 15 \;\Rightarrow\; x = 7$$</div><div class="sol-label">termini di terzo e secondo grado elisi</div></div>
-      <div class="sol-step"><div class="sol-math">$$729 = 729 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=7$ in entrambi i membri</div></div>
-    </div>
+</section>
+
+<section>
+  <p class="mot-kicker">esercizio 3 &mdash; soluzione</p>
+  <div class="sol-inner">
+    <div class="sol-step"><div class="sol-math">$$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (cubo di binomio)</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x+1)(x+2) = x^2+3x+2$$</div><div class="sol-label">secondo membro &mdash; primi due fattori (NON notevole)</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x^2+3x+2)(x+3) = x^3+6x^2+11x+6$$</div><div class="sol-label">per il terzo fattore, poi +9</div></div>
+    <div class="sol-step"><div class="sol-math">$$x^3+6x^2+12x+8 = x^3+6x^2+11x+15$$</div><div class="sol-label">equazione ottenuta</div></div>
+    <div class="sol-step"><div class="sol-math">$$12x + 8 = 11x + 15 \;\Rightarrow\; x = 7$$</div><div class="sol-label">termini di terzo e secondo grado elisi</div></div>
+    <div class="sol-step"><div class="sol-math">$$729 = 729 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=7$ in entrambi i membri</div></div>
   </div>
 </section>
 
-<script>
-function motSolToggle(btn) {
-  var body = btn.closest('section').querySelector('.sol-body');
-  var opening = !body.classList.contains('open');
-  body.classList.toggle('open');
-  btn.classList.toggle('open');
-  var label = opening ? 'Nascondi soluzione' : 'Mostra soluzione';
-  btn.setAttribute('aria-label', label);
-  btn.setAttribute('title', label);
-  if (opening && window.MathJax && MathJax.typesetPromise) {
-    MathJax.typesetPromise([body]);
-  }
-}
-</script>
+---
+
+<section>
+  <p class="mot-kicker">esercizio 4 di 4 &mdash; il fuori menu</p>
+  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
+  <p class="mot-quiz-expr big">$$2(x+1)(x+4) + (x-3)^2 = 3(x+1)(x-1)$$</p>
+</section>
+
+<section>
+  <p class="mot-kicker">esercizio 4 &mdash; soluzione</p>
+  <div class="sol-inner">
+    <div class="sol-step"><div class="sol-math">$$2(x+1)(x+4) = 2x^2+10x+8$$</div><div class="sol-label">primo termine &mdash; prodotto NON notevole, poi &times;2</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x-3)^2 = x^2-6x+9$$</div><div class="sol-label">secondo termine &mdash; prodotto notevole (quadrato di binomio)</div></div>
+    <div class="sol-step"><div class="sol-math">$$3(x+1)(x-1) = 3x^2-3$$</div><div class="sol-label">secondo membro &mdash; prodotto notevole (diff. di quadrati), poi &times;3</div></div>
+    <div class="sol-step"><div class="sol-math">$$3x^2+4x+17 = 3x^2-3$$</div><div class="sol-label">equazione ottenuta (sommando i due termini a sinistra)</div></div>
+    <div class="sol-step"><div class="sol-math">$$4x+17 = -3 \;\Rightarrow\; 4x = -20$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+    <div class="sol-step"><div class="sol-math">$$x = -5$$</div><div class="sol-label">soluzione</div></div>
+    <div class="sol-step"><div class="sol-math">$$72 = 72 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=-5$ in entrambi i membri</div></div>
+  </div>
+</section>
