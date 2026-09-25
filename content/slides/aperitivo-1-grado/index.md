@@ -88,14 +88,14 @@ slides:
   </script>
   <p class="mot-kicker">quarta — aperitivo matematico</p>
   <h1>Equazioni di <span class="math-word">Primo Grado</span></h1>
-  <p class="mot-tagline">Quattro portate &laquo;di grado superiore&raquo;: prima di servirle, si riducono tutte al primo (piatto)</p>
+  <p class="mot-tagline">Cinque portate &laquo;di grado superiore&raquo;: prima di servirle, si riducono tutte al primo (piatto)</p>
   <p class="mot-meta">prof. Diego Fantinelli &mdash; <a href="https://mathofthings.netlify.app/" target="_blank" class="mono">The Math of Things</a></p>
 </section>
 
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 1 di 4 &mdash; l'aperitivo leggero</p>
+  <p class="mot-kicker">esercizio 1 di 5 &mdash; l'aperitivo leggero</p>
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)(x-2) = (x+3)(x-5) + 17$$</p>
 </section>
@@ -115,7 +115,7 @@ slides:
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 2 di 4 &mdash; il piatto medio</p>
+  <p class="mot-kicker">esercizio 2 di 5 &mdash; il piatto medio</p>
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x-4)^2 = (x+2)(x-6) + 8$$</p>
 </section>
@@ -135,7 +135,7 @@ slides:
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 3 di 4 &mdash; il piatto forte</p>
+  <p class="mot-kicker">esercizio 3 di 5 &mdash; il piatto forte</p>
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$(x+2)^3 = (x+1)(x+2)(x+3) + 9$$</p>
 </section>
@@ -155,7 +155,7 @@ slides:
 ---
 
 <section>
-  <p class="mot-kicker">esercizio 4 di 4 &mdash; il fuori menu</p>
+  <p class="mot-kicker">esercizio 4 di 5 &mdash; il fuori menu</p>
   <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
   <p class="mot-quiz-expr big">$$2(x+1)(x+4) + (x-3)^2 = 3(x+1)(x-1)$$</p>
 </section>
@@ -170,5 +170,26 @@ slides:
     <div class="sol-step"><div class="sol-math">$$4x+17 = -3 \;\Rightarrow\; 4x = -20$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
     <div class="sol-step"><div class="sol-math">$$x = -5$$</div><div class="sol-label">soluzione</div></div>
     <div class="sol-step"><div class="sol-math">$$72 = 72 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=-5$ in entrambi i membri</div></div>
+  </div>
+</section>
+
+---
+
+<section>
+  <p class="mot-kicker">esercizio 5 di 5 &mdash; il digestivo (con i denominatori)</p>
+  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
+  <p class="mot-quiz-expr big">$$\dfrac{(x+4)^2}{4} = \dfrac{(x+2)(x+3)}{4} + 1$$</p>
+</section>
+
+<section>
+  <p class="mot-kicker">esercizio 5 &mdash; soluzione</p>
+  <div class="sol-inner">
+    <div class="sol-step"><div class="sol-math">$$\text{MCM}(4,4) = 4 \;\Rightarrow\; \times 4$$</div><div class="sol-label">moltiplico entrambi i membri per il MCM dei denominatori</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x+4)^2 = x^2+8x+16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
+    <div class="sol-step"><div class="sol-math">$$(x+2)(x+3) + 4 = x^2+5x+10$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi $+1\times4$</div></div>
+    <div class="sol-step"><div class="sol-math">$$x^2+8x+16 = x^2+5x+10$$</div><div class="sol-label">equazione ottenuta</div></div>
+    <div class="sol-step"><div class="sol-math">$$8x+16 = 5x+10 \;\Rightarrow\; 3x = -6$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+    <div class="sol-step"><div class="sol-math">$$x = -2$$</div><div class="sol-label">soluzione</div></div>
+    <div class="sol-step"><div class="sol-math">$$1 = 1 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=-2$ in entrambi i membri</div></div>
   </div>
 </section>
