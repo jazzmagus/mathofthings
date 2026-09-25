@@ -17,9 +17,9 @@ slides:
 
 <style>
 .sol-toggle{
-  margin-top: 14px;
-  width: 38px;
-  height: 38px;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -66,6 +66,14 @@ slides:
 }
 .mot-quiz-expr.big{ font-size: 1.5em; margin-top: 18px; }
 .reveal .slides section.mot-hero{ display: flex !important; flex-direction: column; justify-content: center; min-height: 100%; }
+.reveal .slides section:not(.mot-hero){
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  padding-top: 4vh;
+}
+.mot-title-row{ display: flex; align-items: center; justify-content: center; gap: 12px; }
 </style>
 
 <section class="mot-hero" data-transition="zoom">
@@ -116,10 +124,8 @@ slides:
 
 <section>
   <p class="mot-kicker">esercizio 1 di 3 &mdash; l'aperitivo leggero</p>
-  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
+  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
   <p class="mot-quiz-expr big">$$(x+2)(x-2) = (x+3)(x-5) + 17$$</p>
-
-  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x+2)(x-2) = x^2 - 4$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (diff. di quadrati)</div></div>
@@ -136,10 +142,8 @@ slides:
 
 <section>
   <p class="mot-kicker">esercizio 2 di 3 &mdash; il piatto medio</p>
-  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
+  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
   <p class="mot-quiz-expr big">$$(x-4)^2 = (x+2)(x-6) + 8$$</p>
-
-  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x-4)^2 = x^2 - 8x + 16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
@@ -156,10 +160,8 @@ slides:
 
 <section>
   <p class="mot-kicker">esercizio 3 di 3 &mdash; il piatto forte</p>
-  <h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2>
+  <div class="mot-title-row"><h2 class="mot-quiz-q">Riduci alla forma di primo grado e risolvi.</h2><button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button></div>
   <p class="mot-quiz-expr big">$$(x+2)^3 = (x+1)(x+2)(x+3) + 9$$</p>
-
-  <button class="sol-toggle" onclick="motSolToggle(this)" aria-label="Mostra soluzione" title="Mostra soluzione"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7 3.5 3.5 0 0 1 1.5 2.8h5a3.5 3.5 0 0 1 1.5-2.8A7 7 0 0 0 12 2Z"/></svg></button>
   <div class="sol-body">
     <div class="sol-inner">
       <div class="sol-step"><div class="sol-math">$$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (cubo di binomio)</div></div>
@@ -174,7 +176,7 @@ slides:
 
 <script>
 function motSolToggle(btn) {
-  var body = btn.closest('p').nextElementSibling;
+  var body = btn.closest('section').querySelector('.sol-body');
   var opening = !body.classList.contains('open');
   body.classList.toggle('open');
   btn.classList.toggle('open');
