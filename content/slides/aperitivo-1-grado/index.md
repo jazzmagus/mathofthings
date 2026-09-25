@@ -40,9 +40,27 @@ slides:
   max-width: 720px;
 }
 .sol-body.open{ max-height: 1400px; }
-.sol-inner{ padding-top: 18px; font-size: 0.62em; line-height: 1.6; }
-.sol-step{ margin-bottom: 10px; }
-.sol-step .lbl{ font-family: 'JetBrains Mono', monospace; font-size: 0.72em; letter-spacing: .5px; text-transform: uppercase; color: #ed6f5c; opacity: .8; }
+.sol-inner{ padding-top: 14px; font-size: 0.56em; line-height: 1.5; max-width: 900px; }
+.sol-step{
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  column-gap: 24px;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(237,111,92,0.15);
+}
+.sol-step:last-child{ border-bottom: none; }
+.sol-step .sol-math{ text-align: left; }
+.sol-step .sol-label{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  letter-spacing: .3px;
+  color: #ed6f5c;
+  opacity: .85;
+  text-align: left;
+  line-height: 1.35;
+}
 .mot-quiz-expr.big{ font-size: 1.5em; margin-top: 18px; }
 </style>
 
@@ -100,24 +118,12 @@ slides:
   <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
   <div class="sol-body">
     <div class="sol-inner">
-      <div class="sol-step"><span class="lbl">Primo membro &mdash; prodotto notevole</span><br>
-        $$(x+2)(x-2) = x^2 - 4$$
-      </div>
-      <div class="sol-step"><span class="lbl">Secondo membro &mdash; prodotto NON notevole</span><br>
-        $$(x+3)(x-5) + 17 = x^2 - 2x - 15 + 17 = x^2 - 2x + 2$$
-      </div>
-      <div class="sol-step"><span class="lbl">Equazione ottenuta</span><br>
-        $$x^2 - 4 = x^2 - 2x + 2$$
-      </div>
-      <div class="sol-step"><span class="lbl">I termini di secondo grado si elidono</span><br>
-        $$-4 = -2x + 2 \;\Rightarrow\; -2x = -6$$
-      </div>
-      <div class="sol-step"><span class="lbl">Soluzione</span><br>
-        $$x = 3$$
-      </div>
-      <div class="sol-step"><span class="lbl">Verifica</span><br>
-        $$(3+2)(3-2) = 5 \qquad (3+3)(3-5)+17 = -12+17 = 5 \;\checkmark$$
-      </div>
+      <div class="sol-step"><div class="sol-math">$$(x+2)(x-2) = x^2 - 4$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (diff. di quadrati)</div></div>
+      <div class="sol-step"><div class="sol-math">$$(x+3)(x-5) + 17 = x^2 - 2x + 2$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +17</div></div>
+      <div class="sol-step"><div class="sol-math">$$x^2 - 4 = x^2 - 2x + 2$$</div><div class="sol-label">equazione ottenuta</div></div>
+      <div class="sol-step"><div class="sol-math">$$-4 = -2x + 2 \;\Rightarrow\; -2x = -6$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+      <div class="sol-step"><div class="sol-math">$$x = 3$$</div><div class="sol-label">soluzione</div></div>
+      <div class="sol-step"><div class="sol-math">$$5 = 5 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=3$ in entrambi i membri</div></div>
     </div>
   </div>
 </section>
@@ -132,24 +138,12 @@ slides:
   <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
   <div class="sol-body">
     <div class="sol-inner">
-      <div class="sol-step"><span class="lbl">Primo membro &mdash; prodotto notevole (quadrato di binomio)</span><br>
-        $$(x-4)^2 = x^2 - 8x + 16$$
-      </div>
-      <div class="sol-step"><span class="lbl">Secondo membro &mdash; prodotto NON notevole</span><br>
-        $$(x+2)(x-6) + 8 = x^2 - 4x - 12 + 8 = x^2 - 4x - 4$$
-      </div>
-      <div class="sol-step"><span class="lbl">Equazione ottenuta</span><br>
-        $$x^2 - 8x + 16 = x^2 - 4x - 4$$
-      </div>
-      <div class="sol-step"><span class="lbl">I termini di secondo grado si elidono</span><br>
-        $$-8x + 16 = -4x - 4 \;\Rightarrow\; -4x = -20$$
-      </div>
-      <div class="sol-step"><span class="lbl">Soluzione</span><br>
-        $$x = 5$$
-      </div>
-      <div class="sol-step"><span class="lbl">Verifica</span><br>
-        $$(5-4)^2 = 1 \qquad (5+2)(5-6)+8 = -7+8 = 1 \;\checkmark$$
-      </div>
+      <div class="sol-step"><div class="sol-math">$$(x-4)^2 = x^2 - 8x + 16$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (quadrato di binomio)</div></div>
+      <div class="sol-step"><div class="sol-math">$$(x+2)(x-6) + 8 = x^2 - 4x - 4$$</div><div class="sol-label">secondo membro &mdash; prodotto NON notevole, poi +8</div></div>
+      <div class="sol-step"><div class="sol-math">$$x^2 - 8x + 16 = x^2 - 4x - 4$$</div><div class="sol-label">equazione ottenuta</div></div>
+      <div class="sol-step"><div class="sol-math">$$-8x + 16 = -4x - 4 \;\Rightarrow\; -4x = -20$$</div><div class="sol-label">i termini di secondo grado si elidono</div></div>
+      <div class="sol-step"><div class="sol-math">$$x = 5$$</div><div class="sol-label">soluzione</div></div>
+      <div class="sol-step"><div class="sol-math">$$1 = 1 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=5$ in entrambi i membri</div></div>
     </div>
   </div>
 </section>
@@ -164,23 +158,12 @@ slides:
   <button class="sol-toggle" onclick="motSolToggle(this)">Mostra soluzione <span class="arrow">&#9660;</span></button>
   <div class="sol-body">
     <div class="sol-inner">
-      <div class="sol-step"><span class="lbl">Primo membro &mdash; prodotto notevole (cubo di binomio)</span><br>
-        $$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$
-      </div>
-      <div class="sol-step"><span class="lbl">Secondo membro &mdash; prodotto di tre fattori NON notevole</span><br>
-        $$(x+1)(x+2) = x^2+3x+2$$
-        $$(x^2+3x+2)(x+3) = x^3+6x^2+11x+6$$
-        $$\text{quindi: } x^3+6x^2+11x+6+9 = x^3+6x^2+11x+15$$
-      </div>
-      <div class="sol-step"><span class="lbl">Equazione ottenuta</span><br>
-        $$x^3+6x^2+12x+8 = x^3+6x^2+11x+15$$
-      </div>
-      <div class="sol-step"><span class="lbl">I termini di terzo e secondo grado si elidono</span><br>
-        $$12x + 8 = 11x + 15 \;\Rightarrow\; x = 7$$
-      </div>
-      <div class="sol-step"><span class="lbl">Verifica</span><br>
-        $$(7+2)^3 = 9^3 = 729 \qquad (7+1)(7+2)(7+3)+9 = 720+9 = 729 \;\checkmark$$
-      </div>
+      <div class="sol-step"><div class="sol-math">$$(x+2)^3 = x^3 + 6x^2 + 12x + 8$$</div><div class="sol-label">primo membro &mdash; prodotto notevole (cubo di binomio)</div></div>
+      <div class="sol-step"><div class="sol-math">$$(x+1)(x+2) = x^2+3x+2$$</div><div class="sol-label">secondo membro &mdash; primi due fattori (NON notevole)</div></div>
+      <div class="sol-step"><div class="sol-math">$$(x^2+3x+2)(x+3) = x^3+6x^2+11x+6$$</div><div class="sol-label">per il terzo fattore, poi +9</div></div>
+      <div class="sol-step"><div class="sol-math">$$x^3+6x^2+12x+8 = x^3+6x^2+11x+15$$</div><div class="sol-label">equazione ottenuta</div></div>
+      <div class="sol-step"><div class="sol-math">$$12x + 8 = 11x + 15 \;\Rightarrow\; x = 7$$</div><div class="sol-label">termini di terzo e secondo grado elisi</div></div>
+      <div class="sol-step"><div class="sol-math">$$729 = 729 \;\checkmark$$</div><div class="sol-label">verifica: sostituendo $x=7$ in entrambi i membri</div></div>
     </div>
   </div>
 </section>
