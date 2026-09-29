@@ -28,6 +28,10 @@ MathJax = {
   --danger:#b33a3a; --danger-light:#fdf0f0;
   --radius:8px; --shadow:0 1px 3px rgba(44,37,32,.04);
 }
+[data-theme="dark"]{
+  --bg:#1a1613; --surface:#241f1a; --surface-alt:#2c2620; --border:#4a4238; --border-light:#3a332c; --text:#f0e9e0; --text-mid:#cbc0b4; --text-dim:#9c9186; --accent:#ef7d6c; --accent-light:#460b1f; --green:#8fc9a0; --green-light:#1a2e20; --danger:#e57373; --danger-light:#3a1f1f; --radius:8px; --shadow:0 1px 3px rgba(0,0,0,.35);
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px;opacity:0;transition:opacity .3s}
@@ -105,6 +109,18 @@ body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);line-hei
   .hero h1{font-size:1.55rem}
   .problem-card{padding:20px 18px}
 }
+
+[data-theme="dark"] .mot-theme-toggle{color:var(--text-mid)}
+.mot-theme-toggle{
+  position:fixed;bottom:1.25rem;right:1.25rem;z-index:400;
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--border);background:var(--surface);
+  box-shadow:var(--shadow,0 1px 3px rgba(0,0,0,.1));
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--text-mid);transition:all .2s;
+}
+.mot-theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.mot-theme-toggle svg{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -393,5 +409,39 @@ function restartProblem() {
 
 init();
 </script>
+
+<button class="mot-theme-toggle" id="motThemeToggle" title="Cambia tema" aria-label="Cambia tema chiaro/scuro">
+  <svg id="motSunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  <svg id="motMoonIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'mot-lezioni-theme';
+  function applyTheme(dark){
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    var sun = document.getElementById('motSunIcon');
+    var moon = document.getElementById('motMoonIcon');
+    if (sun) sun.style.display = dark ? 'none' : 'block';
+    if (moon) moon.style.display = dark ? 'block' : 'none';
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch(e){}
+  var wantsDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(wantsDark);
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('motThemeToggle');
+    if (!btn) return;
+    applyTheme(wantsDark);
+    btn.addEventListener('click', function(){
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var next = !isDark;
+      applyTheme(next);
+      try { localStorage.setItem(STORAGE_KEY, next ? 'dark' : 'light'); } catch(e){}
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

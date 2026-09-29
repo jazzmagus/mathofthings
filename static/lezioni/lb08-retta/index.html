@@ -10,16 +10,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    color-scheme: light;
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #fafaf8;
+    --text: #1a1a1a;
+    --text-mid: #666666;
+    --text-dim: #999999;
+    --border: #e0e0e0;
+    --accent: #ed6f5c;
+    --green: #2e7d32;
   }
+
+  [data-theme="dark"] {
+    --bg: #1a1613;
+    --surface: #241f1a;
+    --surface-alt: #2c2620;
+    --text: #f0e9e0;
+    --text-mid: #cbc0b4;
+    --text-dim: #9c9186;
+    --border: #4a4238;
+    --accent: #ff9585;
+    --green: #6fbf73;
+  }
+
 
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
 
   body {
     font-family: Georgia, 'Times New Roman', serif;
-    background: #ffffff;
-    color: #1a1a1a;
+    background: var(--bg);
+    color: var(--text);
     -webkit-font-smoothing: antialiased;
     font-size: 17px;
     line-height: 1.8;
@@ -30,7 +52,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #ffffff;
+    background: var(--bg);
     border-bottom: 1px solid #e0e0e0;
     display: flex;
     align-items: stretch;
@@ -42,7 +64,7 @@
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 0.9rem;
-    color: #1a1a1a;
+    color: var(--text);
     white-space: nowrap;
     flex-shrink: 0;
     letter-spacing: 0.5px;
@@ -70,7 +92,7 @@
   .nav-link {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
-    color: #666;
+    color: var(--text-mid);
     text-decoration: none;
     padding: 0;
     border-bottom: 3px solid transparent;
@@ -84,18 +106,18 @@
   }
 
   .nav-link:hover {
-    color: #1a1a1a;
+    color: var(--text);
   }
 
   .nav-link.active {
-    color: #ed6f5c;
-    border-bottom-color: #ed6f5c;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 
   .nav-home {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    color: #666;
+    color: var(--text-mid);
     text-decoration: none;
     flex-shrink: 0;
     transition: color 0.2s;
@@ -106,7 +128,7 @@
   }
 
   .nav-home:hover {
-    color: #ed6f5c;
+    color: var(--accent);
   }
 
   main {
@@ -134,7 +156,7 @@
     font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #ed6f5c;
+    color: var(--accent);
     margin-bottom: 12px;
     font-weight: 600;
   }
@@ -145,12 +167,12 @@
     font-size: 3rem;
     line-height: 1.1;
     margin: 0 0 32px 0;
-    color: #1a1a1a;
+    color: var(--text);
   }
 
   h1 em {
     font-style: italic;
-    color: #ed6f5c;
+    color: var(--accent);
     font-weight: inherit;
   }
 
@@ -160,31 +182,31 @@
     font-size: 1.6rem;
     line-height: 1.25;
     margin: 40px 0 20px 0;
-    color: #1a1a1a;
+    color: var(--text);
   }
 
   h2 em {
     font-style: italic;
-    color: #ed6f5c;
+    color: var(--accent);
   }
 
   p {
     margin: 0 0 20px 0;
     font-size: 1rem;
     line-height: 1.8;
-    color: #333;
+    color: var(--text);
     text-align: justify;
   }
 
   .intro-p {
     font-size: 1.05rem;
-    color: #444;
+    color: var(--text-mid);
     margin-bottom: 28px;
   }
 
   /* Definition box */
   .definition-box {
-    background: #fafaf8;
+    background: var(--surface-alt);
     border-left: 3px solid #ed6f5c;
     padding: 28px;
     margin: 32px 0;
@@ -196,7 +218,7 @@
     font-size: 0.65rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #ed6f5c;
+    color: var(--accent);
     margin-bottom: 12px;
     font-weight: 700;
   }
@@ -215,8 +237,8 @@
 
   /* Formula box */
   .formula-display {
-    background: #fafaf8;
-    border: 1px solid #e0e0e0;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
     padding: 24px 20px;
     margin: 24px 0;
     border-radius: 4px;
@@ -243,7 +265,7 @@
     text-align: center;
     font-family: Georgia, serif;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-mid);
     font-style: italic;
     margin-top: 16px;
     margin-bottom: 32px;
@@ -251,7 +273,7 @@
 
   /* Highlight box */
   .highlight-box {
-    background: #fafaf8;
+    background: var(--surface-alt);
     border-left: 3px solid #ed6f5c;
     padding: 20px 24px;
     margin: 28px 0;
@@ -303,7 +325,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #c2185b;
+    background: var(--accent);
     color: #fff;
     display: flex;
     align-items: center;
@@ -317,13 +339,13 @@
     flex: 1;
     font-family: Georgia, serif;
     font-size: 1rem;
-    color: #1a1a1a;
+    color: var(--text);
     font-weight: 600;
   }
 
   .example-icon {
     flex: none;
-    color: #666;
+    color: var(--text-mid);
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -368,7 +390,7 @@
   }
 
   .example-solution {
-    background: #faf7f2;
+    background: var(--surface-alt);
     border-left: 3px solid #c2185b;
     padding: 12px 14px;
     margin: 12px 0;
@@ -388,13 +410,13 @@
   .example-solution p {
     margin: 0;
     font-style: italic;
-    color: #2e7d32;
+    color: var(--green);
     font-size: 1rem;
   }
 
   /* Checklist */
   .checklist-box {
-    background: #f5f0e8;
+    background: var(--surface-alt);
     border-left: 3px solid #ed6f5c;
     padding: 24px;
     margin: 32px 0;
@@ -419,7 +441,7 @@
   .checklist-item > div:last-child {
     font-family: Georgia, serif;
     font-size: 0.95rem;
-    color: #1a1a1a;
+    color: var(--text);
     line-height: 1.5;
   }
 
@@ -427,7 +449,7 @@
     flex: none;
     width: 12px;
     height: 12px;
-    border: 1px solid #ed6f5c;
+    border: 1px solid var(--accent);
     border-radius: 1px;
     margin-top: 4px;
     transition: all 0.2s;
@@ -438,8 +460,8 @@
   }
 
   .checklist-item.checked .checkbox {
-    background: #ed6f5c;
-    border-color: #ed6f5c;
+    background: var(--accent);
+    border-color: var(--accent);
   }
 
   .checklist-item.checked .checkbox::after {
@@ -460,7 +482,7 @@
 
   /* Exercises */
   .exercise-box {
-    background: #fafaf8;
+    background: var(--surface-alt);
     border-left: 3px solid #ed6f5c;
     padding: 20px 24px;
     margin: 16px 0;
@@ -472,7 +494,7 @@
     font-size: 0.65rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #ed6f5c;
+    color: var(--accent);
     font-weight: 700;
     margin-bottom: 8px;
   }
@@ -492,22 +514,22 @@
     align-items: center;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
-    color: #999;
+    color: var(--text-dim);
     letter-spacing: 0.5px;
   }
 
   .paginator-prev, .paginator-next {
-    color: #999;
+    color: var(--text-dim);
     text-decoration: none;
     transition: color 0.2s;
   }
 
   .paginator-prev:hover, .paginator-next:hover {
-    color: #ed6f5c;
+    color: var(--accent);
   }
 
   .paginator-counter {
-    color: #999;
+    color: var(--text-dim);
   }
 
   /* Responsive navbar */
@@ -576,6 +598,18 @@
       padding: 30px 50px 60px;
     }
   }
+
+[data-theme="dark"] .mot-theme-toggle{color:var(--text-mid)}
+.mot-theme-toggle{
+  position:fixed;bottom:1.25rem;right:1.25rem;z-index:400;
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--border);background:var(--surface);
+  box-shadow:0 1px 3px rgba(0,0,0,.15);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--text-mid);transition:all .2s;
+}
+.mot-theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.mot-theme-toggle svg{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -1487,6 +1521,40 @@
       goToSection(idx);
     });
   });
+</script>
+
+
+<button class="mot-theme-toggle" id="motThemeToggle" title="Cambia tema" aria-label="Cambia tema chiaro/scuro">
+  <svg id="motSunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  <svg id="motMoonIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'mot-lezioni-theme';
+  function applyTheme(dark){
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    var sun = document.getElementById('motSunIcon');
+    var moon = document.getElementById('motMoonIcon');
+    if (sun) sun.style.display = dark ? 'none' : 'block';
+    if (moon) moon.style.display = dark ? 'block' : 'none';
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch(e){}
+  var wantsDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(wantsDark);
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('motThemeToggle');
+    if (!btn) return;
+    applyTheme(wantsDark);
+    btn.addEventListener('click', function(){
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var next = !isDark;
+      applyTheme(next);
+      try { localStorage.setItem(STORAGE_KEY, next ? 'dark' : 'light'); } catch(e){}
+    });
+  });
+})();
 </script>
 
 </body>

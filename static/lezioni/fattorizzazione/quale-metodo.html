@@ -15,6 +15,10 @@ MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
 <style>
 :root{--bg:#faf7f2;--surface:#fff;--surface-alt:#f5f0e8;--border:#e4ddd4;--border-light:#ece7de;--text:#2c2520;--text-mid:#5a524a;--text-dim:#6e6760;--accent:#ed6f5c;--accent-light:#fce4ec;--green:#4a7c59;--green-light:#eaf5ed;--danger:#b33a3a;--danger-light:#fdf0f0;--radius:8px;--shadow:0 1px 3px rgba(44,37,32,.04);}
+[data-theme="dark"]{
+  --bg:#1a1613; --surface:#241f1a; --surface-alt:#2c2620; --border:#4a4238; --border-light:#3a332c; --text:#f0e9e0; --text-mid:#cbc0b4; --text-dim:#9c9186; --accent:#ef7d6c; --accent-light:#460b1f; --green:#8fc9a0; --green-light:#1a2e20; --danger:#e57373; --danger-light:#3a1f1f; --radius:8px; --shadow:0 1px 3px rgba(0,0,0,.35);
+}
+
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px;opacity:0;transition:opacity .3s}
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-light);height:52px;display:flex;align-items:center;padding:0 clamp(16px,4vw,40px);gap:16px}
 .topbar-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);white-space:nowrap}.topbar-tag{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--text-dim);letter-spacing:1px}.topbar-level{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--accent);letter-spacing:1px;font-weight:600;margin-left:auto}
@@ -30,6 +34,18 @@ MathJax = {
 .review-title{font-family:'Fira Code',monospace;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:32px 0 16px}.review-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:7px;margin-bottom:36px}.rev-cell{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.8rem;font-weight:700}.rev-cell.ok{background:var(--green-light);color:var(--green);border:1px solid var(--green)}.rev-cell.err{background:var(--danger-light);color:var(--danger);border:1px solid var(--danger)}
 .results-btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.btn-retry{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;padding:13px 32px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s}.btn-retry:hover{background:#d65545}.btn-lesson{font-family:'JetBrains Mono',monospace;font-size:1rem;padding:13px 28px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s}.btn-lesson:hover{border-color:var(--accent);color:var(--accent)}
 @media(max-width:640px){body{font-size:16px}.hero h1{font-size:1.8rem}.q-card{padding:28px 24px}.q-poly{font-size:1.5rem;padding:16px}.results-num{font-size:3.8rem}.review-grid{grid-template-columns:repeat(5,1fr)}}
+
+[data-theme="dark"] .mot-theme-toggle{color:var(--text-mid)}
+.mot-theme-toggle{
+  position:fixed;bottom:1.25rem;right:1.25rem;z-index:400;
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--border);background:var(--surface);
+  box-shadow:var(--shadow,0 1px 3px rgba(0,0,0,.1));
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--text-mid);transition:all .2s;
+}
+.mot-theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.mot-theme-toggle svg{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -129,5 +145,39 @@ document.addEventListener('keydown',e=>{if(['1','2','3','4'].includes(e.key)&&!a
 
 if(typeof MathJax!=='undefined'&&MathJax.startup){MathJax.startup.promise.then(()=>{document.body.style.opacity='1';});}else{document.body.style.opacity='1';}
 </script>
+
+<button class="mot-theme-toggle" id="motThemeToggle" title="Cambia tema" aria-label="Cambia tema chiaro/scuro">
+  <svg id="motSunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  <svg id="motMoonIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'mot-lezioni-theme';
+  function applyTheme(dark){
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    var sun = document.getElementById('motSunIcon');
+    var moon = document.getElementById('motMoonIcon');
+    if (sun) sun.style.display = dark ? 'none' : 'block';
+    if (moon) moon.style.display = dark ? 'block' : 'none';
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch(e){}
+  var wantsDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(wantsDark);
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('motThemeToggle');
+    if (!btn) return;
+    applyTheme(wantsDark);
+    btn.addEventListener('click', function(){
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var next = !isDark;
+      applyTheme(next);
+      try { localStorage.setItem(STORAGE_KEY, next ? 'dark' : 'light'); } catch(e){}
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
