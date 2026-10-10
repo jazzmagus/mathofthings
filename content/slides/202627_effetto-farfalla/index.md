@@ -77,7 +77,17 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1.5rem;">Halley muore nel 1742. La cometa torna, puntuale, il 25 dicembre 1758. Da allora si chiama Cometa di Halley.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Un uomo prevede un appuntamento cosmico sedici anni prima, senza esserci: probabilmente il ghosting più elegante della storia della scienza.</p>
   <aside class="notes">
-    Edmond Halley, usando le leggi della gravitazione di Newton (pubblicate nei "Principia" nel 1687), si accorge che le comete osservate nel 1531, 1607 e 1682 hanno orbite talmente simili da poter essere lo stesso oggetto, e ne predice il ritorno per la fine del 1758, con i dovuti aggiustamenti per le perturbazioni gravitazionali di Giove e Saturno (calcolate poi più precisamente da Clairaut). Halley non vedrà mai la conferma: muore nel 1742. La cometa viene effettivamente riavvistata il 25 dicembre 1758. È il primo vero trionfo pubblico e spettacolare della meccanica newtoniana applicata alla previsione: da qui nasce l'idea (poi radicalizzata da Laplace) che conoscere le leggi fisiche equivalga a conoscere il futuro. Bel gancio da tenere a mente per dopo: la stessa identica logica che qui funziona magnificamente, con Lorenz nell'Atto II si romperà.
+    <ol>
+      <li>Halley applica la gravitazione di Newton ("Principia", 1687) e nota che le comete del 1531, 1607 e 1682 hanno orbite così simili da poter essere lo stesso oggetto.</li>
+      <li>Ne predice il ritorno per la fine del 1758, tenendo conto delle perturbazioni di Giove e Saturno (calcolate poi con più precisione da Clairaut).</li>
+      <li>Halley non vedrà la conferma: muore nel 1742.</li>
+      <li>La cometa viene riavvistata il 25 dicembre 1758.</li>
+    </ol>
+    <ul>
+      <li>È il primo trionfo pubblico della meccanica newtoniana applicata alla previsione.</li>
+      <li>Da qui nasce l'idea (radicalizzata da Laplace) che conoscere le leggi fisiche equivalga a conoscere il futuro.</li>
+      <li>Gancio per dopo: la logica che qui funziona benissimo, con Lorenz nell'Atto II si romperà.</li>
+    </ul>
   </aside>
 </section>
 
@@ -90,7 +100,12 @@ slides:
   <p class="mot-def fragment">Laplace: dammi la posizione e la velocità <b>di ogni particella dell'universo</b>, e ti calcolo il futuro fino all'ultimo decimale &mdash; passato compreso.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Un'entità onnisciente e un po' pallosa: sa già come va a finire la partita di stasera.</p>
   <aside class="notes">
-    Apertura leggera: si può chiedere al pubblico "chi di voi ha già deciso cosa mangerà a cena domani sera? Ecco, Laplace lo sapeva anche per voi, nel 1814". Il "demone di Laplace" è un esperimento mentale, non un essere reale: un'intelligenza capace di conoscere posizione e quantità di moto di ogni particella dell'universo in un istante. Con le leggi di Newton, dice Laplace, per una simile intelligenza "nulla sarebbe incerto, e l'avvenire, come il passato, sarebbe presente ai suoi occhi". È il manifesto del determinismo: universo = orologio, leggi = ingranaggi, tutto il resto è questione di calcolo.
+    <ul>
+      <li>Apertura leggera: chiedere al pubblico "chi di voi ha già deciso cosa mangerà a cena domani sera? Ecco, Laplace lo sapeva anche per voi, nel 1814".</li>
+      <li>Il "demone di Laplace" è un esperimento mentale, non un essere reale: un'intelligenza che conosce posizione e quantità di moto di ogni particella dell'universo in un istante.</li>
+      <li>Con le leggi di Newton, per questa intelligenza "nulla sarebbe incerto, e l'avvenire, come il passato, sarebbe presente ai suoi occhi".</li>
+      <li>È il manifesto del determinismo: universo = orologio, leggi = ingranaggi, tutto il resto è calcolo.</li>
+    </ul>
   </aside>
 </section>
 
@@ -104,7 +119,14 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1.5rem;">Il telescopio di Berlino lo trova quella stessa notte, a meno di 1° dal punto previsto.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Nettuno scoperto con carta e penna: la fisica classica non aveva più bisogno di guardare il cielo, bastava saperlo prevedere.</p>
   <aside class="notes">
-    Questo è l'apice del determinismo laplaciano, e va enfatizzato come un trionfo prima del "colpo di scena" dell'Atto II. Le Verrier (e indipendentemente Adams in Inghilterra) nota anomalie nell'orbita di Urano rispetto alle previsioni newtoniane; ipotizza un pianeta ancora sconosciuto la cui gravità le spiega, ne calcola posizione e massa. Galle, all'osservatorio di Berlino, punta il telescopio la sera del 23 settembre 1846 e lo trova quasi esattamente lì. Aneddoto da citare con orgoglio scientifico un po' guascone: "abbiamo scoperto un pianeta prima di vederlo". È il picco di fiducia nel determinismo — e prepara il contrasto brutale con Lorenz nell'Atto II: da qui a un secolo dopo, lo stesso tipo di equazioni ci tradirà.
+    <ul>
+      <li>Apice del determinismo laplaciano: enfatizzarlo come un trionfo, prima del colpo di scena dell'Atto II.</li>
+      <li>Le Verrier (e indipendentemente Adams) nota anomalie nell'orbita di Urano rispetto alle previsioni newtoniane.</li>
+      <li>Ipotizza un pianeta sconosciuto la cui gravità le spiega e ne calcola posizione e massa.</li>
+      <li>Galle, all'osservatorio di Berlino, punta il telescopio la sera del 23 settembre 1846 e lo trova quasi esattamente lì.</li>
+      <li>Aneddoto, con orgoglio scientifico un po' guascone: "abbiamo scoperto un pianeta prima di vederlo".</li>
+      <li>Prepara il contrasto con Lorenz nell'Atto II: un secolo dopo, lo stesso tipo di equazioni ci tradirà.</li>
+    </ul>
   </aside>
 </section>
 
@@ -122,7 +144,18 @@ slides:
   </ul>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Il caos entra ufficialmente nella storia della scienza costando a un matematico più della cifra del premio che aveva appena vinto.</p>
   <aside class="notes">
-    Il concorso matematico per il 60° compleanno di Oscar II di Svezia (1889) chiedeva di dimostrare la stabilità del sistema solare risolvendo il problema dei tre corpi. Poincaré presenta un lavoro che vince il premio, ma un revisore (Phragmén) nota un'incongruenza nella dimostrazione mentre il saggio è già in fase di stampa sulla rivista Acta Mathematica. Poincaré scava a fondo per correggere l'errore e scopre qualcosa di molto più profondo e sconvolgente di quanto pensasse: anche in un sistema di sole 3 masse soggette solo alla gravità (niente attrito, niente turbolenza, niente "rumore" esterno), piccolissime differenze nelle condizioni iniziali possono portare a evoluzioni completamente diverse nel tempo. Deve pagare di tasca propria per far ristampare l'intera tiratura della rivista già distribuita, con la versione corretta. Questo lavoro contiene, in nuce, tutti gli ingredienti della moderna teoria del caos — settant'anni prima di Lorenz — ma resta un episodio isolato, poco compreso, sepolto in un trattato di meccanica celeste che quasi nessuno legge fino in fondo. Ottimo aneddoto per creare suspense verso l'Atto II: "la crepa c'era già, semplicemente per settant'anni nessuno ci ha ripensato".
+    <ol>
+      <li>Il concorso per il 60° compleanno di Oscar II di Svezia (1889) chiedeva di dimostrare la stabilità del sistema solare risolvendo il problema dei tre corpi.</li>
+      <li>Poincaré presenta un lavoro che vince il premio.</li>
+      <li>Il revisore Phragmén nota un'incongruenza mentre il saggio è già in stampa su Acta Mathematica.</li>
+      <li>Poincaré scava per correggere l'errore e scopre qualcosa di più profondo: anche con 3 sole masse e solo gravità (niente attrito, turbolenza o rumore), differenze minime nelle condizioni iniziali portano a evoluzioni completamente diverse.</li>
+      <li>Paga di tasca propria la ristampa dell'intera tiratura già distribuita, con la versione corretta.</li>
+    </ol>
+    <ul>
+      <li>Il lavoro contiene in nuce la teoria del caos, settant'anni prima di Lorenz.</li>
+      <li>Resta un episodio isolato, sepolto in un trattato di meccanica celeste che quasi nessuno legge fino in fondo.</li>
+      <li>Frase per creare suspense verso l'Atto II: "la crepa c'era già, semplicemente per settant'anni nessuno ci ha ripensato".</li>
+    </ul>
   </aside>
 </section>
 
@@ -144,7 +177,13 @@ slides:
   <p class="mot-def fragment">Matematico di formazione, durante la Seconda Guerra Mondiale fa il previsore meteo per l'aeronautica militare. Resta affascinato (e un po' deluso) da quanto sia difficile prevedere qualcosa di così quotidiano.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Passa il resto della carriera a costruire modelli matematici per capire perché i modelli matematici del meteo funzionano così male. Una specie di detective che indaga su se stesso.</p>
   <aside class="notes">
-    Edward Lorenz (1917-2008) si laurea in matematica ad Harvard, ma durante la Seconda Guerra Mondiale viene assegnato come previsore meteorologico per le forze aeree americane — un lavoro allora considerato più artigianale che scientifico. L'esperienza lo lascia con la sensazione che le previsioni meteo, per quanto si affinassero le tecniche, restassero intrinsecamente inaffidabili oltre pochi giorni, e questo lo incuriosisce abbastanza da dedicarci la carriera accademica al MIT. Costruisce modelli matematici semplificati dell'atmosfera (equazioni di convezione) proprio per capire, da matematico, cosa renda il sistema meteo così sfuggente. È il contesto perfetto per l'aneddoto del 1961 che segue: non uno scienziato che inciampa per caso nel caos, ma qualcuno che lo stava quasi cercando, senza saperlo.
+    <ul>
+      <li>Edward Lorenz (1917-2008) si laurea in matematica ad Harvard.</li>
+      <li>Durante la Seconda Guerra Mondiale è previsore meteorologico per le forze aeree americane, un lavoro allora più artigianale che scientifico.</li>
+      <li>Ne ricava la sensazione che le previsioni, per quanto si affinino le tecniche, restino inaffidabili oltre pochi giorni: questo lo incuriosisce e dedica la carriera al MIT.</li>
+      <li>Costruisce modelli semplificati dell'atmosfera (equazioni di convezione) per capire cosa renda il meteo così sfuggente.</li>
+      <li>Contesto perfetto per l'aneddoto del 1961: non uno scienziato che inciampa per caso nel caos, ma qualcuno che lo stava quasi cercando, senza saperlo.</li>
+    </ul>
   </aside>
 </section>
 
@@ -155,7 +194,18 @@ slides:
   <p class="mot-def fragment">Lorenz sta rifacendo una simulazione meteo già girata. Per risparmiare tempo digita <b>0.506</b> invece di <b>0.506127</b>: pensa che 3 decimali in meno non cambino nulla.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Va a farsi un caffè. Un'ora dopo torna e il "meteo" del suo computer è impazzito.</p>
   <aside class="notes">
-    Il vero nome della macchina è un Royal McBee LGP-30, lentissimo per gli standard odierni. Lorenz sta studiando un modello semplificato di convezione atmosferica (12 equazioni). Vuole riesaminare una sequenza già calcolata, ma invece di far ripartire tutto da capo la fa ripartire "a metà", ridigitando a mano i valori intermedi stampati — e la stampante arrotondava a 3 cifre decimali (0.506) mentre la memoria interna ne teneva 6 (0.506127). Lui pensa che la differenza, una parte su mille, sia completamente irrilevante: è un errore più piccolo di una folata di vento che uno starnuto potrebbe causare in un modello meteo reale. Torna dal caffè aspettandosi di vedere replicare la simulazione precedente. Invece dopo un breve tratto iniziale simile, le due curve iniziano a divergere sempre di più, fino a non avere più nulla in comune. Qui si può fare una pausa comica: "e no, non aveva sbagliato lui i calcoli. Aveva scoperto il caos".
+    <ol>
+      <li>La macchina è un Royal McBee LGP-30, lentissimo per gli standard odierni.</li>
+      <li>Lorenz studia un modello semplificato di convezione atmosferica (12 equazioni).</li>
+      <li>Vuole rivedere una sequenza già calcolata: invece di ripartire da capo, riparte "a metà", ridigitando a mano i valori intermedi stampati.</li>
+      <li>La stampante arrotondava a 3 decimali (0.506), la memoria interna ne teneva 6 (0.506127).</li>
+      <li>Lui pensa che una parte su mille sia irrilevante: meno di una folata di vento, o di uno starnuto, in un modello meteo reale.</li>
+      <li>Torna dal caffè aspettandosi di rivedere la simulazione precedente.</li>
+      <li>Dopo un breve tratto simile, le due curve divergono sempre di più, fino a non avere nulla in comune.</li>
+    </ol>
+    <ul>
+      <li>Pausa comica: "e no, non aveva sbagliato lui i calcoli. Aveva scoperto il caos".</li>
+    </ul>
   </aside>
 </section>
 
@@ -168,7 +218,13 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Non è un errore del computer. Non è nemmeno un errore di Lorenz. È una proprietà <em>delle equazioni stesse</em>.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">La prima vittima di questa scoperta è la fiducia di Lorenz nel demone di Laplace &mdash; e la seconda, qualche anno dopo, è quella di tutti i meteorologi del mondo.</p>
   <aside class="notes">
-    Concetto centrale della serata, va scandito bene: la differenza tra le due traiettorie non resta piccola, cresce esponenzialmente nel tempo (è la base di quello che oggi chiamiamo "esponente di Lyapunov positivo"). Sottolineare che il sistema è comunque perfettamente deterministico: le stesse equazioni, applicate agli stessi identici dati, danno sempre lo stesso risultato. Il problema è che "quasi identici" non è mai "identici", e in questi sistemi anche un errore piccolissimo nella misura di partenza esplode. È il momento giusto per dire la frase che regge tutto il resto della conferenza: "il caos non è assenza di leggi, è un eccesso di sensibilità alle leggi che già conosciamo".
+    <ul>
+      <li>Concetto centrale della serata: scandirlo bene.</li>
+      <li>La differenza tra le due traiettorie non resta piccola: cresce esponenzialmente nel tempo (base dell'"esponente di Lyapunov positivo").</li>
+      <li>Il sistema resta perfettamente deterministico: stesse equazioni e stessi dati danno sempre lo stesso risultato.</li>
+      <li>Il problema: "quasi identici" non è mai "identici", e in questi sistemi un errore minimo nella misura di partenza esplode.</li>
+      <li>Frase che regge il resto della conferenza: "il caos non è assenza di leggi, è un eccesso di sensibilità alle leggi che già conosciamo".</li>
+    </ul>
   </aside>
 </section>
 
@@ -180,7 +236,14 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Solo all'inizio degli anni '70 il matematico James Yorke lo scopre, ne intuisce la portata enorme e comincia a farlo circolare tra fisici e matematici. Sarà proprio Yorke, nel 1975, a usare per primo la parola "<b>chaos</b>" in questo contesto.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Una delle scoperte più importanti del Novecento ha passato un decennio scambiata per un articolo di meteorologia un po' noioso. Anche le rivoluzioni scientifiche, a volte, aspettano l'autobus giusto.</p>
   <aside class="notes">
-    Lorenz pubblica "Deterministic Nonperiodic Flow" nel 1963 sul Journal of the Atmospheric Sciences: una rivista specialistica di meteorologia, letta da pochissimi fisici o matematici puri. Il lavoro contiene già tutti gli ingredienti chiave (sensibilità alle condizioni iniziali, attrattore strano) ma resta sostanzialmente invisibile alla comunità scientifica più ampia per circa un decennio. È il matematico James Yorke (Università del Maryland) a imbattersi nel paper all'inizio degli anni '70, capirne l'importanza cruciale e iniziare a farlo conoscere a fisici e matematici, contribuendo a innescare l'esplosione di interesse per la teoria del caos negli anni '70-'80. Nel 1975 Yorke pubblica con Tien-Yien Li l'articolo "Period Three Implies Chaos", in cui compare per la prima volta il termine "chaos" nel significato tecnico moderno che usiamo oggi. Buon aneddoto sulla sociologia della scienza: le grandi scoperte non sempre vengono riconosciute subito, a volte serve la persona giusta che le trova nel posto sbagliato.
+    <ul>
+      <li>Lorenz pubblica "Deterministic Nonperiodic Flow" nel 1963 sul Journal of the Atmospheric Sciences: rivista di meteorologia, letta da pochissimi fisici o matematici puri.</li>
+      <li>Il lavoro contiene già gli ingredienti chiave (sensibilità alle condizioni iniziali, attrattore strano) ma resta invisibile alla comunità più ampia per circa un decennio.</li>
+      <li>All'inizio degli anni '70 James Yorke (Università del Maryland) trova il paper, ne capisce l'importanza e lo fa conoscere a fisici e matematici.</li>
+      <li>Questo contribuisce a innescare l'esplosione di interesse per il caos negli anni '70-'80.</li>
+      <li>Nel 1975 Yorke e Tien-Yien Li pubblicano "Period Three Implies Chaos": per la prima volta "chaos" ha il significato tecnico moderno.</li>
+      <li>Aneddoto di sociologia della scienza: le grandi scoperte non sempre vengono riconosciute subito, a volte serve la persona giusta che le trova nel posto sbagliato.</li>
+    </ul>
   </aside>
 </section>
 
@@ -192,7 +255,13 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1.5rem; font-size: 1.2em;">"Può il battito d'ali di una farfalla in Brasile scatenare un tornado in Texas?"</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Risposta onesta: probabilmente no, quella specifica farfalla. Ma il punto non è la farfalla, è che <b>qualcosa</b> di altrettanto piccolo, prima o poi, lo farà.</p>
   <aside class="notes">
-    Il titolo del talk del 1972 all'AAAS non è di Lorenz in senso stretto — pare sia stato suggerito dal moderatore della sessione, Philip Merilees, che non riuscì a farsi mandare in tempo un titolo da Lorenz e ne inventò uno lui. Ironia da segnalare: la metafora più famosa della scienza del caos nasce, un po' caoticamente, per un titolo mancato all'ultimo minuto. Chiarire che non si intende letteralmente che UNA farfalla causi UN tornado (relazione causale isolabile e verificabile), ma che in un sistema caotico anche perturbazioni piccolissime, di qualunque origine, possono essere amplificate fino ad avere conseguenze macroscopiche enormi. È un'affermazione sulla sensibilità del sistema, non sulla causalità puntuale.
+    <ul>
+      <li>Il titolo del talk del 1972 all'AAAS non è di Lorenz: pare lo abbia suggerito il moderatore, Philip Merilees, che non riuscì a farsi mandare un titolo in tempo e ne inventò uno.</li>
+      <li>Ironia: la metafora più famosa della scienza del caos nasce, un po' caoticamente, da un titolo mancato all'ultimo minuto.</li>
+      <li>Chiarire: non UNA farfalla che causa UN tornado (causalità isolabile e verificabile).</li>
+      <li>Il senso: in un sistema caotico anche perturbazioni piccolissime, di qualunque origine, possono essere amplificate fino a conseguenze macroscopiche enormi.</li>
+      <li>È un'affermazione sulla sensibilità del sistema, non sulla causalità puntuale.</li>
+    </ul>
   </aside>
 </section>
 
@@ -205,7 +274,13 @@ slides:
   <p class="mot-def fragment">Se disegni l'evoluzione del sistema nello spazio delle sue variabili, ottieni una forma che non si ripete mai due volte uguale &mdash; ma che assomiglia sempre a due ali di farfalla.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Persino il grafico ha deciso di essere in tema. A volte la matematica fa marketing da sola.</p>
   <aside class="notes">
-    L'attrattore di Lorenz è il risultato del sistema di 3 equazioni differenziali che Lorenz studiava (versione ridotta del suo modello di convezione a 12 equazioni). Il sistema non si stabilizza mai in un punto fisso né in un ciclo periodico, ma nemmeno "esplode": resta confinato in una regione dello spazio, disegnando infinite traiettorie che non si intersecano mai esattamente, avvolgendosi alternativamente attorno a due "centri" — da cui la celebre forma a farfalla (o a maschera). È il prototipo di quello che oggi si chiama "attrattore strano": deterministico, limitato, ma mai periodico e mai prevedibile a lungo termine. Ottimo momento per una demo dal vivo se si ha accesso a un notebook Python/Desmos con l'equazione già pronta, anche solo per far vedere la forma che si genera in tempo reale.
+    <ul>
+      <li>L'attrattore di Lorenz nasce da 3 equazioni differenziali (versione ridotta del modello di convezione a 12 equazioni).</li>
+      <li>Il sistema non si stabilizza in un punto fisso né in un ciclo periodico, ma nemmeno "esplode": resta confinato in una regione dello spazio.</li>
+      <li>Le traiettorie non si intersecano mai e si avvolgono alternativamente attorno a due "centri": da qui la forma a farfalla (o a maschera).</li>
+      <li>È il prototipo dell'"attrattore strano": deterministico, limitato, mai periodico, mai prevedibile a lungo termine.</li>
+      <li>Momento ideale per una demo dal vivo (notebook Python o Desmos con l'equazione pronta), anche solo per far vedere la forma che si genera.</li>
+    </ul>
   </aside>
 </section>
 
@@ -216,7 +291,12 @@ slides:
   <p class="mot-def fragment">Il grafico esiste dal 1963. Il nome "strange attractor" (attrattore strano) arriva solo nel 1971, coniato dai fisici matematici David Ruelle e Floris Takens.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Otto anni per trovare un nome. In compenso, bisogna ammetterlo: "attrattore strano" resta uno dei nomi più azzeccati di tutta la fisica &mdash; suona bene anche a chi non ha capito nulla della matematica sotto.</p>
   <aside class="notes">
-    Ruelle e Takens introducono il termine "strange attractor" in un articolo del 1971 sulla turbolenza nei fluidi, dandogli anche un significato tecnico preciso in dinamica: un attrattore (una regione dello spazio delle fasi verso cui converge il sistema) che ha struttura frattale e su cui le traiettorie non sono mai periodiche. È un buon momento per fare un piccolo recap enciclopedico se il pubblico lo gradisce: attrattore "normale" = punto fisso o ciclo (es. un pendolo che si ferma, o un'orbita periodica); attrattore "strano" = il sistema resta confinato ma senza mai ripetersi esattamente, come nel caso di Lorenz. Da notare, con un po' di ironia meta, che il nome nasce indipendentemente dal lavoro di Lorenz e viene applicato retroattivamente al suo grafico solo in seguito: un altro piccolo tassello della storia un po' "caotica" con cui questa teoria si è assemblata pezzo per pezzo.
+    <ul>
+      <li>Ruelle e Takens introducono "strange attractor" in un articolo del 1971 sulla turbolenza nei fluidi.</li>
+      <li>Significato tecnico: un attrattore (regione dello spazio delle fasi verso cui converge il sistema) con struttura frattale, su cui le traiettorie non sono mai periodiche.</li>
+      <li>Recap, se il pubblico lo gradisce:<ul><li>attrattore "normale" = punto fisso o ciclo (un pendolo che si ferma, un'orbita periodica)</li><li>attrattore "strano" = il sistema resta confinato ma non si ripete mai esattamente, come in Lorenz.</li></ul></li>
+      <li>Ironia meta: il nome nasce indipendentemente da Lorenz e viene applicato al suo grafico solo in seguito, un altro tassello della storia "caotica" di questa teoria.</li>
+    </ul>
   </aside>
 </section>
 
@@ -246,7 +326,13 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Il problema è un altro: per prevedere il futuro dovresti conoscere il presente con <em>precisione infinita</em>. E la precisione infinita, semplicemente, non esiste.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Non è che l'universo tiri a caso. È che l'universo, alla nona cifra decimale, non ce lo dice mai.</p>
   <aside class="notes">
-    Questa è la slide "manifesto" dell'Atto III, va scandita con calma perché è il concetto più frainteso di tutta la teoria del caos (anche nella cultura pop: "effetto farfalla" viene spesso confuso con "tutto è imprevedibile e casuale", che è sbagliato). Ribadire: stesse condizioni iniziali esatte → stesso identico futuro, sempre. Il caos emerge SOLO perché nella pratica non possiamo mai misurare le condizioni iniziali con infinite cifre decimali — ogni strumento di misura, ogni sensore, ha una precisione finita. In un sistema caotico questo minuscolo margine di errore non resta piccolo, ma cresce esponenzialmente nel tempo fino a rendere la previsione a lungo termine impossibile in linea di principio, non solo in pratica.
+    <ul>
+      <li>Slide "manifesto" dell'Atto III: scandirla con calma, è il concetto più frainteso della teoria del caos.</li>
+      <li>Nella cultura pop "effetto farfalla" viene confuso con "tutto è imprevedibile e casuale": è sbagliato.</li>
+      <li>Ribadire: stesse condizioni iniziali esatte, stesso identico futuro, sempre.</li>
+      <li>Il caos emerge SOLO perché non possiamo misurare le condizioni iniziali con infinite cifre decimali: ogni strumento ha precisione finita.</li>
+      <li>In un sistema caotico quel margine di errore cresce esponenzialmente, fino a rendere impossibile la previsione a lungo termine, in linea di principio e non solo in pratica.</li>
+    </ul>
   </aside>
 </section>
 
@@ -258,7 +344,13 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1.5rem;">Anche un computer grande quanto l'universo, con sensori perfetti, non saprebbe prevedere il meteo di un mese esatto.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Il colpevole non è l'ingegnere che ha progettato il supercomputer. È la matematica stessa, e con la matematica è inutile arrabbiarsi.</p>
   <aside class="notes">
-    Punto chiave da difendere con fermezza (è il tipo di obiezione che arriva sempre dal pubblico più tecnico): il limite alla previsione meteorologica non è "abbiamo computer troppo lenti" o "i modelli sono imprecisi", ma un limite di principio legato alla crescita esponenziale degli errori. Si stima che l'orizzonte di prevedibilità pratica dell'atmosfera sia intorno ai 10-14 giorni: oltre quella soglia, anche raddoppiando la potenza di calcolo o la precisione dei sensori satellitari, si guadagnano solo pochi giorni in più, perché l'errore cresce come una potenza (esponenziale) del tempo, non linearmente. Bella battuta finale da tenere a mente: "i meteorologi non sbagliano perché sono pigri, sbagliano perché glielo abbiamo chiesto Lorenz".
+    <ul>
+      <li>Punto da difendere con fermezza: è l'obiezione che arriva sempre dal pubblico più tecnico.</li>
+      <li>Il limite alla previsione meteo non è "computer troppo lenti" o "modelli imprecisi": è un limite di principio, legato alla crescita esponenziale degli errori.</li>
+      <li>L'orizzonte di prevedibilità pratica dell'atmosfera è stimato intorno ai 10-14 giorni.</li>
+      <li>Oltre quella soglia, anche raddoppiando calcolo o precisione dei sensori, si guadagnano pochi giorni, perché l'errore cresce esponenzialmente e non linearmente.</li>
+      <li>Battuta finale: "i meteorologi non sbagliano perché sono pigri, sbagliano perché glielo abbiamo chiesto Lorenz".</li>
+    </ul>
   </aside>
 </section>
 
@@ -276,7 +368,13 @@ slides:
     <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.45em; color: #666; margin-top: -0.3rem;">(pendolo doppio)</p>
   </div>
   <aside class="notes">
-    Il confronto tra le due equazioni è tutto il punto di questa slide, va lasciato "parlare da solo": basta aggiungere una seconda massa in fondo alla prima per passare da un'equazione che si insegna al liceo (oscillatore armonico smorzato/pendolo semplice, θ'' + (g/L)sinθ = 0) a un sistema di equazioni accoppiate e fortemente non lineari, con termini incrociati tra le due masse e i due angoli. Non serve spiegarla termine per termine: l'effetto comico/scenico è proprio vedere il salto di complessità a colpo d'occhio. Chi vuole approfondire: le equazioni si ricavano dal formalismo lagrangiano (L = energia cinetica - energia potenziale del sistema a due bracci), e nonostante siano equazioni deterministiche esatte, il sistema risultante è caotico per ampiezze non piccolissime.
+    <ul>
+      <li>Il confronto tra le due equazioni è il punto della slide: lasciarlo "parlare da solo".</li>
+      <li>Aggiungendo una seconda massa si passa da un'equazione da liceo (pendolo semplice, θ'' + (g/L)sinθ = 0) a un sistema di equazioni accoppiate e fortemente non lineari, con termini incrociati tra masse e angoli.</li>
+      <li>Non serve spiegarla termine per termine: l'effetto scenico è il salto di complessità a colpo d'occhio.</li>
+      <li>Per chi vuole approfondire: si ricavano dal formalismo lagrangiano (L = energia cinetica - energia potenziale del sistema a due bracci).</li>
+      <li>Pur essendo equazioni deterministiche esatte, il sistema è caotico per ampiezze non piccolissime.</li>
+    </ul>
   </aside>
 </section>
 
@@ -286,7 +384,13 @@ slides:
   <h2>Guardateli <em>muoversi</em></h2>
   <video src="pendoli-animazione.mp4" autoplay loop muted playsinline style="max-width: 92%; margin: 0.3rem auto 0; display: block; border-radius: 6px; box-shadow: 0 2px 16px rgba(0,0,0,0.2);"></video>
   <aside class="notes">
-    Animazione fisica reale (motore a rigid body, non un disegno a mano): a sinistra il pendolo semplice oscilla in modo regolare e perfettamente periodico, punto e basta. A destra il pendolo doppio, lanciato con un angolo iniziale ampio, genera una traiettoria del tutto irregolare — la scia blu che si vede è il percorso della seconda massa, e non si richiude mai su se stessa. Buon momento per far notare che la scia disegnata dal pendolo doppio, da sola, assomiglia già a una farfalla: la matematica continua a fare marketing per conto suo. Se rilanciato più volte con condizioni iniziali anche minimamente diverse, il pendolo doppio disegnerebbe ogni volta una scia completamente diversa: è lo stesso principio dell'attrattore di Lorenz visto nell'Atto II, qui reso in un sistema meccanico invece che in un modello meteo.
+    <ul>
+      <li>Animazione fisica reale (motore a rigid body, non un disegno a mano).</li>
+      <li>A sinistra il pendolo semplice oscilla in modo regolare e periodico, punto e basta.</li>
+      <li>A destra il pendolo doppio, lanciato con angolo iniziale ampio, genera una traiettoria irregolare: la scia blu è il percorso della seconda massa e non si richiude mai.</li>
+      <li>Far notare che la scia, da sola, assomiglia già a una farfalla: la matematica fa marketing per conto suo.</li>
+      <li>Rilanciato con condizioni iniziali appena diverse, disegnerebbe ogni volta una scia diversa: stesso principio dell'attrattore di Lorenz, in un sistema meccanico invece che in un modello meteo.</li>
+    </ul>
   </aside>
 </section>
 
@@ -298,7 +402,14 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Fatelo partire due volte da posizioni quasi identiche (a occhio, indistinguibili). Dopo pochi secondi le due traiettorie non hanno più nulla in comune.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Un pendolo singolo è il simbolo della fisica prevedibile da tre secoli. Basta aggiungerne un secondo, letteralmente attaccato in fondo al primo, per costruirsi in casa un generatore di caos con due chiodi e dello spago.</p>
   <aside class="notes">
-    Il pendolo doppio (un pendolo attaccato in fondo a un altro pendolo) è probabilmente l'esempio più didattico e più "dal vivo" possibile di sistema caotico deterministico: le equazioni del moto sono complicate ma perfettamente note e deterministiche (derivano semplicemente dalla meccanica di Lagrange, viste nella slide precedente), eppure il comportamento macroscopico, oltre pochi secondi, diventa completamente imprevedibile e sensibilissimo alle condizioni di partenza. Se possibile, vale davvero la pena costruirne uno semplice (due aste rigide o anche solo due righelli imperniati) e farne una piccola dimostrazione dal vivo, o mostrare un video di due pendoli doppi lanciati da posizioni quasi identiche che divergono in pochi secondi — è di gran lunga la dimostrazione più "wow" per un pubblico non specialistico, perché è meccanica classica pura, niente di esotico, eppure genera comportamento genuinamente impredicibile. Ottimo ponte visivo prima della mappa logistica, che è la stessa idea ma in versione puramente matematica.
+    <ul>
+      <li>Il pendolo doppio è forse l'esempio più didattico e "dal vivo" di sistema caotico deterministico.</li>
+      <li>Le equazioni sono complicate ma note e deterministiche (meccanica di Lagrange, slide precedente), eppure oltre pochi secondi il comportamento diventa imprevedibile e sensibilissimo alle condizioni di partenza.</li>
+      <li>Se possibile, costruirne uno semplice (due aste rigide o due righelli imperniati) e fare una dimostrazione dal vivo.</li>
+      <li>In alternativa, un video di due pendoli doppi lanciati da posizioni quasi identiche che divergono in pochi secondi.</li>
+      <li>È la dimostrazione più "wow" per un pubblico non specialistico: meccanica classica pura, niente di esotico, eppure comportamento genuinamente impredicibile.</li>
+      <li>Ponte visivo verso la mappa logistica, che è la stessa idea in versione puramente matematica.</li>
+    </ul>
   </aside>
 </section>
 
@@ -311,7 +422,18 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Cambiate solo il numero <b>r</b>, un parametro innocuo. Per $r$ piccolo: popolazione stabile, noiosa, prevedibile. Aumentate $r$ un po' alla volta...</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">...e a un certo punto, senza preavviso, la stessa formuletta da terza superiore comincia a comportarsi come se avesse una vita propria e pessimo carattere.</p>
   <aside class="notes">
-    La mappa logistica (Robert May, anni '70) è probabilmente l'esempio più semplice e più potente da mostrare dal vivo: x rappresenta una popolazione normalizzata tra 0 e 1, r è il tasso di crescita. Per r tra 0 e 3 il sistema converge a un valore fisso stabile. Attorno a r=3 iniziano le biforcazioni: la popolazione oscilla tra 2 valori, poi 4, poi 8, raddoppiando sempre più velocemente (cascata di biforcazioni di Feigenbaum) fino a r≈3.57, oltre il quale il comportamento diventa caotico — pur restando un'equazione deterministica a una sola variabile, senza nessun elemento casuale. Se possibile, mostrare dal vivo il "diagramma di biforcazione" (r sull'asse x, valori asintotici di x sull'asse y): è visivamente scioccante quanto un frattale, e infatti gli assomiglia. Aneddoto opzionale su Feigenbaum: scoprì che il "tasso" con cui le biforcazioni si infittiscono è una costante universale (≈4.669), la stessa in moltissimi sistemi caotici diversi — una specie di "π del caos".
+    <ul>
+      <li>La mappa logistica (Robert May, anni '70) è l'esempio più semplice e potente da mostrare dal vivo: x è una popolazione normalizzata tra 0 e 1, r il tasso di crescita.</li>
+    </ul>
+    <ol>
+      <li>Per r tra 0 e 3 il sistema converge a un valore fisso stabile.</li>
+      <li>Attorno a r=3 iniziano le biforcazioni: la popolazione oscilla tra 2 valori, poi 4, poi 8, sempre più in fretta (cascata di biforcazioni di Feigenbaum).</li>
+      <li>Oltre r≈3.57 il comportamento è caotico, pur restando un'equazione deterministica a una sola variabile, senza alcun elemento casuale.</li>
+    </ol>
+    <ul>
+      <li>Se possibile, mostrare dal vivo il diagramma di biforcazione (r sull'asse x, valori asintotici di x sull'asse y): visivamente scioccante, simile a un frattale.</li>
+      <li>Aneddoto opzionale su Feigenbaum: il "tasso" con cui le biforcazioni si infittiscono è una costante universale (≈4.669), la stessa in moltissimi sistemi caotici, una specie di "π del caos".</li>
+    </ul>
   </aside>
 </section>
 
@@ -323,7 +445,14 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1rem; font-size: 1.3em;">$$\delta \approx 4.6692016...$$</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">La stessa identica costante spunta in centinaia di sistemi caotici completamente diversi tra loro &mdash; popolazioni, circuiti elettronici, gocce d'acqua. Come se il caos avesse una propria "impronta digitale universale", uguale per tutti.</p>
   <aside class="notes">
-    Mitchell Feigenbaum, alla fine degli anni '70, studia la cascata di raddoppi di periodo che precede il caos nella mappa logistica (e in famiglie simili di mappe) e scopre che il rapporto tra le distanze successive dei punti di biforcazione tende a una costante universale, δ ≈ 4.6692016..., indipendentemente dai dettagli specifici dell'equazione di partenza (purché abbia un massimo "a campana" simile). È un risultato profondamente sorprendente: sistemi fisici completamente diversi — modelli di popolazione, circuiti elettrici non lineari, la formazione di gocce da un rubinetto che gocciola sempre più in fretta, la convezione in certi fluidi — mostrano tutti la stessa identica costante nella loro transizione verso il caos. È un po' l'equivalente, nel mondo del caos, di quello che π è per i cerchi: un numero universale che emerge dalla struttura matematica profonda del fenomeno, non dai dettagli del sistema specifico. Aneddoto simpatico: Feigenbaum scoprì questa regolarità usando una delle prime calcolatrici tascabili HP-65, letteralmente premendo tasti e osservando i numeri — non un supercomputer, una calcolatrice da 200 dollari.
+    <ul>
+      <li>Alla fine degli anni '70 Feigenbaum studia la cascata di raddoppi di periodo che precede il caos nella mappa logistica (e in famiglie simili).</li>
+      <li>Scopre che il rapporto tra le distanze successive dei punti di biforcazione tende a una costante universale, δ ≈ 4.6692016...</li>
+      <li>Vale indipendentemente dai dettagli dell'equazione di partenza (purché abbia un massimo "a campana" simile).</li>
+      <li>Risultato sorprendente: sistemi molto diversi mostrano la stessa costante nella transizione al caos:<ul><li>modelli di popolazione</li><li>circuiti elettrici non lineari</li><li>gocce da un rubinetto che gocciola sempre più in fretta</li><li>convezione in certi fluidi.</li></ul></li>
+      <li>È l'equivalente, nel caos, di ciò che π è per i cerchi: un numero universale che emerge dalla struttura profonda del fenomeno, non dal sistema specifico.</li>
+      <li>Aneddoto: Feigenbaum scoprì la regolarità con una delle prime calcolatrici tascabili, la HP-65, premendo tasti e osservando i numeri. Non un supercomputer, una calcolatrice da 200 dollari.</li>
+    </ul>
   </aside>
 </section>
 
@@ -335,7 +464,12 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Il battito del vostro cuore, il numero di conigli in un prato, l'andamento di un'epidemia: stessa mappa logistica, stesso comportamento imprevedibile oltre una certa soglia.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">La prossima volta che perdete a biliardo, non è mancanza di talento. È fisica statistica del caos. Usatela, funziona sempre come scusa.</p>
   <aside class="notes">
-    L'esempio del biliardo è di Michael Berry (fisico, Bristol): ha calcolato che dopo circa 9 collisioni tra le sfere, per prevedere correttamente la traiettoria bisognerebbe tenere conto anche del campo gravitazionale generato da una persona che si trova ai bordi del tavolo da biliardo — un effetto minuscolo che normalmente ignoreremmo sempre, ma che nel caos si amplifica abbastanza in fretta da diventare determinante. Aggancio a sistemi biologici: la variabilità del battito cardiaco (utile clinicamente: un battito "troppo regolare" è talvolta un segnale di rischio, controintuitivamente), modelli preda-predatore in ecologia (equazioni di Lotka-Volterra, che in certe condizioni diventano caotiche), modelli epidemiologici SIR con parametri stagionali. Il messaggio di fondo: il caos non è un fenomeno raro e di laboratorio, è probabilmente la norma per qualunque sistema con più di 2-3 variabili che interagiscono in modo non lineare.
+    <ul>
+      <li>Esempio del biliardo, di Michael Berry (fisico, Bristol): dopo circa 9 collisioni tra le sfere, per prevedere la traiettoria bisognerebbe tenere conto anche del campo gravitazionale di una persona ai bordi del tavolo.</li>
+      <li>Un effetto minuscolo che di norma ignoreremmo sempre, ma che nel caos si amplifica abbastanza in fretta da diventare determinante.</li>
+      <li>Aggancio ai sistemi biologici:<ul><li>variabilità del battito cardiaco (utile clinicamente: un battito "troppo regolare" è talvolta un segnale di rischio, controintuitivamente)</li><li>modelli preda-predatore (Lotka-Volterra, che in certe condizioni diventano caotici)</li><li>modelli epidemiologici SIR con parametri stagionali.</li></ul></li>
+      <li>Messaggio di fondo: il caos non è un fenomeno raro di laboratorio, è probabilmente la norma per qualunque sistema con più di 2-3 variabili che interagiscono in modo non lineare.</li>
+    </ul>
   </aside>
 </section>
 
@@ -348,7 +482,16 @@ slides:
   <p class="fragment mot-result" style="margin-top: 1.5rem;">Non "instabili" nel senso che i pianeti voleranno via: ma la posizione precisa della Terra tra 100 milioni di anni è, in linea di principio, incalcolabile.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Il sistema più prevedibile della storia della fisica, quello con cui abbiamo aperto la serata, alla fine ci tradisce pure lui. Persino Newton, a lungo termine, gioca secondo le regole di Lorenz.</p>
   <aside class="notes">
-    Bellissimo momento per "chiudere il cerchio" con l'Atto I: Sussman e Wisdom, usando un computer digitale specializzato (il "Digital Orrery" al MIT) per integrare numericamente le equazioni del moto planetario su intervalli di centinaia di milioni di anni, mostrano che il moto dei pianeti del sistema solare, in particolare quello dei pianeti interni (Mercurio, Venere, Terra, Marte), è caoticamente sensibile alle condizioni iniziali, con un tempo di Lyapunov di circa 5 milioni di anni (cioè l'incertezza sulla posizione raddoppia grosso modo ogni 5 milioni di anni). Questo non significa che il sistema solare sia instabile nel senso catastrofico (i pianeti non stanno per schiantarsi tra loro nell'immediato), ma significa che è impossibile, anche in linea di principio, calcolare la posizione esatta della Terra sulla sua orbita tra, diciamo, 200 milioni di anni: piccolissime incertezze oggi (anche solo dovute a corpi minori, asteroidi, effetti relativistici trascurabili) si amplificano fino a rendere la previsione priva di senso su quelle scale. È l'ironia perfetta da riportare al pubblico: il sistema che Newton, Halley e Laplace consideravano l'esempio supremo di prevedibilità meccanica è, in realtà, caotico quanto la mappa logistica o il pendolo doppio — semplicemente su una scala temporale enormemente più lunga.
+    <ul>
+      <li>Momento per "chiudere il cerchio" con l'Atto I.</li>
+      <li>Sussman e Wisdom usano un computer specializzato (il "Digital Orrery" al MIT) per integrare le equazioni del moto planetario su centinaia di milioni di anni.</li>
+      <li>Risultato: il moto dei pianeti, in particolare quelli interni (Mercurio, Venere, Terra, Marte), è caoticamente sensibile alle condizioni iniziali.</li>
+      <li>Tempo di Lyapunov di circa 5 milioni di anni: l'incertezza sulla posizione raddoppia grosso modo ogni 5 milioni di anni.</li>
+      <li>Non significa che il sistema solare sia instabile in senso catastrofico: i pianeti non stanno per schiantarsi.</li>
+      <li>Significa che è impossibile, anche in linea di principio, calcolare la posizione esatta della Terra sulla sua orbita tra, diciamo, 200 milioni di anni.</li>
+      <li>Piccole incertezze di oggi (corpi minori, asteroidi, effetti relativistici trascurabili) si amplificano fino a rendere la previsione priva di senso su quelle scale.</li>
+      <li>Ironia perfetta da riportare al pubblico: il sistema che Newton, Halley e Laplace consideravano l'esempio supremo di prevedibilità è caotico quanto la mappa logistica o il pendolo doppio, solo su una scala temporale molto più lunga.</li>
+    </ul>
   </aside>
 </section>
 
@@ -360,7 +503,19 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Gli attrattori strani (come quello di Lorenz visto prima) sono frattali. Il confine tra "ordinato" e "caotico", in moltissimi sistemi, ha proprio questa struttura infinitamente dettagliata.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">È l'unico oggetto matematico che, più lo guardi da vicino, più ti fa sentire piccolo. Complimenti a $z_{n+1} = z_n^2 + c$, la formula più economica e più inquietante della matematica.</p>
   <aside class="notes">
-    Il set di Mandelbrot (Benoît Mandelbrot, 1980) nasce da un'iterazione semplicissima nel piano complesso: si parte da z=0, si applica ripetutamente z → z²+c, e si colora il punto c a seconda che la sequenza resti limitata (appartiene al set, nero) o diverga (fuori dal set, colorato secondo la velocità di divergenza — è quello che genera le sfumature nell'immagine di sfondo di questa slide). La proprietà sorprendente è l'autosimilarità a tutte le scale: zoomando sul bordo del set si trovano infinite repliche in miniatura della forma principale, mai identiche ma sempre riconoscibili, all'infinito. Collegamento diretto con l'attrattore di Lorenz visto nell'Atto II: anche quello è un frattale (dimensione non intera, circa 2.06), ed è proprio questa struttura frattale a permettere che le traiettorie restino confinate in una regione finita pur non ripetendosi mai esattamente. Se c'è tempo, bel gancio filosofico: i confini tra ordine e caos, in natura, tendono ad avere proprio questa granularità infinita — le coste, le nuvole, i vasi sanguigni, i fulmini sono tutti esempi di geometria frattale "naturale".
+    <ul>
+      <li>Il set di Mandelbrot (Benoît Mandelbrot, 1980) nasce da un'iterazione semplicissima nel piano complesso.</li>
+    </ul>
+    <ol>
+      <li>Si parte da z=0.</li>
+      <li>Si applica ripetutamente z → z²+c.</li>
+      <li>Si colora il punto c: nero se la sequenza resta limitata (appartiene al set), colorato secondo la velocità di divergenza se diverge (le sfumature dell'immagine di sfondo).</li>
+    </ol>
+    <ul>
+      <li>Proprietà sorprendente: autosimilarità a tutte le scale. Zoomando sul bordo si trovano infinite repliche in miniatura della forma principale, mai identiche ma sempre riconoscibili.</li>
+      <li>Collegamento con Lorenz (Atto II): anche l'attrattore è un frattale (dimensione non intera, circa 2.06), ed è questa struttura a far restare le traiettorie in una regione finita senza ripetersi mai.</li>
+      <li>Se c'è tempo, gancio filosofico: i confini tra ordine e caos tendono ad avere questa granularità infinita. Coste, nuvole, vasi sanguigni, fulmini sono esempi di geometria frattale "naturale".</li>
+    </ul>
   </aside>
 </section>
 
@@ -380,7 +535,13 @@ slides:
   <p class="mot-def fragment">I generatori di numeri "casuali" nei computer non sono davvero casuali (sono deterministici, come tutto ciò che gira su un chip): ma alcuni si basano proprio su mappe caotiche, perché ne imitano benissimo l'imprevedibilità pratica.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">La stessa proprietà che rovina le previsioni del tempo protegge il numero della vostra carta di credito. Il caos non sceglie mai da che parte stare.</p>
   <aside class="notes">
-    Distinguere numeri "veramente casuali" (da fenomeni fisici quantistici o rumore termico) da numeri "pseudocasuali" generati da algoritmi deterministici: questi ultimi sono comunissimi in crittografia e simulazioni, e alcuni generatori sfruttano proprio mappe caotiche (variazioni della mappa logistica o simili) perché producono sequenze che, pur essendo calcolabili in modo esatto conoscendo il seed iniziale, sono praticamente indistinguibili dal rumore casuale per chiunque non conosca quel seed. È lo stesso principio della sensibilità alle condizioni iniziali, ma usato "a fin di bene": rende la sequenza imprevedibile a un attaccante esterno, esattamente come rende imprevedibile il meteo a un modello che non conosce le condizioni iniziali con precisione infinita.
+    <ul>
+      <li>Distinguere numeri "veramente casuali" (fenomeni fisici quantistici o rumore termico) da numeri "pseudocasuali" generati da algoritmi deterministici.</li>
+      <li>I pseudocasuali sono comunissimi in crittografia e simulazioni.</li>
+      <li>Alcuni generatori sfruttano mappe caotiche (variazioni della mappa logistica o simili).</li>
+      <li>Le sequenze sono calcolabili esattamente conoscendo il seed, ma praticamente indistinguibili dal rumore per chi non lo conosce.</li>
+      <li>È lo stesso principio della sensibilità alle condizioni iniziali, usato "a fin di bene": rende la sequenza imprevedibile a un attaccante, come rende imprevedibile il meteo a un modello senza condizioni iniziali a precisione infinita.</li>
+    </ul>
   </aside>
 </section>
 
@@ -393,7 +554,13 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Malcolm passa il film a ripetere che un parco di dinosauri ingegnerizzato "alla perfezione" è comunque un sistema complesso e non lineare: prima o poi qualcosa di piccolo e imprevisto lo farà collassare.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Aveva ragione lui, non gli ingegneri del parco. Morale della storia: se un matematico vi avverte che il vostro sistema è caotico, fategli dare retta prima che arrivi il T-Rex, non dopo.</p>
   <aside class="notes">
-    Il personaggio di Ian Malcolm (Jeff Goldblum) in Jurassic Park è esplicitamente scritto come un "esperto di teoria del caos", e la scena della goccia d'acqua sulla mano di Ellie Sattler è un tentativo (semplificato ma efficace) di mostrare in modo tattile la sensibilità alle condizioni iniziali: la stessa goccia, versata "nello stesso punto" della mano, scivola ogni volta in una direzione diversa per via di minuscole irregolarità della pelle. È un ottimo aggancio di cultura pop per rendere concreto tutto quello che si è detto finora, e permette una battuta facile ("l'avevate già vista la teoria del caos, semplicemente non sapevate che si chiamasse così"). Michael Crichton, l'autore del romanzo, si era documentato seriamente sulla teoria del caos (anche con l'aiuto di veri matematici) prima di scrivere il libro, ed è probabilmente una delle rappresentazioni più fedeli (per quanto romanzate) del concetto nella cultura di massa. Buon momento per alleggerire dopo le slide più tecniche (Feigenbaum, sistema solare) appena viste.
+    <ul>
+      <li>Ian Malcolm (Jeff Goldblum) in Jurassic Park è scritto esplicitamente come "esperto di teoria del caos".</li>
+      <li>La scena della goccia d'acqua sulla mano di Ellie Sattler mostra in modo tattile la sensibilità alle condizioni iniziali: la stessa goccia, versata "nello stesso punto", scivola ogni volta in una direzione diversa per via di minuscole irregolarità della pelle.</li>
+      <li>Ottimo aggancio pop per rendere concreto quanto detto finora. Battuta facile: "l'avevate già vista la teoria del caos, semplicemente non sapevate che si chiamasse così".</li>
+      <li>Michael Crichton si documentò seriamente (anche con veri matematici): è una delle rappresentazioni più fedeli, per quanto romanzate, del concetto nella cultura di massa.</li>
+      <li>Buon momento per alleggerire dopo le slide più tecniche (Feigenbaum, sistema solare).</li>
+    </ul>
   </aside>
 </section>
 
@@ -405,7 +572,15 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Questo non significa "non sappiamo nulla". Significa che un buon modello dà <b>scenari e probabilità</b>, non certezze puntuali su singoli eventi lontani nel tempo.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Chi vi promette di sapere con certezza cosa farà la borsa tra sei mesi, o il clima tra trent'anni esatti al grado, o non ha capito il caos, o sta cercando di vendervi qualcosa.</p>
   <aside class="notes">
-    Distinzione fondamentale da chiarire bene, per non passare né da negazionisti né da catastrofisti: il fatto che il clima sia un sistema caotico NON significa che i modelli climatici siano inaffidabili in generale, significa che sono inaffidabili nel predire il tempo di un singolo giorno lontano nel futuro, mentre restano affidabilissimi nel predire tendenze statistiche e scenari probabilistici su scale più ampie (esattamente come non possiamo prevedere il singolo lancio di una moneta ma possiamo prevedere con ottima precisione che su un milione di lanci uscirà circa il 50% testa). Stesso discorso per l'economia (i modelli non predicono "il valore esatto di un titolo il 15 marzo del prossimo anno", ma possono stimare rischi e scenari) e per l'epidemiologia (curve di contagio come scenari probabilistici, non profezie esatte). È il momento per il messaggio filosofico centrale della chiusura: il vero errore non è avere un modello imperfetto, è pretendere che un modello dia certezza dove il sistema stesso, per sua natura matematica, non può darla. Chiudere ricollegando alla frase-chiave dell'Atto III: "il limite non è nostro, è delle equazioni. E sapere dove sta il limite è già una forma di conoscenza, non una sconfitta".
+    <ul>
+      <li>Distinzione da chiarire bene, per non passare né da negazionisti né da catastrofisti.</li>
+      <li>Clima caotico NON significa modelli climatici inaffidabili in generale.</li>
+      <li>Significa che sono inaffidabili nel predire il tempo di un singolo giorno lontano nel futuro.</li>
+      <li>Restano affidabilissimi su tendenze statistiche e scenari probabilistici su scale ampie: non prevediamo il singolo lancio di una moneta, ma su un milione di lanci prevediamo circa il 50% testa.</li>
+      <li>Stesso discorso per altri ambiti:<ul><li>economia: non il valore esatto di un titolo il 15 marzo del prossimo anno, ma rischi e scenari</li><li>epidemiologia: curve di contagio come scenari probabilistici, non profezie.</li></ul></li>
+      <li>Messaggio filosofico centrale: il vero errore non è avere un modello imperfetto, è pretendere certezza dove il sistema, per sua natura matematica, non può darla.</li>
+      <li>Chiudere ricollegando alla frase-chiave dell'Atto III: "il limite non è nostro, è delle equazioni. E sapere dove sta il limite è già una forma di conoscenza, non una sconfitta".</li>
+    </ul>
   </aside>
 </section>
 
@@ -417,7 +592,14 @@ slides:
   <p class="fragment" style="margin-top: 1.5rem;">Il caos non dimostra che esiste il libero arbitrio (resta un dibattito filosofico aperto), ma dimostra che il determinismo <b>non implica</b> la prevedibilità. Un universo di leggi rigide può comunque essere, nella pratica, radicalmente aperto.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Quindi la prossima volta che qualcuno vi dice "tanto è tutto già scritto", potete rispondere: "sì, forse, ma nemmeno l'autore sa come va a finire".</p>
   <aside class="notes">
-    Chiusura filosofica, da tenere leggera e non dogmatica: la teoria del caos non risolve il millenario dibattito filosofico sul libero arbitrio (che riguarda questioni più profonde di causalità, coscienza, responsabilità morale), ma smonta un'inferenza logica molto comune e un po' ingenua: "se l'universo è deterministico, allora il futuro è calcolabile/prevedibile, quindi non c'è spazio per la libertà". Il caos mostra che si può avere determinismo rigorosissimo (le stesse leggi, sempre) insieme a imprevedibilità pratica assoluta e permanente, anche con conoscenza e potenza di calcolo arbitrariamente grandi. Non è la stessa cosa del libero arbitrio in senso filosofico forte, ma è un'ottima base per una discussione aperta col pubblico, ed è un modo elegante per ricollegare tutta la serata (da Laplace all'ultima slide) in un unico arco narrativo prima dei saluti.
+    <ul>
+      <li>Chiusura filosofica: tenerla leggera e non dogmatica.</li>
+      <li>La teoria del caos non risolve il dibattito sul libero arbitrio (causalità, coscienza, responsabilità morale).</li>
+      <li>Smonta però un'inferenza ingenua e comune: "se l'universo è deterministico, il futuro è calcolabile, quindi non c'è spazio per la libertà".</li>
+      <li>Il caos mostra determinismo rigorosissimo (stesse leggi, sempre) insieme a imprevedibilità pratica assoluta e permanente, anche con conoscenza e potenza di calcolo arbitrariamente grandi.</li>
+      <li>Non è il libero arbitrio in senso filosofico forte, ma è un'ottima base per una discussione aperta col pubblico.</li>
+      <li>Modo elegante per ricollegare tutta la serata (da Laplace all'ultima slide) in un arco narrativo unico prima dei saluti.</li>
+    </ul>
   </aside>
 </section>
 
@@ -426,7 +608,10 @@ slides:
   <h1 class="r-fit-text" style="position: relative; z-index: 10;">GRAZIE</h1>
   <p class="fragment" style="position: relative; z-index: 10; color: rgba(255,255,255,0.85); margin-top: 1rem;">(e scusate se non riesco a prevedere le vostre domande)</p>
   <aside class="notes">
-    Chiusura leggera per stemperare la parte più filosofica appena fatta e riportare tutto al tono ironico dell'inizio. Se c'è tempo per le domande, si può rilanciare la battuta: "fatemi pure domande difficili, tanto secondo Lorenz la mia risposta di oggi dipenderà in modo sensibile da quanto caffè ho bevuto stamattina".
+    <ul>
+      <li>Chiusura leggera, per stemperare la parte filosofica e tornare al tono ironico dell'inizio.</li>
+      <li>Se c'è tempo per le domande, rilanciare la battuta: "fatemi pure domande difficili, tanto secondo Lorenz la mia risposta di oggi dipenderà in modo sensibile da quanto caffè ho bevuto stamattina".</li>
+    </ul>
   </aside>
 </section>
 
