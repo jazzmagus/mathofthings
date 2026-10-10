@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il moto circolare uniforme — Secondo anno</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']],
+  },
+  svg: {fontCache: 'global'}
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<style>
+:root {
+  --bg: #faf7f2; --surface: #ffffff; --surface-alt: #f5f0e8;
+  --border: #e4ddd4; --border-light: #ece7de;
+  --text: #2c2520; --text-mid: #5a524a; --text-dim: #6e6760;
+  --accent: #3a6b8c; --accent-light: #e8f0f5;
+  --blue: #3a6b8c; --green: #4a7c59; --gold: #b8860b;
+  --danger: #b33a3a; --purple: #7a5197; --radius: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Georgia',serif; background:var(--bg); color:var(--text);
+  line-height:1.75; font-size:17px; opacity:0; transition:opacity .3s;
+}
+.topbar {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(250,247,242,.96); border-bottom:1px solid var(--border-light);
+  height:52px; display:flex; align-items:center; padding:0 clamp(16px,4vw,40px); gap:16px;
+}
+.topbar-brand { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; }
+.topbar-nav { display:flex; gap:2px; overflow-x:auto; flex:1; align-items:center; }
+.nav-pill {
+  background:none; border:none; font-family:'JetBrains Mono',monospace;
+  font-size:.78rem; color:var(--text-dim); padding:6px 11px;
+  cursor:pointer; white-space:nowrap; transition:all .2s; border-bottom:2px solid transparent;
+}
+.nav-pill:hover { color:var(--text); }
+.nav-pill.active { color:var(--accent); font-weight:600; border-bottom:2px solid var(--accent); }
+.nav-group {
+  font-family:'Fira Code',monospace; font-size:.62rem; color:var(--text-dim);
+  padding:0 8px; letter-spacing:1px; border-left:1px solid var(--border); margin-left:4px;
+  white-space:nowrap;
+}
+.nav-group:first-child { border-left:none; margin-left:0; }
+.topbar-home {
+  font-family:'JetBrains Mono',monospace; font-size:0.75rem;
+  color:var(--text-dim); text-decoration:none; white-space:nowrap;
+}
+.topbar-home:hover { color:var(--accent); }
+.container { max-width:780px; margin:0 auto; padding:84px clamp(20px,5vw,48px) 60px; }
+.section { display:none; animation:appear .4s ease; }
+.section.active { display:block; }
+@keyframes appear { from { opacity:0; transform:translateY(14px); } to { opacity:1; } }
+.hero { margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--border-light); }
+.part-label { font-family:'Fira Code',monospace; font-size:.68rem; text-transform:uppercase; color:var(--purple); letter-spacing:1.5px; margin-bottom:6px; font-weight:600; }
+.hero-tag { font-family:'Fira Code',monospace; font-size:.73rem; text-transform:uppercase; color:var(--accent); letter-spacing:1px; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:2.1rem; font-weight:800; margin:8px 0; }
+.hero h1 em { font-style:italic; color:var(--accent); }
+.hero-sub { font-size:1rem; color:var(--text-mid); line-height:1.7; }
+.cb { background:var(--surface-alt); padding:16px 0 16px 18px; margin:18px 0; border-left:3px solid var(--accent); }
+.cb-label { font-family:'Fira Code',monospace; font-size:.65rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; font-weight:600; color:var(--accent); }
+.cb.tip { border-left-color:var(--blue); } .cb.tip .cb-label { color:var(--blue); }
+.cb.warn { border-left-color:var(--gold); } .cb.warn .cb-label { color:var(--gold); }
+.cb.danger { border-left-color:var(--danger); } .cb.danger .cb-label { color:var(--danger); }
+.cb.success { border-left-color:var(--green); } .cb.success .cb-label { color:var(--green); }
+.cb.purple { border-left-color:var(--purple); } .cb.purple .cb-label { color:var(--purple); }
+.math-block { background:rgba(0,0,0,.02); padding:12px 16px; margin:10px 0; overflow-x:auto; }
+.math-block.hero-formula { background:var(--surface-alt); text-align:center; }
+.math-block.result { border-left:2px solid var(--green); background:rgba(74,124,89,.04); }
+.math-block.warning { border-left:2px solid var(--danger); background:rgba(179,58,58,.04); }
+p { margin:6px 0; }
+ul, ol { margin:8px 0 8px 20px; }
+li { margin:2px 0; }
+strong { font-weight:600; }
+h3 { margin:18px 0 8px; font-family:'Playfair Display',serif; font-size:1.15rem; }
+.dim { color:var(--text-dim); }
+.accordion { margin:16px 0; }
+.acc-item { border-bottom:1px solid rgba(0,0,0,.08); }
+.acc-item:last-child { border-bottom:none; }
+.acc-header { display:flex; align-items:center; gap:12px; padding:14px 0; cursor:pointer; user-select:none; }
+.acc-num { width:24px; height:24px; background:var(--accent); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.75rem; flex-shrink:0; font-family:'JetBrains Mono',monospace; }
+.acc-title { font-weight:600; font-size:.95rem; flex:1; color:var(--text); }
+.acc-arrow { width:16px; height:16px; color:var(--text-dim); transition:transform .3s; flex-shrink:0; }
+.acc-item.open .acc-arrow { transform:rotate(180deg); }
+.acc-body { max-height:0; overflow:hidden; transition:max-height .3s ease; }
+.acc-item.open .acc-body { max-height:8000px; }
+.acc-inner { padding:4px 0 16px 36px; }
+.ct { width:100%; border-collapse:collapse; margin:14px 0; font-size:.87rem; }
+.ct th { text-align:left; padding:10px 12px; font-weight:600; color:var(--accent); border-bottom:1px solid var(--border-light); font-size:.72rem; letter-spacing:.5px; text-transform:uppercase; font-family:'Fira Code',monospace; }
+.ct td { padding:9px 12px; border-bottom:1px solid var(--border-light); vertical-align:top; }
+.ct tr:last-child td { border-bottom:none; }
+.bottom-nav { display:flex; justify-content:space-between; margin-top:52px; padding-top:26px; border-top:1px solid var(--border-light); }
+.bb { font-family:'JetBrains Mono',monospace; font-size:.85rem; background:none; border:none; color:var(--text); cursor:pointer; }
+.bb:hover { color:var(--accent); text-decoration:underline; }
+.bb:disabled { opacity:.35; cursor:not-allowed; }
+.page-info { font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--text-dim); }
+mjx-container { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+.hero-img-wrap { margin:0 0 28px; border-radius:var(--radius); overflow:hidden; }
+.hero-img-wrap img { width:100%; display:block; }
+.newton-img-full { width:100%; display:block; border-radius:var(--radius); margin:0 18px 16px 0; }
+.newton-cols { column-count:2; column-gap:28px; font-size:.9rem; line-height:1.65; margin-right:18px; }
+.newton-cols p { margin:0 0 8px; text-align:justify; hyphens:auto; }
+.newton-cols p:first-of-type::first-letter { float:left; font-family:'Playfair Display',serif; font-weight:700; font-size:3.5em; line-height:.86; padding:4px 8px 0 0; margin-top:2px; color:var(--accent); }
+.newton-q { font-style:italic; font-size:.95rem; margin:2px 18px 12px 0; }
+.newton-caption { font-size:.78rem; margin:10px 18px 0 0; }
+svg.fig { width:100%; height:auto; display:block; margin:14px 0; }
+.fig text { font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--text-mid); }
+.fig text.big { font-size:14px; fill:var(--text); font-style:italic; font-family:'Georgia',serif; }
+.fig-cap { font-size:.8rem; color:var(--text-dim); margin:-6px 0 14px; }
+@media(max-width:640px) { body { font-size:16px; } .hero h1 { font-size:1.6rem; } .acc-inner { padding:4px 0 16px 14px; } .ct { font-size:.8rem; } .newton-cols { column-count:1; } }
+@media print {
+  body { font-size:15px; }
+  .topbar, .bottom-nav { display:none !important; }
+  .container { padding:20px 24px; max-width:100%; }
+  .section { display:block !important; page-break-after: always; }
+  .section:last-child { page-break-after: auto; }
+  .acc-body { max-height:none !important; }
+  .acc-arrow { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">Secondo anno · Moto circolare</div>
+  <div class="topbar-nav" id="topNav"></div>
+  <a href="/lezioni/moto-circolare-uniforme/moto-circolare-uniforme.pdf" class="topbar-home" target="_blank">PDF ↓</a>
+  <a href="/" class="topbar-home">← home</a>
+</div>
+<div class="container" id="app"></div>
+
+<script>
+function acc(items, off) {
+  off = off || 0;
+  return '<div class="accordion">' + items.map((it, i) =>
+    '<div class="acc-item">' +
+      '<div class="acc-header" onclick="toggleAcc(this)">' +
+        '<div class="acc-num">' + (i + 1 + off) + '</div>' +
+        '<div class="acc-title">' + it.t + '</div>' +
+        '<svg class="acc-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+      '</div>' +
+      '<div class="acc-body"><div class="acc-inner">' + it.h + '</div></div>' +
+    '</div>'
+  ).join('') + '</div>';
+}
+
+function toggleAcc(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+  if (item.classList.contains('open') && typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise([item]);
+  }
+}
+
+const R = String.raw;
+
+const SVG_MCU = R`<svg class="fig" viewBox="0 0 480 270" role="img" aria-label="Moto circolare uniforme: velocità tangente e accelerazione centripeta">
+  <defs>
+    <marker id="ah-v" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3a6b8c"/></marker>
+    <marker id="ah-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b33a3a"/></marker>
+  </defs>
+  <circle cx="170" cy="140" r="100" fill="none" stroke="#5a524a" stroke-width="1.3"/>
+  <circle cx="170" cy="140" r="3" fill="#2c2520"/>
+  <line x1="170" y1="140" x2="256.6" y2="90" stroke="#9a9189" stroke-width="1" stroke-dasharray="4 4"/>
+  <circle cx="256.6" cy="90" r="5.5" fill="#2c2520"/>
+  <line x1="256.6" y1="90" x2="226.6" y2="38" stroke="#3a6b8c" stroke-width="2.6" marker-end="url(#ah-v)"/>
+  <line x1="256.6" y1="90" x2="213.3" y2="115" stroke="#b33a3a" stroke-width="2.6" marker-end="url(#ah-a)"/>
+  <text x="170" y="160" text-anchor="middle">centro</text>
+  <text x="188" y="112" class="big">R</text>
+  <text x="236" y="30" style="fill:#3a6b8c;font-weight:600">v (tangente)</text>
+  <text x="268" y="134" style="fill:#b33a3a;font-weight:600">a_c (verso il centro)</text>
+  <path d="M 296 180 A 100 100 0 0 1 270 222" fill="none" stroke="#3a6b8c" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <text x="306" y="216" style="fill:#5a524a">moto antiorario</text>
+</svg>`;
+
+const SVG_RAD = R`<svg class="fig" viewBox="0 0 400 230" role="img" aria-label="Definizione di radiante: arco uguale al raggio">
+  <circle cx="140" cy="120" r="90" fill="none" stroke="#9a9189" stroke-width="1.2"/>
+  <line x1="140" y1="120" x2="230" y2="120" stroke="#2c2520" stroke-width="1.8"/>
+  <line x1="140" y1="120" x2="191.3" y2="46.6" stroke="#2c2520" stroke-width="1.8"/>
+  <path d="M 230 120 A 90 90 0 0 0 191.3 46.6" fill="none" stroke="#3a6b8c" stroke-width="4"/>
+  <path d="M 170 120 A 30 30 0 0 0 164.8 102.6" fill="none" stroke="#5a524a" stroke-width="1.4"/>
+  <circle cx="140" cy="120" r="3" fill="#2c2520"/>
+  <text x="182" y="138" class="big">R</text>
+  <text x="152" y="76" class="big" style="fill:#2c2520">R</text>
+  <text x="238" y="86" style="fill:#3a6b8c;font-weight:600">arco = R</text>
+  <text x="172" y="112" class="big">θ</text>
+  <text x="250" y="170" style="fill:#5a524a">θ = 1 rad</text>
+  <text x="250" y="188" style="fill:#5a524a">circa 57,3°</text>
+</svg>`;
+
+const SVG_DV = R`<svg class="fig" viewBox="0 0 560 230" role="img" aria-label="Variazione del vettore velocità tra due istanti: differenza di vettori">
+  <defs>
+    <marker id="dv1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3a6b8c"/></marker>
+    <marker id="dv2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#4a7c59"/></marker>
+    <marker id="dv3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b33a3a"/></marker>
+  </defs>
+  <line x1="90" y1="190" x2="200" y2="190" stroke="#3a6b8c" stroke-width="2.6" marker-end="url(#dv1)"/>
+  <line x1="90" y1="190" x2="90" y2="80" stroke="#4a7c59" stroke-width="2.6" marker-end="url(#dv2)"/>
+  <line x1="200" y1="190" x2="95" y2="85" stroke="#b33a3a" stroke-width="2.6" stroke-dasharray="6 3" marker-end="url(#dv3)"/>
+  <circle cx="90" cy="190" r="3.5" fill="#2c2520"/>
+  <text x="140" y="212" style="fill:#3a6b8c;font-weight:600">v₁</text>
+  <text x="62" y="140" style="fill:#4a7c59;font-weight:600">v₂</text>
+  <text x="176" y="158" style="fill:#b33a3a;font-weight:600">Δv = v₂ − v₁</text>
+  <text x="220" y="70" style="fill:#5a524a">Curva di 90°: v₁ e v₂ hanno lo stesso</text>
+  <text x="220" y="88" style="fill:#5a524a">modulo ma direzioni perpendicolari.</text>
+  <text x="220" y="116" style="fill:#5a524a">Per Pitagora: |Δv| = v·√2</text>
+</svg>`;
+
+const SVG_VR = R`<svg class="fig" viewBox="0 0 440 240" role="img" aria-label="Grafico della velocità tangenziale in funzione della distanza dal centro: una retta per l'origine">
+  <line x1="50" y1="200" x2="370" y2="200" stroke="#5a524a" stroke-width="1.3"/>
+  <line x1="50" y1="200" x2="50" y2="20" stroke="#5a524a" stroke-width="1.3"/>
+  <line x1="50" y1="200" x2="350" y2="40" stroke="#3a6b8c" stroke-width="2.4"/>
+  <g fill="#b33a3a">
+    <circle cx="110" cy="168" r="4"/><circle cx="170" cy="136" r="4"/><circle cx="230" cy="104" r="4"/><circle cx="290" cy="72" r="4"/><circle cx="350" cy="40" r="4"/>
+  </g>
+  <text x="372" y="204">R (m)</text>
+  <text x="56" y="16">v (m/s)</text>
+  <text x="104" y="216">0,1</text><text x="164" y="216">0,2</text><text x="224" y="216">0,3</text><text x="284" y="216">0,4</text><text x="344" y="216">0,5</text>
+  <text x="14" y="172">0,63</text><text x="14" y="44">3,14</text>
+  <text x="80" y="70" style="fill:#3a6b8c;font-weight:600">pendenza = ω = 6,28 rad/s</text>
+</svg>`;
+
+const S = [
+
+/* ---------- PARTE I ---------- */
+
+{
+  part:"Parte I — Descrivere il moto sul cerchio",
+  tag:"GIOSTRE, LAVATRICI E DISCHI IN VINILE",
+  title:"Un moto che <em>ritorna</em> su se stesso",
+  nav:"Periodo e frequenza",
+  body: R`
+    <p>Sali su una giostra, accendi la centrifuga della lavatrice, metti sul piatto un disco in vinile: sono tre situazioni molto diverse, ma hanno in comune una cosa sola. Il punto che stai guardando percorre sempre la <strong>stessa circonferenza</strong>, e dopo un certo tempo si ritrova esattamente dov'era, pronto a ricominciare. Per descrivere un moto così non ti serve una fisica nuova: ti servono due o tre grandezze scelte bene.</p>
+    <div class="cb"><div class="cb-label">Moto circolare uniforme</div><p>Un punto si muove di <strong>moto circolare uniforme</strong> quando la sua traiettoria è una circonferenza e la sua <strong>rapidità</strong> (il modulo della velocità) resta costante: in tempi uguali percorre archi uguali.</p></div>
+    <div class="cb tip"><div class="cb-label">Periodo e frequenza</div>
+      <ul style="margin-left:18px">
+        <li><strong>Periodo</strong> \(T\): il tempo che il punto impiega a compiere <em>un giro completo</em>. Si misura in secondi (s).</li>
+        <li><strong>Frequenza</strong> \(f\): quanti giri compie in <em>un secondo</em>. Si misura in hertz (Hz), cioè giri al secondo.</li>
+      </ul>
+      <div class="math-block hero-formula">\[ f = \frac{1}{T} \qquad\qquad T = \frac{1}{f} \]</div>
+      <p>Più il moto è lento, più il periodo è lungo e la frequenza è bassa: sono grandezze <strong>inversamente proporzionali</strong>.</p>
+    </div>
+    <div class="cb success"><div class="cb-label">Esempio: il disco in vinile</div><p>Un giradischi gira a 33 giri al minuto. Un minuto sono 60 secondi, quindi la frequenza è
+      \[ f = \frac{33}{60}\ \text{Hz} = 0{,}55\ \text{Hz} \]
+      e il periodo è \(T = 1/f \approx 1{,}82\) s: un giro ogni quasi due secondi, il tempo di una battuta di un blues lento.</p></div>
+    <div class="cb warn"><div class="cb-label">La trappola delle unità</div><p>I giri al minuto sono comodi nella vita (motori, dischi, lavatrici), ma <strong>non sono l'unità del Sistema Internazionale</strong>. Per passare da giri/min a Hz si divide per 60; per passare da Hz a giri/min si moltiplica per 60. Fallo <em>prima</em> di cominciare i calcoli, altrimenti i risultati saranno sbagliati di un fattore 60 senza che te ne accorga.</p></div>
+    ` + acc([
+      { t:"Esercizio — la ruota che gira", h:R`<p>Una ruota compie 120 giri al minuto. Calcola la frequenza in hertz e il periodo. <em>Traccia</em>: \(f = 120/60\); poi \(T = 1/f\).</p><p><strong>Risultato:</strong> \(f = 2\ \text{Hz}\), \(T = 0{,}5\) s.</p>` },
+      { t:"Esercizio — dal periodo ai giri al minuto", h:R`<p>Una pala di un frullatore compie un giro in \(T = 0{,}25\) s. Quanti giri compie al secondo e al minuto? <em>Traccia</em>: \(f = 1/T\); poi moltiplica per 60.</p><p><strong>Risultato:</strong> \(f = 4\ \text{Hz} = 240\) giri/min.</p>` },
+      { t:"Domanda concettuale — uniforme significa fermo?", h:R`<p>Un'auto percorre una rotatoria a 30 km/h costanti. Il suo moto è uniforme? Il suo vettore velocità è costante? <em>Traccia</em>: la <strong>rapidità</strong> è costante (il tachimetro non si muove), ma la <strong>direzione</strong> della velocità cambia in continuazione. Uniforme vuol dire "modulo costante", non "vettore costante": sulla seconda parte della risposta si regge tutta la Parte II.</p>` }
+    ])
+},
+
+{
+  part:"Parte I — Descrivere il moto sul cerchio",
+  tag:"PERCHÉ 360? NESSUNO LO SA, VA BENE ANCHE 2π",
+  title:"Gradi e <em>radianti</em>",
+  nav:"Radianti",
+  body: R`
+    <p>Per dire "quanto" un punto ha girato basta un angolo. Finora l'hai misurato in <strong>gradi</strong>, ma i gradi sono una scelta storica e un po' arbitraria (il 360 piaceva ai Babilonesi perché ha moltissimi divisori). In fisica serve un angolo che <em>parli la lingua delle lunghezze</em>, perché dobbiamo mettere in relazione quanto ruota un punto con quanta strada percorre. Quell'angolo è il <strong>radiante</strong>.</p>
+    ` + SVG_RAD + R`
+    <p class="fig-cap">Un radiante è l'angolo al centro che sottende un arco lungo quanto il raggio.</p>
+    <div class="cb"><div class="cb-label">Definizione di angolo in radianti</div>
+      <div class="math-block hero-formula">\[ \theta = \frac{\ell}{R} \]</div>
+      <p>dove \(\ell\) è la lunghezza dell'arco e \(R\) il raggio. È un rapporto tra due lunghezze: è un numero puro, l'unità "rad" è solo un'etichetta per ricordarci come lo abbiamo misurato. Per un giro intero l'arco è tutta la circonferenza, \(\ell = 2\pi R\), quindi \(\theta_{giro} = 2\pi\) rad.</p></div>
+    <div class="cb tip"><div class="cb-label">La proporzione per passare da un'unità all'altra</div>
+      <div class="math-block hero-formula">\[ \alpha_{gradi} : \alpha_{rad} = 360° : 2\pi \]</div>
+      <p>Da qui, con il prodotto dei medi e degli estremi, ricavi le due formule operative:</p>
+      \[ \alpha_{rad} = \alpha_{gradi}\cdot\frac{\pi}{180°} \qquad\qquad \alpha_{gradi} = \alpha_{rad}\cdot\frac{180°}{\pi} \]</div>
+    <table class="ct">
+      <tr><th>Gradi</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th><th>180°</th><th>270°</th><th>360°</th></tr>
+      <tr><td><strong>Radianti</strong></td><td>\(0\)</td><td>\(\pi/6\)</td><td>\(\pi/4\)</td><td>\(\pi/3\)</td><td>\(\pi/2\)</td><td>\(\pi\)</td><td>\(3\pi/2\)</td><td>\(2\pi\)</td></tr>
+    </table>
+    <div class="cb success"><div class="cb-label">Due conversioni svolte</div>
+      <p><strong>Da gradi a radianti.</strong> \(120° \to 120\cdot\dfrac{\pi}{180} = \dfrac{2\pi}{3}\) rad.</p>
+      <p><strong>Da radianti a gradi.</strong> \(\dfrac{3\pi}{4}\) rad \(\to \dfrac{3\pi}{4}\cdot\dfrac{180°}{\pi} = 135°\).</p></div>
+    <div class="cb warn"><div class="cb-label">Un trucco per non sbagliare</div><p>Ricorda la corrispondenza di base: <strong>\(\pi\) rad \(= 180°\)</strong>. Tutto il resto si ottiene da lì. Mezzo giro è \(\pi\), un quarto di giro \(\pi/2\), un ottavo di giro \(\pi/4\). Se il risultato di una conversione non rispetta queste proporzioni, c'è un errore.</p></div>
+    ` + acc([
+      { t:"Esercizio — da gradi a radianti", h:R`<p>Trasforma in radianti: \(72°\), \(135°\), \(225°\). <em>Traccia</em>: moltiplica per \(\pi/180\) e semplifica la frazione.</p><p><strong>Risultato:</strong> \(\dfrac{2\pi}{5}\); \(\dfrac{3\pi}{4}\); \(\dfrac{5\pi}{4}\).</p>` },
+      { t:"Esercizio — da radianti a gradi", h:R`<p>Trasforma in gradi: \(\dfrac{\pi}{5}\), \(\dfrac{5\pi}{6}\), \(\dfrac{7\pi}{6}\). <em>Traccia</em>: moltiplica per \(180°/\pi\): il \(\pi\) si semplifica.</p><p><strong>Risultato:</strong> \(36°\); \(150°\); \(210°\).</p>` },
+      { t:"Domanda concettuale — quanti gradi è 1 radiante?", h:R`<p>Dalla proporzione, \(\alpha_{gradi} = 1\cdot 180°/\pi \approx 57{,}3°\). Non è un valore "tondo" proprio perché il radiante nasce dal raggio e non da una convenzione sui giri. È il prezzo da pagare per avere formule poi molto più semplici.</p>` }
+    ])
+},
+
+{
+  part:"Parte I — Descrivere il moto sul cerchio",
+  tag:"DUE VELOCITÀ PER LO STESSO PUNTO",
+  title:"Velocità <em>angolare</em> e velocità tangenziale",
+  nav:"ω e v",
+  body: R`
+    <p>Un punto che gira ha due modi di "andare veloce". Può spazzare molti radianti in poco tempo (e allora gira in fretta), oppure percorrere molti metri in poco tempo (e allora sta correndo). Sono due grandezze diverse, legate dal raggio.</p>
+    <div class="cb"><div class="cb-label">Velocità angolare</div>
+      <p>È l'angolo spazzato nell'unità di tempo. Nel moto circolare uniforme è costante, e in un giro (\(\Delta\theta = 2\pi\), \(\Delta t = T\)) vale:</p>
+      <div class="math-block hero-formula">\[ \omega = \frac{\Delta\theta}{\Delta t} = \frac{2\pi}{T} = 2\pi f \]</div>
+      <p>Si misura in <strong>rad/s</strong>.</p></div>
+    <div class="cb"><div class="cb-label">Velocità tangenziale</div>
+      <p>È la rapidità con cui il punto percorre la circonferenza: in un giro percorre \(2\pi R\) in un tempo \(T\), quindi</p>
+      <div class="math-block hero-formula">\[ v = \frac{2\pi R}{T} = 2\pi R f \qquad\Longrightarrow\qquad v = \omega R \tag{1} \]</div>
+      <p>Si misura in <strong>m/s</strong>. La relazione \(v = \omega R\) è quella che userai di più in tutta la lezione.</p></div>
+    ` + SVG_MCU + R`
+    <p class="fig-cap">Il vettore velocità è tangente alla traiettoria; il vettore accelerazione, che incontreremo nella Parte II, punta verso il centro.</p>
+    <div class="cb danger"><div class="cb-label">Dove punta la velocità</div><p>La velocità tangenziale <strong>non punta verso il centro</strong>, né verso l'esterno: è sempre <strong>tangente</strong> alla circonferenza. Lo vedi quando una fionda lascia andare il sasso, o quando il lanciatore del martello molla la presa: l'oggetto parte dritto, lungo la tangente nel punto in cui si trovava.</p></div>
+    <div class="cb success"><div class="cb-label">Esempio: la pallina sulla corda</div>
+      <p>Una pallina ruota su una circonferenza di raggio \(R = 90\) cm compiendo un giro ogni 3 s. Il raggio va convertito in metri: \(R = 0{,}90\) m.</p>
+      \[ \omega = \frac{2\pi}{T} = \frac{2\pi}{3}\ \text{rad/s} \approx 2{,}09\ \text{rad/s} \qquad\qquad v = \omega R \approx 2{,}09\cdot 0{,}90 \approx 1{,}88\ \text{m/s} \]</div>
+    <div class="cb purple"><div class="cb-label">Stessa ω, velocità tangenziali diverse</div>
+      <p>Su una piattaforma che ruota a 60 giri/min (cioè \(f = 1\) Hz, \(\omega = 2\pi \approx 6{,}28\) rad/s), tutti i punti hanno la <strong>stessa velocità angolare</strong>, ma la velocità tangenziale dipende dalla distanza dal centro, perché \(v = \omega R\):</p>
+      <table class="ct">
+        <tr><th>R (m)</th><th>0,1</th><th>0,2</th><th>0,3</th><th>0,4</th><th>0,5</th></tr>
+        <tr><td><strong>v (m/s)</strong></td><td>0,63</td><td>1,26</td><td>1,88</td><td>2,51</td><td>3,14</td></tr>
+      </table>
+      <p>Raddoppiare la distanza dal centro raddoppia la velocità: il grafico di \(v\) in funzione di \(R\) è una <strong>retta per l'origine</strong>, con pendenza \(\omega\).</p></div>
+    ` + SVG_VR + R`
+    <p class="fig-cap">Velocità tangenziale in funzione della distanza dal centro, per \(\omega = 6{,}28\) rad/s.</p>
+    <p>Per questo, su una giostra, i cavallini più vicini al bordo corrono di più: fanno più strada nello stesso tempo, anche se tutti completano il giro insieme.</p>
+    ` + acc([
+      { t:"Esercizio — il rotore", h:R`<p>Il bordo di un rotore di raggio \(R = 25\) cm ha una velocità di 20 m/s. Calcola la velocità angolare, la frequenza e il periodo. <em>Traccia</em>: da \(v = \omega R\) ricava \(\omega\); poi \(f = \omega/2\pi\) e \(T = 1/f\).</p><p><strong>Risultato:</strong> \(\omega = 80\) rad/s; \(f \approx 12{,}7\) Hz; \(T \approx 0{,}0785\) s.</p>` },
+      { t:"Esercizio — la ruota di raggio 30 cm", h:R`<p>Una ruota di raggio \(R = 30\) cm compie 4 giri al secondo. Calcola \(\omega\) e la velocità di un punto del bordo. <em>Traccia</em>: \(\omega = 2\pi f\), poi \(v = \omega R\).</p><p><strong>Risultato:</strong> \(\omega \approx 25{,}1\) rad/s; \(v \approx 7{,}54\) m/s.</p>` },
+      { t:"Domanda concettuale — chi corre di più?", h:R`<p>Sulla Terra, una persona a Bassano del Grappa e una persona a Quito (sull'equatore) hanno la stessa velocità angolare? E la stessa velocità tangenziale? <em>Traccia</em>: la stessa \(\omega\) (la Terra gira rigida, un giro in 24 h per tutti); ma la velocità tangenziale dipende dalla distanza dall'<strong>asse</strong> di rotazione, che all'equatore è massima e ai poli è zero.</p>` }
+    ])
+},
+
+/* ---------- PARTE II ---------- */
+
+{
+  part:"Parte II — Il moto uniforme che accelera",
+  tag:"IL TACHIMETRO È FERMO, EPPURE SENTI QUALCOSA CHE TI SPINGE",
+  title:"Se la direzione cambia, la velocità <em>cambia</em>",
+  nav:"Δv",
+  body: R`
+    <p>Sei in auto su una rotatoria, il tachimetro segna 30 km/h e non si muove. Eppure sei spinto contro la portiera. Se il moto fosse davvero "senza novità", non sentiresti niente. Dove sta il trucco? Nel fatto che la velocità è un <strong>vettore</strong>: ha modulo, direzione e verso, e basta che uno solo dei tre cambi perché la velocità cambi.</p>
+    <div class="cb"><div class="cb-label">Accelerazione e variazione di velocità</div>
+      <p>L'accelerazione media è la variazione del <em>vettore</em> velocità divisa per il tempo:</p>
+      <div class="math-block hero-formula">\[ \vec a = \frac{\Delta\vec v}{\Delta t} = \frac{\vec v_2 - \vec v_1}{\Delta t} \]</div>
+      <p>Nel moto circolare uniforme \(\vec v_1\) e \(\vec v_2\) hanno lo stesso modulo, ma <strong>direzioni diverse</strong>. La differenza non è zero: quindi c'è un'accelerazione, anche se il modulo della velocità non varia mai.</p></div>
+    <div class="cb tip"><div class="cb-label">Come si fa la differenza di due vettori</div>
+      <p>Si disegnano \(\vec v_1\) e \(\vec v_2\) con la stessa origine. Il vettore \(\Delta\vec v = \vec v_2 - \vec v_1\) è la freccia che va dalla <em>punta</em> di \(\vec v_1\) alla <em>punta</em> di \(\vec v_2\).</p></div>
+    ` + SVG_DV + R`
+    <div class="cb success"><div class="cb-label">Due casi da conoscere a memoria</div>
+      <ul style="margin-left:18px">
+        <li><strong>Curva di 90°.</strong> \(\vec v_1\) e \(\vec v_2\) sono perpendicolari, \(|\Delta\vec v|\) è la diagonale di un quadrato di lato \(v\): \(|\Delta\vec v| = v\sqrt 2\).</li>
+        <li><strong>Curva di 180°.</strong> \(\vec v_2 = -\vec v_1\): \(|\Delta\vec v| = 2v\).</li>
+      </ul>
+      <p>Esempio: a \(v = 10\) m/s, una curva di 90° produce \(|\Delta\vec v| \approx 14{,}1\) m/s, una di 180° produce 20 m/s, <strong>senza che la rapidità sia cambiata di un briciolo</strong>.</p></div>
+    <div class="cb purple"><div class="cb-label">Dove punta Δv</div><p>Se disegni \(\Delta\vec v\) tra due istanti molto vicini, vedi che punta <strong>verso l'interno della curva</strong>, cioè verso il centro della circonferenza. L'accelerazione ha la stessa direzione di \(\Delta\vec v\): anche lei punta al centro. È per questo che si chiama <em>centripeta</em> ("che cerca il centro").</p></div>
+    ` + acc([
+      { t:"Esercizio — lo slittino", h:R`<p>Uno slittino percorre una curva di 90° con velocità costante di 20 m/s. Quanto vale \(|\Delta\vec v|\) tra l'ingresso e l'uscita? E in una curva a U di 180°? <em>Traccia</em>: 90° \(\Rightarrow v\sqrt2\); 180° \(\Rightarrow 2v\).</p><p><strong>Risultato:</strong> \(|\Delta\vec v| \approx 28{,}3\) m/s; \(|\Delta\vec v| = 40\) m/s.</p>` },
+      { t:"Domanda concettuale — la rapidità non basta", h:R`<p>Può un corpo avere accelerazione nulla e muoversi su una circonferenza? <em>Traccia</em>: no. Se l'accelerazione fosse nulla, per il primo principio il corpo procederebbe in <strong>linea retta</strong>. Curvare richiede sempre un'accelerazione, ed è proprio la sua direzione (al centro) a tenerlo sulla curva.</p>` }
+    ])
+},
+
+{
+  part:"Parte II — Il moto uniforme che accelera",
+  tag:"UNA FORMULA, DUE VOLTI",
+  title:"L'accelerazione <em>centripeta</em>",
+  nav:"a centripeta",
+  body: R`
+    <p>Sappiamo che l'accelerazione c'è e che punta al centro. Ci manca il valore. Si può ricavare con un ragionamento geometrico che richiede soltanto due triangoli e un po' di pazienza.</p>
+    <div class="cb"><div class="cb-label">L'accelerazione centripeta</div>
+      <div class="math-block hero-formula">\[ a_c = \frac{v^2}{R} = \omega^2 R \tag{2} \]</div>
+      <p>La direzione è quella del raggio, il verso è verso il centro, il modulo è costante nel moto circolare uniforme (ma il <em>vettore</em> cambia direzione di istante in istante). Si misura in m/s².</p></div>
+    <div class="cb purple"><div class="cb-label">Da dove viene (per chi vuole il ragionamento)</div>
+      <p>In un piccolo intervallo \(\Delta t\), il punto spazza un angolo \(\Delta\theta = \omega\,\Delta t\). In quel tempo, la velocità ruota dello <em>stesso</em> angolo \(\Delta\theta\). Il triangolo formato da \(\vec v_1\), \(\vec v_2\) e \(\Delta\vec v\) è isoscele, con angolo al vertice \(\Delta\theta\) e lati uguali di lunghezza \(v\). Se \(\Delta\theta\) è piccolo, il lato \(\Delta v\) è quasi un arco di raggio \(v\), quindi</p>
+      \[ |\Delta\vec v| \approx v\,\Delta\theta \quad\Longrightarrow\quad a_c = \frac{|\Delta\vec v|}{\Delta t} = \frac{v\,\Delta\theta}{\Delta t} = v\,\omega \]
+      <p>Con \(v = \omega R\) si ottiene \(a_c = \omega^2 R\), e con \(\omega = v/R\) si ottiene \(a_c = v^2/R\). Sono la stessa cosa scritta in due modi.</p></div>
+    <div class="cb tip"><div class="cb-label">Che cosa dice la formula</div>
+      <ul style="margin-left:18px">
+        <li><strong>Se raddoppi la velocità</strong> (a raggio fisso), l'accelerazione diventa <strong>quattro volte</strong> più grande: \(a_c \propto v^2\).</li>
+        <li><strong>Se dimezzi il raggio</strong> (a velocità fissa), l'accelerazione <strong>raddoppia</strong>: curve strette, accelerazioni grandi.</li>
+        <li>Se la velocità angolare è fissa, \(a_c \propto R\): i punti più lontani dall'asse accelerano di più.</li>
+      </ul></div>
+    <div class="cb success"><div class="cb-label">Esempio: una curva d'autostrada</div>
+      <p>Un'auto percorre una curva di raggio \(R = 300\) m a 108 km/h. Prima converti: \(108\ \text{km/h} = 30\ \text{m/s}\). Poi</p>
+      \[ a_c = \frac{v^2}{R} = \frac{30^2}{300} = 3\ \text{m/s}^2 \]
+      <p>circa un terzo dell'accelerazione di gravità: è quella "spinta laterale" che senti sul sedile.</p></div>
+    <div class="cb danger"><div class="cb-label">E la forza centrifuga?</div><p>Nel moto circolare uniforme non agisce nessuna forza "verso l'esterno" sul corpo. Il motivo per cui sei spinto contro la portiera è l'<strong>inerzia</strong> (primo principio): il tuo corpo vorrebbe proseguire dritto, lungo la tangente, ed è l'auto che con la portiera lo costringe a curvare. La forza che davvero agisce su di te è quella che la portiera esercita <em>verso il centro</em>: la <strong>forza centripeta</strong>, che per il secondo principio vale \(F = m a_c\).</p></div>
+    ` + acc([
+      { t:"Esercizio — dati v e R", h:R`<p>Un punto percorre una circonferenza di raggio \(R = 2\) m con velocità \(v = 4\) m/s. Calcola l'accelerazione centripeta e il tempo che impiega a percorrere un quarto di giro. <em>Traccia</em>: \(a_c = v^2/R\); l'arco di un quarto di circonferenza è \(\ell = \tfrac{1}{4}\cdot 2\pi R = \pi R/2\) e \(\Delta t = \ell/v\).</p><p><strong>Risultato:</strong> \(a_c = 8\ \text{m/s}^2\); \(\Delta t = \pi/4 \approx 0{,}79\) s.</p>` },
+      { t:"Esercizio — dato a e R", h:R`<p>Un punto su una circonferenza di raggio \(R = 0{,}5\) m ha un'accelerazione centripeta di 20 m/s². Quanto vale la velocità tangenziale? <em>Traccia</em>: da \(a_c = v^2/R\) ricava \(v = \sqrt{a_c R}\).</p><p><strong>Risultato:</strong> \(v = \sqrt{10} \approx 3{,}16\) m/s.</p>` },
+      { t:"Domanda concettuale — raggi e velocità", h:R`<p>Due auto percorrono due curve con la stessa accelerazione centripeta. Una curva ha raggio quadruplo dell'altra. Che rapporto c'è tra le velocità? <em>Traccia</em>: \(v = \sqrt{a_c R}\), quindi a \(a_c\) fissa \(v \propto \sqrt R\): raggio quadruplo, velocità <strong>doppia</strong>.</p>` }
+    ])
+},
+
+{
+  part:"Parte II — Il moto uniforme che accelera",
+  tag:"UN METODO, E POI NON SI SBAGLIA PIÙ",
+  title:"La mappa delle <em>formule</em>",
+  nav:"Il metodo",
+  body: R`
+    <p>Finora hai incontrato cinque grandezze: \(T\), \(f\), \(\omega\), \(v\), \(a_c\), più il raggio \(R\). Sembra una giungla di formule, in realtà sono tutte collegate in modo semplice, e il segreto è avere un'unica "stazione centrale" da cui passare: la <strong>velocità angolare</strong> \(\omega\).</p>
+    <div class="cb"><div class="cb-label">La mappa</div>
+      <table class="ct">
+        <tr><th>Parto da…</th><th>Per trovare ω</th></tr>
+        <tr><td>il periodo \(T\)</td><td>\(\omega = \dfrac{2\pi}{T}\)</td></tr>
+        <tr><td>la frequenza \(f\)</td><td>\(\omega = 2\pi f\)</td></tr>
+        <tr><td>la velocità \(v\) e il raggio \(R\)</td><td>\(\omega = \dfrac{v}{R}\)</td></tr>
+        <tr><td>l'accelerazione \(a_c\) e il raggio \(R\)</td><td>\(\omega = \sqrt{\dfrac{a_c}{R}}\)</td></tr>
+      </table>
+      <p>Una volta trovata \(\omega\), tutto il resto è in discesa: \(v = \omega R\), \(a_c = \omega^2 R\), \(f = \omega/2\pi\), \(T = 2\pi/\omega\).</p></div>
+    <div class="cb warn"><div class="cb-label">Il metodo in quattro passi</div>
+      <ol style="margin-left:18px">
+        <li><strong>Unità SI.</strong> cm \(\to\) m; giri/min \(\to\) Hz (dividi per 60); km/h \(\to\) m/s (dividi per 3,6).</li>
+        <li><strong>Raggio, non diametro.</strong> Se il testo dà il diametro, dividi per 2.</li>
+        <li><strong>Trova \(\omega\)</strong>, la stazione centrale.</li>
+        <li><strong>Scegli la formula</strong> per ciò che chiede il problema e controlla che il risultato sia sensato (l'ordine di grandezza, le unità).</li>
+      </ol></div>
+    <div class="cb success"><div class="cb-label">Esempio svolto: la centrifuga della lavatrice</div>
+      <p>Il cestello ha diametro 50 cm e ruota a 900 giri/min. Calcola velocità tangenziale e accelerazione centripeta di un punto sul bordo.</p>
+      <p><strong>1. Unità.</strong> \(f = 900/60 = 15\) Hz; \(R = 0{,}50/2 = 0{,}25\) m.</p>
+      <p><strong>2. Stazione centrale.</strong> \(\omega = 2\pi f = 2\pi\cdot 15 \approx 94{,}2\) rad/s.</p>
+      <p><strong>3. Risultati.</strong></p>
+      \[ v = \omega R \approx 94{,}2\cdot 0{,}25 \approx 23{,}6\ \text{m/s} \qquad a_c = \omega^2 R \approx 94{,}2^2\cdot 0{,}25 \approx 2{,}2\cdot 10^3\ \text{m/s}^2 \]
+      <p>L'accelerazione è circa 226 volte quella di gravità: è proprio ciò che strizza i panni.</p></div>
+    <div class="cb success"><div class="cb-label">Esempio svolto: parto dall'accelerazione</div>
+      <p>Un punto sul bordo di una puleggia di diametro 20 cm ha accelerazione centripeta \(a_c = 50\ \text{m/s}^2\). Quanti giri al minuto compie la puleggia?</p>
+      <p><strong>1. Unità.</strong> \(R = 0{,}10\) m.</p>
+      <p><strong>2. Stazione centrale.</strong> \(\omega = \sqrt{a_c/R} = \sqrt{500} \approx 22{,}4\) rad/s.</p>
+      <p><strong>3. Risultati.</strong> \(v = \omega R \approx 2{,}24\) m/s; \(f = \omega/2\pi \approx 3{,}56\) Hz, cioè \(3{,}56 \cdot 60 \approx 214\) giri/min.</p></div>
+    ` + acc([
+      { t:"Esercizio — la sega circolare", h:R`<p>La lama di una sega circolare ha diametro 20 cm e ruota a 3000 giri/min. Calcola velocità tangenziale e accelerazione centripeta dei denti. <em>Traccia</em>: \(f = 3000/60 = 50\) Hz; \(R = 0{,}10\) m; poi \(\omega = 2\pi f\).</p><p><strong>Risultato:</strong> \(\omega \approx 314\) rad/s; \(v \approx 31{,}4\) m/s; \(a_c \approx 9{,}9\cdot 10^3\ \text{m/s}^2\) (circa 1000 volte \(g\)).</p>` },
+      { t:"Esercizio — la centrifuga di laboratorio", h:R`<p>Una provetta, a 0,20 m dall'asse di una centrifuga, subisce un'accelerazione centripeta di 500 m/s². Calcola velocità, frequenza e giri al minuto. <em>Traccia</em>: \(\omega = \sqrt{a_c/R}\).</p><p><strong>Risultato:</strong> \(\omega = 50\) rad/s; \(v = 10\) m/s; \(f \approx 7{,}96\) Hz \(\approx 477\) giri/min.</p>` },
+      { t:"Domanda concettuale — qual è l'errore più frequente?", h:R`<p>Dimenticarsi di convertire giri/min in Hz e usare direttamente i giri al minuto come se fossero giri al secondo. Il risultato è fuori di un fattore 60 (o di \(60^2\) per l'accelerazione, che dipende dal quadrato). Se la velocità della lavatrice ti viene di 1400 m/s, rileggi il testo.</p>` }
+    ])
+},
+
+/* ---------- PARTE III ---------- */
+
+{
+  part:"Parte III — Dalla lavatrice alla Luna",
+  tag:"IL PUNTO CHE NON SCIVOLA",
+  title:"Ruote e <em>cinghie</em>",
+  nav:"Ruote e cinghie",
+  body: R`
+    <p>Due situazioni quotidianissime nascondono lo stesso trucco: una bicicletta che avanza e una cinghia che collega due pulegge. In entrambe c'è un'uguaglianza tra velocità che trasforma un problema "difficile" in una sola equazione.</p>
+    <div class="cb"><div class="cb-label">La bicicletta: la ruota che non scivola</div>
+      <p>Se la ruota rotola <em>senza strisciare</em>, il punto del bordo che tocca terra è fermo rispetto al terreno, e la ruota "srotola" sul suolo una lunghezza pari all'arco percorso. Visto dal telaio della bici, un punto del bordo ha velocità tangenziale
+      \[ v_{bordo} = v_{bici} \]
+      Per questo il contachilometri di una bici, che conta solo i giri della ruota, riesce a misurare la velocità.</p></div>
+    <div class="cb success"><div class="cb-label">Esempio svolto: la bici a 18 km/h</div>
+      <p>Una bici procede a 18 km/h, con ruote di diametro 70 cm. Prima le unità: \(v = 18/3{,}6 = 5\) m/s; \(R = 0{,}35\) m.</p>
+      \[ \omega = \frac{v}{R} = \frac{5}{0{,}35} \approx 14{,}3\ \text{rad/s} \qquad f = \frac{\omega}{2\pi} \approx 2{,}27\ \text{Hz} \approx 136\ \text{giri/min} \]
+      \[ T = \frac{1}{f} \approx 0{,}44\ \text{s} \qquad a_c = \frac{v^2}{R} = \frac{25}{0{,}35} \approx 71{,}4\ \text{m/s}^2 \]
+      <p>Un punto sul copertone subisce quindi un'accelerazione di oltre sette \(g\), a una velocità che definiresti "tranquilla".</p></div>
+    <div class="cb"><div class="cb-label">La cinghia di trasmissione</div>
+      <p>Due ruote collegate da una cinghia che non scivola: ogni punto della cinghia ha la stessa velocità, e quindi <strong>le due ruote hanno la stessa velocità tangenziale sul bordo</strong>:</p>
+      <div class="math-block hero-formula">\[ v_1 = v_2 \quad\Longrightarrow\quad \omega_1 R_1 = \omega_2 R_2 \quad\Longrightarrow\quad f_1 R_1 = f_2 R_2 \]</div>
+      <p>La ruota più piccola gira <strong>più in fretta</strong>: frequenza e raggio sono inversamente proporzionali. È il principio del cambio della bicicletta.</p></div>
+    <div class="cb success"><div class="cb-label">Esempio svolto: motore e ventola</div>
+      <p>Un motore con puleggia di diametro 8 cm gira a 1800 giri/min e, tramite una cinghia, aziona una ventola con puleggia di diametro 24 cm. Con \(f_1 = 30\) Hz, \(R_1 = 4\) cm e \(R_2 = 12\) cm:</p>
+      \[ f_2 = f_1\,\frac{R_1}{R_2} = 30\cdot\frac{4}{12} = 10\ \text{Hz} = 600\ \text{giri/min} \]
+      <p>La velocità della cinghia è \(v = 2\pi f_1 R_1 = 2\pi\cdot 30\cdot 0{,}04 \approx 7{,}54\) m/s. La ruota tre volte più grande gira tre volte più piano.</p></div>
+    ` + acc([
+      { t:"Esercizio — la ruota dell'auto", h:R`<p>Un'auto procede a 90 km/h con ruote di diametro 60 cm. Quanti giri al minuto compie ciascuna ruota? <em>Traccia</em>: \(v = 25\) m/s; \(R = 0{,}30\) m; \(\omega = v/R\); poi \(f = \omega/2\pi\) e moltiplica per 60.</p><p><strong>Risultato:</strong> \(\omega \approx 83{,}3\) rad/s; \(f \approx 13{,}3\) Hz \(\approx 796\) giri/min.</p>` },
+      { t:"Esercizio — due pulegge", h:R`<p>Due ruote collegate da una cinghia hanno diametro 10 cm e 30 cm. La più piccola compie 300 giri. Quanti giri compie la più grande? <em>Traccia</em>: le velocità tangenziali sono uguali, quindi i giri compiuti nello stesso tempo stanno nel rapporto inverso dei raggi.</p><p><strong>Risultato:</strong> \(300\cdot\dfrac{10}{30} = 100\) giri.</p>` },
+      { t:"Domanda concettuale — cambio della bici", h:R`<p>Salendo di marcia in una bici si passa a una corona anteriore più grande o a un pignone posteriore più piccolo. Perché a parità di pedalata la bici va più veloce? <em>Traccia</em>: il rapporto \(R_{corona}/R_{pignone}\) aumenta, quindi per ogni giro dei pedali il pignone (e la ruota) compie più giri: stessa \(\omega\) dei pedali, ma più \(\omega\) alla ruota.</p>` }
+    ])
+},
+
+{
+  part:"Parte III — Dalla lavatrice alla Luna",
+  tag:"LA STESSA FORMULA CHE RIGIRA IL BUCATO FA GIRARE LA LUNA",
+  title:"Terra, Luna e <em>satelliti</em>",
+  nav:"Il cielo",
+  body: R`
+    <p>Non serve cambiare formula per salire dal cestello della lavatrice al cielo: la fisica del moto circolare vale uguale. Cambiano solo le scale, e con loro i numeri, che diventano giganteschi o minuscoli. Una raccomandazione pratica: lavora in notazione scientifica e controlla sempre l'ordine di grandezza.</p>
+    <div class="cb success"><div class="cb-label">Un punto dell'equatore</div>
+      <p>La Terra compie un giro in 24 h attorno al suo asse, \(R_T = 6{,}4\cdot 10^6\) m. Un punto dell'equatore percorre una circonferenza di raggio \(R_T\) in \(T = 86400\) s:</p>
+      \[ v = \frac{2\pi R_T}{T} = \frac{2\pi\cdot 6{,}4\cdot 10^6}{86400} \approx 465\ \text{m/s} \approx 1675\ \text{km/h} \]
+      \[ a_c = \frac{v^2}{R_T} \approx \frac{465^2}{6{,}4\cdot 10^6} \approx 3{,}4\cdot 10^{-2}\ \text{m/s}^2 \]
+      <p>Giriamo a più di 1600 km/h e non ce ne accorgiamo: l'accelerazione centripeta è circa lo 0,35% di \(g\), troppo piccola per sentirla (ma abbastanza per rendere il peso all'equatore un filo più leggero che ai poli).</p></div>
+    <div class="cb"><div class="cb-label">La Luna e la mela, un secolo dopo</div>
+      <p>La Luna orbita in un'orbita quasi circolare di raggio pari a 60 raggi terrestri, \(R = 60\cdot 6{,}4\cdot 10^6 = 3{,}84\cdot 10^8\) m, con periodo di 27,3 giorni (\(T = 2{,}36\cdot 10^6\) s).</p>
+      \[ v = \frac{2\pi R}{T} \approx 1{,}02\cdot 10^3\ \text{m/s} \qquad a_c = \frac{v^2}{R} \approx 2{,}72\cdot 10^{-3}\ \text{m/s}^2 \]
+      <p>Un dettaglio che farebbe sorridere Newton: \(g/60^2 = 9{,}8/3600 \approx 2{,}72\cdot 10^{-3}\ \text{m/s}^2\). L'accelerazione della Luna è esattamente quella della mela, ridotta di un fattore \(60^2\) perché la Luna è 60 volte più lontana dal centro della Terra. È il confronto che lo convinse che la gravità è una forza che decresce con il <strong>quadrato</strong> della distanza (la storia completa è nella lezione sulla gravitazione universale).</p></div>
+    <div class="cb purple"><div class="cb-label">La Stazione Spaziale Internazionale</div>
+      <p>La ISS orbita a circa 400 km di quota, quindi a \(R = 6{,}38\cdot 10^6 + 4{,}0\cdot 10^5 \approx 6{,}78\cdot 10^6\) m, con periodo di 92,7 min (\(T = 5562\) s).</p>
+      \[ \omega = \frac{2\pi}{T} \approx 1{,}13\cdot 10^{-3}\ \text{rad/s} \qquad v = \omega R \approx 7{,}66\cdot 10^3\ \text{m/s} \qquad a_c = \omega^2 R \approx 8{,}65\ \text{m/s}^2 \]
+      <p>L'accelerazione è circa l'88% di \(g\): a quella quota la gravità non è "quasi nulla", è quasi quella a terra. Gli astronauti sono senza peso perché sono in <strong>caduta libera continua</strong> attorno alla Terra, esattamente come in un ascensore col cavo spezzato, ma con una velocità tangente così grande che il suolo, curvando, "scappa" sempre davanti a loro.</p></div>
+    ` + acc([
+      { t:"Esercizio — un satellite da dati angolari", h:R`<p>Un satellite ha velocità angolare \(\omega = 5{,}5\cdot 10^{-4}\) rad/s e accelerazione centripeta \(a_c = 4{,}84\ \text{m/s}^2\). Calcola il raggio dell'orbita e la velocità. <em>Traccia</em>: da \(a_c = \omega^2 R\) ricava \(R = a_c/\omega^2\); poi \(v = \omega R\).</p><p><strong>Risultato:</strong> \(R \approx 1{,}6\cdot 10^7\) m (circa 2,5 raggi terrestri); \(v \approx 8{,}8\cdot 10^3\) m/s.</p>` },
+      { t:"Esercizio — la Luna in un anno", h:R`<p>Quante rivoluzioni compie la Luna in un anno di 365 giorni, se un giro dura 27,3 giorni? <em>Traccia</em>: dividi 365 per 27,3.</p><p><strong>Risultato:</strong> circa 13,4 rivoluzioni (ed è per questo che ci sono, più o meno, tredici lune piene l'anno, non dodici).</p>` },
+      { t:"Per chi vuole andare oltre", h:R`<p>Un satellite <strong>geostazionario</strong> resta sempre sopra lo stesso punto dell'equatore: significa che ha lo stesso periodo di rotazione della Terra (\(T \approx 86164\) s). Con un raggio orbitale di \(4{,}22\cdot 10^7\) m, calcola velocità e accelerazione centripeta: ottieni \(v \approx 3{,}08\cdot 10^3\) m/s e \(a_c \approx 0{,}22\ \text{m/s}^2\). Più è alta l'orbita, più è lenta e meno accelera.</p>` }
+    ])
+},
+
+{
+  part:"Parte III — Dalla lavatrice alla Luna",
+  tag:"SE RIESCI A RISOLVERLI SENZA GUARDARE, HAI FINITO",
+  title:"Il <em>banco di prova</em>",
+  nav:"Esercizi",
+  body: R`
+    <p>Ultima tappa: una serie di problemi in ordine di difficoltà crescente. Per ciascuno prova prima da solo, scrivendo i passaggi (dati in unità SI, \(\omega\), formula, controllo), e solo dopo apri la soluzione. L'obiettivo è che alla fine tu riesca a risolvere qualunque problema di questo tipo senza aiuto: se un esercizio ti blocca, torna alla sezione corrispondente.</p>
+    <h3>Livello base: conversioni e definizioni</h3>
+    ` + acc([
+      { t:"Conversioni di angoli", h:R`<p>(a) Trasforma in radianti: \(30°\), \(45°\), \(60°\). (b) Trasforma in gradi: \(\dfrac{\pi}{2}\), \(\dfrac{\pi}{5}\), \(\dfrac{2\pi}{3}\).</p><p><strong>Risultato:</strong> (a) \(\dfrac{\pi}{6}\); \(\dfrac{\pi}{4}\); \(\dfrac{\pi}{3}\). (b) \(90°\); \(36°\); \(120°\).</p>` },
+      { t:"Il disco a 45 giri", h:R`<p>Un disco ruota a 45 giri/min. Calcola frequenza e periodo.</p><p><strong>Risultato:</strong> \(f = 0{,}75\) Hz; \(T \approx 1{,}33\) s.</p>` },
+      { t:"Una ruota di raggio 30 cm", h:R`<p>Una ruota di raggio 30 cm compie 4 giri al secondo. Calcola \(\omega\) e \(v\) di un punto del bordo.</p><p><strong>Risultato:</strong> \(\omega \approx 25{,}1\) rad/s; \(v \approx 7{,}54\) m/s.</p>` }
+    ]) + R`
+    <h3>Livello guidato: più grandezze insieme</h3>
+    ` + acc([
+      { t:"La giostra", h:R`<p>Una giostra compie un giro in 5 s. Due cavallini sono a 2 m e a 4 m dal centro. Calcola, per ciascuno, velocità tangenziale e accelerazione centripeta; confronta le velocità angolari. <em>Traccia</em>: \(\omega\) è la stessa per entrambi.</p><p><strong>Risultato:</strong> \(\omega \approx 1{,}26\) rad/s per entrambi; \(v_1 \approx 2{,}51\) m/s e \(a_1 \approx 3{,}16\ \text{m/s}^2\); \(v_2 \approx 5{,}03\) m/s e \(a_2 \approx 6{,}32\ \text{m/s}^2\). Il cavallino esterno ha velocità e accelerazione doppie.</p>` },
+      { t:"La sega circolare", h:R`<p>Una lama circolare di diametro 20 cm ruota a 3000 giri/min. Calcola \(v\) e \(a_c\) dei denti, e confronta \(a_c\) con \(g\).</p><p><strong>Risultato:</strong> \(v \approx 31{,}4\) m/s; \(a_c \approx 9{,}9\cdot 10^3\ \text{m/s}^2\), cioè circa \(1000\,g\).</p>` },
+      { t:"La curva", h:R`<p>Un'auto percorre una curva di raggio 50 m a 72 km/h. (a) Calcola \(a_c\) e \(\omega\). (b) Quanto tempo impiega a percorrere un quarto di giro? (c) Quanto vale \(|\Delta\vec v|\) tra ingresso e uscita di quel tratto? <em>Traccia</em>: \(v = 20\) m/s; per (b) \(\Delta t = (\pi R/2)/v\); per (c) il caso di 90°.</p><p><strong>Risultato:</strong> (a) \(a_c = 8\ \text{m/s}^2\); \(\omega = 0{,}4\) rad/s. (b) \(\Delta t \approx 3{,}93\) s. (c) \(|\Delta\vec v| = 20\sqrt 2 \approx 28{,}3\) m/s.</p>` }
+    ], 3) + R`
+    <h3>Livello completo: dati "al contrario"</h3>
+    ` + acc([
+      { t:"La centrifuga", h:R`<p>Un punto a 0,20 m dall'asse di una centrifuga ha accelerazione centripeta 500 m/s². Calcola \(v\) e i giri al minuto.</p><p><strong>Risultato:</strong> \(\omega = 50\) rad/s; \(v = 10\) m/s; circa 477 giri/min.</p>` },
+      { t:"La bici in città", h:R`<p>Una bici viaggia a 36 km/h con ruote di diametro 66 cm. Calcola giri al minuto, periodo di rotazione e accelerazione centripeta di un punto del copertone. <em>Traccia</em>: \(v = 10\) m/s; \(R = 0{,}33\) m.</p><p><strong>Risultato:</strong> \(\omega \approx 30{,}3\) rad/s; \(f \approx 4{,}82\) Hz \(\approx 289\) giri/min; \(T \approx 0{,}207\) s; \(a_c \approx 303\ \text{m/s}^2\).</p>` },
+      { t:"Motore e ventola", h:R`<p>Un motore con puleggia di diametro 8 cm gira a 1800 giri/min e muove, con una cinghia, una puleggia di diametro 24 cm. Calcola la frequenza della seconda e la velocità della cinghia.</p><p><strong>Risultato:</strong> \(f_2 = 10\) Hz \(= 600\) giri/min; \(v \approx 7{,}54\) m/s.</p>` }
+    ], 6) + R`
+    <h3>Livello contestualizzato: pianeti e satelliti</h3>
+    ` + acc([
+      { t:"Un punto dell'equatore di Marte", h:R`<p>Marte ha raggio equatoriale \(3{,}4\cdot 10^6\) m e un giorno di 24,6 h. Calcola la velocità di un punto dell'equatore e la sua accelerazione centripeta. <em>Traccia</em>: \(T = 24{,}6\cdot 3600 = 88560\) s.</p><p><strong>Risultato:</strong> \(v \approx 241\) m/s \(\approx 868\) km/h; \(a_c \approx 1{,}7\cdot 10^{-2}\ \text{m/s}^2\).</p>` },
+      { t:"Il satellite geostazionario", h:R`<p>Un satellite geostazionario ha periodo \(T = 86164\) s e raggio orbitale \(4{,}22\cdot 10^7\) m. Calcola velocità angolare, velocità e accelerazione centripeta.</p><p><strong>Risultato:</strong> \(\omega \approx 7{,}29\cdot 10^{-5}\) rad/s; \(v \approx 3{,}08\cdot 10^3\) m/s; \(a_c \approx 0{,}224\ \text{m/s}^2\).</p>` },
+      { t:"La verifica della Luna", h:R`<p>Calcola \(a_c\) della Luna con \(R = 3{,}84\cdot 10^8\) m e \(T = 27{,}3\) giorni, poi confrontala con \(g/60^2\), dove \(g = 9{,}8\ \text{m/s}^2\). Che cosa osservi? <em>Traccia</em>: \(a_c = 4\pi^2 R/T^2\).</p><p><strong>Risultato:</strong> \(a_c \approx 2{,}72\cdot 10^{-3}\ \text{m/s}^2\) e \(g/3600 \approx 2{,}72\cdot 10^{-3}\ \text{m/s}^2\): i due valori coincidono entro l'errore. È la prima conferma numerica della legge di gravitazione.</p>` }
+    ], 9)
+}
+
+];
+
+
+let currentIdx = 0;
+
+function render() {
+  const s = S[currentIdx];
+  const html = '<div class="hero">' +
+    '<div class="part-label">' + s.part + '</div>' +
+    '<div class="hero-tag">' + s.tag + '</div>' +
+    '<h1>' + s.title + '</h1></div>' +
+    '<div class="section-body">' + s.body + '</div>' +
+    '<div class="bottom-nav">' +
+    '<button class="bb" onclick="prev()" ' + (currentIdx === 0 ? 'disabled' : '') + '>← Indietro</button>' +
+    '<div class="page-info">' + (currentIdx + 1) + ' / ' + S.length + '</div>' +
+    '<button class="bb" onclick="next()" ' + (currentIdx === S.length - 1 ? 'disabled' : '') + '>Avanti →</button>' +
+    '</div>';
+
+  document.getElementById('app').innerHTML = html;
+
+  let pills = '';
+  let lastPart = null;
+  S.forEach((sec, i) => {
+    if (sec.part !== lastPart) {
+      const m = sec.part.match(/Parte\s+(\S+)/);
+      pills += '<span class="nav-group">' + (m ? m[1] : '') + '</span>';
+      lastPart = sec.part;
+    }
+    pills += '<button class="nav-pill ' + (i === currentIdx ? 'active' : '') + '" onclick="go(' + i + ')">' + sec.nav + '</button>';
+  });
+  document.getElementById('topNav').innerHTML = pills;
+
+  if (typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise([document.getElementById('app')]);
+  }
+  document.body.style.opacity = '1';
+}
+
+function prev() { if (currentIdx > 0) { currentIdx--; render(); window.scrollTo(0, 0); } }
+function next() { if (currentIdx < S.length - 1) { currentIdx++; render(); window.scrollTo(0, 0); } }
+function go(i) { currentIdx = i; render(); window.scrollTo(0, 0); }
+
+function renderAll() {
+  document.querySelector('.topbar').style.display = 'none';
+  const html = S.map(s =>
+    '<div class="section active">' +
+      '<div class="hero">' +
+        '<div class="part-label">' + s.part + '</div>' +
+        '<div class="hero-tag">' + s.tag + '</div>' +
+        '<h1>' + s.title + '</h1></div>' +
+      '<div class="section-body">' + s.body + '</div>' +
+    '</div>'
+  ).join('');
+  document.getElementById('app').innerHTML = html;
+  document.querySelectorAll('.acc-item').forEach(el => el.classList.add('open'));
+  if (typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise([document.getElementById('app')]);
+  }
+  document.body.style.opacity = '1';
+}
+
+if (new URLSearchParams(location.search).get('print') === '1') {
+  renderAll();
+} else {
+  render();
+}
+</script>
+</body>
+</html>
