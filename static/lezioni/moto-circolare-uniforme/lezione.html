@@ -110,6 +110,7 @@ mjx-container { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
 .newton-cols p:first-of-type::first-letter { float:left; font-family:'Playfair Display',serif; font-weight:700; font-size:3.5em; line-height:.86; padding:4px 8px 0 0; margin-top:2px; color:var(--accent); }
 .newton-q { font-style:italic; font-size:.95rem; margin:2px 18px 12px 0; }
 .newton-caption { font-size:.78rem; margin:10px 18px 0 0; }
+img.fig { max-width:100%; height:auto; display:block; margin:14px auto; border-radius:6px; }
 svg.fig { width:100%; height:auto; display:block; margin:14px 0; }
 .fig text { font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--text-mid); }
 .fig text.big { font-size:14px; fill:var(--text); font-style:italic; font-family:'Georgia',serif; }
@@ -227,92 +228,9 @@ const SVG_VR = R`<svg class="fig" viewBox="0 0 440 240" role="img" aria-label="G
   <text x="80" y="70" style="fill:#3a6b8c;font-weight:600">pendenza = ω = 6,28 rad/s</text>
 </svg>`;
 
-const SVG_CINGHIA = R`<svg class="fig" viewBox="0 0 640 270" role="img" aria-label="Due ruote collegate da una cinghia: stessa velocità tangenziale sul bordo, raggi diversi">
-  <defs>
-    <marker id="cg1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3a6b8c"/></marker>
-    <marker id="cg2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b33a3a"/></marker>
-  </defs>
-  <path d="M 116.2 99.5 L 332.3 64.1 A 72 72 0 0 1 332.3 205.9 L 116.2 170.5 A 36 36 0 0 1 116.2 99.5 Z" fill="#f5f0e8" stroke="#5a524a" stroke-width="2.4" stroke-linejoin="round"/>
-  <circle cx="110" cy="135" r="28" fill="#faf7f2" stroke="#9a9189" stroke-width="1.2"/>
-  <circle cx="320" cy="135" r="64" fill="#faf7f2" stroke="#9a9189" stroke-width="1.2"/>
-  <circle cx="110" cy="135" r="3.5" fill="#2c2520"/>
-  <circle cx="320" cy="135" r="3.5" fill="#2c2520"/>
-  <line x1="110" y1="135" x2="84.5" y2="160.5" stroke="#2c2520" stroke-width="1.6"/>
-  <line x1="320" y1="135" x2="370.9" y2="185.9" stroke="#2c2520" stroke-width="1.6"/>
-  <text x="68" y="183" class="big">R₁</text>
-  <text x="345" y="217" class="big">R₂</text>
-  <line x1="152.9" y1="74.4" x2="216.0" y2="64.0" stroke="#3a6b8c" stroke-width="2.6" marker-end="url(#cg1)"/>
-  <text x="180" y="59" class="big" style="fill:#3a6b8c">v</text>
-  <path d="M 60 127 A 50 50 0 0 1 102 85" fill="none" stroke="#b33a3a" stroke-width="2" marker-end="url(#cg2)"/>
-  <path d="M 234 127 A 86 86 0 0 1 312 49" fill="none" stroke="#b33a3a" stroke-width="2" marker-end="url(#cg2)"/>
-  <text x="66" y="77" style="fill:#b33a3a;font-weight:600">ω₁</text>
-  <text x="240" y="41" style="fill:#b33a3a;font-weight:600">ω₂</text>
-  <text x="440" y="90" style="fill:#5a524a">Sul bordo di entrambe</text>
-  <text x="440" y="108" style="fill:#5a524a">la velocità è quella</text>
-  <text x="440" y="126" style="fill:#5a524a">della cinghia:</text>
-  <text x="440" y="152" style="fill:#2c2520;font-weight:600">ω₁R₁ = ω₂R₂</text>
-  <text x="440" y="182" style="fill:#5a524a">raggio piccolo,</text>
-  <text x="440" y="200" style="fill:#5a524a">ω grande</text>
-</svg>`;
+const SVG_CINGHIA = R`<img class="fig" src="cinghia.jpg" alt="Due pulegge collegate da una cinghia: stessa velocità sul bordo, ω1R1 = ω2R2">`;
 
-const SVG_CURVA = R`<svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Due istanti ravvicinati sulla circonferenza: i vettori velocità e la loro differenza, che punta verso il centro">
-  <defs>
-    <marker id="cv1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3a6b8c"/></marker>
-    <marker id="cv2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#4a7c59"/></marker>
-    <marker id="cv3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b33a3a"/></marker>
-  </defs>
-  <circle cx="150" cy="160" r="110" fill="none" stroke="#5a524a" stroke-width="1.3"/>
-  <circle cx="150" cy="160" r="3" fill="#2c2520"/>
-  <line x1="150" y1="160" x2="253.4" y2="122.4" stroke="#9a9189" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="150" y1="160" x2="187.6" y2="56.6" stroke="#9a9189" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 190 160 A 40 40 0 0 0 162.3 122" fill="none" stroke="#5a524a" stroke-width="1.3"/>
-  <text x="178" y="140" class="big">Δθ</text>
-  <circle cx="253.4" cy="122.4" r="5" fill="#2c2520"/>
-  <circle cx="187.6" cy="56.6" r="5" fill="#2c2520"/>
-  <line x1="253.4" y1="122.4" x2="232.9" y2="66" stroke="#3a6b8c" stroke-width="2.6" marker-end="url(#cv1)"/>
-  <line x1="187.6" y1="56.6" x2="131.2" y2="36.1" stroke="#4a7c59" stroke-width="2.6" marker-end="url(#cv2)"/>
-  <text x="262" y="110" style="fill:#3a6b8c;font-weight:600">v₁</text>
-  <text x="146" y="30" style="fill:#4a7c59;font-weight:600">v₂</text>
-  <line x1="232" y1="82" x2="196" y2="118" stroke="#b33a3a" stroke-width="2.6" marker-end="url(#cv3)"/>
-  <text x="206" y="94" style="fill:#b33a3a;font-weight:600">Δv</text>
-  <line x1="470" y1="240" x2="439.2" y2="155.4" stroke="#3a6b8c" stroke-width="2.6" marker-end="url(#cv1)"/>
-  <line x1="470" y1="240" x2="385.4" y2="209.2" stroke="#4a7c59" stroke-width="2.6" marker-end="url(#cv2)"/>
-  <line x1="439.2" y1="155.4" x2="385.4" y2="209.2" stroke="#b33a3a" stroke-width="2.6" stroke-dasharray="6 3" marker-end="url(#cv3)"/>
-  <circle cx="470" cy="240" r="3.5" fill="#2c2520"/>
-  <text x="458" y="190" style="fill:#3a6b8c;font-weight:600">v₁</text>
-  <text x="418" y="246" style="fill:#4a7c59;font-weight:600">v₂</text>
-  <text x="386" y="178" style="fill:#b33a3a;font-weight:600">Δv</text>
-  <text x="300" y="276" style="fill:#5a524a">stessa origine per i due vettori</text>
-  <text x="300" y="46" style="fill:#5a524a">Più Δθ è piccolo, più Δv punta</text>
-  <text x="300" y="64" style="fill:#5a524a">esattamente verso il centro.</text>
-</svg>`;
-
-const SVG_MAPPA = R`<svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Mappa delle grandezze: la velocità angolare al centro, collegata a periodo, frequenza, velocità tangenziale e accelerazione centripeta">
-  <defs>
-    <marker id="mp1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5a524a"/></marker>
-    <marker id="mp2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3a6b8c"/></marker>
-  </defs>
-  <line x1="150" y1="78" x2="236" y2="128" stroke="#5a524a" stroke-width="1.6" marker-start="url(#mp1)" marker-end="url(#mp1)"/>
-  <line x1="150" y1="222" x2="236" y2="172" stroke="#5a524a" stroke-width="1.6" marker-start="url(#mp1)" marker-end="url(#mp1)"/>
-  <line x1="324" y1="128" x2="410" y2="78" stroke="#3a6b8c" stroke-width="2" marker-end="url(#mp2)"/>
-  <line x1="324" y1="172" x2="410" y2="222" stroke="#3a6b8c" stroke-width="2" marker-end="url(#mp2)"/>
-  <circle cx="280" cy="150" r="44" fill="#e8f0f5" stroke="#3a6b8c" stroke-width="2"/>
-  <text x="280" y="158" text-anchor="middle" class="big" style="font-size:30px">ω</text>
-  <rect x="40" y="56" width="110" height="44" rx="8" fill="#f5f0e8" stroke="#9a9189"/>
-  <text x="95" y="83" text-anchor="middle" class="big" style="font-size:20px">T</text>
-  <rect x="40" y="200" width="110" height="44" rx="8" fill="#f5f0e8" stroke="#9a9189"/>
-  <text x="95" y="227" text-anchor="middle" class="big" style="font-size:20px">f</text>
-  <rect x="410" y="56" width="110" height="44" rx="8" fill="#f5f0e8" stroke="#9a9189"/>
-  <text x="465" y="83" text-anchor="middle" class="big" style="font-size:20px">v</text>
-  <rect x="410" y="200" width="110" height="44" rx="8" fill="#f5f0e8" stroke="#9a9189"/>
-  <text x="465" y="227" text-anchor="middle" class="big" style="font-size:20px">a_c</text>
-  <text x="96" y="130" text-anchor="middle" style="fill:#2c2520;font-weight:600">ω = 2π/T</text>
-  <text x="96" y="178" text-anchor="middle" style="fill:#2c2520;font-weight:600">ω = 2πf</text>
-  <text x="466" y="130" text-anchor="middle" style="fill:#3a6b8c;font-weight:600">v = ωR</text>
-  <text x="466" y="178" text-anchor="middle" style="fill:#3a6b8c;font-weight:600">a_c = ω²R</text>
-  <text x="280" y="38" text-anchor="middle" style="fill:#5a524a">Il raggio R entra solo nelle frecce blu</text>
-  <text x="280" y="272" text-anchor="middle" style="fill:#5a524a">Le frecce grigie vanno in entrambi i versi: T e f si ricavano da ω</text>
-</svg>`;
+const SVG_CURVA = R`<img class="fig" src="curva-dv.jpg" alt="Due istanti ravvicinati sulla circonferenza: v1, v2 e la loro differenza Δv, che punta verso il centro">`;
 
 const S = [
 
@@ -492,9 +410,15 @@ const S = [
         <tr><td>la velocità \(v\) e il raggio \(R\)</td><td>\(\omega = \dfrac{v}{R}\)</td></tr>
         <tr><td>l'accelerazione \(a_c\) e il raggio \(R\)</td><td>\(\omega = \sqrt{\dfrac{a_c}{R}}\)</td></tr>
       </table>
-      <p>Una volta trovata \(\omega\), tutto il resto è in discesa: \(v = \omega R\), \(a_c = \omega^2 R\), \(f = \omega/2\pi\), \(T = 2\pi/\omega\).</p></div>
-    ` + SVG_MAPPA + R`
-    <p class="fig-cap">La velocità angolare è il punto di passaggio obbligato tra tutte le grandezze del moto circolare.</p>
+      <p>Una volta trovata \(\omega\), tutto il resto è in discesa:</p>
+      <table class="ct">
+        <tr><th>Da \(\omega\) ricavo…</th><th>Formula</th><th>Serve \(R\)?</th></tr>
+        <tr><td>il periodo \(T\)</td><td>\(T = \dfrac{2\pi}{\omega}\)</td><td>no</td></tr>
+        <tr><td>la frequenza \(f\)</td><td>\(f = \dfrac{\omega}{2\pi}\)</td><td>no</td></tr>
+        <tr><td>la velocità \(v\)</td><td>\(v = \omega R\)</td><td>sì</td></tr>
+        <tr><td>l'accelerazione \(a_c\)</td><td>\(a_c = \omega^2 R\)</td><td>sì</td></tr>
+      </table>
+      <p>Il raggio entra solo quando si passa da una grandezza angolare a una lineare. La velocità angolare è il punto di passaggio obbligato tra tutte le grandezze del moto circolare.</p></div>
     <div class="cb warn"><div class="cb-label">Il metodo in quattro passi</div>
       <ol style="margin-left:18px">
         <li><strong>Unità SI.</strong> cm \(\to\) m; giri/min \(\to\) Hz (dividi per 60); km/h \(\to\) m/s (dividi per 3,6).</li>
