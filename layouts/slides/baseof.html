@@ -98,5 +98,36 @@
   {{ $slidejs := resources.Get "js/wowchemy-slides.js" | js.Build (dict "params" (dict "slides" $.Params.slides)) }}
   <script src="{{ $slidejs.RelPermalink }}"></script>
 
+  <script>
+    (function () {
+      var css = "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');" +
+        "body, .speaker-controls-notes, .speaker-controls-notes .value { font-family: 'JetBrains Mono', monospace !important; }" +
+        ".speaker-controls-notes .value { font-size: 0.85em; line-height: 1.5; }" +
+        ".speaker-controls-notes .value li { margin-bottom: 0.4em; }";
+      var original = window.open;
+      window.open = function (url, name) {
+        var popup = original.apply(this, arguments);
+        if (name === 'reveal.js - Notes' && popup) {
+          var tries = 0;
+          var timer = setInterval(function () {
+            try {
+              var d = popup.document;
+              if (d && d.querySelector('.speaker-controls-notes')) {
+                if (!d.getElementById('mot-notes-font')) {
+                  var style = d.createElement('style');
+                  style.id = 'mot-notes-font';
+                  style.textContent = css;
+                  d.head.appendChild(style);
+                }
+                clearInterval(timer);
+              }
+            } catch (e) {}
+            if (++tries > 100) clearInterval(timer);
+          }, 100);
+        }
+        return popup;
+      };
+    })();
+  </script>
 </body>
 </html>

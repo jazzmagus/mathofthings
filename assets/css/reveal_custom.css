@@ -245,6 +245,13 @@ body.slides-mot .reveal .mot-def {
   font-style: italic;
 }
 
+/* Paragrafi di testo corrente: giustificati (non titoli, battute, kicker) */
+body.slides-mot .reveal section:not(.mot-hero):not(.mot-divider) > p:not([class*="mot-"]):not(.mono),
+body.slides-mot .reveal .mot-def {
+  text-align: justify;
+  hyphens: auto;
+}
+
 body.slides-mot .reveal .mot-def b,
 body.slides-mot .reveal .mot-def strong { color: var(--mot-primary); }
 
