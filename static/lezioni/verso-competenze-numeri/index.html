@@ -79,6 +79,8 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 .item.locked .opt,.item.locked .vf-btn{cursor:default;pointer-events:none}
 
 .diagram{margin:8px 0 14px;text-align:center}
+.sol{display:none;margin-top:14px;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface-alt);font-size:.88rem;line-height:1.55;color:var(--text-mid)}
+.item.locked .sol{display:block}
 
 .results-panel{display:none;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:32px clamp(20px,5vw,40px);margin-bottom:36px;text-align:center}
 .results-panel.show{display:block}
@@ -139,9 +141,9 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
       <div class="vf-row"><div></div><div class="vf-btns"><button class="vf-btn" data-val="V">V</button><button class="vf-btn" data-val="F">F</button></div></div>
     </div>
 
-    <div class="item" data-type="vf" data-correct="F" id="q-2">
+    <div class="item" data-type="vf" data-correct="V" id="q-2">
       <span class="item-badge">Domanda 2</span>
-      <div class="item-text">b. \( 7^9 - 7^2 = 7^7 \)</div>
+      <div class="item-text">b. \( 7^9 : 7^2 = 7^7 \)</div>
       <div class="vf-row"><div></div><div class="vf-btns"><button class="vf-btn" data-val="V">V</button><button class="vf-btn" data-val="F">F</button></div></div>
     </div>
 
@@ -177,7 +179,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 
     <div class="item" data-type="vf" data-correct="V" id="q-8">
       <span class="item-badge">Domanda 8</span>
-      <div class="item-text">h. \( 3^{3^2} : 3^{2^3} = 3 \)</div>
+      <div class="item-text">h. \( (3^3)^2 : 3^5 = 3 \)</div>
       <div class="vf-row"><div></div><div class="vf-btns"><button class="vf-btn" data-val="V">V</button><button class="vf-btn" data-val="F">F</button></div></div>
     </div>
 
@@ -188,7 +190,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 
     <div class="item" data-type="mc" data-correct="C" id="q-9">
       <span class="item-badge">Domanda 9</span>
-      <div class="item-text">Quale delle seguenti operazioni è <em>interna</em> all'insieme indicato?</div>
+      <div class="item-text">Quale delle seguenti operazioni è <em>interna</em> all'insieme indicato?<br><small style="color:var(--text-mid)">Un'operazione è interna a un insieme se, eseguendola su due elementi qualsiasi dell'insieme, il risultato appartiene sempre allo stesso insieme. Esempio: l'addizione è interna a \(\mathbb{N}\), perché la somma di due numeri naturali è sempre un numero naturale.</small></div>
       <div class="opts">
         <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">La sottrazione in \(\mathbb{N}\)</span></div>
         <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">La divisione in \(\mathbb{N}\)</span></div>
@@ -217,6 +219,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
         <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">né \(a\) né \(b\) sono primi</span></div>
         <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(a\) e \(b\) sono coprimi</span></div>
       </div>
+      <div class="sol"><b>Come si risolve.</b> Somma delle cifre: \(1+5+3=9\) e \(1+1+7=9\), quindi entrambi sono divisibili per 3 (e per 9) e nessuno dei due è primo. Hanno anche il fattore 3 in comune, quindi non sono coprimi. Infatti \(153=3^2\cdot 17\) e \(117=3^2\cdot 13\).</div>
     </div>
 
     <div class="item" data-type="mc" data-correct="D" id="q-12">
@@ -300,10 +303,10 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
       <span class="item-badge">Domanda 19</span>
       <div class="item-text">Quale tra i seguenti numeri è positivo?</div>
       <div class="opts">
-        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(-(-5)^6\)</span></div>
-        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(-5^8\)</span></div>
-        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\((-5)^8\)</span></div>
-        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\((-5)^{17}\)</span></div>
+        <div class="opt" data-letter="A"><span class="opt-letter">A</span><span class="opt-text">\(-\{[(-5)^3]^2\}\)</span></div>
+        <div class="opt" data-letter="B"><span class="opt-letter">B</span><span class="opt-text">\(\{-[(-5)^2]\}^3\)</span></div>
+        <div class="opt" data-letter="C"><span class="opt-letter">C</span><span class="opt-text">\(-\{[-(-5)^2]^3\}\)</span></div>
+        <div class="opt" data-letter="D"><span class="opt-letter">D</span><span class="opt-text">\(-\{[(-5)^2]^3\}\)</span></div>
       </div>
     </div>
 
