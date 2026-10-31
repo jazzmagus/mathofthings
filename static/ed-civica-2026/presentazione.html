@@ -13,7 +13,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+    <script>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('ed-civica-theme'); } catch (e) {}
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
     <style>
+      :root {
+        --accent: #0a7f8a;
+        --bg: #ffffff;
+        --fg: #1a1a1a;
+        --r-background: var(--bg);
+        --r-background-color: var(--bg);
+        --r-main-color: var(--fg);
+        --r-heading-color: var(--accent);
+        --r-link-color: var(--accent);
+        --r-link-color-dark: var(--accent);
+        --r-link-color-hover: var(--accent);
+        --r-selection-background-color: var(--accent);
+      }
+      :root[data-theme="dark"] {
+        --accent: #3cc4cf;
+        --bg: #14161c;
+        --fg: #ececec;
+        --r-selection-color: #14161c;
+      }
+      html, body.reveal-viewport { background: var(--bg); }
       .reveal p.definizione {
         text-align: justify;
         text-align-last: left;
@@ -22,46 +50,105 @@
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.4em;
         line-height: 1.5;
-        color: #ed6f5c;
+        color: var(--accent);
         text-align: justify;
         text-align-last: center;
         max-width: 70%;
         margin: 1.2em auto 0;
       }
+      .reveal .slide-approfondimento p.sottotitolo {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.5em;
+        color: var(--accent);
+        margin: 0 0 1.2em;
+      }
+      .reveal .slide-approfondimento p.approfondimento {
+        font-size: 0.62em;
+        max-width: 85%;
+        margin: 0 auto;
+        text-align: left;
+        text-align-last: left;
+      }
+      #theme-toggle {
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 50;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--accent);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #theme-toggle:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+      #theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      #theme-toggle svg { width: 26px; height: 26px; }
+      #theme-toggle .raggi { opacity: 0; }
+      #theme-toggle .vetro { fill: none; }
+      :root[data-theme="light"] #theme-toggle .raggi { opacity: 1; }
+      :root[data-theme="light"] #theme-toggle .vetro { fill: currentColor; fill-opacity: 0.25; }
     </style>
 
   </head>
 
   <body>
     <div id="particles-ed-civica" class="bg-particles" aria-hidden="true"></div>
+    <button id="theme-toggle" type="button" aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+      <svg viewBox="-3 -3 30 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="vetro" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>
+        <g class="raggi"><path d="M12 -1.5v1.5M3 1.5l1.2 1.2M21 1.5l-1.2 1.2M-1.5 9.5h1.7M23.8 9.5h1.7"/></g>
+      </svg>
+    </button>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script>
       (function () {
         var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion || typeof tsParticles === 'undefined') return;
+        var root = document.documentElement;
 
-        tsParticles.load('particles-ed-civica', {
-          fpsLimit: 60,
-          particles: {
-            number: { value: 80, density: { enable: true, area: 800 } },
-            color: { value: '#ed6f5c' },
-            opacity: { value: 0.5 },
-            size: { value: { min: 1, max: 3 } },
-            links: { enable: true, distance: 150, color: '#ed6f5c', opacity: 0.3, width: 1 },
-            move: { enable: true, speed: { min: 0.5, max: 1.5 }, direction: 'none', random: true, straight: false, outModes: { default: 'out' } }
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: 'grab' },
-              onClick: { enable: true, mode: 'push' },
-              resize: true
+        function startParticles() {
+          if (prefersReducedMotion || typeof tsParticles === 'undefined') return;
+          var accent = getComputedStyle(root).getPropertyValue('--accent').trim();
+          tsParticles.load('particles-ed-civica', {
+            fpsLimit: 60,
+            particles: {
+              number: { value: 80, density: { enable: true, area: 800 } },
+              color: { value: accent },
+              opacity: { value: 0.5 },
+              size: { value: { min: 1, max: 3 } },
+              links: { enable: true, distance: 150, color: accent, opacity: 0.3, width: 1 },
+              move: { enable: true, speed: { min: 0.5, max: 1.5 }, direction: 'none', random: true, straight: false, outModes: { default: 'out' } }
             },
-            modes: {
-              grab: { distance: 180, links: { opacity: 0.6 } },
-              push: { quantity: 3 }
-            }
-          },
-          detectRetina: true
+            interactivity: {
+              events: {
+                onHover: { enable: true, mode: 'grab' },
+                onClick: { enable: true, mode: 'push' },
+                resize: true
+              },
+              modes: {
+                grab: { distance: 180, links: { opacity: 0.6 } },
+                push: { quantity: 3 }
+              }
+            },
+            detectRetina: true
+          });
+        }
+
+        startParticles();
+
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          try { localStorage.setItem('ed-civica-theme', next); } catch (e) {}
+          if (typeof tsParticles !== 'undefined') {
+            tsParticles.dom().forEach(function (c) { c.destroy(); });
+            startParticles();
+          }
         });
       })();
     </script>
@@ -73,7 +160,7 @@
           <h1 style="font-size:3.4em; line-height:1.15;">I numeri che<br>ci ingannano ogni giorno</h1>
           <p style="margin-top:1.2em; font-size:0.7em;">Progetto di Educazione Civica 2026-2027</p>
           <p style="margin-top:0.6em; font-size:0.4em; opacity:0.75;">Prof. Diego Fantinelli — Matematica &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IIS G.A. Remondini — Bassano del Grappa</p>
-          <p style="position:absolute; bottom:0; left:0; right:0; margin:0; padding-bottom:0.4em; font-family:'JetBrains Mono', monospace; font-size:0.22em;"><a href="https://mathofthings.netlify.app/" style="color:#ed6f5c; text-decoration:none;">The Math of Things</a></p>
+          <p style="position:absolute; bottom:0; left:0; right:0; margin:0; padding-bottom:0.4em; font-family:'JetBrains Mono', monospace; font-size:0.22em;"><a href="https://mathofthings.netlify.app/" style="color:var(--accent); text-decoration:none;">The Math of Things</a></p>
         </section>
 
         <!-- CITAZIONE APERTURA -->
@@ -109,47 +196,83 @@
           <section>
             <h3>1 — Media vs Mediana</h3>
             <p class="fragment definizione">Basta un solo valore molto alto (o molto basso) per "gonfiare" la media, anche se la situazione tipica non è cambiata. La mediana, il valore centrale, resiste meglio a questi casi estremi.</p>
-            <p class="fragment approfondimento">approfondimento: in un ufficio di 9 persone con stipendio 1500€ e 1 capo con stipendio 15000€, la media è 2850€ — un numero che nessuno guadagna davvero. La mediana (il valore centrale, qui 1500€) racconta molto meglio la situazione "tipica". Occhio a "stipendio medio", "prezzo medio": chiedersi sempre se c'è un valore estremo che sta tirando la media da una parte.</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>1 — Media vs Mediana</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">In un ufficio di 9 persone con stipendio 1500€ e 1 capo con stipendio 15000€, la media è 2850€ — un numero che nessuno guadagna davvero. La mediana (il valore centrale, qui 1500€) racconta molto meglio la situazione "tipica". Occhio a "stipendio medio", "prezzo medio": chiedersi sempre se c'è un valore estremo che sta tirando la media da una parte.</p>
           </section>
           <section>
             <h3>2 — Percentuale vs punto percentuale</h3>
             <p class="fragment definizione">"+5 punti percentuali" (la differenza tra due percentuali) e "+50% di crescita" (la variazione rispetto al valore di partenza) possono descrivere lo stesso identico cambiamento, ma il secondo suona molto più grande. Confonderli cambia completamente il messaggio.</p>
-            <p class="fragment approfondimento">approfondimento: se la disoccupazione passa dal 10% al 15%, è "+5 punti percentuali", ma in termini relativi è un "+50%" (perché 5 è la metà di 10). I due modi di dirlo descrivono lo stesso fatto, ma il secondo suona molto più drammatico. Titoli e pubblicità scelgono spesso la versione che fa più effetto.</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>2 — Percentuale vs punto percentuale</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">Se la disoccupazione passa dal 10% al 15%, è "+5 punti percentuali", ma in termini relativi è un "+50%" (perché 5 è la metà di 10). I due modi di dirlo descrivono lo stesso fatto, ma il secondo suona molto più drammatico. Titoli e pubblicità scelgono spesso la versione che fa più effetto.</p>
           </section>
           <section>
             <h3>3 — Campione vs popolazione</h3>
             <p class="fragment definizione">Un sondaggio interroga sempre un "campione", un gruppo ridotto scelto per rappresentare tutti gli altri (la "popolazione"). Se il campione è troppo piccolo o scelto male, il risultato non vale per "tutti", ma solo per quel gruppo.</p>
-            <p class="fragment approfondimento">approfondimento: "il 90% degli studenti preferisce la pizza" non vale nulla se il sondaggio è stato fatto su 10 amici in mensa. Un campione piccolo o scelto a caso (non a caso davvero, ma con un criterio) non rappresenta l'intera popolazione. Domande utili: quante persone? come sono state scelte? assomigliano al gruppo di cui si parla?</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>3 — Campione vs popolazione</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">"il 90% degli studenti preferisce la pizza" non vale nulla se il sondaggio è stato fatto su 10 amici in mensa. Un campione piccolo o scelto a caso (non a caso davvero, ma con un criterio) non rappresenta l'intera popolazione. Domande utili: quante persone? come sono state scelte? assomigliano al gruppo di cui si parla?</p>
           </section>
           <section>
             <h3>4 — Correlazione vs causazione</h3>
             <p class="fragment definizione">Due fenomeni che crescono insieme sono "correlati", ma questo non vuol dire che uno causi l'altro. Potrebbe esserci una terza causa comune — o solo una coincidenza.</p>
-            <p class="fragment approfondimento">approfondimento: le vendite di gelati e gli affogamenti in mare crescono insieme d'estate. Il gelato non causa gli affogamenti: c'è una terza variabile (il caldo, che porta sia a mangiare gelato sia ad andare in spiaggia). Prima di dire "A causa B", bisogna chiedersi se non ci sia un fattore comune, o se non sia semplice coincidenza.</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>4 — Correlazione vs causazione</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">Le vendite di gelati e gli affogamenti in mare crescono insieme d'estate. Il gelato non causa gli affogamenti: c'è una terza variabile (il caldo, che porta sia a mangiare gelato sia ad andare in spiaggia). Prima di dire "A causa B", bisogna chiedersi se non ci sia un fattore comune, o se non sia semplice coincidenza.</p>
           </section>
           <section>
             <h3>5 — La scala truccata</h3>
             <p class="fragment definizione">Se l'asse verticale di un grafico parte da 95 invece che da 0, anche una differenza minima tra due barre riempie tutto lo spazio e sembra enorme.</p>
-            <p class="fragment approfondimento">approfondimento: due barre che vanno da 96 a 98 (asse che parte da 95) sembrano raddoppiate rispetto a due barre che vanno da 96 a 98 su un asse che parte da 0. Stessa differenza reale (2 punti), impressione visiva completamente diversa. Prima regola per leggere un grafico: guardare sempre da dove parte l'asse verticale.</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>5 — La scala truccata</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">Due barre che vanno da 96 a 98 (asse che parte da 95) sembrano raddoppiate rispetto a due barre che vanno da 96 a 98 su un asse che parte da 0. Stessa differenza reale (2 punti), impressione visiva completamente diversa. Prima regola per leggere un grafico: guardare sempre da dove parte l'asse verticale.</p>
           </section>
           <section>
             <h3>6 — Relativo vs assoluto</h3>
             <p class="fragment definizione">"Il rischio raddoppia" è un dato relativo, e suona spaventoso. Ma raddoppiare da 1 caso su un milione a 2 casi su un milione resta un rischio bassissimo in assoluto.</p>
-            <p class="fragment approfondimento">approfondimento: "questo farmaco raddoppia il rischio di un effetto collaterale" è vero e allarmante — finché non si scopre che il rischio passa da 1 su 1.000.000 a 2 su 1.000.000. In termini assoluti la differenza è trascurabile. Chiedere sempre: raddoppia rispetto a cosa? Qual è il numero di partenza?</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>6 — Relativo vs assoluto</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">"questo farmaco raddoppia il rischio di un effetto collaterale" è vero e allarmante — finché non si scopre che il rischio passa da 1 su 1.000.000 a 2 su 1.000.000. In termini assoluti la differenza è trascurabile. Chiedere sempre: raddoppia rispetto a cosa? Qual è il numero di partenza?</p>
           </section>
           <section>
             <h3>7 — Bias di selezione</h3>
             <p class="fragment definizione">In un sondaggio online risponde solo chi ha voglia o un motivo per farlo: chi è indifferente resta fuori. Il risultato non rappresenta "tutti", ma solo chi ha scelto di rispondere.</p>
-            <p class="fragment approfondimento">approfondimento: un sondaggio pubblicato sotto un post su un tema divisivo raccoglie soprattutto le opinioni di chi si sente coinvolto (spesso le posizioni più estreme). Chi è indifferente semplicemente non risponde. Il risultato non fotografa "cosa pensa la gente", ma "cosa pensa chi ha scelto di rispondere" — un gruppo diverso, non neutro.</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>7 — Bias di selezione</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">Un sondaggio pubblicato sotto un post su un tema divisivo raccoglie soprattutto le opinioni di chi si sente coinvolto (spesso le posizioni più estreme). Chi è indifferente semplicemente non risponde. Il risultato non fotografa "cosa pensa la gente", ma "cosa pensa chi ha scelto di rispondere" — un gruppo diverso, non neutro.</p>
           </section>
           <section>
             <h3>8 — Il margine d'errore</h3>
             <p class="fragment definizione">Ogni sondaggio ha un margine di errore, indicato con un "±" che quasi nessuno riporta nei titoli. Una differenza di 2 punti, spesso, non significa nulla di certo.</p>
-            <p class="fragment approfondimento">approfondimento: se un sondaggio dà il Partito A al 34% e il Partito B al 33%, con un margine d'errore di ±3 punti, i due dati sono statisticamente indistinguibili: il "vantaggio" potrebbe non esistere affatto. Il margine d'errore dipende dalla dimensione del campione ed è quasi sempre omesso dai titoli, che parlano di "sorpasso".</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>8 — Il margine d'errore</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">Se un sondaggio dà il Partito A al 34% e il Partito B al 33%, con un margine d'errore di ±3 punti, i due dati sono statisticamente indistinguibili: il "vantaggio" potrebbe non esistere affatto. Il margine d'errore dipende dalla dimensione del campione ed è quasi sempre omesso dai titoli, che parlano di "sorpasso".</p>
           </section>
           <section>
             <h3>9 — Cherry-picking del periodo</h3>
             <p class="fragment definizione">Scegliere ad arte l'intervallo di tempo di un grafico può far sembrare vera qualsiasi tesi. Cambiando il periodo osservato, lo stesso fenomeno può apparire in crescita, in calo o stabile.</p>
-            <p class="fragment approfondimento">approfondimento: "le temperature sono scese dal 1998 al 2008" era un'affermazione vera, usata per negare il riscaldamento globale — ma nasceva dallo scegliere ad arte un anno di partenza particolarmente caldo. Guardando un periodo più lungo, il trend è chiaramente in salita. Ogni volta che un grafico parte da un anno "strano", chiedersi: perché proprio da lì?</p>
+          </section>
+          <section class="slide-approfondimento">
+            <h3>9 — Cherry-picking del periodo</h3>
+            <p class="sottotitolo">approfondimento</p>
+            <p class="approfondimento">"le temperature sono scese dal 1998 al 2008" era un'affermazione vera, usata per negare il riscaldamento globale — ma nasceva dallo scegliere ad arte un anno di partenza particolarmente caldo. Guardando un periodo più lungo, il trend è chiaramente in salita. Ogni volta che un grafico parte da un anno "strano", chiedersi: perché proprio da lì?</p>
           </section>
         </section>
 
