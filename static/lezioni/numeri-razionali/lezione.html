@@ -153,6 +153,10 @@ h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin
 
 /* FIGURA SVG */
 .semiretta-wrap{display:flex;flex-direction:column;align-items:center;margin:20px 0 8px}
+.semiretta-wrap img{width:100%;max-width:340px;height:auto}
+.semiretta-wrap .fig-dark{display:none}
+[data-theme="dark"] .semiretta-wrap .fig-light{display:none}
+[data-theme="dark"] .semiretta-wrap .fig-dark{display:block}
 .semiretta-cap{font-family:'Fira Code',monospace;font-size:.72rem;letter-spacing:1px;color:var(--text-dim);margin-top:6px}
 
 /* RESPONSIVE */
@@ -323,16 +327,10 @@ function frazioneSVG() {
 
 /* ═══════════════ FIGURA: QUADRATO CON DIAGONALE ═══════════════ */
 function quadratoSVG() {
+  const alt = 'Quadrato ABCD di lato 1 con la diagonale AC, lunga radice di due';
   return `<div class="semiretta-wrap">
-    <svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg"
-         style="width:100%;max-width:240px;display:block"
-         aria-label="Quadrato di lato 1 con diagonale radice di due">
-      <rect x="40" y="30" width="120" height="120" fill="#c2185b" fill-opacity="0.06" stroke="#5a524a" stroke-width="1.4"/>
-      <line x1="40" y1="150" x2="160" y2="30" stroke="#c2185b" stroke-width="0.8"/>
-      <text x="100" y="170" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#2c2520">1</text>
-      <text x="24" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#2c2520">1</text>
-      <text x="75" y="100" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#c2185b" font-style="italic">&#8730;2</text>
-    </svg>
+    <img class="fig-light" src="quadrato-diagonale.png" alt="${alt}" width="900" height="886">
+    <img class="fig-dark" src="quadrato-diagonale-dark.png" alt="${alt}" width="900" height="886">
     <span class="semiretta-cap">la diagonale del quadrato di lato 1 misura \\(\\sqrt{2}\\)</span>
   </div>`;
 }
@@ -639,7 +637,7 @@ const S = [
     ${quadratoSVG()}
 
     <div class="cb method">
-      <div class="cb-label">Il teorema di Pitagora e √2</div>
+      <div class="cb-label">Il teorema di Pitagora e \\(\\sqrt{2}\\)</div>
       <p><strong>Teorema di Pitagora (forma classica):</strong> in un triangolo rettangolo, il quadrato dell'ipotenusa è uguale alla somma dei quadrati dei due cateti. Se i cateti misurano \\(a\\) e \\(b\\), e l'ipotenusa è \\(c\\), allora:</p>
       <div class="math-block center">\\[ c^2 = a^2 + b^2 \\]</div>
       <p><strong>Caso particolare — il quadrato di lato 1:</strong> un quadrato di lato \\(1\\) ha diagonale \\(d\\) che forma un triangolo rettangolo isoscele con i due lati. Per Pitagora:</p>
