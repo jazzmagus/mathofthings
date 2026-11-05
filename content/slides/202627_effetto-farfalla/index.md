@@ -265,12 +265,11 @@ slides:
   </aside>
 </section>
 
-<section>
+<section id="lorenz-live">
   <div id="particles-ef-content13" class="bg-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
-  <!-- SFONDO SUGGERITO: il grafico dell'attrattore di Lorenz (le due "ali"), reperibile libero da Wikimedia Commons, o generato al momento -->
-  <!-- data-background-image="attrattore-lorenz.jpg" data-background-size="contain" data-background-position="center" data-background-opacity="0.35" -->
   <p class="mot-kicker">l'immagine icona del caos</p>
   <h2>L'<em>attrattore</em> di Lorenz</h2>
+  <canvas id="lorenz-canvas" style="display: block; width: 86%; margin: 0.2rem auto 0;"></canvas>
   <p class="mot-def fragment">Se disegni l'evoluzione del sistema nello spazio delle sue variabili, ottieni una forma che non si ripete mai due volte uguale &mdash; ma che assomiglia sempre a due ali di farfalla.</p>
   <p class="fragment mot-joke" style="margin-top: 1.5rem;">Persino il grafico ha deciso di essere in tema. A volte la matematica fa marketing da sola.</p>
   <aside class="notes">
@@ -279,7 +278,8 @@ slides:
       <li>Il sistema non si stabilizza in un punto fisso né in un ciclo periodico, ma nemmeno "esplode": resta confinato in una regione dello spazio.</li>
       <li>Le traiettorie non si intersecano mai e si avvolgono alternativamente attorno a due "centri": da qui la forma a farfalla (o a maschera).</li>
       <li>È il prototipo dell'"attrattore strano": deterministico, limitato, mai periodico, mai prevedibile a lungo termine.</li>
-      <li>Momento ideale per una demo dal vivo (notebook Python o Desmos con l'equazione pronta), anche solo per far vedere la forma che si genera.</li>
+      <li>La figura è calcolata in diretta nella pagina (integrazione Runge-Kutta, parametri classici σ = 10, ρ = 28, β = 8/3) e ruota lentamente.</li>
+      <li>Le due traiettorie partono con uno scarto di 0,001: restano sovrapposte per un po', poi si separano e finiscono sulle ali opposte. Stessa idea della slide sulla sensibilità alle condizioni iniziali, ora vista nello spazio delle fasi.</li>
     </ul>
   </aside>
 </section>
@@ -316,6 +316,7 @@ slides:
 <section class="mot-divider" data-background-color="#2a2a3d" data-transition="zoom" style="color: white;">
   <div id="particles-ef-atto3" class="bg-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
   <h1 class="r-fit-text" style="position: relative; z-index: 10;">ATTO III &mdash; IL CAOS NON È DISORDINE</h1>
+  <p style="font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.95); font-size: 1.4em; position: relative; z-index: 10; margin-top: 0.5rem;">Il caso non è caos, il caos non è caso.</p>
 </section>
 
 <section>
@@ -378,14 +379,16 @@ slides:
   </aside>
 </section>
 
-<section>
+<section id="pendoli-live">
   <div id="particles-ef-content20" class="bg-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
   <p class="mot-kicker">stessa fisica, due destini diversi</p>
   <h2>Guardateli <em>muoversi</em></h2>
-  <video src="pendoli-animazione.mp4" autoplay loop muted playsinline style="max-width: 92%; margin: 0.3rem auto 0; display: block; border-radius: 6px; box-shadow: 0 2px 16px rgba(0,0,0,0.2);"></video>
+  <canvas id="pendoli-canvas" style="display: block; width: 86%; margin: 0.3rem auto 0;"></canvas>
+  <p class="fragment" style="font-family: 'JetBrains Mono', monospace; font-size: 0.5em; text-align: center; margin-top: 0.3rem;">e se li lanciamo da due posizioni quasi identiche?</p>
   <aside class="notes">
     <ul>
-      <li>Animazione fisica reale (motore a rigid body, non un disegno a mano).</li>
+      <li>Animazione fisica reale, calcolata in diretta nella pagina (integrazione Runge-Kutta), non un video: parte da sola ogni volta che si arriva sulla slide.</li>
+      <li>Un click in più: compaiono due pendoli doppi lanciati con uno scarto di 0,001 rad. Per qualche secondo sono indistinguibili, poi si separano. Il contatore mostra la distanza tra le masse.</li>
       <li>A sinistra il pendolo semplice oscilla in modo regolare e periodico, punto e basta.</li>
       <li>A destra il pendolo doppio, lanciato con angolo iniziale ampio, genera una traiettoria irregolare: la scia blu è il percorso della seconda massa e non si richiude mai.</li>
       <li>Far notare che la scia, da sola, assomiglia già a una farfalla: la matematica fa marketing per conto suo.</li>
@@ -433,6 +436,23 @@ slides:
     <ul>
       <li>Se possibile, mostrare dal vivo il diagramma di biforcazione (r sull'asse x, valori asintotici di x sull'asse y): visivamente scioccante, simile a un frattale.</li>
       <li>Aneddoto opzionale su Feigenbaum: il "tasso" con cui le biforcazioni si infittiscono è una costante universale (≈4.669), la stessa in moltissimi sistemi caotici, una specie di "π del caos".</li>
+    </ul>
+  </aside>
+</section>
+
+<section id="bifurcazione-live">
+  <div id="particles-ef-content32" class="bg-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
+  <p class="mot-kicker">per ogni r, dove va a finire la popolazione</p>
+  <h2>Il diagramma di <em>biforcazione</em></h2>
+  <canvas id="bifurcazione-canvas" style="display: block; width: 86%; margin: 0.2rem auto 0;"></canvas>
+  <p class="fragment" style="font-family: 'JetBrains Mono', monospace; font-size: 0.5em; text-align: center; margin-top: 0.3rem;">zoomiamo in una piccola finestra dentro il caos</p>
+  <aside class="notes">
+    <ul>
+      <li>Il diagramma si disegna da solo: per ogni valore di r si scartano i primi 700 passi e si riportano i valori che la popolazione continua a visitare.</li>
+      <li>Fino a r=3 una sola linea (popolazione stabile), poi 2 valori, 4, 8... fino a r≈3.5699, dove comincia il caos.</li>
+      <li>Nel caos non è tutto rumore: ci sono finestre di ordine (la più larga attorno a r≈3.83, con periodo 3).</li>
+      <li>Click: zoom di circa 45 volte sulla finestra di periodo 3. Dentro si ritrova la stessa cascata di raddoppi vista prima, in miniatura: autosimilarità, cioè un frattale. Ponte verso la slide sui frattali.</li>
+      <li>Il tutto è calcolato dal vivo nella pagina: la funzione è sempre x &rarr; r x (1 &minus; x).</li>
     </ul>
   </aside>
 </section>
@@ -495,13 +515,18 @@ slides:
   </aside>
 </section>
 
-<section data-background-video="fractals2.mp4" data-background-video-loop data-background-video-muted data-background-opacity="0.4">
+<section id="mandelbrot-live">
   <div id="particles-ef-content26" class="bg-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
   <p class="mot-kicker">la firma visiva del caos</p>
   <h2><em>Frattali</em>: infinito dentro il finito</h2>
-  <p class="mot-def fragment">Il set di Mandelbrot: un'equazione di 7 caratteri, $z_{n+1} = z_n^2 + c$, generatrice di un contorno che, per quanto tu zoomi, <b>non smette mai</b> di rivelare nuovi dettagli.</p>
-  <p class="fragment" style="margin-top: 1.5rem;">Gli attrattori strani (come quello di Lorenz visto prima) sono frattali. Il confine tra "ordinato" e "caotico", in moltissimi sistemi, ha proprio questa struttura infinitamente dettagliata.</p>
-  <p class="fragment mot-joke" style="margin-top: 1.5rem;">È l'unico oggetto matematico che, più lo guardi da vicino, più ti fa sentire piccolo. Complimenti a $z_{n+1} = z_n^2 + c$, la formula più economica e più inquietante della matematica.</p>
+  <div style="display: flex; align-items: center; gap: 1.5rem; margin-top: 0.4rem;">
+    <div style="flex: 1; text-align: left; font-size: 0.8em;">
+      <p class="mot-def fragment">Il set di Mandelbrot: un'equazione di 7 caratteri, $z_{n+1} = z_n^2 + c$, generatrice di un contorno che, per quanto tu zoomi, <b>non smette mai</b> di rivelare nuovi dettagli.</p>
+      <p class="fragment" style="margin-top: 1rem; font-size: 0.75em;">Gli attrattori strani (come quello di Lorenz visto prima) sono frattali. Il confine tra "ordinato" e "caotico", in moltissimi sistemi, ha proprio questa struttura infinitamente dettagliata.</p>
+      <p class="fragment mot-joke" style="margin-top: 1rem;">È l'unico oggetto matematico che, più lo guardi da vicino, più ti fa sentire piccolo. Complimenti a $z_{n+1} = z_n^2 + c$, la formula più economica e più inquietante della matematica.</p>
+    </div>
+    <canvas id="mandelbrot-canvas" style="flex: none; width: 380px; height: 380px;"></canvas>
+  </div>
   <aside class="notes">
     <ul>
       <li>Il set di Mandelbrot (Benoît Mandelbrot, 1980) nasce da un'iterazione semplicissima nel piano complesso.</li>
@@ -509,9 +534,10 @@ slides:
     <ol>
       <li>Si parte da z=0.</li>
       <li>Si applica ripetutamente z → z²+c.</li>
-      <li>Si colora il punto c: nero se la sequenza resta limitata (appartiene al set), colorato secondo la velocità di divergenza se diverge (le sfumature dell'immagine di sfondo).</li>
+      <li>Si colora il punto c: nero se la sequenza resta limitata (appartiene al set), altrimenti si disegnano le curve di livello della velocità con cui diverge (le linee del disegno).</li>
     </ol>
     <ul>
+      <li>L'immagine è calcolata dal vivo sulla scheda grafica e fa uno zoom continuo verso la "valle dei cavallucci marini" (circa 7000 volte), poi torna indietro. Più in là la precisione dei numeri a 32 bit non basta.</li>
       <li>Proprietà sorprendente: autosimilarità a tutte le scale. Zoomando sul bordo si trovano infinite repliche in miniatura della forma principale, mai identiche ma sempre riconoscibili.</li>
       <li>Collegamento con Lorenz (Atto II): anche l'attrattore è un frattale (dimensione non intera, circa 2.06), ed è questa struttura a far restare le traiettorie in una regione finita senza ripetersi mai.</li>
       <li>Se c'è tempo, gancio filosofico: i confini tra ordine e caos tendono ad avere questa granularità infinita. Coste, nuvole, vasi sanguigni, fulmini sono esempi di geometria frattale "naturale".</li>
@@ -620,6 +646,716 @@ slides:
 .reveal .mot-divider h1 { color: #ffffff !important; }
 </style>
 
+<script>
+(function () {
+  var sec = document.getElementById('pendoli-live');
+  var cv = document.getElementById('pendoli-canvas');
+  if (!sec || !cv) return;
+
+  var W = 1100, H = 560, G = 9.81, STEP = 1 / 240, TRAIL = 520, ARM = 150, R = 15;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  var ctx = cv.getContext('2d');
+  if (document.fonts) document.fonts.load('600 15px "JetBrains Mono"');
+
+  function simpleD(s) { return [s[1], -G * Math.sin(s[0])]; }
+
+  // Pendolo doppio, m1 = m2 = 1, L1 = L2 = 1.
+  function doubleD(s) {
+    var d = s[0] - s[2], c = Math.cos(d), sn = Math.sin(d);
+    var den = 3 - Math.cos(2 * d);
+    var a1 = (-3 * G * Math.sin(s[0]) - G * Math.sin(s[0] - 2 * s[2]) - 2 * sn * (s[3] * s[3] + s[1] * s[1] * c)) / den;
+    var a2 = (2 * sn * (2 * s[1] * s[1] + 2 * G * Math.cos(s[0]) + s[3] * s[3] * c)) / den;
+    return [s[1], a1, s[3], a2];
+  }
+
+  function rk4(f, s, h) {
+    var n = s.length, i;
+    function add(a, b, k) { var r = []; for (i = 0; i < n; i++) r.push(a[i] + b[i] * k); return r; }
+    var k1 = f(s), k2 = f(add(s, k1, h / 2)), k3 = f(add(s, k2, h / 2)), k4 = f(add(s, k3, h));
+    var out = [];
+    for (i = 0; i < n; i++) out.push(s[i] + h / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+    return out;
+  }
+
+  function mk(simple, s, px, py, color, tint) {
+    return { simple: simple, f: simple ? simpleD : doubleD, s: s, px: px, py: py, color: color, tint: tint, trail: [] };
+  }
+
+  function tips(p) {
+    var x1 = p.px + ARM * Math.sin(p.s[0]), y1 = p.py + ARM * Math.cos(p.s[0]);
+    if (p.simple) return [x1, y1];
+    return [x1, y1, x1 + ARM * Math.sin(p.s[2]), y1 + ARM * Math.cos(p.s[2])];
+  }
+
+  var items = [], t = 0;
+
+  function build(phase) {
+    t = 0;
+    ARM = phase === 0 ? 110 : 120;
+    if (phase === 0) {
+      items = [
+        mk(true, [1.1, 0], 275, 240, 'ink', false),
+        mk(false, [2.4, 0, 2.0, 0], 825, 240, 'coral', false)
+      ];
+    } else {
+      items = [
+        mk(false, [2.2, 0, 2.5, 0], 550, 260, 'ink', true),
+        mk(false, [2.201, 0, 2.5, 0], 550, 260, 'coral', true)
+      ];
+    }
+  }
+
+  function palette() {
+    var dark = document.body.classList.contains('dark');
+    return { ink: dark ? '#d0d0d0' : '#1a1a1a', coral: dark ? '#f08e7c' : '#ed6f5c' };
+  }
+
+  function line(ax, ay, bx, by) {
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.stroke();
+  }
+
+  function seg(ax, ay, bx, by, ra, rb) {
+    var dx = bx - ax, dy = by - ay, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
+    line(ax + ux * ra, ay + uy * ra, bx - ux * rb, by - uy * rb);
+  }
+
+  function mass(x, y, col) {
+    ctx.strokeStyle = col;
+    ctx.fillStyle = col;
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.arc(x, y, R, 0, 2 * Math.PI);
+    ctx.globalAlpha = 0.12;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.stroke();
+    ctx.lineWidth = 1;
+    line(x - R * 0.45, y, x + R * 0.45, y);
+    line(x, y - R * 0.45, x, y + R * 0.45);
+  }
+
+  function ceiling(px, py, P) {
+    ctx.strokeStyle = P.ink;
+    ctx.fillStyle = P.ink;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.arc(px, py, 8, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(px, py, 3, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+
+  function plumb(px, py, P) {
+    ctx.strokeStyle = P.ink;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.45;
+    ctx.setLineDash([6, 5]);
+    line(px, py, px, py + ARM + 30);
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+  }
+
+  function grid(P) {
+    ctx.strokeStyle = P.ink;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.07;
+    for (var y = 20; y < H - 60; y += 80) line(20, y, W - 20, y);
+    for (var x = 110; x < W - 20; x += 110) line(x, 20, x, H - 60);
+    ctx.globalAlpha = 1;
+  }
+
+  function label(txt, x, y, size, col, align) {
+    ctx.font = '600 ' + size + 'px "JetBrains Mono", monospace';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '3px';
+    ctx.fillStyle = col;
+    ctx.textAlign = align || 'center';
+    ctx.fillText(txt, x, y);
+  }
+
+  function drawItem(p, P) {
+    var col = p.color === 'coral' ? P.coral : P.ink;
+    var armCol = p.tint ? col : P.ink;
+    var tr = p.trail, n = tr.length, i;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 1.6;
+    for (i = 1; i < n; i++) {
+      ctx.globalAlpha = (i / n) * (p.color === 'coral' ? 0.85 : 0.5);
+      line(tr[i - 1][0], tr[i - 1][1], tr[i][0], tr[i][1]);
+    }
+    ctx.globalAlpha = 1;
+    var q = tips(p);
+    ctx.strokeStyle = armCol;
+    ctx.lineWidth = 1.6;
+    if (p.simple) {
+      seg(p.px, p.py, q[0], q[1], 0, R);
+      mass(q[0], q[1], armCol);
+    } else {
+      seg(p.px, p.py, q[0], q[1], 0, R);
+      seg(q[0], q[1], q[2], q[3], R, R);
+      mass(q[0], q[1], armCol);
+      mass(q[2], q[3], col);
+    }
+  }
+
+  function drawAngle(p, P) {
+    var th = p.s[0];
+    ctx.strokeStyle = P.coral;
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(p.px, p.py, 46, Math.PI / 2, Math.PI / 2 - th, th > 0);
+    ctx.stroke();
+    var mid = Math.PI / 2 - th / 2;
+    ctx.fillStyle = P.coral;
+    ctx.font = 'italic 22px Georgia, serif';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+    ctx.textAlign = 'center';
+    ctx.fillText('θ', p.px + 66 * Math.cos(mid), p.py + 66 * Math.sin(mid) + 7);
+  }
+
+  function draw(phase) {
+    var P = palette();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    grid(P);
+    var i;
+    if (phase === 0) {
+      ctx.strokeStyle = P.ink;
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = 0.35;
+      ctx.setLineDash([8, 6]);
+      line(W / 2, 20, W / 2, H - 50);
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+      for (i = 0; i < items.length; i++) { ceiling(items[i].px, items[i].py, P); plumb(items[i].px, items[i].py, P); }
+      drawAngle(items[0], P);
+      for (i = 0; i < items.length; i++) drawItem(items[i], P);
+      label('PENDOLO SEMPLICE', 275, H - 14, 15, P.ink);
+      label('PENDOLO DOPPIO', 825, H - 14, 15, P.ink);
+    } else {
+      ceiling(550, 260, P);
+      plumb(550, 260, P);
+      for (i = 0; i < items.length; i++) drawItem(items[i], P);
+      var a = tips(items[0]), b = tips(items[1]);
+      var d = Math.hypot(a[2] - b[2], a[3] - b[3]) / ARM;
+      if (d > 0.05) {
+        ctx.strokeStyle = P.coral;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.6;
+        ctx.setLineDash([4, 4]);
+        line(a[2], a[3], b[2], b[3]);
+        ctx.setLineDash([]);
+        ctx.globalAlpha = 1;
+      }
+      label('DUE PENDOLI DOPPI, SCARTO INIZIALE 0.001 rad', W / 2, H - 36, 15, P.ink);
+      label('t = ' + t.toFixed(1) + ' s', W / 2 - 30, H - 10, 14, P.ink, 'right');
+      label('distanza = ' + d.toFixed(2) + ' m', W / 2 + 30, H - 10, 14, P.coral, 'left');
+    }
+  }
+
+  var phase = -1, last = 0, wasOn = false;
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!sec.classList.contains('present')) { wasOn = false; return; }
+    var ph = sec.querySelector('.fragment.visible') ? 1 : 0;
+    if (!wasOn || ph !== phase || (ph === 1 && t > 24)) {
+      phase = ph;
+      wasOn = true;
+      last = now;
+      build(ph);
+    }
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    var n = Math.max(1, Math.ceil(dt / STEP)), h = dt / n, k;
+    for (k = 0; k < n; k++) items.forEach(function (p) { p.s = rk4(p.f, p.s, h); });
+    t += dt;
+    items.forEach(function (p) {
+      var q = tips(p);
+      p.trail.push([q[q.length - 2], q[q.length - 1]]);
+      if (p.trail.length > TRAIL) p.trail.shift();
+    });
+    draw(phase);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  var sec = document.getElementById('lorenz-live');
+  var cv = document.getElementById('lorenz-canvas');
+  if (!sec || !cv) return;
+
+  var W = 1100, H = 420, SIGMA = 10, RHO = 28, BETA = 8 / 3, DT = 0.008, RATE = 1.5;
+  var TRAIL = 2600, SC = 8, EL = 0.4, CX = 600, CY = 205, CHUNK = 40;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  var ctx = cv.getContext('2d');
+  if (document.fonts) document.fonts.load('600 15px "JetBrains Mono"');
+
+  function lorenz(s) {
+    return [SIGMA * (s[1] - s[0]), s[0] * (RHO - s[2]) - s[1], s[0] * s[1] - BETA * s[2]];
+  }
+
+  function rk4(f, s, h) {
+    var n = s.length, i;
+    function add(a, b, k) { var r = []; for (i = 0; i < n; i++) r.push(a[i] + b[i] * k); return r; }
+    var k1 = f(s), k2 = f(add(s, k1, h / 2)), k3 = f(add(s, k2, h / 2)), k4 = f(add(s, k3, h));
+    var out = [];
+    for (i = 0; i < n; i++) out.push(s[i] + h / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+    return out;
+  }
+
+  var a, b, t = 0, phi = 0.6;
+
+  function build() {
+    var s = [1, 1, 1], i;
+    for (i = 0; i < 2600; i++) s = rk4(lorenz, s, DT);
+    a = { s: s, trail: [], ink: true };
+    b = { s: [s[0] + 0.001, s[1], s[2]], trail: [], ink: false };
+    t = 0;
+  }
+
+  function palette() {
+    var dark = document.body.classList.contains('dark');
+    return { ink: dark ? '#d0d0d0' : '#1a1a1a', coral: dark ? '#f08e7c' : '#ed6f5c' };
+  }
+
+  function project(p) {
+    var c = Math.cos(phi), sn = Math.sin(phi);
+    var X = p[0] * c + p[1] * sn, Y = -p[0] * sn + p[1] * c, Z = p[2] - 25;
+    return [CX + X * SC, CY - (Z * Math.cos(EL) + Y * Math.sin(EL)) * SC];
+  }
+
+  function line(ax, ay, bx, by) {
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.stroke();
+  }
+
+  function text(txt, x, y, size, col, align, spacing) {
+    ctx.font = '600 ' + size + 'px "JetBrains Mono", monospace';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = spacing || '0px';
+    ctx.fillStyle = col;
+    ctx.textAlign = align;
+    ctx.fillText(txt, x, y);
+  }
+
+  function drawTrail(o, col, alpha) {
+    var tr = o.trail, n = tr.length, c, i, q;
+    var pts = [];
+    for (i = 0; i < n; i++) pts.push(project(tr[i]));
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 1.3;
+    ctx.lineJoin = 'round';
+    var chunks = Math.ceil(n / CHUNK);
+    for (c = 0; c < chunks; c++) {
+      ctx.globalAlpha = alpha * Math.pow((c + 1) / chunks, 1.5);
+      ctx.beginPath();
+      i = Math.max(0, c * CHUNK - 1);
+      ctx.moveTo(pts[i][0], pts[i][1]);
+      for (i = i + 1; i < Math.min(n, (c + 1) * CHUNK); i++) ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    if (n) {
+      q = pts[n - 1];
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.arc(q[0], q[1], 7, 0, 2 * Math.PI);
+      ctx.globalAlpha = 0.15;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.stroke();
+    }
+  }
+
+  function draw() {
+    var P = palette(), i;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = P.ink;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.07;
+    for (i = 20; i < H - 20; i += 80) line(20, i, W - 20, i);
+    for (i = 110; i < W - 20; i += 110) line(i, 20, i, H - 20);
+    ctx.globalAlpha = 1;
+
+    drawTrail(a, P.ink, 0.55);
+    drawTrail(b, P.coral, 0.9);
+
+    text('dx/dt = σ (y − x)', 40, 160, 17, P.ink, 'left');
+    text('dy/dt = x (ρ − z) − y', 40, 190, 17, P.ink, 'left');
+    text('dz/dt = x y − β z', 40, 220, 17, P.ink, 'left');
+    ctx.globalAlpha = 0.6;
+    text('σ = 10   ρ = 28   β = 8/3', 40, 255, 14, P.ink, 'left');
+    ctx.globalAlpha = 1;
+
+    var d = Math.hypot(a.s[0] - b.s[0], a.s[1] - b.s[1], a.s[2] - b.s[2]);
+    text('DUE TRAIETTORIE, SCARTO 0.001', W - 40, 300, 14, P.ink, 'right', '2px');
+    text('t = ' + t.toFixed(1), W - 40, 330, 14, P.ink, 'right');
+    text('distanza = ' + d.toFixed(2), W - 40, 355, 14, P.coral, 'right');
+  }
+
+  var wasOn = false, last = 0;
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!sec.classList.contains('present')) { wasOn = false; return; }
+    if (!wasOn || t > 40) {
+      wasOn = true;
+      last = now;
+      build();
+    }
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    phi += 0.12 * dt;
+    var n = Math.max(1, Math.round(RATE * dt / DT)), k;
+    for (k = 0; k < n; k++) {
+      a.s = rk4(lorenz, a.s, DT);
+      b.s = rk4(lorenz, b.s, DT);
+      a.trail.push(a.s);
+      b.trail.push(b.s);
+      if (a.trail.length > TRAIL) { a.trail.shift(); b.trail.shift(); }
+    }
+    t += n * DT;
+    draw();
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  var sec = document.getElementById('bifurcazione-live');
+  var cv = document.getElementById('bifurcazione-canvas');
+  if (!sec || !cv) return;
+
+  var W = 1100, H = 470, PX = 80, PY = 24, PW = 960, PH = 350;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  var ctx = cv.getContext('2d');
+  if (document.fonts) document.fonts.load('600 14px "JetBrains Mono"');
+
+  var BW = Math.round(PW * dpr), BH = Math.round(PH * dpr);
+  var off = document.createElement('canvas');
+  off.width = BW;
+  off.height = BH;
+  var octx = off.getContext('2d');
+  var img = octx.createImageData(BW, BH);
+
+  var FULL = { r0: 2.5, r1: 4, x0: 0, x1: 1 };
+  var ZOOM = { r0: 3.826, r1: 3.858, x0: 0.43, x1: 0.56 };
+  var RINF = 3.5699, TR = 700, NP = 220, SWEEP = 8, ZOOM_T = 11;
+
+  var view = FULL, done = 0, mode = 'sweep', sweepT = 0, u = 0, wasOn = false, last = 0, lastKey = '';
+  var ink, coral;
+
+  function hexRgb(h) { return [parseInt(h.substr(1, 2), 16), parseInt(h.substr(3, 2), 16), parseInt(h.substr(5, 2), 16)]; }
+
+  function palette() {
+    var dark = document.body.classList.contains('dark');
+    return { key: dark ? 'd' : 'l', ink: dark ? '#d0d0d0' : '#1a1a1a', coral: dark ? '#f08e7c' : '#ed6f5c' };
+  }
+
+  function compute(v, c0, c1) {
+    var d = img.data, rs = (v.r1 - v.r0) / BW, xs = BH / (v.x1 - v.x0), c, i, r, x, y, k, col;
+    for (c = c0; c < c1; c++) {
+      r = v.r0 + (c + 0.5) * rs;
+      col = r > RINF ? coral : ink;
+      x = 0.5;
+      for (i = 0; i < TR; i++) x = r * x * (1 - x);
+      for (i = 0; i < NP; i++) {
+        x = r * x * (1 - x);
+        y = ((v.x1 - x) * xs) | 0;
+        if (y >= 0 && y < BH) {
+          k = (y * BW + c) * 4;
+          d[k] = col[0];
+          d[k + 1] = col[1];
+          d[k + 2] = col[2];
+          d[k + 3] = Math.min(255, d[k + 3] + 90);
+        }
+      }
+    }
+  }
+
+  function redo(v, upto) {
+    img.data.fill(0);
+    compute(v, 0, upto);
+  }
+
+  function interp(e) {
+    var sa = [FULL.r1 - FULL.r0, FULL.x1 - FULL.x0], sb = [ZOOM.r1 - ZOOM.r0, ZOOM.x1 - ZOOM.x0];
+    var ca = [(FULL.r0 + FULL.r1) / 2, (FULL.x0 + FULL.x1) / 2], cb = [(ZOOM.r0 + ZOOM.r1) / 2, (ZOOM.x0 + ZOOM.x1) / 2];
+    var out = [], i, span, v;
+    for (i = 0; i < 2; i++) {
+      span = Math.exp(Math.log(sa[i]) + (Math.log(sb[i]) - Math.log(sa[i])) * e);
+      v = (sa[i] - span) / (sa[i] - sb[i]);
+      out.push([ca[i] + (cb[i] - ca[i]) * v - span / 2, ca[i] + (cb[i] - ca[i]) * v + span / 2]);
+    }
+    return { r0: out[0][0], r1: out[0][1], x0: out[1][0], x1: out[1][1] };
+  }
+
+  function line(ax, ay, bx, by) {
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.stroke();
+  }
+
+  function text(txt, x, y, size, col, align, spacing) {
+    ctx.font = '600 ' + size + 'px "JetBrains Mono", monospace';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = spacing || '0px';
+    ctx.fillStyle = col;
+    ctx.textAlign = align;
+    ctx.fillText(txt, x, y);
+  }
+
+  function rx(r) { return PX + (r - view.r0) / (view.r1 - view.r0) * PW; }
+
+  function draw(P, e) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    octx.putImageData(img, 0, 0);
+    ctx.drawImage(off, 0, 0, BW, BH, PX, PY, PW, PH);
+
+    ctx.strokeStyle = P.ink;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.6;
+    line(PX, PY, PX, PY + PH);
+    line(PX, PY + PH, PX + PW, PY + PH);
+    var span = view.r1 - view.r0, mag = Math.pow(10, Math.floor(Math.log(span / 4) / Math.LN10)), step = mag, m;
+    var cand = [1, 2, 5, 10];
+    for (m = 0; m < cand.length; m++) { step = cand[m] * mag; if (span / step <= 6) break; }
+    var dec = Math.max(0, -Math.floor(Math.log(step) / Math.LN10 + 1e-9));
+    var r, px;
+    for (r = Math.ceil(view.r0 / step - 1e-9) * step; r <= view.r1 + 1e-9; r += step) {
+      px = rx(r);
+      line(px, PY + PH, px, PY + PH + 6);
+      ctx.globalAlpha = 1;
+      text(r.toFixed(dec), px, PY + PH + 26, 13, P.ink, 'center');
+      ctx.globalAlpha = 0.6;
+    }
+    ctx.globalAlpha = 1;
+    text('r', PX + PW + 4, PY + PH + 5, 14, P.coral, 'left');
+    text('x', PX - 10, PY + 10, 14, P.coral, 'right');
+    text(view.x1.toFixed(2), PX - 10, PY + 28, 12, P.ink, 'right');
+    text(view.x0.toFixed(2), PX - 10, PY + PH, 12, P.ink, 'right');
+
+    if (mode === 'sweep' || mode === 'hold') {
+      var front = FULL.r0 + done / BW * (FULL.r1 - FULL.r0);
+      var marks = [[3, '2 VALORI'], [3.4495, '4'], [RINF, 'CAOS']], i;
+      ctx.lineWidth = 1;
+      for (i = 0; i < marks.length; i++) {
+        if (marks[i][0] > front) continue;
+        px = rx(marks[i][0]);
+        ctx.strokeStyle = P.ink;
+        ctx.globalAlpha = 0.35;
+        ctx.setLineDash([6, 5]);
+        line(px, PY + 18, px, PY + PH);
+        ctx.setLineDash([]);
+        ctx.globalAlpha = 1;
+        text(marks[i][1], px, PY + 12, 13, P.ink, 'center', '2px');
+      }
+      if (mode === 'sweep') {
+        px = rx(front);
+        ctx.strokeStyle = P.coral;
+        ctx.globalAlpha = 0.8;
+        line(px, PY, px, PY + PH);
+        ctx.globalAlpha = 1;
+        text('r = ' + front.toFixed(3), PX + PW - 4, PY + PH - 10, 14, P.coral, 'right');
+      }
+    } else {
+      text('INGRANDIMENTO ×' + Math.round((FULL.r1 - FULL.r0) / span), PX + PW - 4, PY + 14, 14, P.coral, 'right', '2px');
+    }
+  }
+
+  function setPalette(P) {
+    ink = hexRgb(P.ink);
+    coral = hexRgb(P.coral);
+  }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!sec.classList.contains('present')) { wasOn = false; return; }
+    var P = palette(), ph = sec.querySelector('.fragment.visible') ? 1 : 0, e = 0, target;
+    if (!wasOn) {
+      wasOn = true;
+      last = now;
+      lastKey = P.key;
+      setPalette(P);
+      view = FULL;
+      done = 0;
+      mode = 'sweep';
+      sweepT = 0;
+      u = 0;
+      img.data.fill(0);
+    }
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    if (P.key !== lastKey) {
+      lastKey = P.key;
+      setPalette(P);
+      if (mode === 'sweep' || mode === 'hold') redo(FULL, done);
+    }
+
+    if (mode === 'sweep') {
+      if (ph === 1) {
+        compute(FULL, done, BW);
+        done = BW;
+        mode = 'zoom';
+        u = 0;
+      } else {
+        sweepT += dt;
+        target = Math.min(BW, Math.floor(sweepT / SWEEP * BW));
+        compute(FULL, done, target);
+        done = target;
+        if (done >= BW) mode = 'hold';
+      }
+    } else if (mode === 'hold') {
+      if (ph === 1) { mode = 'zoom'; u = 0; }
+    } else if ((mode === 'zoom' || mode === 'zoomed') && ph === 0) {
+      view = FULL;
+      mode = 'hold';
+      done = BW;
+      redo(FULL, BW);
+    }
+
+    if (mode === 'zoom') {
+      u = Math.min(1, u + dt / ZOOM_T);
+      e = u * u * (3 - 2 * u);
+      view = interp(e);
+      redo(view, BW);
+      if (u >= 1) mode = 'zoomed';
+    } else if (mode === 'zoomed') {
+      e = 1;
+    }
+    draw(P, e);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  var sec = document.getElementById('mandelbrot-live');
+  var cv = document.getElementById('mandelbrot-canvas');
+  if (!sec || !cv) return;
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = Math.round(380 * dpr);
+  cv.height = Math.round(380 * dpr);
+  var gl = cv.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false });
+  if (!gl) return;
+
+  var vs = '#version 300 es\n' +
+    'void main() {\n' +
+    '  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));\n' +
+    '  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);\n' +
+    '}\n';
+
+  var fs = '#version 300 es\n' +
+    'precision highp float;\n' +
+    'uniform vec2 uRes;\n' +
+    'uniform vec2 uCenter;\n' +
+    'uniform float uScale;\n' +
+    'uniform float uMax;\n' +
+    'uniform vec3 uInk;\n' +
+    'uniform vec3 uCoral;\n' +
+    'out vec4 o;\n' +
+    'vec4 shade(vec2 frag) {\n' +
+    '  vec2 c = uCenter + (frag - 0.5 * uRes) / uRes.y * uScale;\n' +
+    '  vec2 z = vec2(0.0);\n' +
+    '  float it = 0.0;\n' +
+    '  bool inside = true;\n' +
+    '  for (int i = 0; i < 1200; i++) {\n' +
+    '    if (float(i) >= uMax) break;\n' +
+    '    z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;\n' +
+    '    if (dot(z, z) > 1024.0) { inside = false; it = float(i); break; }\n' +
+    '  }\n' +
+    '  if (inside) return vec4(uInk * 0.92, 0.92);\n' +
+    '  float mu = it + 1.0 - log2(log2(dot(z, z)) * 0.5);\n' +
+    '  float lm = log(max(mu, 1.0));\n' +
+    '  float tone = smoothstep(0.5, 1.0, lm / log(uMax));\n' +
+    '  float a = pow(tone, 1.2) * 0.9;\n' +
+    '  a *= 0.9 + 0.1 * sin(lm * 4.0);\n' +
+    '  vec3 col = mix(uCoral, uInk, smoothstep(0.3, 0.85, tone));\n' +
+    '  return vec4(col * a, a);\n' +
+    '}\n' +
+    'void main() {\n' +
+    '  vec4 s = shade(gl_FragCoord.xy + vec2(-0.25, -0.25)) + shade(gl_FragCoord.xy + vec2(0.25, -0.25)) +\n' +
+    '           shade(gl_FragCoord.xy + vec2(-0.25, 0.25)) + shade(gl_FragCoord.xy + vec2(0.25, 0.25));\n' +
+    '  o = s * 0.25;\n' +
+    '}\n';
+
+  function shader(type, src) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    return sh;
+  }
+
+  var prog = gl.createProgram();
+  gl.attachShader(prog, shader(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+  gl.viewport(0, 0, cv.width, cv.height);
+
+  var U = {};
+  ['uRes', 'uCenter', 'uScale', 'uMax', 'uInk', 'uCoral'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+
+  var TARGET = [-0.743643887037151, 0.13182590420533];
+  var START = [-0.5, 0], S0 = 3.2, S1 = 5e-4, PERIOD = 70;
+
+  function rgb(h) { return [parseInt(h.substr(1, 2), 16) / 255, parseInt(h.substr(3, 2), 16) / 255, parseInt(h.substr(5, 2), 16) / 255]; }
+
+  var wasOn = false, t0 = 0, lastDraw = 0;
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!sec.classList.contains('present')) { wasOn = false; return; }
+    if (!wasOn) { wasOn = true; t0 = now; }
+    if (now - lastDraw < 30) return;
+    lastDraw = now;
+    var tau = ((now - t0) / 1000) % PERIOD;
+    var e = 0.5 - 0.5 * Math.cos(2 * Math.PI * tau / PERIOD);
+    var scale = Math.exp(Math.log(S0) + (Math.log(S1) - Math.log(S0)) * e);
+    var v = (S0 - scale) / (S0 - S1);
+    var dark = document.body.classList.contains('dark');
+    var ink = rgb(dark ? '#d0d0d0' : '#1a1a1a'), coral = rgb(dark ? '#f08e7c' : '#ed6f5c');
+    gl.uniform2f(U.uRes, cv.width, cv.height);
+    gl.uniform2f(U.uCenter, START[0] + (TARGET[0] - START[0]) * v, START[1] + (TARGET[1] - START[1]) * v);
+    gl.uniform1f(U.uScale, scale);
+    gl.uniform1f(U.uMax, Math.min(1200, 150 + 70 * Math.log(S0 / scale) / Math.LN2));
+    gl.uniform3fv(U.uInk, ink);
+    gl.uniform3fv(U.uCoral, coral);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 <script>
 (function () {
@@ -700,7 +1436,7 @@ slides:
   var magnetLightIds = [
     'particles-ef-content17', 'particles-ef-content18', 'particles-ef-content19', 'particles-ef-content20',
     'particles-ef-content21', 'particles-ef-content22', 'particles-ef-content23', 'particles-ef-content24',
-    'particles-ef-content25', 'particles-ef-content26'
+    'particles-ef-content25', 'particles-ef-content26', 'particles-ef-content32'
   ];
   var lightIds = [
     'particles-ef-content3', 'particles-ef-content4', 'particles-ef-content5', 'particles-ef-content6',
