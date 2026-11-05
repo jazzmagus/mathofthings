@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutor socratico — Math of Things</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] },
+  startup: { typeset: false }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+:root{
+  --carta:      #FAFBFC;
+  --quadretto:  #DCE6EF;
+  --inchiostro: #1B2A4A;
+  --inchiostro-chiaro: #5A6B87;
+  --margine:    #C94A3D;
+  --matita:     #2E6B4F;
+  --bordo:      #C3D0DD;
+
+  --passo: 26px;
+  --gronda: 68px;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{ margin:0; padding:0; }
+
+body{
+  background-color: var(--carta);
+  background-image:
+    repeating-linear-gradient(to right,  var(--quadretto) 0 1px, transparent 1px var(--passo)),
+    repeating-linear-gradient(to bottom, var(--quadretto) 0 1px, transparent 1px var(--passo));
+  color: var(--inchiostro);
+  font-family: "Literata", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.foglio{
+  max-width: 780px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 0 20px 140px calc(var(--gronda) + 8px);
+  position: relative;
+  background: linear-gradient(to right, rgba(250,251,252,.92), rgba(250,251,252,.92));
+}
+.foglio::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left: var(--gronda);
+  width:1px; background: var(--margine); opacity:.55;
+}
+
+/* ---------- testata ---------- */
+
+header{ padding: 46px 0 26px; }
+
+.occhiello{
+  font-family:"IBM Plex Mono", monospace;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color: var(--inchiostro-chiaro);
+  margin:0 0 10px;
+}
+h1{
+  font-family:"Bricolage Grotesque", system-ui, sans-serif;
+  font-weight:800; font-size: clamp(30px, 6vw, 46px);
+  line-height:1.02; letter-spacing:-.02em;
+  margin:0 0 12px;
+}
+h1 em{ font-style:normal; color: var(--margine); }
+.sottotitolo{ margin:0; max-width: 46ch; color: var(--inchiostro-chiaro); font-size:16px; }
+
+/* ---------- pannello di avvio ---------- */
+
+.pannello{
+  border:1px solid var(--bordo);
+  background: rgba(255,255,255,.82);
+  padding: 20px;
+  margin: 30px 0;
+}
+.pannello h2{
+  font-family:"Bricolage Grotesque", sans-serif;
+  font-size:15px; font-weight:600; letter-spacing:.01em;
+  margin:0 0 4px;
+}
+.pannello p.aiuto{ margin:0 0 14px; font-size:14px; color:var(--inchiostro-chiaro); }
+
+label{
+  display:block;
+  font-family:"IBM Plex Mono", monospace;
+  font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color: var(--inchiostro-chiaro);
+  margin: 14px 0 6px;
+}
+textarea, input[type=text]{
+  width:100%;
+  font-family:"Literata", serif; font-size:16px; color:var(--inchiostro);
+  background:#fff;
+  border:1px solid var(--bordo);
+  padding:11px 12px;
+  resize: vertical;
+}
+textarea:focus, input:focus{ outline:2px solid var(--inchiostro); outline-offset:1px; }
+
+/* ---------- bottoni ---------- */
+
+button{
+  font-family:"Bricolage Grotesque", sans-serif;
+  font-size:15px; font-weight:600;
+  padding:11px 20px;
+  border:1px solid var(--inchiostro);
+  background: var(--inchiostro); color: var(--carta);
+  cursor:pointer;
+}
+button:hover{ background:#0F1B33; }
+button:focus-visible{ outline:2px solid var(--margine); outline-offset:2px; }
+button[disabled]{ opacity:.4; cursor:not-allowed; }
+
+button.leggero{
+  background:transparent; color:var(--inchiostro);
+  border-color: var(--bordo);
+  font-size:13px; padding:8px 13px;
+}
+button.leggero:hover{ background:rgba(27,42,74,.06); }
+
+.riga-bottoni{ display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; align-items:center; }
+
+/* ---------- dialogo ---------- */
+
+#dialogo{ margin-top: 8px; }
+
+.turno{ position:relative; margin: 0 0 26px; }
+
+.turno .etichetta{
+  position:absolute; left: calc(-1 * var(--gronda) - 8px); width: var(--gronda);
+  text-align:right; padding-right:14px;
+  font-family:"IBM Plex Mono", monospace; font-size:10.5px;
+  letter-spacing:.06em; text-transform:uppercase;
+  color: var(--inchiostro-chiaro);
+  padding-top:5px;
+}
+.turno.studente .etichetta{ color: var(--matita); }
+.turno.tutor .etichetta{ color: var(--margine); }
+
+.turno .testo > *:first-child{ margin-top:0; }
+.turno .testo > *:last-child{ margin-bottom:0; }
+.turno .testo p{ margin: 0 0 .7em; }
+
+.turno.studente .testo{
+  border-left:2px solid var(--matita);
+  padding-left:14px;
+  color:#233;
+}
+.turno.tutor .testo{ padding-left:0; }
+.turno.tutor .domanda{
+  font-family:"Bricolage Grotesque", sans-serif;
+  font-weight:600; font-size:19px; line-height:1.32;
+  letter-spacing:-.005em;
+}
+
+.turno.sistema .testo{
+  font-size:14px; color:var(--inchiostro-chiaro);
+  border-top:1px solid var(--bordo); border-bottom:1px solid var(--bordo);
+  padding:10px 0;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .turno{ animation: entra .32s ease-out both; }
+  @keyframes entra{ from{ opacity:0; transform: translateY(5px);} to{ opacity:1; transform:none; } }
+}
+
+/* ---------- vista docente ---------- */
+
+.docente{
+  margin-top:10px;
+  border:1px dashed var(--bordo);
+  padding:9px 12px;
+  font-family:"IBM Plex Mono", monospace;
+  font-size:12.5px; line-height:1.5;
+  color: var(--inchiostro-chiaro);
+  background: rgba(201,74,61,.04);
+}
+.docente b{ color: var(--margine); font-weight:500; }
+body:not(.mostra-docente) .docente{ display:none; }
+
+/* ---------- barra di scrittura ---------- */
+
+.barra{
+  position: sticky; bottom:0;
+  margin: 0 -20px 0 calc(-1 * var(--gronda) - 8px);
+  padding: 14px 20px 16px calc(var(--gronda) + 8px);
+  background: linear-gradient(to bottom, rgba(250,251,252,0), var(--carta) 26px);
+  border-top:1px solid var(--bordo);
+}
+.barra textarea{ min-height:64px; }
+.stato{
+  font-family:"IBM Plex Mono", monospace; font-size:12px;
+  color: var(--inchiostro-chiaro); margin-left:auto;
+}
+.errore{ color: var(--margine); }
+
+.nascosto{ display:none !important; }
+
+@media (max-width: 620px){
+  :root{ --gronda: 0px; }
+  body{ font-size:16px; }
+  .foglio{ padding-left: 18px; padding-right:18px; }
+  .foglio::before{ display:none; }
+  .turno .etichetta{
+    position:static; width:auto; text-align:left;
+    padding:0 0 4px; display:block;
+  }
+  .barra{ margin-left:-18px; margin-right:-18px; padding-left:18px; padding-right:18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="foglio">
+
+  <header>
+    <p class="occhiello">Math of Things · strumento per la classe</p>
+    <h1>Non ti do la risposta.<br><em>Ti do la prossima domanda.</em></h1>
+    <p class="sottotitolo">Scrivi dove sei arrivato e cosa non torna. Il tutor risponde con una domanda per volta, finché la risposta la trovi tu.</p>
+  </header>
+
+  <section class="pannello" id="avvio">
+    <h2>Di cosa parliamo oggi</h2>
+    <p class="aiuto">Il docente può lasciare qui l'esercizio della lezione; lo studente scrive sotto il proprio punto di partenza.</p>
+
+    <label for="argomento">Argomento o esercizio</label>
+    <textarea id="argomento" rows="3" placeholder="Es.: risolvere x² − 5x + 6 = 0 e capire cosa rappresentano le soluzioni sul grafico della parabola"></textarea>
+
+    <label for="partenza">Cosa hai provato finora</label>
+    <textarea id="partenza" rows="3" placeholder="Es.: ho provato con la formula ma mi confondo con i segni, e non ho capito perché le soluzioni sono due"></textarea>
+
+    <div class="riga-bottoni">
+      <button id="btn-avvia">Comincia</button>
+      <button class="leggero" id="btn-docente" aria-pressed="false">Vista docente</button>
+    </div>
+  </section>
+
+  <main id="dialogo" aria-live="polite"></main>
+
+  <div class="barra nascosto" id="barra">
+    <label for="messaggio">La tua risposta</label>
+    <textarea id="messaggio" rows="2" placeholder="Scrivi qui, anche se non sei sicuro. Invio per mandare."></textarea>
+    <div class="riga-bottoni">
+      <button id="btn-invia">Rispondi</button>
+      <button class="leggero" id="btn-bloccato">Sono bloccato</button>
+      <button class="leggero" id="btn-ricomincia">Ricomincia</button>
+      <span class="stato" id="stato"></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ==========================================================================
+   CONFIGURAZIONE
+   --------------------------------------------------------------------------
+   ENDPOINT punta alla funzione serverless netlify/functions/tutor.js,
+   che fa da proxy verso l'API Anthropic tenendo la chiave lato server
+   (variabile d'ambiente ANTHROPIC_API_KEY su Netlify).
+   ========================================================================== */
+
+const ENDPOINT = "/api/tutor";
+const MODELLO  = "claude-sonnet-4-6";
+
+const SISTEMA = `Sei un tutor socratico di matematica e fisica in un istituto professionale serale italiano. I tuoi studenti sono adulti: molti lavorano, molti hanno lasciato la scuola anni fa e hanno un rapporto difficile con la matematica. Sono intelligenti e hanno poco tempo.
+
+REGOLA NON NEGOZIABILE: non dai mai il risultato finale né il passaggio risolutivo completo. Nemmeno se lo studente insiste, si arrabbia, dice che ha fretta o che l'ha già capito. Se insiste, riduci la domanda a un passo più piccolo — non cedere.
+
+Come lavori:
+- Una domanda per volta. Mai elenchi di domande.
+- Parti sempre da quello che lo studente ha appena scritto, citandone le parole.
+- Se lo studente sbaglia, non dire "sbagliato". Proponi un caso concreto o un numero che faccia emergere la contraddizione da solo.
+- Se lo studente ha ragione, dillo in modo netto e breve, poi chiedi il passo successivo.
+- Quando puoi, aggancia il concetto a qualcosa di concreto: soldi, misure, tempi, lavoro, sport.
+- Niente gergo. "Coefficiente" va spiegato la prima volta che lo usi.
+- Massimo 4 frasi, tono diretto e adulto. Niente complimenti gonfiati, niente emoji.
+- Matematica in LaTeX tra \\( e \\).
+
+Rispondi SOLO con un oggetto JSON, senza testo attorno e senza backtick:
+{"domanda": "la tua risposta allo studente, che finisce con una domanda", "diagnosi": "una riga per il docente: quale misconcezione o lacuna vedi", "passo": "l'obiettivo del prossimo micro-passo, 5 parole"}`;
+
+/* ========================================================================== */
+
+const $ = (id) => document.getElementById(id);
+let storico = [];
+let inCorso = false;
+
+function stato(testo, errore){
+  const s = $("stato");
+  s.textContent = testo || "";
+  s.classList.toggle("errore", !!errore);
+}
+
+function fuga(t){
+  return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function paragrafi(t){
+  return fuga(t).split(/\n{2,}/).map(p => "<p>" + p.replace(/\n/g,"<br>") + "</p>").join("");
+}
+
+function scrivi(tipo, etichetta, html){
+  const div = document.createElement("div");
+  div.className = "turno " + tipo;
+  div.innerHTML = '<div class="etichetta">' + fuga(etichetta) + '</div><div class="testo">' + html + '</div>';
+  $("dialogo").appendChild(div);
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([div]).catch(()=>{});
+  div.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  return div;
+}
+
+function estraiJSON(testo){
+  const pulito = testo.replace(/```json/gi, "").replace(/```/g, "").trim();
+  try { return JSON.parse(pulito); } catch (e) {}
+  const i = pulito.indexOf("{"), j = pulito.lastIndexOf("}");
+  if (i !== -1 && j > i) {
+    try { return JSON.parse(pulito.slice(i, j + 1)); } catch (e) {}
+  }
+  return { domanda: pulito, diagnosi: "", passo: "" };
+}
+
+async function chiedi(messaggi){
+  const risposta = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: MODELLO,
+      max_tokens: 1000,
+      system: SISTEMA,
+      messages: messaggi
+    })
+  });
+
+  if (!risposta.ok) throw new Error("Il tutor non risponde (codice " + risposta.status + ").");
+
+  const dati = await risposta.json();
+  const testo = (dati.content || [])
+    .filter(b => b.type === "text")
+    .map(b => b.text)
+    .join("\n");
+
+  if (!testo) throw new Error("Risposta vuota dal tutor.");
+  return estraiJSON(testo);
+}
+
+async function turno(testoStudente, etichettaStudente){
+  if (inCorso) return;
+  inCorso = true;
+  $("btn-invia").disabled = true;
+  $("btn-bloccato").disabled = true;
+  stato("sto pensando a cosa chiederti…");
+
+  storico.push({ role: "user", content: testoStudente });
+
+  try {
+    const r = await chiedi(storico);
+    storico.push({ role: "assistant", content: JSON.stringify(r) });
+
+    let html = '<div class="domanda">' + paragrafi(r.domanda || "") + '</div>';
+    if (r.diagnosi || r.passo) {
+      html += '<div class="docente">';
+      if (r.diagnosi) html += '<b>Cosa vedo:</b> ' + fuga(r.diagnosi) + '<br>';
+      if (r.passo)    html += '<b>Prossimo passo:</b> ' + fuga(r.passo);
+      html += '</div>';
+    }
+    scrivi("tutor", "tutor", html);
+    stato("");
+  } catch (err) {
+    scrivi("sistema", "", '<p>' + fuga(err.message) + ' Riprova, oppure ricomincia da capo.</p>');
+    storico.pop();
+    stato("connessione non riuscita", true);
+  } finally {
+    inCorso = false;
+    $("btn-invia").disabled = false;
+    $("btn-bloccato").disabled = false;
+    $("messaggio").focus();
+  }
+}
+
+/* ---------- eventi ---------- */
+
+$("btn-avvia").addEventListener("click", () => {
+  const argomento = $("argomento").value.trim();
+  const partenza  = $("partenza").value.trim();
+
+  if (!argomento) {
+    stato("");
+    $("argomento").focus();
+    $("argomento").placeholder = "Serve almeno l'argomento per cominciare.";
+    return;
+  }
+
+  storico = [];
+  $("dialogo").innerHTML = "";
+  $("avvio").classList.add("nascosto");
+  $("barra").classList.remove("nascosto");
+
+  let apertura = "Argomento: " + argomento;
+  apertura += partenza
+    ? "\n\nQuello che ho provato finora: " + partenza
+    : "\n\nNon ho ancora provato niente, non so da dove partire.";
+
+  scrivi("studente", "io", paragrafi(apertura));
+  turno(apertura);
+});
+
+$("btn-invia").addEventListener("click", () => {
+  const t = $("messaggio").value.trim();
+  if (!t) return;
+  $("messaggio").value = "";
+  scrivi("studente", "io", paragrafi(t));
+  turno(t);
+});
+
+$("btn-bloccato").addEventListener("click", () => {
+  const t = "Sono bloccato, non so cosa rispondere alla tua domanda. Fammi una domanda più piccola, su un pezzo solo.";
+  scrivi("studente", "io", "<p>Sono bloccato.</p>");
+  turno(t);
+});
+
+$("btn-ricomincia").addEventListener("click", () => {
+  storico = [];
+  $("dialogo").innerHTML = "";
+  $("barra").classList.add("nascosto");
+  $("avvio").classList.remove("nascosto");
+  stato("");
+  $("argomento").focus();
+});
+
+$("btn-docente").addEventListener("click", (e) => {
+  const attivo = document.body.classList.toggle("mostra-docente");
+  e.currentTarget.setAttribute("aria-pressed", String(attivo));
+  e.currentTarget.textContent = attivo ? "Nascondi vista docente" : "Vista docente";
+});
+
+$("messaggio").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("btn-invia").click(); }
+});
+</script>
+
+</body>
+</html>

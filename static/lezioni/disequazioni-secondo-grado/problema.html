@@ -320,6 +320,8 @@ const steps = [
 let current = 0;
 let score = 0;
 let answered = false;
+let shuffled = [];
+let correctIdx = -1;
 
 function init() {
   showStep(0);
@@ -364,12 +366,12 @@ function showStep(idx) {
   document.getElementById('fb-text').innerHTML = '';
   document.getElementById('btn-next').className = 'btn-next';
 
-  let shuffled = [...step.opts].sort(() => Math.random() - 0.5);
-  let correctIdx = shuffled.findIndex(o => o.correct);
+  shuffled = [...step.opts].sort(() => Math.random() - 0.5);
+  correctIdx = shuffled.findIndex(o => o.correct);
 
   const letters = ['A', 'B', 'C', 'D'];
   document.getElementById('q-opts').innerHTML = shuffled.map((opt, i) =>
-    `<div class="opt" id="opt-${i}" onclick="pick(${i}, ${correctIdx}, ${shuffled[i].correct}, '${shuffled[i].feedback.replace(/'/g, "\\'")}')" data-correct-feedback="${steps[idx - 1].opts[correctIdx].feedback.replace(/"/g, '&quot;')}">
+    `<div class="opt" id="opt-${i}" onclick="pick(${i})">
        <span class="opt-letter">${letters[i]}</span>
        <span class="opt-text">${opt.text}</span>
      </div>`
@@ -378,9 +380,11 @@ function showStep(idx) {
   MathJax.typesetPromise([document.getElementById('problem-container')]).catch(err => console.log(err));
 }
 
-function pick(i, correctIdx, isCorrect, feedback) {
+function pick(i) {
   if (answered) return;
   answered = true;
+  const isCorrect = shuffled[i].correct;
+  const feedback = shuffled[i].feedback;
 
   if (isCorrect) score++;
 

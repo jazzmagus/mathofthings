@@ -312,13 +312,14 @@ slides:
 </section>
 
 <section>
-  <p class="mot-kicker">due percorsi possibili</p>
+  <p class="mot-kicker">tre percorsi possibili</p>
   <h2>Tipologie di <em>crediti</em></h2>
   <dl class="mot-rows fragment">
-    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
-    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+    <dt>crediti formali</dt><dd>documentati da percorsi di istruzione già svolti: assegnati d'ufficio, ad esempio al cambio di scuola (es. una pagella con 8 in matematica da un istituto tecnico), con esonero automatico dalle lezioni</dd>
+    <dt>crediti non formali</dt><dd>competenze maturate in percorsi organizzati fuori dalla scuola, come corsi di formazione o certificazioni</dd>
+    <dt>crediti informali</dt><dd>competenze acquisite con l'esperienza o lo studio personale: le accerta il docente con una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
   </dl>
-  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — consultabile nella sezione Corsi del sito. Il credito si ottiene con un voto pari o superiore a 8.</p>
 </section>
 
 ---
@@ -513,13 +514,14 @@ slides:
 </section>
 
 <section>
-  <p class="mot-kicker">due percorsi possibili</p>
+  <p class="mot-kicker">tre percorsi possibili</p>
   <h2>Tipologie di <em>crediti</em></h2>
   <dl class="mot-rows fragment">
-    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
-    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+    <dt>crediti formali</dt><dd>documentati da percorsi di istruzione già svolti: assegnati d'ufficio, ad esempio al cambio di scuola (es. una pagella con 8 in matematica da un istituto tecnico), con esonero automatico dalle lezioni</dd>
+    <dt>crediti non formali</dt><dd>competenze maturate in percorsi organizzati fuori dalla scuola, come corsi di formazione o certificazioni</dd>
+    <dt>crediti informali</dt><dd>competenze acquisite con l'esperienza o lo studio personale: le accerta il docente con una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
   </dl>
-  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — consultabile nella sezione Corsi del sito. Il credito si ottiene con un voto pari o superiore a 8.</p>
 </section>
 
 ---
@@ -714,13 +716,14 @@ slides:
 </section>
 
 <section>
-  <p class="mot-kicker">due percorsi possibili</p>
+  <p class="mot-kicker">tre percorsi possibili</p>
   <h2>Tipologie di <em>crediti</em></h2>
   <dl class="mot-rows fragment">
-    <dt>crediti informali</dt><dd>assegnati d'ufficio, ad esempio in caso di cambio di scuola: attestano competenze già acquisite (es. una pagella con 8 in matematica da un istituto tecnico) e comportano l'esonero automatico dalle lezioni</dd>
-    <dt>crediti formali</dt><dd>concessi dal docente della disciplina sulla base di una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
+    <dt>crediti formali</dt><dd>documentati da percorsi di istruzione già svolti: assegnati d'ufficio, ad esempio al cambio di scuola (es. una pagella con 8 in matematica da un istituto tecnico), con esonero automatico dalle lezioni</dd>
+    <dt>crediti non formali</dt><dd>competenze maturate in percorsi organizzati fuori dalla scuola, come corsi di formazione o certificazioni</dd>
+    <dt>crediti informali</dt><dd>competenze acquisite con l'esperienza o lo studio personale: le accerta il docente con una valutazione concordata — nel mio caso, una prova scritta nella prima settimana di ottobre</dd>
   </dl>
-  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — il programma è consultabile nella sezione Corsi del sito.</p>
+  <p class="mot-def fragment">La prova riguarda tutto il programma dell'anno scolastico in corso — consultabile nella sezione Corsi del sito. Il credito si ottiene con un voto pari o superiore a 8.</p>
 </section>
 
 ---
