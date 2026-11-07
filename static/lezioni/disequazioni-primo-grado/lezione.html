@@ -77,6 +77,39 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 .math-block.center{text-align:center}
 .math-block.result{border-left:2px solid var(--green);background:rgba(74,124,89,.04)}
 .math-block.warn{border-left:2px solid var(--danger);background:rgba(179,58,58,.04)}
+/* RETTA NUMERICA */
+.nl{display:block;width:100%;max-width:620px;height:auto;margin:6px auto;font-family:'JetBrains Mono',monospace}
+.nl text{fill:var(--text-mid);font-size:12px}
+.nl .nl-lab{fill:var(--text);font-size:13px}
+.nl .nl-res{fill:var(--green);font-weight:600}
+.nl .nl-tick{fill:var(--text);font-size:12px;font-weight:500}
+.nl .nl-axis{stroke:var(--text-dim);stroke-width:1.5}
+.nl .nl-guide{stroke:var(--border);stroke-width:1;stroke-dasharray:3 4}
+.nl .nl-band{fill:var(--green);opacity:.12}
+.nl .nl-bar{stroke:var(--blue);stroke-width:4;stroke-linecap:butt}
+.nl .nl-bar.res{stroke:var(--green)}
+.nl .nl-arr{fill:var(--blue)}
+.nl .nl-arr.res{fill:var(--green)}
+.nl .nl-dot{stroke:var(--blue);stroke-width:2.5;fill:var(--blue)}
+.nl .nl-dot.open{fill:var(--surface)}
+.nl .nl-dot.res{stroke:var(--green);fill:var(--green)}
+.nl .nl-dot.res.open{fill:var(--surface)}
+.nl-wrap{background:rgba(0,0,0,.025);padding:10px 8px;margin:10px 0;border-radius:2px}
+.nl .sg-line{stroke-width:4;stroke-linecap:butt}
+.nl .sg-line.pos{stroke:var(--blue)}
+.nl .sg-line.neg{stroke:var(--text-dim);stroke-dasharray:6 5;stroke-width:2.5}
+.nl .sg-sign{font-size:20px;font-weight:700;paint-order:stroke;stroke:var(--bg);stroke-width:5px}
+.nl .sg-sign.p{fill:var(--blue)}
+.nl .sg-sign.m{fill:var(--danger)}
+.nl .sg-sign.z{font-size:12px;fill:var(--text-mid);font-weight:500}
+/* BOTTONI */
+.btn-ghost{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.3px;padding:7px 16px;border:1px solid var(--border);color:var(--text);background:transparent;border-radius:6px;text-decoration:none;transition:border-color .2s,color .2s,background .2s}
+.btn-ghost span{display:inline-block;transition:transform .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
+.btn-ghost:hover span{transform:translateY(2px)}
+.doc-links{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px}
+.cb.plain{border-left-color:var(--border)}
+.cb.plain .cb-label{color:var(--text-dim)}
 mjx-container[jax="SVG"]{direction:ltr}
 mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
 
@@ -131,17 +164,16 @@ h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin
   .ct th,.ct td{padding:8px 10px}
 }
 
-[data-theme="dark"] .mot-theme-toggle{color:var(--text-mid)}
 .mot-theme-toggle{
-  position:fixed;bottom:1.25rem;right:1.25rem;z-index:400;
-  width:40px;height:40px;border-radius:50%;
-  border:1px solid var(--border);background:var(--surface);
-  box-shadow:var(--shadow,0 1px 3px rgba(0,0,0,.1));
+  position:fixed;top:6px;right:clamp(6px,1.5vw,18px);z-index:400;
+  width:40px;height:40px;padding:0;border:0;background:transparent;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:var(--text-mid);transition:all .2s;
+  color:var(--text-dim);transition:color .2s,transform .2s;
 }
-.mot-theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.mot-theme-toggle svg{width:18px;height:18px}
+.mot-theme-toggle:hover{color:var(--accent);transform:scale(1.1)}
+.mot-theme-toggle svg{width:22px;height:22px}
+body .topbar{padding-right:calc(clamp(6px,1.5vw,18px) + 44px)}
+@media print{.mot-theme-toggle{display:none}}
 </style>
 </head>
 <body>
@@ -176,6 +208,164 @@ function toggleAcc(el) {
   if (item.classList.contains('open') && typeof MathJax !== 'undefined') {
     MathJax.typesetPromise([item]);
   }
+}
+
+/* ═══════════════ RETTA NUMERICA (SVG) ═══════════════ */
+/* Condizione: ['<',5]  oppure  {l:'x² − 4 ≤ 0', iv:'[-2,2]'}  (unioni: '(-inf,-3)u(1,inf)')
+   nl([['<',5],['>=',-2]])            -> condizioni + intersezione
+   nl([['>',-1],['<=',5]],{solo:1})   -> solo l'intervallo soluzione */
+function iv(str) {
+  return str.split('u').map(t => {
+    const [a, b] = t.slice(1, -1).split(',').map(x => x.trim());
+    return { a: a === '-inf' ? -Infinity : +a, ai: t[0] === '[',
+             b: b === 'inf' ? Infinity : +b, bi: t.slice(-1) === ']' };
+  });
+}
+function nl(conds, opt = {}) {
+  const f = v => String(v).replace('-', '\u2212');
+  const sym = {'<':'<','<=':'\u2264','>':'>','>=':'\u2265'};
+  const vars = opt.v || 'x';
+  const rows = conds.map(c => Array.isArray(c)
+    ? { l: `${vars} ${sym[c[0]]} ${f(c[1])}`,
+        runs: [c[0][0] === '>' ? { a: c[1], ai: c[0].length === 2, b: Infinity, bi: false }
+                               : { a: -Infinity, ai: false, b: c[1], bi: c[0].length === 2 }] }
+    : { l: c.l, runs: iv(c.iv) });
+  const vals = [...new Set(rows.flatMap(r => r.runs.flatMap(u => [u.a, u.b]))
+    .filter(isFinite))].sort((a, b) => a - b);
+  const span = vals.length > 1 ? vals[vals.length - 1] - vals[0] : 2;
+  const pad = Math.max(span * 0.4, 1), lo = vals[0] - pad, hi = vals[vals.length - 1] + pad;
+  const X0 = 150, X1 = 548, W = 580, RH = 36;
+  const px = v => X0 + (v - lo) / (hi - lo) * (X1 - X0);
+  // intersezione di insiemi di intervalli
+  const meet = (A, B) => A.flatMap(r => B.flatMap(s => {
+    let a = r.a, ai = r.ai, b = r.b, bi = r.bi;
+    if (s.a > a) { a = s.a; ai = s.ai; } else if (s.a === a) ai = ai && s.ai;
+    if (s.b < b) { b = s.b; bi = s.bi; } else if (s.b === b) bi = bi && s.bi;
+    return a > b || (a === b && !(ai && bi)) ? [] : [{ a, ai, b, bi }];
+  })).sort((p, q) => p.a - q.a);
+  const res = rows.map(r => r.runs).reduce(meet);
+  const one = r => r.a === r.b ? `{${f(r.a)}}` :
+    (r.a === -Infinity ? '(\u2212\u221e' : (r.ai ? '[' : '(') + f(r.a)) + ', ' +
+    (r.b === Infinity ? '+\u221e)' : f(r.b) + (r.bi ? ']' : ')'));
+  const label = res.length ? res.map(one).join(' \u222a ') : '\u2205';
+  const shown = opt.solo ? [] : rows;
+  const n = shown.length, gap = n ? 14 : 0, top = 12;
+  const yRes = top + n * RH + gap + RH / 2;
+  const yAxis = yRes + RH / 2 + 8, H = yAxis + 40;
+  const xl = X0 - 4, xr = X1 + 4;
+  let o = `<svg class="nl" viewBox="0 0 ${W} ${H}" role="img" aria-label="Retta numerica">`;
+  res.forEach(r => {
+    const xa = r.a === -Infinity ? xl : px(r.a), xb = r.b === Infinity ? xr : px(r.b);
+    o += `<rect class="nl-band" x="${xa}" y="${top - 4}" width="${Math.max(xb - xa, 2)}" height="${yAxis - top + 4}"/>`;
+  });
+  vals.forEach(v => o += `<line class="nl-guide" x1="${px(v)}" x2="${px(v)}" y1="${top - 4}" y2="${yAxis}"/>`);
+  const bars = (runs, y, cls) => runs.map(r => {
+    const xa = r.a === -Infinity ? xl : px(r.a), xb = r.b === Infinity ? xr : px(r.b);
+    let s = '';
+    if (r.a !== r.b) s += `<line class="nl-bar ${cls}" x1="${xa + (r.a === -Infinity ? 6 : 0)}" x2="${xb - (r.b === Infinity ? 6 : 0)}" y1="${y}" y2="${y}"/>`;
+    if (r.a === -Infinity) s += `<path class="nl-arr ${cls}" d="M${xa - 2} ${y} l9 -6 v12 z"/>`;
+    else s += `<circle class="nl-dot ${cls}${r.ai ? '' : ' open'}" cx="${xa}" cy="${y}" r="5.5"/>`;
+    if (r.b === Infinity) s += `<path class="nl-arr ${cls}" d="M${xb + 2} ${y} l-9 -6 v12 z"/>`;
+    else if (r.a !== r.b) s += `<circle class="nl-dot ${cls}${r.bi ? '' : ' open'}" cx="${xb}" cy="${y}" r="5.5"/>`;
+    return s;
+  }).join('');
+  shown.forEach((r, i) => {
+    const y = top + i * RH + RH / 2;
+    o += `<text class="nl-lab" x="${X0 - 18}" y="${y + 4}" text-anchor="end">${r.l}</text>` + bars(r.runs, y, '');
+  });
+  if (n) o += `<line class="nl-guide" x1="8" x2="${W - 8}" y1="${yRes - RH / 2 - gap / 2 + 2}" y2="${yRes - RH / 2 - gap / 2 + 2}" style="stroke-dasharray:none"/>`;
+  o += `<text class="nl-lab nl-res" x="${X0 - 18}" y="${yRes + 4}" text-anchor="end">Soluzione</text>` + bars(res, yRes, 'res');
+  if (!res.length) o += `<text class="nl-lab nl-res" x="${(X0 + X1) / 2}" y="${yRes + 5}" text-anchor="middle">nessuna soluzione</text>`;
+  o += `<line class="nl-axis" x1="${X0 - 12}" x2="${X1 + 12}" y1="${yAxis}" y2="${yAxis}"/>`;
+  vals.forEach(v => o += `<line class="nl-axis" x1="${px(v)}" x2="${px(v)}" y1="${yAxis - 4}" y2="${yAxis + 4}"/><text class="nl-tick" x="${px(v)}" y="${yAxis + 20}" text-anchor="middle">${f(v)}</text>`);
+  o += `<text x="${X1 + 14}" y="${yAxis + 20}" text-anchor="end" style="font-style:italic">${vars}</text>`;
+  o += `<text class="nl-res" x="${W - 4}" y="${H - 6}" text-anchor="end" style="font-size:12px">S = ${label}</text></svg>`;
+  return `<div class="nl-wrap">${o}</div>`;
+}
+
+/* ═══════════════ STUDIO DEL SEGNO (SVG) ═══════════════ */
+/* sg([{l:'x − 1', z:1, s:1}, {l:'2 − x', z:2, s:-1}], '>')
+   z = zero del fattore; s = +1 se positivo a destra di z, -1 se a sinistra
+   sq:1 = fattore sempre ≥ 0 (quadrato); den:1 = fattore a denominatore;
+   zl = etichetta dello zero (es. '1/2'); opt.nosol = nasconde la soluzione */
+function sg(fs, op, opt = {}) {
+  const f = v => String(v).replace('-', '−');
+  const showSol = !opt.nosol;
+  const zlab = {}; fs.forEach(q => { if (q.zl) zlab[q.z] = q.zl; });
+  const strict = op.length === 1, pos = op[0] === '>';
+  const zs = [...new Set(fs.map(q => q.z))].sort((a, b) => a - b), n = zs.length;
+  const span = n > 1 ? zs[n - 1] - zs[0] : 2;
+  const pad = Math.max(span * 0.4, 1), lo = zs[0] - pad, hi = zs[n - 1] + pad;
+  const X0 = 150, X1 = 548, W = 580, RH = 34;
+  const px = v => X0 + (v - lo) / (hi - lo) * (X1 - X0);
+  const sgn = (q, x) => q.sq ? 1 : ((x > q.z) === (q.s > 0) ? 1 : -1);
+  const samp = i => i === 0 ? zs[0] - 1 : i === n ? zs[n - 1] + 1 : (zs[i - 1] + zs[i]) / 2;
+  const prod = i => fs.reduce((p, q) => p * sgn(q, samp(i)), 1);
+  const isDen = k => fs.some(q => q.den && q.z === zs[k]);
+  // celle: regione i -> 2i, zero k -> 2k+1
+  const sat = [];
+  for (let i = 0; i <= n; i++) {
+    sat[2 * i] = pos ? prod(i) > 0 : prod(i) < 0;
+    if (i < n) sat[2 * i + 1] = !strict && !isDen(i);
+  }
+  const runs = [];
+  for (let j = 0; j <= 2 * n; j++) if (sat[j]) {
+    let e = j; while (sat[e + 1]) e++;
+    const r = {};
+    if (j === 0) { r.a = -Infinity; r.ai = false; }
+    else if (j % 2 === 0) { r.a = zs[j / 2 - 1]; r.ai = false; }
+    else { r.a = zs[(j - 1) / 2]; r.ai = true; }
+    if (e === 2 * n) { r.b = Infinity; r.bi = false; }
+    else if (e % 2 === 0) { r.b = zs[e / 2]; r.bi = false; }
+    else { r.b = zs[(e - 1) / 2]; r.bi = true; }
+    runs.push(r); j = e;
+  }
+  const lab = r => r.a === r.b ? `{${f(r.a)}}` :
+    (r.a === -Infinity ? '(−∞' : (r.ai ? '[' : '(') + (zlab[r.a] || f(r.a))) + ', ' +
+    (r.b === Infinity ? '+∞)' : (zlab[r.b] || f(r.b)) + (r.bi ? ']' : ')'));
+  const solLab = runs.length ? runs.map(lab).join(' ∪ ') : '∅';
+  const nf = fs.length, top = 12, gap = 10;
+  const yP = top + nf * RH + gap + RH / 2, yS = yP + RH;
+  const yAxis = (showSol ? yS : yP) + RH / 2 + 8, H = yAxis + 52;
+  const xl = X0 - 4, xr = X1 + 4;
+  let o = `<svg class="nl" viewBox="0 0 ${W} ${H}" role="img" aria-label="Studio del segno">`;
+  if (showSol) runs.forEach(r => {
+    const xa = r.a === -Infinity ? xl : px(r.a), xb = r.b === Infinity ? xr : px(r.b);
+    o += `<rect class="nl-band" x="${xa}" y="${top - 4}" width="${Math.max(xb - xa, 2)}" height="${yAxis - top + 4}"/>`;
+  });
+  zs.forEach(v => o += `<line class="nl-guide" x1="${px(v)}" x2="${px(v)}" y1="${top - 4}" y2="${yAxis}"/>`);
+  fs.forEach((q, i) => {
+    const y = top + i * RH + RH / 2, x = px(q.z);
+    o += `<text class="nl-lab" x="${X0 - 18}" y="${y + 4}" text-anchor="end">${q.l}</text>`;
+    [[xl, x, sgn(q, q.z - 1)], [x, xr, sgn(q, q.z + 1)]].forEach(([a, b, s]) =>
+      o += `<line class="sg-line ${s > 0 ? 'pos' : 'neg'}" x1="${a}" x2="${b}" y1="${y}" y2="${y}"/>`);
+    o += `<circle class="nl-dot${strict || q.den ? ' open' : ''}" cx="${x}" cy="${y}" r="5.5"/>`;
+  });
+  o += `<line class="nl-guide" x1="8" x2="${W - 8}" y1="${yP - RH / 2 - gap / 2 + 2}" y2="${yP - RH / 2 - gap / 2 + 2}" style="stroke-dasharray:none"/>`;
+  o += `<text class="nl-lab" x="${X0 - 18}" y="${yP + 5}" text-anchor="end">${fs.some(q => q.den) ? 'Quoziente' : 'Prodotto'}</text>`;
+  const edges = [xl, ...zs.map(px), xr];
+  for (let i = 0; i <= n; i++)
+    o += `<text class="sg-sign ${prod(i) > 0 ? 'p' : 'm'}" x="${(edges[i] + edges[i + 1]) / 2}" y="${yP + 6}" text-anchor="middle">${prod(i) > 0 ? '+' : '−'}</text>`;
+  zs.forEach((v, k) => o += `<text class="sg-sign z" x="${px(v)}" y="${yP + 4}" text-anchor="middle">${isDen(k) ? '×' : '0'}</text>`);
+  if (showSol) o += `<text class="nl-lab nl-res" x="${X0 - 18}" y="${yS + 4}" text-anchor="end">Soluzione</text>`;
+  if (showSol) runs.forEach(r => {
+    const xa = r.a === -Infinity ? xl : px(r.a), xb = r.b === Infinity ? xr : px(r.b);
+    if (r.a !== r.b) o += `<line class="nl-bar res" x1="${xa + (r.a === -Infinity ? 6 : 0)}" x2="${xb - (r.b === Infinity ? 6 : 0)}" y1="${yS}" y2="${yS}"/>`;
+    if (r.a === -Infinity) o += `<path class="nl-arr res" d="M${xa - 2} ${yS} l9 -6 v12 z"/>`;
+    else o += `<circle class="nl-dot res${r.ai ? '' : ' open'}" cx="${xa}" cy="${yS}" r="5.5"/>`;
+    if (r.b === Infinity) o += `<path class="nl-arr res" d="M${xb + 2} ${yS} l-9 -6 v12 z"/>`;
+    else if (r.a !== r.b) o += `<circle class="nl-dot res${r.bi ? '' : ' open'}" cx="${xb}" cy="${yS}" r="5.5"/>`;
+  });
+  if (showSol && !runs.length) o += `<text class="nl-lab nl-res" x="${(X0 + X1) / 2}" y="${yS + 5}" text-anchor="middle">nessuna soluzione</text>`;
+  o += `<line class="nl-axis" x1="${X0 - 12}" x2="${X1 + 12}" y1="${yAxis}" y2="${yAxis}"/>`;
+  zs.forEach(v => o += `<line class="nl-axis" x1="${px(v)}" x2="${px(v)}" y1="${yAxis - 4}" y2="${yAxis + 4}"/><text class="nl-tick" x="${px(v)}" y="${yAxis + 20}" text-anchor="middle">${zlab[v] || f(v)}</text>`);
+  o += `<text x="${X1 + 14}" y="${yAxis + 20}" text-anchor="end" style="font-style:italic">x</text>`;
+  const yl = H - 12;
+  o += `<line class="sg-line pos" x1="10" x2="34" y1="${yl - 4}" y2="${yl - 4}" style="stroke-width:3"/><text x="40" y="${yl}" style="font-size:11px">positivo</text>`;
+  o += `<line class="sg-line neg" x1="108" x2="132" y1="${yl - 4}" y2="${yl - 4}" style="stroke-width:3"/><text x="138" y="${yl}" style="font-size:11px">negativo</text>`;
+  if (showSol) o += `<text class="nl-res" x="${W - 4}" y="${yl}" text-anchor="end" style="font-size:12px">S = ${solLab}</text>`;
+  o += '</svg>';
+  return `<div class="nl-wrap">${o}</div>`;
 }
 
 /* ═══════════════ SCHERMATE ═══════════════ */
@@ -226,10 +416,14 @@ const S = [
         </tr>
         <tr>
           <td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">6</td>
-          <td>Applicazioni pratiche (5 problemi)</td>
+          <td>Oltre il primo grado: scomposizione e studio del segno (6 esempi)</td>
         </tr>
         <tr>
           <td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">7</td>
+          <td>Applicazioni pratiche (5 problemi)</td>
+        </tr>
+        <tr>
+          <td style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">8</td>
           <td>Sintesi e ricapitolazione</td>
         </tr>
       </table>
@@ -389,15 +583,15 @@ const S = [
     ${acc([
       {
         t: `Es. 1: \\(x < 4\\) (stretto)`,
-        h: `<div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.9rem">← ○————————————————<br>-∞        4        +∞<br><br>Punto vuoto in 4, linea verso sinistra (verso -∞).</div>`
+        h: `${nl([['<',4]],{solo:1})}<p>Punto vuoto in 4, linea verso sinistra (verso -∞).</p>`
       },
       {
         t: `Es. 2: \\(x \\geq -2\\) (non stretto)`,
-        h: `<div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.9rem">————————————●————→<br>-∞      -2        +∞<br><br>Punto pieno in -2, linea verso destra (verso +∞).</div>`
+        h: `${nl([['>=',-2]],{solo:1})}<p>Punto pieno in -2, linea verso destra (verso +∞).</p>`
       },
       {
         t: `Es. 3: \\(-1 < x \\leq 5\\) (intervallo)`,
-        h: `<div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.9rem">←————○————————●————→<br>-∞    -1        5   +∞<br><br>Punto vuoto in -1, punto pieno in 5, linea continua tra loro.</div>`
+        h: `${nl([['>',-1],['<=',5]],{solo:1})}<p>Punto vuoto in -1, punto pieno in 5, linea continua tra loro.</p>`
       }
     ])}
 
@@ -441,7 +635,7 @@ const S = [
             <div class="math-block">\\[\\begin{cases} x < 5 \\\\ x \\geq -2 \\end{cases}\\]</div>
             <p><strong>Soluzione della prima:</strong> \\((-\\infty, 5)\\)</p>
             <p><strong>Soluzione della seconda:</strong> \\([-2, +\\infty)\\)</p>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Primo:     ←————○<br>Secondo:       ●————→<br>Intersezione:  ●——○<br></div>
+            ${nl([['<',5],['>=',-2]])}
             <p><strong>Soluzione finale:</strong> \\(-2 \\leq x < 5\\) oppure \\([-2, 5)\\)</p>`
       },
       {
@@ -450,14 +644,14 @@ const S = [
             <div class="math-block">\\[\\begin{cases} 2x - 3 > 1 \\\\ 3x + 2 \\leq 11 \\end{cases}\\]</div>
             <p><strong>Prima:</strong> \\(2x > 4 \\Rightarrow x > 2\\)</p>
             <p><strong>Seconda:</strong> \\(3x \\leq 9 \\Rightarrow x \\leq 3\\)</p>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Primo:      ○————————<br>Secondo:    ————●<br>Intersezione: ○—●</div>
+            ${nl([['>',2],['<=',3]])}
             <p><strong>Soluzione finale:</strong> \\(2 < x \\leq 3\\) oppure \\((2, 3]\\)</p>`
       },
       {
         t: `Es. 3: Sistema impossibile`,
         h: `<p><strong>Risolvere:</strong></p>
             <div class="math-block">\\[\\begin{cases} x > 5 \\\\ x < 2 \\end{cases}\\]</div>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Primo:           ○————————→<br>Secondo:  ←————○<br>Intersezione: (nessuna)</div>
+            ${nl([['>',5],['<',2]])}
             <p><strong>Soluzione finale:</strong> \\(\\emptyset\\) (insieme vuoto — nessuna soluzione)</p>`
       },
       {
@@ -466,7 +660,7 @@ const S = [
             <div class="math-block">\\[\\begin{cases} x > 1 \\\\ x > -3 \\end{cases}\\]</div>
             <p><strong>Prima:</strong> \\(x > 1\\)</p>
             <p><strong>Seconda:</strong> \\(x > -3\\)</p>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Primo:       ○————————→<br>Secondo:  ○——————————→<br>Intersezione: ○——————→</div>
+            ${nl([['>',1],['>',-3]])}
             <p><strong>Soluzione finale:</strong> \\(x > 1\\) oppure \\((1, +\\infty)\\) — la prima condizione è più restrittiva.</p>`
       },
       {
@@ -476,7 +670,7 @@ const S = [
             <p><strong>Prima:</strong> \\(x > -1\\) cioè \\((-1, +\\infty)\\)</p>
             <p><strong>Seconda:</strong> \\(x < 4\\) cioè \\((-\\infty, 4)\\)</p>
             <p><strong>Terza:</strong> \\(x \\geq 0\\) cioè \\([0, +\\infty)\\)</p>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Prima:    ←—○————————————→<br>Seconda:  ←————————————○→<br>Terza:        ●———————————→<br>Intersezione: ●——————○</div>
+            ${nl([['>',-1],['<',4],['>=',0]])}
             <p><strong>Soluzione finale:</strong> \\(0 \\leq x < 4\\) oppure \\([0, 4)\\)</p>`
       },
       {
@@ -485,14 +679,112 @@ const S = [
             <div class="math-block">\\[\\begin{cases} -x + 2 < 5 \\\\ 2x + 1 \\geq -3 \\end{cases}\\]</div>
             <p><strong>Prima:</strong> \\(-x < 3 \\Rightarrow x > -3\\) (il verso cambia!)</p>
             <p><strong>Seconda:</strong> \\(2x \\geq -4 \\Rightarrow x \\geq -2\\)</p>
-            <div class="math-block" style="font-family:'JetBrains Mono',monospace;font-size:.88rem">Prima:     ←—○————————————→<br>Seconda:      ●——————————→<br>Intersezione: ●————————→</div>
+            ${nl([['>',-3],['>=',-2]])}
             <p><strong>Soluzione finale:</strong> \\(x \\geq -2\\) oppure \\([-2, +\\infty)\\) — la seconda è più restrittiva.</p>`
       }
     ])}
   `
 },
 
-/* ──── 6 · APPLICAZIONI PRATICHE ──── */
+/* ──── 6 · STUDIO DEL SEGNO ──── */
+{
+  tag: `METODO`,
+  title: `Oltre il primo grado: <em>scomposizione e segno</em>`,
+  nav: `Studio del segno`,
+  sub: `Disequazioni di grado superiore che si riconducono al primo grado scomponendo in fattori.`,
+  body: `
+    <p>Una disequazione come \\(x^2 - 4 > 0\\) non si risolve isolando \\(x\\): non è di primo grado. Ma se la <strong>scomponiamo in fattori di primo grado</strong>, ogni fattore sappiamo già studiarlo.</p>
+
+    <div class="cb">
+      <div class="cb-label">Idea chiave</div>
+      <p>Un prodotto di fattori è <strong>positivo</strong> se i fattori negativi sono in numero <em>pari</em>, <strong>negativo</strong> se sono in numero <em>dispari</em>. Per la legge di annullamento del prodotto, il segno può cambiare solo dove un fattore si annulla: gli <strong>zeri dei fattori</strong> spezzano la retta in intervalli, e in ciascun intervallo il segno del prodotto è costante.</p>
+    </div>
+
+    <h2>Procedura: lo studio del segno</h2>
+    <ol>
+      <li><strong>Scomponi</strong> il polinomio in fattori di primo grado (raccoglimento, prodotti notevoli).</li>
+      <li>Per ogni fattore <strong>studia il segno</strong>: risolvi la disequazione \\(\\text{fattore} > 0\\), che è di primo grado.</li>
+      <li>Sulla retta numerica disegna <strong>una riga per fattore</strong>: linea <strong>continua</strong> dove il fattore è positivo, <strong>tratteggiata</strong> dove è negativo.</li>
+      <li>Nella riga del <strong>prodotto</strong> applica la regola dei segni in ogni intervallo.</li>
+      <li><strong>Leggi la soluzione</strong>: gli intervalli col segno richiesto (\\(>0\\) oppure \\(<0\\)). Gli zeri si includono solo se la disequazione è non stretta (\\(\\geq\\), \\(\\leq\\)).</li>
+    </ol>
+
+    <div class="cb warn">
+      <div class="cb-label">Attenzione</div>
+      <p>Non portare mai i fattori su lati diversi, e non dividere per un'espressione con \\(x\\): non ne conosci il segno. Prima porta tutto a un membro, in modo da avere \\(\\ldots > 0\\) oppure \\(\\ldots < 0\\), poi scomponi.</p>
+    </div>
+
+    ${acc([
+      {
+        t: `Es. 1: Prodotto già scomposto`,
+        h: `<p><strong>Risolvere:</strong> \\((x - 1)(x + 3) > 0\\)</p>
+            <p><strong>Segno dei fattori:</strong></p>
+            <div class="math-block">\\[x - 1 > 0 \\Rightarrow x > 1 \\qquad x + 3 > 0 \\Rightarrow x > -3\\]</div>
+            ${sg([{l:'x − 1',z:1,s:1},{l:'x + 3',z:-3,s:1}], '>')}
+            <p><strong>Soluzione:</strong> \\(x < -3 \\ \\lor \\ x > 1\\), cioè \\((-\\infty, -3) \\cup (1, +\\infty)\\)</p>`
+      },
+      {
+        t: `Es. 2: Fattore con coefficiente negativo`,
+        h: `<p><strong>Risolvere:</strong> \\((2 - x)(x + 3) > 0\\)</p>
+            <p><strong>Segno dei fattori:</strong></p>
+            <div class="math-block">\\[2 - x > 0 \\Rightarrow x < 2 \\ \\text{(il verso cambia!)} \\qquad x + 3 > 0 \\Rightarrow x > -3\\]</div>
+            ${sg([{l:'2 − x',z:2,s:-1},{l:'x + 3',z:-3,s:1}], '>')}
+            <p><strong>Soluzione:</strong> \\(-3 < x < 2\\), cioè \\((-3, 2)\\)</p>
+            <p>Il fattore \\(2 - x\\) è positivo <em>a sinistra</em> del suo zero: attento a non assumere che sia sempre positivo a destra.</p>`
+      },
+      {
+        t: `Es. 3: Differenza di quadrati`,
+        h: `<p><strong>Risolvere:</strong> \\(x^2 - 4 \\leq 0\\)</p>
+            <p><strong>Scomposizione:</strong> \\((x - 2)(x + 2) \\leq 0\\)</p>
+            <div class="math-block">\\[x - 2 > 0 \\Rightarrow x > 2 \\qquad x + 2 > 0 \\Rightarrow x > -2\\]</div>
+            ${sg([{l:'x − 2',z:2,s:1},{l:'x + 2',z:-2,s:1}], '<=')}
+            <p>Cerchiamo il segno <strong>negativo</strong>, e la disequazione è non stretta: gli zeri sono inclusi.</p>
+            <p><strong>Soluzione:</strong> \\(-2 \\leq x \\leq 2\\), cioè \\([-2, 2]\\)</p>`
+      },
+      {
+        t: `Es. 4: Quadrato di binomio`,
+        h: `<p><strong>Risolvere:</strong> \\(x^2 - 4x + 4 > 0\\)</p>
+            <p><strong>Scomposizione:</strong> \\((x - 2)^2 > 0\\)</p>
+            <p>Un quadrato non è mai negativo: vale zero in \\(x = 2\\) e ovunque altrove è positivo.</p>
+            ${sg([{l:'(x − 2)²',z:2,sq:1}], '>')}
+            <p><strong>Soluzione:</strong> tutti i reali tranne 2, cioè \\((-\\infty, 2) \\cup (2, +\\infty)\\)</p>
+            <div class="cb tip" style="margin-top:10px">
+              <div class="cb-label">Stesso polinomio, altri versi</div>
+              <p>\\((x-2)^2 \\geq 0\\) è vera per ogni \\(x\\); \\((x-2)^2 < 0\\) non ha soluzioni (\\(\\emptyset\\)); \\((x-2)^2 \\leq 0\\) ha come unica soluzione \\(x = 2\\).</p>
+            </div>`
+      },
+      {
+        t: `Es. 5: Tre fattori`,
+        h: `<p><strong>Risolvere:</strong> \\(x^3 - 4x \\geq 0\\)</p>
+            <p><strong>Scomposizione:</strong> raccoglimento e differenza di quadrati.</p>
+            <div class="math-block">\\[x(x^2 - 4) = x(x - 2)(x + 2) \\geq 0\\]</div>
+            <div class="math-block">\\[x > 0 \\qquad x - 2 > 0 \\Rightarrow x > 2 \\qquad x + 2 > 0 \\Rightarrow x > -2\\]</div>
+            ${sg([{l:'x',z:0,s:1},{l:'x − 2',z:2,s:1},{l:'x + 2',z:-2,s:1}], '>=')}
+            <p><strong>Soluzione:</strong> \\(-2 \\leq x \\leq 0 \\ \\lor \\ x \\geq 2\\), cioè \\([-2, 0] \\cup [2, +\\infty)\\)</p>`
+      },
+      {
+        t: `Es. 6: Rapporto tra due fattori`,
+        h: `<p><strong>Risolvere:</strong> \\(\\dfrac{x - 1}{x + 2} \\leq 0\\)</p>
+            <p>Il segno di un rapporto segue la stessa regola del prodotto. In più, <strong>lo zero del denominatore va sempre escluso</strong>: lì la frazione non esiste.</p>
+            <div class="math-block">\\[x - 1 > 0 \\Rightarrow x > 1 \\qquad x + 2 > 0 \\Rightarrow x > -2\\]</div>
+            ${sg([{l:'x − 1',z:1,s:1},{l:'x + 2',z:-2,s:1,den:1}], '<=')}
+            <p>Il simbolo \\(\\times\\) indica che in \\(x = -2\\) il quoziente non è definito.</p>
+            <p><strong>Soluzione:</strong> \\(-2 < x \\leq 1\\), cioè \\((-2, 1]\\)</p>`
+      }
+    ])}
+
+    <div class="cb plain">
+      <div class="cb-label">Esercitazione</div>
+      <p>Per esercitarti, scarica gli esercizi sullo studio del segno e sui sistemi di disequazioni, con le soluzioni per controllare.</p>
+      <div class="doc-links">
+        <a class="btn-ghost" href="esercitazione-studio-segno.pdf" target="_blank" rel="noopener">Esercitazione PDF <span aria-hidden="true">↓</span></a>
+        <a class="btn-ghost" href="esercitazione-studio-segno_soluzioni.pdf" target="_blank" rel="noopener">Soluzioni PDF <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  `
+},
+
+/* ──── 7 · APPLICAZIONI PRATICHE ──── */
 {
   tag: `APPLICAZIONI`,
   title: `Disequazioni nel <em>mondo reale</em>`,
@@ -568,7 +860,7 @@ const S = [
   `
 },
 
-/* ──── 7 · SINTESI ──── */
+/* ──── 8 · SINTESI ──── */
 {
   tag: `SINTESI`,
   title: `Il linguaggio dei <em>vincoli</em>`,
@@ -584,6 +876,7 @@ const S = [
         <li>Risoluzione: isola \\(x\\) come nelle equazioni, ma ricorda il cambio di verso con i negativi.</li>
         <li>Rappresentazione grafica: punti pieni/vuoti, linee continue, notazione di intervalli.</li>
         <li>Sistemi: intersezione di soluzioni — tutte le condizioni devono essere vere contemporaneamente.</li>
+        <li>Grado superiore: si scompone in fattori di primo grado e si studia il segno di ciascuno; il segno del prodotto si legge intervallo per intervallo (zeri inclusi solo se la disequazione è non stretta, zeri del denominatore sempre esclusi).</li>
       </ul>
     </div>
 
@@ -614,19 +907,19 @@ const S = [
 
     <div class="cb tip">
       <div class="cb-label">La lezione prossima</div>
-      <p>Passeremo alle <strong>disequazioni di grado superiore</strong> (parabole, polinomi): come risolverle fattorizzando e studiando il segno di ogni fattore. Per ora hai le fondamenta: le proprietà e il metodo di risoluzione lineare sono il punto di partenza per tutto il resto.</p>
+      <p>Passeremo alle <strong>disequazioni di secondo grado</strong> con trinomi che non si scompongono con i prodotti notevoli: il segno si legge dalla parabola, con l'aiuto del discriminante. Il metodo dello studio del segno resta la base per tutto il resto.</p>
     </div>
   `
 },
 
-/* ──── 8 · QUIZ ──── */
+/* ──── 9 · QUIZ ──── */
 {
   tag: `VERIFICA`,
   title: `Quiz: <em>30 domande</em>`,
   nav: `Quiz`,
   sub: `Metti alla prova quello che hai imparato. 30 domande suddivise in tre livelli: base, avanzate e pro. Con feedback immediato.`,
   body: `
-    <div class="cb success">
+    <div class="cb plain">
       <div class="cb-label">Come funziona</div>
       <ul>
         <li><strong>30 domande</strong> a scelta multipla.</li>
@@ -638,11 +931,11 @@ const S = [
       </ul>
     </div>
 
-    <div style="text-align:center;margin:32px 0">
-      <a href="../quiz-disequazioni-primo-grado/" style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:1.05rem;font-weight:700;padding:18px 48px;background:#2d7a4a;color:#fff;border-radius:8px;text-decoration:none;transition:background .2s">Apri il quiz</a>
+    <div class="doc-links" style="margin:24px 0">
+      <a class="btn-ghost" href="../quiz-disequazioni-primo-grado/">Apri il quiz <span aria-hidden="true">→</span></a>
     </div>
 
-    <div class="cb tip">
+    <div class="cb plain">
       <div class="cb-label">Consigli</div>
       <ul>
         <li>Svolgi il quiz in un ambiente tranquillo, <strong>senza fretta</strong>.</li>
@@ -718,8 +1011,8 @@ if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.promise
 </script>
 
 <button class="mot-theme-toggle" id="motThemeToggle" title="Cambia tema" aria-label="Cambia tema chiaro/scuro">
-  <svg id="motSunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-  <svg id="motMoonIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+  <svg id="motSunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 1v1.5"/><path d="M4.5 4.5l1 1"/><path d="M19.5 4.5l-1 1"/></svg>
+  <svg id="motMoonIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
 </button>
 
 <script>
