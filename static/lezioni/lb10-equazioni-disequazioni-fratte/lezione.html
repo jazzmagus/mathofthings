@@ -76,6 +76,10 @@ p { margin:6px 0; }
 ul, ol { margin:8px 0 8px 20px; }
 li { margin:2px 0; }
 strong { font-weight:600; }
+a { color:var(--accent); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+a:visited { color:var(--accent); }
+a:hover { opacity:.8; }
+.graph-box{background:none;border:1px solid var(--border-light);padding:20px;margin:18px 0;overflow-x:auto;text-align:left}
 h3 { margin:18px 0 8px; font-family:'Playfair Display',serif; font-size:1.15rem; }
 .dim { color:var(--text-dim); }
 .accordion { margin:16px 0; }
@@ -143,6 +147,50 @@ function toggleAcc(el) {
   if (item.classList.contains('open') && typeof MathJax !== 'undefined') {
     MathJax.typesetPromise([item]);
   }
+}
+
+function sysChart(rows, points, xMin, xMax) {
+  const w = 560, leftPad = 84, rightPad = 22, rowH = 34;
+  const x0 = leftPad, x1 = w - rightPad;
+  const topPad = 16;
+  const axisY = topPad + rows.length * rowH + 14;
+  const h = axisY + 30;
+  const sx = x => x0 + (x - xMin) / (xMax - xMin) * (x1 - x0);
+  const bandTop = topPad - 8, bandBottom = axisY + 2;
+  const highlight = rows.filter(r => r.system).flatMap(r => r.trueIntervals).map(seg => {
+    const xa = seg.toInfinityLeft ? x0 - 14 : sx(seg.from);
+    const xb = seg.toInfinityRight ? x1 + 14 : sx(seg.to);
+    return `<rect x="${xa}" y="${bandTop}" width="${xb-xa}" height="${bandBottom-bandTop}" fill="var(--accent)" opacity=".07"/>`;
+  }).join('');
+  const rowsSvg = rows.map((row, i) => {
+    const y = topPad + i * rowH + rowH / 2;
+    const color = row.system ? 'var(--accent)' : 'var(--green)';
+    const base = `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--border)" stroke-width="2" stroke-dasharray="1,4" stroke-linecap="round"/>`;
+    const segs = row.trueIntervals.map(seg => {
+      const xa = seg.toInfinityLeft ? x0 - 10 : sx(seg.from);
+      const xb = seg.toInfinityRight ? x1 + 10 : sx(seg.to);
+      let extra = '';
+      if (seg.toInfinityLeft) {
+        extra += `<path d="M${x0-4},${y-4} L${x0-10},${y} L${x0-4},${y+4}" fill="${color}"/>`;
+      } else {
+        extra += `<circle cx="${sx(seg.from)}" cy="${y}" r="4.5" fill="${seg.openFrom ? 'var(--surface)' : color}" stroke="${color}" stroke-width="1.6"/>`;
+      }
+      if (seg.toInfinityRight) {
+        extra += `<path d="M${x1+4},${y-4} L${x1+10},${y} L${x1+4},${y+4}" fill="${color}"/>`;
+      } else {
+        extra += `<circle cx="${sx(seg.to)}" cy="${y}" r="4.5" fill="${seg.openTo ? 'var(--surface)' : color}" stroke="${color}" stroke-width="1.6"/>`;
+      }
+      return `<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="${color}" stroke-width="4.5" stroke-linecap="round"/>${extra}`;
+    }).join('');
+    const label = `<text x="6" y="${y+4}" font-size="11.5" font-family="'JetBrains Mono',monospace" fill="${row.system?'var(--accent)':'var(--text-mid)'}" font-weight="${row.system?700:400}">${row.name}</text>`;
+    return `${label}${base}${segs}`;
+  }).join('');
+  const axis = `<line x1="${x0-14}" y1="${axisY}" x2="${x1+14}" y2="${axisY}" stroke="var(--text-dim)" stroke-width="1.3"/>
+    <path d="M${x1+8},${axisY-4} L${x1+14},${axisY} L${x1+8},${axisY+4}" fill="none" stroke="var(--text-dim)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const ticks = points.map(p => `
+    <line x1="${sx(p.x)}" y1="${axisY-4}" x2="${sx(p.x)}" y2="${axisY+4}" stroke="var(--text-dim)" stroke-width="1.3"/>
+    <text x="${sx(p.x)}" y="${axisY+19}" font-size="12" font-family="'JetBrains Mono',monospace" fill="var(--text)" text-anchor="middle">${p.label}</text>`).join('');
+  return `<div class="graph-box"><svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" style="max-width:100%;height:auto">${highlight}${rowsSvg}${axis}${ticks}</svg></div>`;
 }
 
 const S = [
@@ -241,16 +289,55 @@ const S = [
     '<h3>Esempio guidato</h3>' +
     '<p>Risolviamo \\(\\dfrac{x-1}{x+2} \\geq 0\\). C.E.: \\(x \\neq -2\\).</p>' +
     '<p>Studio i segni: \\(N = x-1 \\geq 0 \\Rightarrow x \\geq 1\\); \\(D = x+2 > 0 \\Rightarrow x > -2\\).</p>' +
-    '<table class="ct sign"><tr><th>&nbsp;</th><th>\\(x < -2\\)</th><th>\\(-2 < x < 1\\)</th><th>\\(x > 1\\)</th></tr>' +
-    '<tr><td>\\(N = x-1\\)</td><td>−</td><td>−</td><td>+</td></tr>' +
-    '<tr><td>\\(D = x+2\\)</td><td>−</td><td>+</td><td>+</td></tr>' +
-    '<tr><td>\\(N/D\\)</td><td>+</td><td>−</td><td>+</td></tr></table>' +
-    '<p>Vogliamo \\(\\dfrac{N}{D} \\geq 0\\), cioè dove il quoziente è positivo (o nullo):</p>' +
+    sysChart([
+      { name:'N ≥ 0', trueIntervals:[{from:1,toInfinityRight:true,openFrom:false}] },
+      { name:'D > 0', trueIntervals:[{from:-2,toInfinityRight:true,openFrom:true}] },
+      { name:'N/D ≥ 0', system:true, trueIntervals:[{toInfinityLeft:true,to:-2,openTo:true},{from:1,toInfinityRight:true,openFrom:false}] }
+    ], [{x:-2,label:'-2'},{x:1,label:'1'}], -4, 4) +
+    '<p>Vogliamo \\(\\dfrac{N}{D} \\geq 0\\): il quoziente è positivo dove \\(N\\) e \\(D\\) hanno lo <strong>stesso segno</strong> (entrambe le linee verdi presenti, oppure entrambe assenti), nullo dove \\(N = 0\\):</p>' +
     '<div class="math-block result">\\[ x < -2 \\quad \\text{oppure} \\quad x \\geq 1 \\]</div>' +
     '<div class="cb warn"><div class="cb-label">Estremi: aperto o chiuso?</div><p>In \\(x = 1\\) il numeratore si annulla e la frazione vale \\(0\\): con \\(\\geq\\) è <strong>incluso</strong>. In \\(x = -2\\) il denominatore si annulla: è <strong>sempre escluso</strong>, qualunque sia il verso.</p></div>' +
     acc([
       { t:"Esercizio svolto — Disequazione con < 0", h:'<p>Risolvi \\(\\dfrac{x+3}{x-1} < 0\\). C.E.: \\(x \\neq 1\\).</p><p>Segni: \\(N = x+3 > 0 \\Rightarrow x > -3\\); \\(D = x-1 > 0 \\Rightarrow x > 1\\). Il quoziente è negativo dove \\(N\\) e \\(D\\) hanno <strong>segno opposto</strong>:</p><div class="math-block result">\\[ -3 < x < 1 \\]</div><p class="dim">Estremi esclusi: in \\(-3\\) la disuguaglianza è stretta, in \\(1\\) il denominatore si annulla.</p>' }
     ])
+},
+{
+  tag:"ESERCIZI",
+  title:"Due esercizi <em>completi</em>",
+  nav:"Esercizi",
+  body:
+    '<p>Due esercizi di difficoltà media, svolti passo per passo: un\'equazione fratta e una disequazione fratta.</p>' +
+    '<h3>Esercizio 1 — Equazione fratta</h3>' +
+    '<p>Risolvi \\(\\dfrac{x}{x-3} - \\dfrac{2}{x+1} = \\dfrac{12}{x^2-2x-3}\\).</p>' +
+    '<p><strong>Passo 1: fattorizzo i denominatori.</strong> Il trinomio \\(x^2-2x-3\\) ha radici \\(3\\) e \\(-1\\), quindi \\(x^2-2x-3 = (x-3)(x+1)\\).</p>' +
+    '<p><strong>Passo 2: condizioni di esistenza.</strong></p>' +
+    '<div class="math-block">\\[ x-3 \\neq 0 \\ \\text{e}\\ x+1 \\neq 0 \;\\Rightarrow\; \\text{C.E.:}\\quad x \\neq 3 \\ \\text{e}\\ x \\neq -1 \\]</div>' +
+    '<p><strong>Passo 3: denominatore comune</strong> \\((x-3)(x+1)\\), poi uguaglio i numeratori.</p>' +
+    '<div class="math-block">\\[ x(x+1) - 2(x-3) = 12 \\]</div>' +
+    '<p><strong>Passo 4: risolvo l\'equazione intera.</strong></p>' +
+    '<div class="math-block">\\[ x^2 + x - 2x + 6 = 12 \;\\Rightarrow\; x^2 - x - 6 = 0 \;\\Rightarrow\; (x-3)(x+2) = 0 \\]</div>' +
+    '<div class="math-block">\\[ x = 3 \\quad \\text{oppure} \\quad x = -2 \\]</div>' +
+    '<p><strong>Passo 5: confronto con le C.E.</strong> \\(x = 3\\) è escluso dalle C.E.: va <strong>scartato</strong>. \\(x = -2\\) è ammesso.</p>' +
+    '<div class="math-block result">\\[ x = -2 \\]</div>' +
+    '<div class="cb tip"><div class="cb-label">Verifica</div><p>Per \\(x=-2\\): primo membro \\(\\dfrac{-2}{-5} - \\dfrac{2}{-1} = \\dfrac{2}{5} + 2 = \\dfrac{12}{5}\\); secondo membro \\(\\dfrac{12}{4+4-3} = \\dfrac{12}{5}\\). I due membri coincidono.</p></div>' +
+    '<h3>Esercizio 2 — Disequazione fratta</h3>' +
+    '<p>Risolvi \\(\\dfrac{2}{x-1} \\geq \\dfrac{x}{x+2}\\).</p>' +
+    '<p><strong>Passo 1: C.E.</strong> \\(x \\neq 1\\) e \\(x \\neq -2\\).</p>' +
+    '<p><strong>Passo 2: porto tutto a primo membro</strong> con denominatore comune \\((x-1)(x+2)\\).</p>' +
+    '<div class="math-block">\\[ \\frac{2(x+2) - x(x-1)}{(x-1)(x+2)} \\geq 0 \;\\Rightarrow\; \\frac{-x^2+3x+4}{(x-1)(x+2)} \\geq 0 \\]</div>' +
+    '<p>Al numeratore \\(-x^2+3x+4 = -(x^2-3x-4) = -(x-4)(x+1)\\). Moltiplico per \\(-1\\) <strong>invertendo il verso</strong>:</p>' +
+    '<div class="math-block">\\[ \\frac{(x-4)(x+1)}{(x-1)(x+2)} \\leq 0 \\]</div>' +
+    '<p><strong>Passo 3: studio del segno di \\(N\\) e di \\(D\\).</strong></p>' +
+    '<ul><li>\\(N = (x-4)(x+1) \\geq 0\\): parabola rivolta verso l\'alto, radici \\(-1\\) e \\(4\\) \\(\\Rightarrow\\) \\(x \\leq -1\\) oppure \\(x \\geq 4\\).</li>' +
+    '<li>\\(D = (x-1)(x+2) > 0\\): radici \\(-2\\) e \\(1\\) \\(\\Rightarrow\\) \\(x < -2\\) oppure \\(x > 1\\).</li></ul>' +
+    sysChart([
+      { name:'N ≥ 0', trueIntervals:[{toInfinityLeft:true,to:-1,openTo:false},{from:4,toInfinityRight:true,openFrom:false}] },
+      { name:'D > 0', trueIntervals:[{toInfinityLeft:true,to:-2,openTo:true},{from:1,toInfinityRight:true,openFrom:true}] },
+      { name:'N/D ≤ 0', system:true, trueIntervals:[{from:-2,to:-1,openFrom:true,openTo:false},{from:1,to:4,openFrom:true,openTo:false}] }
+    ], [{x:-2,label:'-2'},{x:-1,label:'-1'},{x:1,label:'1'},{x:4,label:'4'}], -3.5, 5.5) +
+    '<p><strong>Passo 4: lettura.</strong> Cerco dove \\(\\dfrac{N}{D} \\leq 0\\): dove \\(N\\) e \\(D\\) hanno segno <strong>opposto</strong>, oppure dove \\(N=0\\). Gli zeri di \\(D\\) (\\(-2\\) e \\(1\\)) sono esclusi, gli zeri di \\(N\\) (\\(-1\\) e \\(4\\)) sono inclusi.</p>' +
+    '<div class="math-block result">\\[ -2 < x \\leq -1 \\quad \\text{oppure} \\quad 1 < x \\leq 4 \\]</div>' +
+    '<div class="cb tip"><div class="cb-label">Verifica con un valore</div><p>Per \\(x = 2\\) (nell\'intervallo \\(1<x\\leq4\\)): \\(\\dfrac{2}{1} = 2 \\geq \\dfrac{2}{4} = \\dfrac{1}{2}\\), vero. Per \\(x=0\\) (fuori): \\(\\dfrac{2}{-1} = -2 \\geq 0\\), falso.</p></div>'
 },
 {
   tag:"PRATICA",
