@@ -272,7 +272,7 @@ const Q = [
 
   {
     badge: "Limiti quadratici",
-    q: "Restringendo la ricerca a \\(|x-2|<1\\) (cioè \\(1<x<3\\)), a quale maggiorazione si arriva per \\(|x+2|\\)?",
+    q: "Restringendo la ricerca a \\(|x-2|<1\\) (cioè \\(1\\lt x<3\\)), a quale maggiorazione si arriva per \\(|x+2|\\)?",
     opts: [
       "\\(|x+2|\\) non è limitabile in questo intervallo",
       "\\(|x+2| < 5\\)",
@@ -280,7 +280,7 @@ const Q = [
       "\\(|x+2| < 3\\)"
     ],
     ans: 1,
-    exp: "Se \\(1<x<3\\), allora \\(3<x+2<5\\), quindi \\(|x+2|<5\\). Questa maggiorazione costante permette di procedere con la disuguaglianza."
+    exp: "Se \\(1\\lt x<3\\), allora \\(3\\lt x+2<5\\), quindi \\(|x+2|<5\\). Questa maggiorazione costante permette di procedere con la disuguaglianza."
   },
 
   {
@@ -352,10 +352,10 @@ const Q = [
     badge: "Limiti laterali",
     q: "Nella definizione di limite destro \\(\\displaystyle\\lim_{x\\to c^+}f(x)=\\ell\\), la condizione sulla \\(x\\) diventa:",
     opts: [
-      "\\(c<x<c+\\delta\\)",
+      "\\(c\\lt x\\lt c+\\delta\\)",
       "\\(x=c\\)",
       "\\(|x-c|<\\delta\\), senza restrizioni di segno",
-      "\\(c-\\delta<x<c\\)"
+      "\\(c-\\delta\\lt x\\lt c\\)"
     ],
     ans: 0,
     exp: "Il limite destro considera solo i valori di \\(x\\) maggiori di \\(c\\) e sufficientemente vicini, cioè nell'intervallo \\((c, c+\\delta)\\)."
