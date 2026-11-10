@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trigonometria: quale teorema uso? — Scheda di allenamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global', scale: 1.05 },
+  startup: {
+    ready() {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => { document.body.style.opacity = '1'; });
+    }
+  }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<style>
+:root {
+  --bg:#faf7f2; --surface:#fff; --surface-alt:#f5f0e8;
+  --border:#e4ddd4; --border-light:#ece7de;
+  --text:#2c2520; --text-mid:#5a524a; --text-dim:#6e6760;
+  --accent:#c2185b; --accent-light:#fce4ec;
+  --blue:#3a6b8c; --blue-light:#e8f0f5;
+  --green:#4a7c59; --green-light:#eaf5ed;
+  --purple:#6a1b9a; --purple-light:#f3e5f5;
+  --gold:#b8860b;
+  --teal:#4f6d7a; --teal-light:#e8eff2;
+  --danger:#b33a3a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px;opacity:0;transition:opacity .3s}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-light);height:52px;display:flex;align-items:center;padding:0 clamp(16px,4vw,40px);gap:16px}
+.topbar-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text);white-space:nowrap;flex-shrink:0}
+.topbar-nav{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;flex:1}
+.topbar-nav::-webkit-scrollbar{display:none}
+.nav-pill{background:none;border:none;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text-dim);padding:6px 14px;cursor:pointer;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent}
+.nav-pill:hover{color:var(--text)}
+.nav-pill.active{color:var(--accent);font-weight:600;border-bottom:2px solid var(--accent)}
+.topbar-home{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text-dim);text-decoration:none;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.topbar-home:hover{color:var(--accent)}
+
+/* LAYOUT */
+.container{max-width:780px;margin:0 auto;padding:84px clamp(20px,5vw,48px) 60px}
+.section{display:none;animation:appear .4s ease}
+.section.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border-light)}
+.hero-tag{font-family:'Fira Code',monospace;font-size:.73rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,2.65rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.02rem;color:var(--text-mid);line-height:1.7;text-wrap:pretty}
+
+/* CALLOUT */
+.cb{background:var(--surface-alt);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:18px 0}
+.cb-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-weight:600;color:var(--accent)}
+.cb.tip .cb-label{color:var(--blue)}
+.cb.warn .cb-label{color:var(--gold)}
+.cb.danger .cb-label{color:var(--danger)}
+.cb.success .cb-label{color:var(--green)}
+.cb.purple .cb-label{color:var(--purple)}
+.cb.teal .cb-label{color:var(--teal)}
+
+/* MATH */
+.math-block{background:rgba(0,0,0,.025);padding:12px 16px;margin:10px 0;overflow-x:auto;border-radius:2px}
+.math-block.center{text-align:center}
+.math-block.result{border-left:2px solid var(--green);background:rgba(74,124,89,.04)}
+.math-block.warn{border-left:2px solid var(--danger);background:rgba(179,58,58,.04)}
+mjx-container[jax="SVG"]{direction:ltr}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+
+/* ACCORDION */
+.accordion{margin:16px 0}
+.acc-item{border-bottom:1px solid rgba(0,0,0,.08)}
+.acc-item:last-child{border-bottom:none}
+.acc-header{display:flex;align-items:center;gap:12px;padding:14px 0;cursor:pointer;user-select:none;background:none;border:none;width:100%;text-align:left}
+.acc-num{width:24px;height:24px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.7rem;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.acc-title{font-weight:600;font-size:.93rem;flex:1;color:var(--text);font-family:Georgia,serif;text-align:left;line-height:1.4}
+.acc-arrow{width:16px;height:16px;color:var(--text-dim);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-item.open .acc-body{max-height:9000px}
+.acc-inner{padding:8px 0 18px 36px}
+
+/* TABLE */
+.ct{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.ct th{text-align:left;padding:10px 14px;font-weight:600;color:var(--accent);border-bottom:1px solid var(--border-light);font-size:.74rem;letter-spacing:.5px;text-transform:uppercase;font-family:'Fira Code',monospace}
+.ct td{padding:9px 14px;border-bottom:1px solid var(--border-light);vertical-align:top;line-height:1.65}
+.ct tr:last-child td{border-bottom:none}
+.ct td.n{font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600;white-space:nowrap}
+.ct td.blank{min-width:120px;border-bottom:1px dashed var(--border)}
+
+/* ESERCIZI */
+.ex{margin:14px 0;padding:2px 0 2px 14px;border-left:2px solid var(--border)}
+.ex-id{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;color:var(--accent);margin-right:6px}
+.fill{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text-mid);background:var(--surface-alt);border-radius:6px;padding:10px 14px;margin:10px 0;line-height:1.9}
+
+/* BOTTOM NAV */
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:20px;border-top:1px solid var(--border-light)}
+.bb{font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:0;border:none;background:none;color:var(--text);transition:all .2s;cursor:pointer}
+.bb:hover{color:var(--accent);text-decoration:underline}
+.bb:disabled{opacity:.35;cursor:not-allowed}
+.bb:disabled:hover{color:var(--text);text-decoration:none}
+.dots{display:flex;gap:6px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .3s;cursor:pointer;border:none;padding:0;flex-shrink:0}
+.dot.active{background:var(--accent);width:20px;border-radius:4px}
+
+/* TYPOGRAPHY */
+p{margin:6px 0}
+ul,ol{margin:8px 0 8px 24px}
+li{margin:3px 0;line-height:1.7}
+strong{font-weight:700}
+.dim{color:var(--text-dim)}
+h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin:26px 0 10px;color:var(--text)}
+h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin:18px 0 8px;color:var(--text)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  body{font-size:15.5px}
+  .hero h1{font-size:1.65rem}
+  .cb{padding:14px 14px}
+  .container{padding:80px 18px 60px}
+  .topbar-brand{font-size:.9rem}
+  .acc-inner{padding:8px 0 16px 24px}
+  .acc-title{font-size:.88rem}
+  .ct{font-size:.82rem}
+  .ct th,.ct td{padding:8px 10px}
+}
+
+/* STAMPA / PDF: ?print=1 mostra tutte le schermate di seguito, le soluzioni vanno in fondo */
+body.print-all{background:#fff;font-size:13px;line-height:1.5;opacity:1}
+body.print-all .topbar,body.print-all .bottom-nav{display:none}
+body.print-all .container{max-width:none;padding:0 6px}
+body.print-all .section{display:block;animation:none;margin-bottom:26px}
+body.print-all .hero{margin-bottom:18px;padding-bottom:14px}
+body.print-all .hero h1{font-size:1.7rem}
+body.print-all .cb{margin:10px 0;padding:10px 16px}
+body.print-all .math-block{padding:4px 12px;margin:6px 0}
+body.print-all .hero-sub{font-size:.95rem}
+body.print-all h2{margin:16px 0 6px}
+body.print-all h3{margin:12px 0 6px}
+body.print-all .ct td,body.print-all .ct th{padding:6px 12px}
+body.print-all .acc-body{max-height:none;overflow:visible}
+body.print-all .acc-arrow{display:none}
+body.print-all .acc-header{padding:10px 0 4px}
+body.print-all .cb,body.print-all .math-block,body.print-all .ex,body.print-all .fill,body.print-all .ct tr,body.print-all .acc-item{break-inside:avoid}
+body.print-all .np{display:none}
+body.print-all .section + .section{break-before:page}
+body.print-all h2,body.print-all h3,body.print-all .hero{break-after:avoid}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">Trigonometria · Quale teorema?</div>
+  <div class="topbar-nav" id="topNav"></div>
+  <a href="trig-quale-teorema.pdf" class="topbar-home" download>PDF</a>
+  <a href="/" class="topbar-home">← home</a>
+</div>
+<div class="container" id="app"></div>
+
+<script>
+
+const PRINT = new URLSearchParams(location.search).get('print') === '1';
+if (PRINT) document.body.classList.add('print-all');
+
+/* ═══════════════ ACCORDION ═══════════════ */
+function acc(items) {
+  return '<div class="accordion">' + items.map((it, i) => `
+    <div class="acc-item">
+      <button class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-num">${it.n || i + 1}</div>
+        <div class="acc-title">${it.t}</div>
+        <svg class="acc-arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="acc-body"><div class="acc-inner">${it.h}</div></div>
+    </div>`).join('') + '</div>';
+}
+
+function toggleAcc(el) {
+  const item = el.closest('.acc-item');
+  item.classList.toggle('open');
+  if (item.classList.contains('open') && typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise([item]);
+  }
+}
+
+const FILL = `<div class="fill">Ho: ______________ &nbsp; Cerco: ______________<br>Coppia lato–angolo opposto? &nbsp;sì / no &nbsp; Teorema: ______________</div>`;
+
+/* ═══════════════ SCHERMATE ═══════════════ */
+const S = [
+
+/* ──── 0 · LA REGOLA ──── */
+{
+  tag: `PUNTO DI PARTENZA`,
+  title: `Quale teorema <em>uso</em>?`,
+  nav: `La regola`,
+  sub: `Quasi tutti gli errori in trigonometria non sono errori di calcolo: sono errori di <strong>scelta</strong>. Questa scheda allena solo quello. Prima di calcolare, decidi.`,
+  body: `
+    <div class="cb tip">
+      <div class="cb-label">La domanda da farti sempre</div>
+      <p><strong>Conosco un lato e il suo angolo opposto?</strong></p>
+      <ul>
+        <li><strong>Sì</strong> → teorema dei <strong>seni</strong>.</li>
+        <li><strong>No</strong> → teorema del <strong>coseno</strong> (Carnot).</li>
+      </ul>
+    </div>
+
+    <p>Il teorema dei seni lavora con rapporti, \\(\\dfrac{a}{\\sin\\alpha}\\), e un rapporto ha bisogno di una <em>coppia completa</em>: un lato e il suo angolo opposto. Il teorema del coseno lega tre lati e un angolo, quindi serve quando la coppia manca.</p>
+
+    <div class="cb">
+      <div class="cb-label">Nel testo c'è una circonferenza?</div>
+      <p>Se compare un <strong>raggio</strong>, una circonferenza circoscritta o una corda, usa il teorema della <strong>corda</strong>:</p>
+      <div class="math-block center result">\\[a = 2R\\sin\\alpha\\]</div>
+      <p>È il teorema dei seni letto con \\(2R\\): \\(\\dfrac{a}{\\sin\\alpha}=2R\\).</p>
+    </div>
+
+    <h2>Riconoscere la configurazione</h2>
+    <table class="ct">
+      <tr><th>Dati</th><th>Sigla</th><th>Teorema</th></tr>
+      <tr><td>1 lato e 2 angoli</td><td class="n">ALA</td><td>Seni (prima il 3° angolo)</td></tr>
+      <tr><td>2 lati e l'angolo <strong>compreso</strong></td><td class="n">LAL</td><td>Carnot</td></tr>
+      <tr><td>3 lati</td><td class="n">LLL</td><td>Carnot</td></tr>
+      <tr><td>2 lati e un angolo <strong>opposto</strong> a uno di essi</td><td class="n">LLA</td><td>Seni (0, 1 o 2 triangoli)</td></tr>
+      <tr><td>Raggio della circonferenza circoscritta</td><td class="n">—</td><td>Corda</td></tr>
+    </table>
+
+    <div class="cb warn">
+      <div class="cb-label">Tre errori da evitare</div>
+      <ul>
+        <li>Usare i seni con un lato e un angolo che <strong>non sono opposti</strong>.</li>
+        <li>Dimenticare che \\(\\alpha+\\beta+\\gamma=180^\\circ\\) prima di cercare formule più difficili.</li>
+        <li>Con \\(\\arcsin\\) l'angolo può essere acuto <strong>oppure</strong> ottuso. Con \\(\\arccos\\) no.</li>
+      </ul>
+    </div>
+
+    <div class="cb success np">
+      <div class="cb-label">Come funziona la scheda</div>
+      <p>Sei fasi, dalla più semplice alla più completa: <strong>A</strong> disegna, <strong>B</strong> classifica, <strong>C</strong> studia gli esempi, <strong>D</strong> esercitati con problemi misti, <strong>E</strong> affronta i problemi con testo, <strong>F</strong> gioca contro il tempo. Le soluzioni sono nell'ultima schermata: guardale solo dopo aver provato.</p>
+    </div>
+  `
+},
+
+/* ──── 1 · FASE A ──── */
+{
+  tag: `FASE A`,
+  title: `Dal testo alla <em>figura</em>`,
+  nav: `A · Figura`,
+  sub: `Per ogni testo disegna soltanto il triangolo. Segna vertici, dati e incognita con un punto interrogativo. Niente formule.`,
+  body: `
+    <div class="ex"><span class="ex-id">A1</span> Due strade rettilinee si incontrano in un incrocio formando un angolo di \\(60^\\circ\\). Un negozio è a \\(300\\ \\text{m}\\) dall'incrocio sulla prima strada, una scuola a \\(500\\ \\text{m}\\) sulla seconda. Quanto distano negozio e scuola?</div>
+
+    <div class="ex"><span class="ex-id">A2</span> Da due punti \\(A\\) e \\(B\\) sulla riva, distanti \\(120\\ \\text{m}\\), si osserva una barca \\(C\\). Gli angoli sono \\(\\widehat{CAB}=62^\\circ\\) e \\(\\widehat{CBA}=48^\\circ\\). Quanto dista la barca da \\(A\\)?</div>
+
+    <div class="ex"><span class="ex-id">A3</span> Due navi partono dallo stesso porto con rotte che formano un angolo di \\(50^\\circ\\). Dopo due ore la prima ha percorso \\(30\\ \\text{km}\\) e la seconda \\(40\\ \\text{km}\\). Quanto distano?</div>
+
+    <div class="ex"><span class="ex-id">A4</span> Un triangolo \\(ABC\\) è inscritto in una circonferenza di raggio \\(5\\ \\text{cm}\\) e l'angolo in \\(A\\) misura \\(30^\\circ\\). Quanto misura \\(BC\\)?</div>
+
+    <div class="cb tip">
+      <div class="cb-label">Come controllare</div>
+      <p>Una figura è corretta se i dati sono nei posti giusti: l'angolo dato sta <strong>tra</strong> i due lati noti oppure <strong>di fronte</strong> a uno di essi? Questa differenza decide il teorema. Le figure attese sono descritte nelle soluzioni.</p>
+    </div>
+  `
+},
+
+/* ──── 2 · FASE B ──── */
+{
+  tag: `FASE B`,
+  title: `Classifica, <em>non risolvere</em>`,
+  nav: `B · Classifica`,
+  sub: `Per ogni riga scrivi solo la sigla (ALA, LAL, LLL, LLA), il teorema e il perché, in una riga.`,
+  body: `
+    <table class="ct">
+      <tr><th>#</th><th>Dati</th><th>Cerco</th><th>Sigla, teorema, perché</th></tr>
+      <tr><td class="n">1</td><td>\\(a=8\\), \\(\\alpha=30^\\circ\\), \\(\\beta=45^\\circ\\)</td><td>\\(b\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">2</td><td>\\(b=7\\), \\(c=10\\), \\(\\alpha=60^\\circ\\)</td><td>\\(a\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">3</td><td>\\(a=5\\), \\(b=6\\), \\(c=7\\)</td><td>gli angoli</td><td class="blank"></td></tr>
+      <tr><td class="n">4</td><td>\\(c=12\\), \\(\\alpha=40^\\circ\\), \\(\\beta=60^\\circ\\)</td><td>\\(a\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">5</td><td>\\(a=10\\), \\(b=14\\), \\(\\alpha=30^\\circ\\)</td><td>\\(\\beta\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">6</td><td>circonferenza di raggio \\(5\\), \\(\\hat A=30^\\circ\\)</td><td>\\(BC\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">7</td><td>\\(a=9\\), \\(b=12\\), \\(\\gamma=50^\\circ\\)</td><td>\\(c\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">8</td><td>\\(b=20\\), \\(\\alpha=35^\\circ\\), \\(\\gamma=75^\\circ\\)</td><td>\\(a\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">9</td><td>\\(a=3\\), \\(b=10\\), \\(\\alpha=40^\\circ\\)</td><td>\\(\\beta\\)</td><td class="blank"></td></tr>
+      <tr><td class="n">10</td><td>\\(BC=12\\), \\(\\hat A=45^\\circ\\), triangolo inscritto</td><td>il raggio \\(R\\)</td><td class="blank"></td></tr>
+    </table>
+  `
+},
+
+/* ──── 3 · FASE C ──── */
+{
+  tag: `FASE C`,
+  title: `Esempi svolti, poi <em>tocca a te</em>`,
+  nav: `C · Esempi`,
+  sub: `Tre esempi con aiuto decrescente: il primo è svolto per intero, il secondo lo completi tu, nel terzo la scelta la fai tu.`,
+  body: `
+    <h3>Esempio 1: tutto svolto</h3>
+    <div class="cb">
+      <div class="cb-label">\\(b=8,\\ c=11,\\ \\alpha=50^\\circ\\): calcola \\(a\\)</div>
+      <p><strong>Ho:</strong> due lati e l'angolo compreso. <strong>Cerco:</strong> il terzo lato.</p>
+      <p><strong>Coppia lato–angolo opposto?</strong> No: \\(\\alpha\\) è opposto ad \\(a\\), che è l'incognita.</p>
+      <p><strong>Teorema:</strong> Carnot.</p>
+      <div class="math-block">\\[a^2=b^2+c^2-2bc\\cos\\alpha=64+121-2\\cdot8\\cdot11\\cdot\\cos50^\\circ\\approx71{,}87\\]</div>
+      <div class="math-block result">\\[a\\approx 8{,}48\\]</div>
+    </div>
+
+    <h3>Esempio 2: completa il calcolo</h3>
+    <div class="cb tip">
+      <div class="cb-label">\\(c=15,\\ \\alpha=50^\\circ,\\ \\beta=70^\\circ\\): calcola \\(a\\)</div>
+      <p><strong>Ho:</strong> un lato e due angoli. Il terzo angolo è \\(\\gamma=180^\\circ-50^\\circ-70^\\circ=60^\\circ\\).</p>
+      <p><strong>Coppia:</strong> \\((c,\\gamma)\\) è nota. <strong>Teorema:</strong> seni.</p>
+      <div class="math-block">\\[\\frac{a}{\\sin\\alpha}=\\frac{c}{\\sin\\gamma}\\ \\Rightarrow\\ a=\\ ?\\]</div>
+    </div>
+
+    <h3>Esempio 3: la scelta la fai tu</h3>
+    <div class="cb warn">
+      <div class="cb-label">Quale teorema è stato usato?</div>
+      <p>È stato scritto questo passaggio:</p>
+      <div class="math-block center">\\[\\cos\\alpha=\\frac{6^2+7^2-5^2}{2\\cdot6\\cdot7}\\]</div>
+      <p>Quali erano i dati? Perché non si potevano usare i seni?</p>
+    </div>
+  `
+},
+
+/* ──── 4 · FASE D ──── */
+{
+  tag: `FASE D`,
+  title: `Pratica <em>mista</em>`,
+  nav: `D · Pratica`,
+  sub: `I tipi sono mescolati apposta: non c'è un titolo che ti dice quale teorema usare. Prima di calcolare, compila sempre la riga.`,
+  body: `
+    <div class="cb tip">
+      <div class="cb-label">La riga obbligatoria</div>
+      <p><strong>Ho:</strong> ______ &nbsp; <strong>Cerco:</strong> ______ &nbsp; <strong>Coppia lato–angolo opposto?</strong> sì / no &nbsp; <strong>Teorema:</strong> ______</p>
+    </div>
+
+    <div class="ex"><span class="ex-id">D1</span> \\(c=9\\), \\(\\alpha=48^\\circ\\), \\(\\gamma=62^\\circ\\). Calcola \\(a\\).</div>
+    <div class="ex"><span class="ex-id">D2</span> \\(a=6\\), \\(c=8\\), \\(\\beta=100^\\circ\\). Calcola \\(b\\).</div>
+    <div class="ex"><span class="ex-id">D3</span> \\(a=7\\), \\(b=9\\), \\(c=11\\). Calcola l'angolo \\(\\gamma\\).</div>
+    <div class="ex"><span class="ex-id">D4</span> Un triangolo è inscritto in una circonferenza di raggio \\(6\\) e \\(\\alpha=40^\\circ\\). Calcola \\(a\\).</div>
+    <div class="ex"><span class="ex-id">D5</span> \\(b=10\\), \\(c=7\\), \\(\\gamma=30^\\circ\\). Calcola \\(\\beta\\). Quante soluzioni ci sono?</div>
+    <div class="ex"><span class="ex-id">D6</span> \\(a=12\\), \\(\\alpha=70^\\circ\\), \\(\\beta=45^\\circ\\). Calcola \\(b\\).</div>
+  `
+},
+
+/* ──── 5 · FASE E ──── */
+{
+  tag: `FASE E`,
+  title: `Problemi con <em>testo</em>`,
+  nav: `E · Problemi`,
+  sub: `Riparti dalla Fase A: disegna, poi classifica, poi calcola. Nei testi reali il triangolo non è mai dato.`,
+  body: `
+    <div class="ex"><span class="ex-id">E1</span> Riprendi i testi <strong>A1</strong>, <strong>A2</strong> e <strong>A3</strong>. Per ciascuno scrivi la sigla e il teorema, poi calcola.</div>
+
+    <div class="cb">
+      <div class="cb-label">E2 · Navigazione: la distanza tra due fari</div>
+      <p>Sei a bordo di una barca nel punto \\(C\\) e vuoi calcolare la distanza tra due fari visibili, \\(A\\) e \\(B\\). Con un goniometro misuri gli angoli:</p>
+      <div class="math-block center">\\[\\angle ACB=30^\\circ \\qquad \\angle CAB=40^\\circ\\]</div>
+      <p>Conosci inoltre la distanza dalla barca al faro \\(A\\): \\(AC=100\\ \\text{m}\\).</p>
+      <p><strong>Determina la distanza tra i due fari</strong>, prima con il <strong>teorema dei seni</strong>, poi con il <strong>teorema della corda</strong>, e confronta i risultati.</p>
+    </div>
+
+    <div class="cb warn">
+      <div class="cb-label">Prima di calcolare</div>
+      <p>Per E2 scrivi, in una riga, <strong>quale angolo è opposto a quale lato</strong>. Il terzo angolo del triangolo non è dato: lo trovi tu.</p>
+    </div>
+  `
+},
+
+/* ──── 6 · FASE F ──── */
+{
+  tag: `FASE F`,
+  title: `Contro il <em>tempo</em>`,
+  nav: `F · Velocità`,
+  sub: `Venti secondi a domanda, solo la scelta: seni, Carnot o corda. Un compagno cronometra. Poi si confronta con la soluzione e si discutono i disaccordi.`,
+  body: `
+    <ol>
+      <li>Due lati e l'angolo compreso.</li>
+      <li>Tre lati.</li>
+      <li>Un lato e due angoli.</li>
+      <li>Due lati e un angolo opposto a uno di essi.</li>
+      <li>Compare il raggio della circonferenza circoscritta.</li>
+      <li>Noti \\(b\\), \\(\\beta\\) e \\(\\alpha\\); cerco \\(a\\).</li>
+      <li>Tre lati, cerco un angolo ottuso.</li>
+      <li>Noti \\(a\\), \\(b\\) e l'angolo \\(\\gamma\\) tra loro; cerco \\(c\\).</li>
+      <li>Una corda e l'angolo alla circonferenza che la sottende.</li>
+      <li>Noti \\(a\\), \\(b\\) e \\(\\beta\\) (opposto a \\(b\\)); cerco \\(\\alpha\\).</li>
+    </ol>
+
+    <div class="cb success">
+      <div class="cb-label">Biglietto d'uscita</div>
+      <p>Rispondi in poche righe: <em>dato un triangolo con due lati e un angolo qualsiasi, come decidi se usare il teorema dei seni o quello del coseno? Fai un esempio per ciascun caso.</em></p>
+      <p class="dim">Una buona risposta nomina la coppia lato–angolo opposto e distingue il caso LAL (angolo compreso) dal caso LLA (angolo opposto).</p>
+    </div>
+  `
+},
+
+/* ──── 7 · SOLUZIONI ──── */
+{
+  tag: `SOLUZIONI`,
+  title: `Le <em>soluzioni</em>`,
+  nav: `Soluzioni`,
+  sol: true,
+  sub: `Guardale solo dopo aver provato: per ogni esercizio confronta prima la <strong>scelta</strong>, poi il risultato.`,
+  body: `
+    ${acc([
+      {
+        n: 'A', t: `Fase A: le figure attese`,
+        h: `<ul>
+              <li><strong>A1.</strong> Vertice nell'incrocio, i due lati noti (\\(300\\) e \\(500\\)) lo toccano, l'angolo \\(60^\\circ\\) sta <strong>in mezzo</strong> ai due. Incognita: il lato opposto.</li>
+              <li><strong>A2.</strong> Tre vertici \\(A\\), \\(B\\), \\(C\\). Noti \\(AB=120\\) e i due angoli alle estremità di \\(AB\\).</li>
+              <li><strong>A3.</strong> Vertice nel porto, lati \\(30\\) e \\(40\\), angolo \\(50^\\circ\\) in mezzo. Incognita: il lato che unisce le due navi.</li>
+              <li><strong>A4.</strong> Triangolo dentro un cerchio: compare il raggio.</li>
+            </ul>`
+      },
+      {
+        n: 'B', t: `Fase B: classificazione`,
+        h: `<table class="ct">
+              <tr><th>#</th><th>Sigla</th><th>Teorema</th><th>Perché</th></tr>
+              <tr><td class="n">1</td><td>ALA</td><td>Seni</td><td>coppia \\((a,\\alpha)\\) nota</td></tr>
+              <tr><td class="n">2</td><td>LAL</td><td>Carnot</td><td>\\(\\alpha\\) è compreso tra \\(b\\) e \\(c\\)</td></tr>
+              <tr><td class="n">3</td><td>LLL</td><td>Carnot</td><td>nessun angolo noto</td></tr>
+              <tr><td class="n">4</td><td>ALA</td><td>Seni</td><td>\\(\\gamma=80^\\circ\\), poi coppia \\((c,\\gamma)\\)</td></tr>
+              <tr><td class="n">5</td><td>LLA</td><td>Seni</td><td>coppia \\((a,\\alpha)\\); due soluzioni</td></tr>
+              <tr><td class="n">6</td><td>—</td><td>Corda</td><td>compare il raggio</td></tr>
+              <tr><td class="n">7</td><td>LAL</td><td>Carnot</td><td>\\(\\gamma\\) è compreso tra \\(a\\) e \\(b\\)</td></tr>
+              <tr><td class="n">8</td><td>ALA</td><td>Seni</td><td>\\(\\beta=70^\\circ\\), poi coppia \\((b,\\beta)\\)</td></tr>
+              <tr><td class="n">9</td><td>LLA</td><td>Seni</td><td>coppia \\((a,\\alpha)\\); <strong>nessun triangolo</strong></td></tr>
+              <tr><td class="n">10</td><td>—</td><td>Corda</td><td>\\(BC=2R\\sin\\hat A\\), si ricava \\(R\\)</td></tr>
+            </table>
+            <p>Risultati di controllo:</p>
+            <ol>
+              <li>\\(b=\\dfrac{8\\sin45^\\circ}{\\sin30^\\circ}\\approx 11{,}31\\)</li>
+              <li>\\(a^2=49+100-2\\cdot7\\cdot10\\cdot\\cos60^\\circ=79\\Rightarrow a\\approx 8{,}89\\)</li>
+              <li>\\(\\cos\\alpha=\\dfrac{36+49-25}{2\\cdot6\\cdot7}=\\dfrac{5}{7}\\Rightarrow\\alpha\\approx 44{,}4^\\circ\\)</li>
+              <li>\\(a=\\dfrac{12\\sin40^\\circ}{\\sin80^\\circ}\\approx 7{,}83\\)</li>
+              <li>\\(\\sin\\beta=\\dfrac{14\\sin30^\\circ}{10}=0{,}7\\Rightarrow\\beta\\approx 44{,}4^\\circ\\) <strong>oppure</strong> \\(\\beta\\approx135{,}6^\\circ\\) (entrambi accettabili: \\(30^\\circ+135{,}6^\\circ<180^\\circ\\))</li>
+              <li>\\(BC=2\\cdot5\\cdot\\sin30^\\circ=5\\)</li>
+              <li>\\(c^2=81+144-2\\cdot9\\cdot12\\cdot\\cos50^\\circ\\approx86{,}16\\Rightarrow c\\approx 9{,}28\\)</li>
+              <li>\\(a=\\dfrac{20\\sin35^\\circ}{\\sin70^\\circ}\\approx 12{,}21\\)</li>
+              <li>\\(\\sin\\beta=\\dfrac{10\\sin40^\\circ}{3}\\approx2{,}14>1\\): impossibile, <strong>nessun triangolo</strong></li>
+              <li>\\(R=\\dfrac{BC}{2\\sin\\hat A}=\\dfrac{12}{2\\sin45^\\circ}=6\\sqrt2\\approx 8{,}49\\)</li>
+            </ol>`
+      },
+      {
+        n: 'C', t: `Fase C: esempi 2 e 3`,
+        h: `<p><strong>Esempio 2.</strong></p>
+            <div class="math-block result">\\[a=\\frac{15\\cdot\\sin50^\\circ}{\\sin60^\\circ}\\approx 13{,}27\\]</div>
+            <p><strong>Esempio 3.</strong> È stato usato Carnot, con tre lati (\\(a=5\\), \\(b=6\\), \\(c=7\\)). Non c'è nessun angolo noto, quindi nessuna coppia lato–angolo opposto: i seni non si possono usare.</p>`
+      },
+      {
+        n: 'D', t: `Fase D: pratica mista`,
+        h: `<ol>
+              <li><strong>ALA, seni.</strong> \\(a=\\dfrac{9\\sin48^\\circ}{\\sin62^\\circ}\\approx 7{,}57\\)</li>
+              <li><strong>LAL, Carnot.</strong> \\(b^2=36+64-96\\cos100^\\circ\\approx116{,}67\\Rightarrow b\\approx10{,}80\\)</li>
+              <li><strong>LLL, Carnot.</strong> \\(\\cos\\gamma=\\dfrac{49+81-121}{2\\cdot7\\cdot9}=\\dfrac{1}{14}\\Rightarrow\\gamma\\approx85{,}9^\\circ\\)</li>
+              <li><strong>Corda.</strong> \\(a=2\\cdot6\\cdot\\sin40^\\circ\\approx7{,}71\\)</li>
+              <li><strong>LLA, seni.</strong> \\(\\sin\\beta=\\dfrac{10\\sin30^\\circ}{7}\\approx0{,}714\\Rightarrow\\beta\\approx45{,}6^\\circ\\) oppure \\(\\beta\\approx134{,}4^\\circ\\). Due soluzioni, perché \\(30^\\circ+134{,}4^\\circ<180^\\circ\\).</li>
+              <li><strong>ALA, seni.</strong> \\(b=\\dfrac{12\\sin45^\\circ}{\\sin70^\\circ}\\approx 9{,}03\\)</li>
+            </ol>`
+      },
+      {
+        n: 'E', t: `Fase E1: i tre problemi`,
+        h: `<ul>
+              <li><strong>A1.</strong> LAL, Carnot. \\(d^2=300^2+500^2-2\\cdot300\\cdot500\\cdot\\cos60^\\circ=190000\\Rightarrow d\\approx435{,}9\\ \\text{m}\\)</li>
+              <li><strong>A2.</strong> ALA, seni. \\(\\gamma=70^\\circ\\) e \\(AC\\) è opposto a \\(\\beta=48^\\circ\\): \\(AC=\\dfrac{120\\sin48^\\circ}{\\sin70^\\circ}\\approx94{,}9\\ \\text{m}\\). Errore tipico: usare \\(\\sin62^\\circ\\) con \\(AC\\) (non sono opposti).</li>
+              <li><strong>A3.</strong> LAL, Carnot. \\(d^2=30^2+40^2-2\\cdot30\\cdot40\\cdot\\cos50^\\circ\\approx957{,}3\\Rightarrow d\\approx30{,}9\\ \\text{km}\\)</li>
+            </ul>`
+      },
+      {
+        n: 'E', t: `Fase E2: i fari, con seni e con corda`,
+        h: `<p><strong>Scelta.</strong> Sono noti due angoli e un lato: ALA. Il terzo angolo si trova con la somma degli angoli interni:</p>
+            <div class="math-block">\\[\\widehat{B}=180^\\circ-40^\\circ-30^\\circ=110^\\circ\\]</div>
+            <p>Il lato noto \\(AC=b=100\\) è opposto a \\(\\widehat B=110^\\circ\\). Il lato cercato \\(AB=c\\) è opposto a \\(\\widehat C=30^\\circ\\).</p>
+
+            <h3>Con il teorema dei seni</h3>
+            <div class="math-block">\\[\\frac{c}{\\sin30^\\circ}=\\frac{b}{\\sin110^\\circ}\\ \\Rightarrow\\ c=\\frac{100\\cdot\\sin30^\\circ}{\\sin110^\\circ}=\\frac{50}{0{,}9397}\\approx 53{,}2\\ \\text{m}\\]</div>
+
+            <h3>Con il teorema della corda</h3>
+            <p>Il triangolo è inscritto in una circonferenza di raggio \\(R\\). Dal lato noto ricaviamo \\(R\\):</p>
+            <div class="math-block">\\[b=2R\\sin\\widehat B\\ \\Rightarrow\\ R=\\frac{100}{2\\sin110^\\circ}\\approx 53{,}2\\ \\text{m}\\]</div>
+            <p>Poi applichiamo di nuovo la corda al lato cercato:</p>
+            <div class="math-block">\\[c=2R\\sin\\widehat C=2\\cdot53{,}2\\cdot\\sin30^\\circ\\approx 53{,}2\\ \\text{m}\\]</div>
+
+            <div class="math-block result">\\[AB\\approx 53{,}2\\ \\text{m}\\]</div>
+
+            <div class="cb tip">
+              <div class="cb-label">Perché i due risultati coincidono</div>
+              <p>Il teorema dei seni <em>è</em> il teorema della corda ripetuto per ogni lato: \\(\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}=\\dfrac{c}{\\sin C}=2R\\). Con la corda trovi prima \\(2R\\) e poi usi quel valore; con i seni lo fai in un solo passaggio. Qui, essendo \\(\\widehat C=30^\\circ\\), vale \\(\\sin30^\\circ=\\tfrac12\\), quindi \\(c=R\\): il lato cercato è uguale al raggio.</p>
+            </div>`
+      },
+      {
+        n: 'F', t: `Fase F: risposte`,
+        h: `<ol>
+              <li>Carnot</li>
+              <li>Carnot</li>
+              <li>Seni</li>
+              <li>Seni (attenzione al caso ambiguo)</li>
+              <li>Corda</li>
+              <li>Seni</li>
+              <li>Carnot</li>
+              <li>Carnot</li>
+              <li>Corda</li>
+              <li>Seni (attenzione al caso ambiguo)</li>
+            </ol>`
+      }
+    ])}
+  `
+}
+
+]; // fine schermate
+
+/* ═══════════════ APP ═══════════════ */
+let cur = 0;
+const tot = S.length;
+
+function render() {
+  // nav pills
+  document.getElementById('topNav').innerHTML = S.map((s, i) =>
+    `<button class="nav-pill ${i === cur ? 'active' : ''}" onclick="goTo(${i})">${s.nav}</button>`
+  ).join('');
+
+  // screens
+  document.getElementById('app').innerHTML = S.map((s, i) => `
+    <div class="section ${s.sol ? 'sol' : ''} ${i === cur ? 'active' : ''}">
+      <div class="hero">
+        <div class="hero-tag">${s.tag}</div>
+        <h1>${s.title}</h1>
+        <p class="hero-sub">${s.sub}</p>
+      </div>
+      ${s.body}
+      <div class="bottom-nav">
+        <button class="bb" onclick="goTo(${i - 1})" ${i === 0 ? 'disabled' : ''}>← Indietro</button>
+        <div class="dots">
+          ${S.map((_, j) =>
+            `<button class="dot ${j === i ? 'active' : ''}" onclick="goTo(${j})"
+             title="Sezione ${j + 1} di ${tot}"></button>`
+          ).join('')}
+        </div>
+        <button class="bb" onclick="goTo(${i + 1})" ${i === tot - 1 ? 'disabled' : ''}>Avanti →</button>
+      </div>
+    </div>
+  `).join('');
+
+  // typeset: in stampa tutte le schermate, altrimenti solo quella attiva
+  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+    const target = PRINT ? document.getElementById('app') : document.querySelector('.section.active');
+    if (target) MathJax.typesetPromise([target]);
+  }
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= tot) return;
+  cur = idx;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') goTo(cur + 1);
+  if (e.key === 'ArrowLeft')  goTo(cur - 1);
+});
+
+// avvia dopo MathJax
+if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.promise) {
+  MathJax.startup.promise.then(() => render());
+} else {
+  render();
+  document.body.style.opacity = '1';
+}
+</script>
+</body>
+</html>
