@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ed. Civica 2026/27 — Materiali Riservati</title>
+    <title>Ed. Civica 2026/27</title>
     <style>
         * {
             margin: 0;
@@ -227,17 +227,7 @@
 <body>
     <a href="/" class="back-link">← home</a>
 
-    <div class="password-container" id="passwordContainer">
-        <h1>Ed. Civica 2026/27</h1>
-        <p>Progetto "I numeri che ci ingannano ogni giorno" — inserisci la password per accedere ai materiali</p>
-        <form class="password-form" id="passwordForm">
-            <input type="password" id="passwordInput" placeholder="Password" required>
-            <button type="submit">Accedi</button>
-            <div class="error-msg" id="errorMsg">Password non corretta</div>
-        </form>
-    </div>
-
-    <div class="content-area" id="contentArea">
+    <div class="content-area" id="contentArea" style="display:block">
         <h1>Ed. Civica 2026/27</h1>
         <p class="subtitle">"I numeri che ci ingannano ogni giorno"</p>
         <ul class="materials-list">
@@ -262,51 +252,9 @@
                 <span class="desc">Struttura dell'esposizione e domande guida</span></a>
             </li>
         </ul>
-        <button class="logout-btn" id="logoutBtn">Esci</button>
     </div>
 
     <script>
-        const PASSWORD = '202627_edcivica';
-        const passwordForm = document.getElementById('passwordForm');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordContainer = document.getElementById('passwordContainer');
-        const contentArea = document.getElementById('contentArea');
-        const errorMsg = document.getElementById('errorMsg');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        if (sessionStorage.getItem('edCivica2026Auth') === 'true') {
-            showContent();
-        }
-
-        passwordForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (passwordInput.value === PASSWORD) {
-                sessionStorage.setItem('edCivica2026Auth', 'true');
-                errorMsg.style.display = 'none';
-                showContent();
-            } else {
-                errorMsg.style.display = 'block';
-                passwordInput.value = '';
-            }
-        });
-
-        logoutBtn.addEventListener('click', function() {
-            sessionStorage.removeItem('edCivica2026Auth');
-            passwordInput.value = '';
-            errorMsg.style.display = 'none';
-            showPassword();
-        });
-
-        function showContent() {
-            passwordContainer.style.display = 'none';
-            contentArea.style.display = 'block';
-        }
-
-        function showPassword() {
-            passwordContainer.style.display = 'block';
-            contentArea.style.display = 'none';
-        }
-
         function checkDarkMode() {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.body.classList.add('dark-mode');
